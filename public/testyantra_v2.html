@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TestYantra — Engineering Quality at the Speed of Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ── THEME TOKENS ── */
+[data-theme="midnight"] {
+  --bg:       #08091A;
+  --bg2:      #0F1226;
+  --bg3:      #161930;
+  --surface:  rgba(255,255,255,0.04);
+  --border:   rgba(255,255,255,0.09);
+  --border2:  rgba(255,255,255,0.16);
+  --text:     #FFFFFF;
+  --muted:    #7E8BAA;
+  --muted2:   #B0BAD0;
+  --accent:   #E8401A;
+  --accentH:  #C53310;
+  --teal:     #00BFA8;
+  --indigo:   #5C6FFF;
+  --gold:     #F0A500;
+  --navbg:    rgba(8,9,26,0.94);
+}
+[data-theme="slate"] {
+  --bg:       #0E1117;
+  --bg2:      #161B25;
+  --bg3:      #1E2535;
+  --surface:  rgba(255,255,255,0.05);
+  --border:   rgba(255,255,255,0.10);
+  --border2:  rgba(255,255,255,0.18);
+  --text:     #F0F2F8;
+  --muted:    #6E7A95;
+  --muted2:   #A0ABBE;
+  --accent:   #E8401A;
+  --accentH:  #C53310;
+  --teal:     #00BFA8;
+  --indigo:   #5C6FFF;
+  --gold:     #F0A500;
+  --navbg:    rgba(14,17,23,0.94);
+}
+[data-theme="forest"] {
+  --bg:       #071410;
+  --bg2:      #0D1F18;
+  --bg3:      #132B22;
+  --surface:  rgba(255,255,255,0.04);
+  --border:   rgba(255,255,255,0.09);
+  --border2:  rgba(255,255,255,0.16);
+  --text:     #EDF6F2;
+  --muted:    #6E8E7E;
+  --muted2:   #9DBFB0;
+  --accent:   #E8401A;
+  --accentH:  #C53310;
+  --teal:     #00BFA8;
+  --indigo:   #5C6FFF;
+  --gold:     #F0A500;
+  --navbg:    rgba(7,20,16,0.94);
+}
+[data-theme="navy"] {
+  --bg:       #04091E;
+  --bg2:      #081230;
+  --bg3:      #0D1A42;
+  --surface:  rgba(255,255,255,0.05);
+  --border:   rgba(255,255,255,0.09);
+  --border2:  rgba(255,255,255,0.18);
+  --text:     #EAF0FF;
+  --muted:    #6A7AA0;
+  --muted2:   #9AAAD0;
+  --accent:   #E8401A;
+  --accentH:  #C53310;
+  --teal:     #00BFA8;
+  --indigo:   #6C80FF;
+  --gold:     #F0A500;
+  --navbg:    rgba(4,9,30,0.94);
+}
+[data-theme="charcoal"] {
+  --bg:       #111111;
+  --bg2:      #1A1A1A;
+  --bg3:      #242424;
+  --surface:  rgba(255,255,255,0.04);
+  --border:   rgba(255,255,255,0.10);
+  --border2:  rgba(255,255,255,0.20);
+  --text:     #F2F2F2;
+  --muted:    #777777;
+  --muted2:   #AAAAAA;
+  --accent:   #E8401A;
+  --accentH:  #C53310;
+  --teal:     #00BFA8;
+  --indigo:   #5C6FFF;
+  --gold:     #F0A500;
+  --navbg:    rgba(17,17,17,0.96);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.65;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+h1,h2,h3,h4,h5 {
+  font-family: 'Fraunces', serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* ── THEME SWITCHER PILL ── */
+.theme-switcher {
+  position: fixed; bottom: 32px; right: 28px; z-index: 2000;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 40px;
+  padding: 8px 14px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.theme-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--muted2); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.theme-dots { display: flex; gap: 7px; }
+.theme-dot {
+  width: 18px; height: 18px; border-radius: 50%; cursor: pointer;
+  border: 2px solid transparent; transition: all 0.2s;
+  position: relative;
+}
+.theme-dot:hover { transform: scale(1.2); }
+.theme-dot.active { border-color: var(--text); }
+.td-midnight { background: #08091A; }
+.td-slate    { background: #0E1117; }
+.td-forest   { background: #071410; }
+.td-navy     { background: #04091E; }
+.td-charcoal { background: #111111; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 68px;
+  background: var(--navbg);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-logo-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  animation: navpulse 2.5s infinite;
+}
+@keyframes navpulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.nav-center { display: flex; gap: 0; list-style: none; }
+.nav-center > li { position: relative; }
+.nav-center a {
+  color: var(--muted2); text-decoration: none; font-size: 13.5px;
+  font-weight: 500; padding: 0 18px; height: 68px;
+  display: flex; align-items: center; gap: 5px;
+  transition: color 0.2s; white-space: nowrap;
+}
+.nav-center a:hover { color: var(--text); }
+.nav-chevron { font-size: 10px; opacity: 0.6; }
+
+/* Mega-dropdown */
+.mega-drop {
+  position: absolute; top: 68px; left: 50%; transform: translateX(-50%);
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 28px 32px;
+  min-width: 560px; display: none;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  z-index: 999;
+}
+.nav-center li:hover .mega-drop { display: flex; gap: 40px; }
+.mega-col h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 14px;
+}
+.mega-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.mega-col a { font-size: 13.5px; color: var(--muted2); text-decoration: none; height: auto; padding: 0; transition: color 0.2s; }
+.mega-col a:hover { color: var(--text); }
+
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-cta {
+  background: var(--accent); color: #fff;
+  padding: 9px 22px; border-radius: 8px;
+  font-size: 13.5px; font-weight: 600; text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accentH); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 55% 45%;
+  align-items: center; padding: 110px 60px 60px;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 55% at 75% 55%, rgba(92,111,255,0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 45% at 15% 75%, rgba(232,64,26,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 12%, rgba(0,191,168,0.08) 0%, transparent 55%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,64,26,0.1); border: 1px solid rgba(232,64,26,0.25);
+  padding: 5px 14px; border-radius: 100px; margin-bottom: 30px;
+  font-size: 11.5px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.07em; text-transform: uppercase;
+}
+.eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: navpulse 2s infinite; }
+
+.hero h1 {
+  font-size: clamp(46px, 5.8vw, 82px);
+  font-weight: 700; margin-bottom: 28px;
+  line-height: 1.08;
+}
+.hero h1 .italic-highlight {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+.hero h1 .teal-word { color: var(--teal); }
+
+.hero-sub {
+  font-size: 17px; color: var(--muted2); max-width: 500px;
+  margin-bottom: 44px; font-weight: 300; line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-accent {
+  background: var(--accent); color: #fff;
+  padding: 14px 32px; border-radius: 9px;
+  font-size: 14.5px; font-weight: 600; text-decoration: none;
+  transition: all 0.25s; display: inline-block;
+}
+.btn-accent:hover { background: var(--accentH); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(232,64,26,0.35); }
+.btn-outline {
+  border: 1px solid var(--border2); color: var(--text);
+  padding: 14px 28px; border-radius: 9px; font-size: 14.5px;
+  font-weight: 500; text-decoration: none; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { background: var(--surface); border-color: var(--muted2); }
+
+/* hero visual */
+.hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+.hv-wrap { width: 420px; height: 420px; position: relative; }
+.hv-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 130px; height: 130px; border-radius: 50%;
+  background: linear-gradient(145deg, var(--indigo), #2A1F6E);
+  box-shadow: 0 0 60px rgba(92,111,255,0.4);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700;
+  gap: 3px;
+}
+.hv-center-label { font-size: 9px; opacity: 0.55; letter-spacing: 0.1em; font-weight: 400; }
+.hv-ring {
+  position: absolute; border-radius: 50%;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  border: 1px dashed;
+}
+.hvr1 { width: 210px; height: 210px; border-color: rgba(92,111,255,0.25); animation: hvspin 18s linear infinite; }
+.hvr2 { width: 330px; height: 330px; border-color: rgba(0,191,168,0.15); animation: hvspin 28s linear infinite reverse; }
+.hvr3 { width: 415px; height: 415px; border-color: rgba(232,64,26,0.1); animation: hvspin 42s linear infinite; }
+@keyframes hvspin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+.hv-node {
+  position: absolute;
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  border: 1px solid var(--border2); backdrop-filter: blur(8px);
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+.hv-node:hover { transform: scale(1.1) !important; }
+.hv-node-label { font-size: 9px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; color: var(--muted2); letter-spacing: 0.05em; }
+.hn1 { top: 4%; left: 50%; transform: translateX(-50%); background: rgba(232,64,26,0.15); }
+.hn2 { top: 50%; right: 3%; transform: translateY(-50%); background: rgba(0,191,168,0.15); }
+.hn3 { bottom: 4%; left: 50%; transform: translateX(-50%); background: rgba(92,111,255,0.15); }
+.hn4 { top: 50%; left: 3%; transform: translateY(-50%); background: rgba(240,165,0,0.15); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-cell {
+  padding: 38px 20px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 50px; font-weight: 700; line-height: 1;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.stat-num sup { font-size: 22px; vertical-align: super; color: var(--accent); }
+.stat-desc { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+/* ── SECTION COMMON ── */
+section { padding: 100px 60px; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 14px;
+}
+.section-h2 { font-size: clamp(32px, 3.8vw, 54px); font-weight: 700; margin-bottom: 18px; }
+.section-sub { font-size: 17px; color: var(--muted2); max-width: 580px; line-height: 1.75; font-weight: 300; }
+.row-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; gap: 40px; }
+.link-arrow {
+  font-size: 13.5px; font-weight: 600; color: var(--accent);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap; flex-shrink: 0; transition: gap 0.2s;
+}
+.link-arrow:hover { gap: 10px; }
+
+/* ── PILLARS ── */
+.pillars { background: var(--bg); }
+.pillars-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+.pillar {
+  background: var(--bg); padding: 44px 34px 36px;
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: background 0.3s;
+}
+.pillar:hover { background: var(--bg3); }
+.pillar:hover .pillar-bar { width: 100%; }
+.pillar-bar {
+  position: absolute; top: 0; left: 0; height: 3px; width: 0;
+  transition: width 0.45s ease;
+}
+.pb1 { background: var(--accent); }
+.pb2 { background: var(--teal); }
+.pb3 { background: var(--indigo); }
+.pb4 { background: var(--gold); }
+
+.pillar-icon {
+  width: 50px; height: 50px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 22px;
+}
+.pi1 { background: rgba(232,64,26,0.13); }
+.pi2 { background: rgba(0,191,168,0.13); }
+.pi3 { background: rgba(92,111,255,0.13); }
+.pi4 { background: rgba(240,165,0,0.13); }
+
+.pillar h3 { font-size: 19px; margin-bottom: 12px; }
+.pillar p { font-size: 13.5px; color: var(--muted2); line-height: 1.7; margin-bottom: 24px; }
+.pillar-cta {
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif; transition: gap 0.2s;
+}
+.pc1 { color: var(--accent); }
+.pc2 { color: var(--teal); }
+.pc3 { color: var(--indigo); }
+.pc4 { color: var(--gold); }
+.pillar:hover .pillar-cta { gap: 10px; }
+.pillar-n {
+  position: absolute; right: 24px; bottom: 20px;
+  font-family: 'Fraunces', serif; font-size: 80px; font-weight: 700;
+  color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none;
+}
+
+/* ── SERVICES ── */
+.services { background: var(--bg2); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.svc-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 34px; cursor: pointer;
+  transition: all 0.3s;
+}
+.svc-card:hover { background: var(--bg3); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: var(--border2); }
+.svc-icon { font-size: 30px; margin-bottom: 18px; display: block; }
+.svc-card h3 { font-size: 17px; margin-bottom: 10px; }
+.svc-card p { font-size: 13.5px; color: var(--muted2); line-height: 1.7; }
+.svc-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.pill {
+  font-size: 11px; padding: 3px 10px; border-radius: 100px;
+  background: rgba(255,255,255,0.06); color: var(--muted2); font-weight: 500;
+}
+
+/* ── AI SPOTLIGHT ── */
+.ai-spot {
+  background: var(--bg3);
+  padding: 100px 60px;
+  position: relative; overflow: hidden;
+}
+.ai-spot::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 85% 50%, rgba(92,111,255,0.18) 0%, transparent 65%),
+              radial-gradient(ellipse 30% 40% at 5% 50%, rgba(0,191,168,0.1) 0%, transparent 55%);
+}
+.ai-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.ai-left .section-eyebrow { color: var(--indigo); }
+.ai-cards { display: flex; flex-direction: column; gap: 16px; }
+.ai-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(92,111,255,0.2);
+  border-radius: 14px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start;
+  transition: background 0.2s;
+}
+.ai-card:hover { background: rgba(92,111,255,0.08); }
+.ai-card-icon {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(92,111,255,0.18);
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.ai-card h4 { font-size: 14.5px; margin-bottom: 5px; }
+.ai-card p { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+
+/* ── CLIENT SUCCESS ── */
+.client-success { background: var(--bg); }
+.cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cs-card {
+  border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+  background: var(--surface); cursor: pointer; transition: all 0.3s;
+}
+.cs-card:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(0,0,0,0.35); border-color: var(--border2); }
+.cs-thumb {
+  height: 170px; display: flex; align-items: center; justify-content: center;
+  font-size: 44px; position: relative;
+}
+.cst1 { background: linear-gradient(135deg, rgba(232,64,26,0.28), rgba(232,64,26,0.04)); }
+.cst2 { background: linear-gradient(135deg, rgba(92,111,255,0.28), rgba(92,111,255,0.04)); }
+.cst3 { background: linear-gradient(135deg, rgba(0,191,168,0.28), rgba(0,191,168,0.04)); }
+.cs-industry {
+  position: absolute; bottom: 14px; left: 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+}
+.ci1 { background: rgba(232,64,26,0.2); color: var(--accent); }
+.ci2 { background: rgba(92,111,255,0.2); color: var(--indigo); }
+.ci3 { background: rgba(0,191,168,0.2); color: var(--teal); }
+.cs-body { padding: 26px; }
+.cs-card h3 { font-size: 16.5px; margin-bottom: 10px; line-height: 1.4; }
+.cs-card p { font-size: 13px; color: var(--muted2); line-height: 1.68; margin-bottom: 18px; }
+.cs-metric {
+  display: flex; gap: 20px; padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.cs-m-item { }
+.cs-m-num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 3px; }
+.cs-m-label { font-size: 11px; color: var(--muted); }
+.m-acc { color: var(--accent); }
+.m-teal { color: var(--teal); }
+.m-ind { color: var(--indigo); }
+
+/* ── PARTNER LOGOS ── */
+.clients-strip { background: var(--bg2); padding: 56px 60px; }
+.strip-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 36px; }
+.logo-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border: 1px solid var(--border); }
+.logo-cell {
+  padding: 28px 16px; display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--border);
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700;
+  color: rgba(255,255,255,0.2); letter-spacing: 0.06em; text-transform: uppercase;
+  transition: all 0.2s; background: var(--bg2);
+}
+.logo-cell:last-child { border-right: none; }
+.logo-cell:hover { color: rgba(255,255,255,0.5); background: var(--bg3); }
+
+/* ── INDUSTRIES ── */
+.industries { background: var(--bg); }
+.ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 56px; }
+.ind-card {
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 22px; text-align: center;
+  background: var(--surface); transition: all 0.25s; cursor: pointer;
+}
+.ind-card:hover { background: var(--bg3); border-color: var(--border2); transform: translateY(-3px); }
+.ind-icon { font-size: 30px; margin-bottom: 12px; display: block; }
+.ind-card h3 { font-size: 15px; margin-bottom: 7px; }
+.ind-card p { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── WHY TESTYANTRA ── */
+.why { background: var(--bg2); }
+.why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.why-points { display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+.why-pt {
+  display: flex; gap: 16px; padding: 22px;
+  border: 1px solid var(--border); border-radius: 14px;
+  background: var(--surface); transition: all 0.2s; align-items: flex-start;
+}
+.why-pt:hover { background: var(--bg3); border-color: var(--border2); }
+.why-icon {
+  width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+  background: rgba(232,64,26,0.13);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.why-pt h4 { font-size: 15px; margin-bottom: 5px; }
+.why-pt p { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+
+/* maturity card */
+.maturity-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px;
+}
+.maturity-card h3 { font-size: 20px; margin-bottom: 6px; }
+.maturity-card > p { font-size: 13.5px; color: var(--muted2); margin-bottom: 32px; }
+.mat-levels { display: flex; flex-direction: column; gap: 14px; }
+.mat-row { display: flex; align-items: center; gap: 14px; }
+.mat-name { font-size: 12.5px; font-weight: 600; width: 82px; text-align: right; color: var(--muted2); }
+.mat-track { flex: 1; height: 7px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+.mat-fill { height: 100%; border-radius: 100px; }
+.mf1 { width: 20%; background: rgba(232,64,26,0.5); }
+.mf2 { width: 42%; background: rgba(240,165,0,0.6); }
+.mf3 { width: 60%; background: rgba(0,191,168,0.65); }
+.mf4 { width: 78%; background: rgba(92,111,255,0.7); }
+.mf5 { width: 96%; background: linear-gradient(90deg, var(--indigo), var(--teal)); }
+.mat-tag { font-size: 12px; color: var(--muted); width: 22px; text-align: left; }
+.mat-note {
+  margin-top: 24px; padding: 16px;
+  background: rgba(92,111,255,0.09); border: 1px solid rgba(92,111,255,0.2);
+  border-radius: 10px; font-size: 12.5px; color: var(--muted2); line-height: 1.65;
+}
+
+/* ── APPROACH ── */
+.approach { background: var(--bg3); }
+.approach-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  margin-top: 60px; position: relative;
+}
+.approach-steps::after {
+  content: ''; position: absolute; top: 30px; left: 8%; right: 8%;
+  height: 1px; background: var(--border); z-index: 0;
+}
+.appr-step { text-align: center; padding: 0 14px; position: relative; z-index: 1; }
+.appr-num {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+  margin: 0 auto 20px; transition: all 0.3s;
+}
+.appr-step:hover .appr-num { border-color: var(--accent); color: var(--accent); }
+.appr-step h4 { font-size: 14px; margin-bottom: 8px; }
+.appr-step p { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+/* ── INSIGHTS ── */
+.insights { background: var(--bg); }
+.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+.ins-card {
+  border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+  background: var(--surface); transition: all 0.3s; cursor: pointer;
+}
+.ins-card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 20px 48px rgba(0,0,0,0.3); }
+.ins-thumb {
+  height: 180px; display: flex; align-items: center; justify-content: center; font-size: 46px;
+  position: relative;
+}
+.it1 { background: linear-gradient(135deg, rgba(232,64,26,0.25), rgba(232,64,26,0.03)); }
+.it2 { background: linear-gradient(135deg, rgba(92,111,255,0.25), rgba(92,111,255,0.03)); }
+.it3 { background: linear-gradient(135deg, rgba(0,191,168,0.25), rgba(0,191,168,0.03)); }
+.ins-cat {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 9px;
+}
+.ins-body { padding: 24px; }
+.ins-card h3 { font-size: 16px; margin-bottom: 9px; line-height: 1.4; }
+.ins-card p { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+.ins-meta { font-size: 11.5px; color: var(--muted); margin-top: 14px; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background: var(--accent); padding: 80px 60px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.cta-band h2 { font-size: clamp(28px,3.2vw,48px); max-width: 580px; color: #fff; }
+.cta-band h2 em { font-style: italic; font-weight: 300; }
+.btn-white {
+  background: #fff; color: var(--accent);
+  padding: 15px 38px; border-radius: 9px;
+  font-size: 14.5px; font-weight: 700; text-decoration: none;
+  white-space: nowrap; flex-shrink: 0; transition: all 0.2s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.22); }
+
+/* ── FOOTER ── */
+footer { background: #050609; border-top: 1px solid var(--border); padding: 80px 60px 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 56px; }
+.foot-brand .nav-logo { font-size: 22px; display: block; margin-bottom: 16px; }
+.foot-brand p { font-size: 13.5px; color: var(--muted); line-height: 1.75; max-width: 280px; margin-bottom: 24px; }
+.foot-social { display: flex; gap: 10px; }
+.fsoc {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--muted); text-decoration: none; transition: all 0.2s;
+}
+.fsoc:hover { color: var(--text); background: rgba(255,255,255,0.11); }
+.foot-col h5 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted2); margin-bottom: 18px;
+}
+.foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.foot-col a { font-size: 13.5px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.foot-col a:hover { color: var(--text); }
+.foot-bottom {
+  border-top: 1px solid var(--border); padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.foot-bottom p, .foot-bottom a { font-size: 12.5px; color: var(--muted); text-decoration: none; }
+.foot-locs { display: flex; gap: 20px; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  nav{padding:0 24px}
+  .nav-center{display:none}
+  .hero{grid-template-columns:1fr;padding:100px 28px 60px;gap:40px}
+  .hero-visual{display:none}
+  section{padding:70px 28px}
+  .pillars-row{grid-template-columns:repeat(2,1fr)}
+  .services-grid{grid-template-columns:1fr}
+  .ai-inner{grid-template-columns:1fr}
+  .cs-grid{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .why-inner{grid-template-columns:1fr}
+  .approach-steps{grid-template-columns:repeat(3,1fr)}
+  .insights-grid{grid-template-columns:1fr}
+  .cta-band{flex-direction:column;text-align:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .logo-row{grid-template-columns:repeat(3,1fr)}
+  .clients-strip{padding:48px 28px}
+  footer{padding:56px 28px 32px}
+}
+
+/* ── FADE IN ── */
+.fi { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease, transform 0.65s ease; }
+.fi.vis { opacity:1; transform:translateY(0); }
+.fi-d1 { transition-delay:0.1s; }
+.fi-d2 { transition-delay:0.2s; }
+.fi-d3 { transition-delay:0.3s; }
+
+</style>
+</head>
+<body>
+
+<!-- THEME SWITCHER -->
+<div class="theme-switcher" id="themeSwitcher">
+  <span class="theme-label">Theme</span>
+  <div class="theme-dots">
+    <div class="theme-dot td-midnight active" data-t="midnight" title="Midnight"></div>
+    <div class="theme-dot td-slate" data-t="slate" title="Slate"></div>
+    <div class="theme-dot td-forest" data-t="forest" title="Forest"></div>
+    <div class="theme-dot td-navy" data-t="navy" title="Navy"></div>
+    <div class="theme-dot td-charcoal" data-t="charcoal" title="Charcoal"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    TestYantra
+  </a>
+  <ul class="nav-center">
+    <li>
+      <a href="#">Services <span class="nav-chevron">▾</span></a>
+      <div class="mega-drop">
+        <div class="mega-col">
+          <h6>Quality Engineering</h6>
+          <ul>
+            <li><a href="#">Managed QA Services</a></li>
+            <li><a href="#">Test Automation</a></li>
+            <li><a href="#">Crowd Testing</a></li>
+            <li><a href="#">Performance Engineering</a></li>
+            <li><a href="#">Security Testing</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h6>AI Engineering</h6>
+          <ul>
+            <li><a href="#">AI Test Generation</a></li>
+            <li><a href="#">ML Defect Analytics</a></li>
+            <li><a href="#">Self-Healing Automation</a></li>
+            <li><a href="#">GenAI Integration</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h6>Development & DevOps</h6>
+          <ul>
+            <li><a href="#">Application Development</a></li>
+            <li><a href="#">DevOps & CI/CD</a></li>
+            <li><a href="#">Cloud Engineering</a></li>
+            <li><a href="#">Mobile Engineering</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a href="#">Industries <span class="nav-chevron">▾</span></a>
+      <div class="mega-drop" style="min-width:400px">
+        <div class="mega-col">
+          <h6>Financial Services</h6>
+          <ul>
+            <li><a href="#">Banking & Payments</a></li>
+            <li><a href="#">Insurance</a></li>
+            <li><a href="#">FinTech</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h6>Other Sectors</h6>
+          <ul>
+            <li><a href="#">Healthcare & Life Sciences</a></li>
+            <li><a href="#">Telecom & Media</a></li>
+            <li><a href="#">Retail & E-Commerce</a></li>
+            <li><a href="#">SaaS & Hi-Tech</a></li>
+            <li><a href="#">Travel</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li><a href="#client-success">Client Success</a></li>
+    <li>
+      <a href="#">Insights <span class="nav-chevron">▾</span></a>
+      <div class="mega-drop" style="min-width:380px">
+        <div class="mega-col">
+          <h6>Resources</h6>
+          <ul>
+            <li><a href="#">Blog & Articles</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Webinars & Events</a></li>
+            <li><a href="#">QA Training</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h6>Research</h6>
+          <ul>
+            <li><a href="#">QA Maturity Report</a></li>
+            <li><a href="#">AI in Testing 2025</a></li>
+            <li><a href="#">DevOps Benchmarks</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a href="#">Company <span class="nav-chevron">▾</span></a>
+      <div class="mega-drop" style="min-width:360px">
+        <div class="mega-col">
+          <h6>About</h6>
+          <ul>
+            <li><a href="#">Who We Are</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Global Presence</a></li>
+            <li><a href="#">Awards & Recognition</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h6>Community</h6>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">CSR & Sustainability</a></li>
+            <li><a href="#">Newsroom</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li><a href="#">Partners</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-cta">Talk to Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-eyebrow"><div class="eyebrow-dot"></div>Quality Engineering · AI · Development · DevOps</div>
+    <h1>
+      Quality isn't<br>
+      a phase —<br>
+      it's a <span class="italic-highlight">discipline</span><br>
+      we <span class="teal-word">engineer</span>
+    </h1>
+    <p class="hero-sub">TestYantra partners with global brands to weave quality into every layer of software delivery — from design to deployment, from automation to AI-powered intelligence.</p>
+    <div class="hero-actions">
+      <a href="#pillars" class="btn-accent">Explore Our Services</a>
+      <a href="#client-success" class="btn-outline">See Client Stories →</a>
+    </div>
+  </div>
+  <div class="hero-visual" style="position:relative;z-index:1">
+    <div class="hv-wrap">
+      <div class="hv-ring hvr1"></div>
+      <div class="hv-ring hvr2"></div>
+      <div class="hv-ring hvr3"></div>
+      <div class="hv-center">
+        <span style="font-weight:700;font-size:13px">TYSS</span>
+        <span class="hv-center-label">QUALITY CORE</span>
+      </div>
+      <div class="hv-node hn1">🧪<span class="hv-node-label">QE</span></div>
+      <div class="hv-node hn2">🤖<span class="hv-node-label">AI</span></div>
+      <div class="hv-node hn3">🚀<span class="hv-node-label">DevOps</span></div>
+      <div class="hv-node hn4">💻<span class="hv-node-label">Dev</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-cell fi">
+    <div class="stat-num">360<sup>+</sup></div>
+    <div class="stat-desc">Global Clients</div>
+  </div>
+  <div class="stat-cell fi fi-d1">
+    <div class="stat-num">17<sup>+</sup></div>
+    <div class="stat-desc">Years in Quality Engineering</div>
+  </div>
+  <div class="stat-cell fi fi-d2">
+    <div class="stat-num">2200<sup>+</sup></div>
+    <div class="stat-desc">Automation Engineers</div>
+  </div>
+  <div class="stat-cell fi fi-d3">
+    <div class="stat-num">11<sup>+</sup></div>
+    <div class="stat-desc">Global Locations</div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <span class="section-eyebrow">Four Engineering Pillars</span>
+  <div class="row-header">
+    <h2 class="section-h2">What we deliver,<br>end to end</h2>
+    <p class="section-sub">From quality strategy to AI-enabled automation and full-stack development — four practice areas, one seamless engineering partner.</p>
+  </div>
+  <div class="pillars-row">
+    <div class="pillar fi">
+      <div class="pillar-bar pb1"></div>
+      <div class="pillar-icon pi1">🧪</div>
+      <h3>Quality Engineering</h3>
+      <p>Platform-driven, Shift-Left quality at the heart of delivery. We turn quality from a gate into a continuous competitive advantage — across functional, regression, performance and security testing.</p>
+      <a href="#services" class="pillar-cta pc1">Discover QE →</a>
+      <div class="pillar-n">01</div>
+    </div>
+    <div class="pillar fi fi-d1">
+      <div class="pillar-bar pb2"></div>
+      <div class="pillar-icon pi2">🤖</div>
+      <h3>AI Engineering</h3>
+      <p>Generative AI meets quality engineering. We deploy ML-driven test intelligence, self-healing frameworks, and predictive defect analytics — dramatically cutting release cycle time.</p>
+      <a href="#ai" class="pillar-cta pc2">Discover AI →</a>
+      <div class="pillar-n">02</div>
+    </div>
+    <div class="pillar fi fi-d2">
+      <div class="pillar-bar pb3"></div>
+      <div class="pillar-icon pi3">💻</div>
+      <h3>Development</h3>
+      <p>Full-stack application engineering — web, mobile, APIs and cloud-native microservices — built quality-first with automated unit testing and code quality gates embedded from sprint zero.</p>
+      <a href="#services" class="pillar-cta pc3">Discover Dev →</a>
+      <div class="pillar-n">03</div>
+    </div>
+    <div class="pillar fi fi-d3">
+      <div class="pillar-bar pb4"></div>
+      <div class="pillar-icon pi4">🚀</div>
+      <h3>DevOps</h3>
+      <p>Continuous testing woven into every CI/CD stage. Infrastructure-as-code, release automation, configuration management and deployment orchestration — engineered for zero-risk delivery.</p>
+      <a href="#services" class="pillar-cta pc4">Discover DevOps →</a>
+      <div class="pillar-n">04</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES CATALOG -->
+<section class="services" id="services">
+  <span class="section-eyebrow">Service Catalog</span>
+  <div class="row-header">
+    <h2 class="section-h2">Everything you need<br>to ship with confidence</h2>
+    <a href="#" class="link-arrow">View All Services →</a>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card fi">
+      <span class="svc-icon">🔬</span>
+      <h3>Managed QA Services</h3>
+      <p>End-to-end quality as a managed service — dedicated teams, tooling, governance and continuous improvement metrics owned by TestYantra.</p>
+      <div class="svc-pills"><span class="pill">QA COE</span><span class="pill">Test Strategy</span><span class="pill">Governance</span></div>
+    </div>
+    <div class="svc-card fi fi-d1">
+      <span class="svc-icon">⚡</span>
+      <h3>Test Automation Engineering</h3>
+      <p>Building scalable, maintainable automation frameworks across UI, API, mobile and data layers — integrated deep into your CI/CD pipeline.</p>
+      <div class="svc-pills"><span class="pill">Selenium</span><span class="pill">Playwright</span><span class="pill">Cypress</span><span class="pill">Appium</span></div>
+    </div>
+    <div class="svc-card fi fi-d2">
+      <span class="svc-icon">👥</span>
+      <h3>Crowd Testing</h3>
+      <p>Global crowd of real-device testers across geographies, OS versions, and network conditions — go live with unmatched coverage and real-world confidence.</p>
+      <div class="svc-pills"><span class="pill">Real Devices</span><span class="pill">Localization</span><span class="pill">Exploratory</span></div>
+    </div>
+    <div class="svc-card fi">
+      <span class="svc-icon">🔄</span>
+      <h3>DevOps & Continuous Testing</h3>
+      <p>Embedding quality into every build stage — Jenkins, GitHub Actions, Azure DevOps, GitLab CI — with continuous feedback loops and automated gates.</p>
+      <div class="svc-pills"><span class="pill">CI/CD</span><span class="pill">Jenkins</span><span class="pill">GitHub Actions</span></div>
+    </div>
+    <div class="svc-card fi fi-d1">
+      <span class="svc-icon">💻</span>
+      <h3>Application Development</h3>
+      <p>Full-stack and cloud-native application engineering — React, Node.js, microservices and APIs — with quality embedded from the first commit.</p>
+      <div class="svc-pills"><span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Microservices</span></div>
+    </div>
+    <div class="svc-card fi fi-d2">
+      <span class="svc-icon">📱</span>
+      <h3>Mobile & Digital Testing</h3>
+      <p>Functional, performance and compatibility testing across iOS, Android and cross-platform apps using real device clouds and device farms.</p>
+      <div class="svc-pills"><span class="pill">iOS</span><span class="pill">Android</span><span class="pill">Flutter</span></div>
+    </div>
+    <div class="svc-card fi">
+      <span class="svc-icon">🏋️</span>
+      <h3>Performance Engineering</h3>
+      <p>Load, stress, soak and scalability testing — JMeter, Gatling, k6 — ensuring your systems hold up under real-world peak demand and beyond.</p>
+      <div class="svc-pills"><span class="pill">JMeter</span><span class="pill">Gatling</span><span class="pill">k6</span></div>
+    </div>
+    <div class="svc-card fi fi-d1">
+      <span class="svc-icon">🔐</span>
+      <h3>Security Testing</h3>
+      <p>VAPT, penetration testing, OWASP compliance and secure code review — protecting your applications and data from modern threat landscapes.</p>
+      <div class="svc-pills"><span class="pill">VAPT</span><span class="pill">OWASP</span><span class="pill">Pen Testing</span></div>
+    </div>
+    <div class="svc-card fi fi-d2">
+      <span class="svc-icon">🎓</span>
+      <h3>Training & QA Academy</h3>
+      <p>Structured upskilling for QA and engineering teams — bootcamps, certification programs and workshops in automation, AI testing and DevOps.</p>
+      <div class="svc-pills"><span class="pill">Bootcamps</span><span class="pill">Certifications</span><span class="pill">Workshops</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SPOTLIGHT -->
+<section class="ai-spot" id="ai">
+  <div class="ai-inner">
+    <div class="ai-left">
+      <span class="section-eyebrow" style="color:var(--indigo)">TestYantra.AI</span>
+      <h2 class="section-h2">Intelligence built<br>into every test</h2>
+      <p class="section-sub" style="margin-bottom:40px">Our AI Engineering practice applies generative AI, machine learning and intelligent automation to every stage of the software quality lifecycle — predicting failures before they reach production.</p>
+      <a href="#" class="btn-accent">Explore TestYantra.AI</a>
+    </div>
+    <div class="ai-cards fi">
+      <div class="ai-card">
+        <div class="ai-card-icon">🧠</div>
+        <div>
+          <h4>AI-Powered Test Generation</h4>
+          <p>Auto-generate comprehensive test suites from requirements, user stories and code diffs using large language models — 60% faster coverage.</p>
+        </div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">📊</div>
+        <div>
+          <h4>Predictive Defect Analytics</h4>
+          <p>ML models trained on code quality signals identify high-risk areas before testing begins — reducing defect leakage and re-test cycles.</p>
+        </div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">⚡</div>
+        <div>
+          <h4>Self-Healing Automation</h4>
+          <p>AI-driven test maintenance auto-repairs broken scripts when UIs change — zero manual intervention, no delayed releases.</p>
+        </div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">🔍</div>
+        <div>
+          <h4>Visual AI Testing</h4>
+          <p>Computer vision-powered UI comparison and accessibility checks at pixel level — catch rendering bugs humans miss every time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT SUCCESS -->
+<section class="client-success" id="client-success">
+  <span class="section-eyebrow">Client Success</span>
+  <div class="row-header">
+    <h2 class="section-h2">Outcomes that move<br>the needle</h2>
+    <a href="#" class="link-arrow">All Case Studies →</a>
+  </div>
+  <div class="cs-grid">
+    <div class="cs-card fi">
+      <div class="cs-thumb cst1">🏦
+        <span class="cs-industry ci1">Banking</span>
+      </div>
+      <div class="cs-body">
+        <h3>Transforming QA for a Global Retail Bank's Digital Channels</h3>
+        <p>A Tier-1 bank needed to accelerate digital releases while maintaining regulatory compliance across 14 markets. TestYantra built a centralised QA COE with an AI-augmented automation framework.</p>
+        <div class="cs-metric">
+          <div class="cs-m-item"><div class="cs-m-num m-acc">72%</div><div class="cs-m-label">Faster release cycles</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-teal">60%</div><div class="cs-m-label">Defect leakage reduction</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-ind">3×</div><div class="cs-m-label">Automation coverage</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-card fi fi-d1">
+      <div class="cs-thumb cst2">📡
+        <span class="cs-industry ci2">Telecom</span>
+      </div>
+      <div class="cs-body">
+        <h3>Continuous Testing Pipeline for a Leading OTT Streaming Platform</h3>
+        <p>A global media giant faced quality bottlenecks slowing their streaming platform releases. TestYantra embedded continuous testing into their DevOps pipeline, enabling daily deployments.</p>
+        <div class="cs-metric">
+          <div class="cs-m-item"><div class="cs-m-num m-ind">Daily</div><div class="cs-m-label">Deploy frequency</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-acc">85%</div><div class="cs-m-label">Test automation rate</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-teal">40%</div><div class="cs-m-label">Cost reduction</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-card fi fi-d2">
+      <div class="cs-thumb cst3">🏥
+        <span class="cs-industry ci3">Healthcare</span>
+      </div>
+      <div class="cs-body">
+        <h3>HIPAA-Compliant Quality Engineering for a HealthTech Platform</h3>
+        <p>A fast-growing digital health company needed robust quality and security testing across patient-facing apps without slowing down their aggressive product roadmap.</p>
+        <div class="cs-metric">
+          <div class="cs-m-item"><div class="cs-m-num m-teal">100%</div><div class="cs-m-label">HIPAA compliance</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-acc">55%</div><div class="cs-m-label">Faster regression</div></div>
+          <div class="cs-m-item"><div class="cs-m-num m-ind">Zero</div><div class="cs-m-label">Prod defects</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT LOGOS -->
+<div class="clients-strip">
+  <p class="strip-label">Trusted by 360+ global brands across industries</p>
+  <div class="logo-row fi">
+    <div class="logo-cell">FinServ Co</div>
+    <div class="logo-cell">Telecom Giant</div>
+    <div class="logo-cell">HealthTech</div>
+    <div class="logo-cell">Retail Brand</div>
+    <div class="logo-cell">SaaS Leader</div>
+    <div class="logo-cell">Media House</div>
+    <div class="logo-cell">InsureTech</div>
+    <div class="logo-cell">Travel Tech</div>
+    <div class="logo-cell">E-Commerce</div>
+    <div class="logo-cell">Consumer App</div>
+    <div class="logo-cell">BankingCo</div>
+    <div class="logo-cell">Hi-Tech ISV</div>
+  </div>
+</div>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <span class="section-eyebrow">Industries</span>
+  <h2 class="section-h2 fi">Built for sectors that<br>cannot afford failure</h2>
+  <div class="ind-grid">
+    <div class="ind-card fi"><span class="ind-icon">🏦</span><h3>Banking & Finance</h3><p>Core banking, payments, open banking and regulatory compliance.</p></div>
+    <div class="ind-card fi fi-d1"><span class="ind-icon">🛡️</span><h3>Insurance</h3><p>Policy systems, claims processing, underwriting and insuretech.</p></div>
+    <div class="ind-card fi fi-d2"><span class="ind-icon">🏥</span><h3>Healthcare & Life Sciences</h3><p>EHR systems, medical devices, HIPAA and clinical trials.</p></div>
+    <div class="ind-card fi fi-d3"><span class="ind-icon">📡</span><h3>Telecom & Media</h3><p>BSS/OSS, OTT streaming, network functions and broadcast.</p></div>
+    <div class="ind-card fi"><span class="ind-icon">🛒</span><h3>Retail & E-Commerce</h3><p>Omnichannel platforms, POS, supply chain and loyalty apps.</p></div>
+    <div class="ind-card fi fi-d1"><span class="ind-icon">✈️</span><h3>Travel & Hospitality</h3><p>Booking engines, GDS, loyalty platforms and traveller apps.</p></div>
+    <div class="ind-card fi fi-d2"><span class="ind-icon">⚙️</span><h3>SaaS & Hi-Tech</h3><p>Product engineering, regression automation and DevOps quality.</p></div>
+    <div class="ind-card fi fi-d3"><span class="ind-icon">🌐</span><h3>Internet & Consumer</h3><p>High-traffic platforms, gaming, social and consumer mobile.</p></div>
+  </div>
+</section>
+
+<!-- WHY TESTYANTRA -->
+<section class="why" id="why">
+  <span class="section-eyebrow">Why TestYantra</span>
+  <div class="why-inner">
+    <div>
+      <h2 class="section-h2 fi">Your quality engineering<br>transformation partner</h2>
+      <p class="section-sub fi" style="margin-bottom:0">We don't just test software. We embed quality thinking across your engineering organization — from Shift-Left strategy to AI-powered delivery pipelines — so that quality becomes your team's natural output, not an afterthought.</p>
+      <div class="why-points">
+        <div class="why-pt fi">
+          <div class="why-icon">🎯</div>
+          <div>
+            <h4>Test-to-Fit Philosophy</h4>
+            <p>Every engagement starts with understanding your business roadmap, then designing a quality solution that fits precisely — not a generic template.</p>
+          </div>
+        </div>
+        <div class="why-pt fi fi-d1">
+          <div class="why-icon">🔬</div>
+          <div>
+            <h4>Deep Automation DNA</h4>
+            <p>With 2,200+ automation engineers across tools and domains, we bring unmatched depth to every framework conversation.</p>
+          </div>
+        </div>
+        <div class="why-pt fi fi-d2">
+          <div class="why-icon">🌍</div>
+          <div>
+            <h4>Global Follow-the-Sun Delivery</h4>
+            <p>Offices across India, US, UK and 11+ locations — continuous delivery coverage for enterprises that operate around the clock.</p>
+          </div>
+        </div>
+        <div class="why-pt fi fi-d3">
+          <div class="why-icon">📈</div>
+          <div>
+            <h4>Structured QA Transformation</h4>
+            <p>Our maturity assessment framework benchmarks your current state and builds a time-bound roadmap to world-class quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="maturity-card fi">
+        <h3>QA Maturity Assessment</h3>
+        <p>Where does your engineering quality stand today?</p>
+        <div class="mat-levels">
+          <div class="mat-row"><span class="mat-name">Initial</span><div class="mat-track"><div class="mat-fill mf1"></div></div><span class="mat-tag">L1</span></div>
+          <div class="mat-row"><span class="mat-name">Managed</span><div class="mat-track"><div class="mat-fill mf2"></div></div><span class="mat-tag">L2</span></div>
+          <div class="mat-row"><span class="mat-name">Defined</span><div class="mat-track"><div class="mat-fill mf3"></div></div><span class="mat-tag">L3</span></div>
+          <div class="mat-row"><span class="mat-name">Quantified</span><div class="mat-track"><div class="mat-fill mf4"></div></div><span class="mat-tag">L4</span></div>
+          <div class="mat-row"><span class="mat-name">Optimizing</span><div class="mat-track"><div class="mat-fill mf5"></div></div><span class="mat-tag">L5</span></div>
+        </div>
+        <div class="mat-note">Our clients typically progress from L2 to L4 within 10–14 months, with 40–65% faster release cycles and measurable reduction in production defects.</div>
+        <a href="#" class="btn-accent" style="display:block;text-align:center;margin-top:24px">Take the Free Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach">
+  <span class="section-eyebrow">Our Approach</span>
+  <h2 class="section-h2 fi">Swift Quality — <em style="font-style:italic;font-weight:300">the TestYantra way</em></h2>
+  <div class="approach-steps">
+    <div class="appr-step fi">
+      <div class="appr-num">01</div>
+      <h4>Assess</h4>
+      <p>Benchmark current QA maturity, map gaps and build a structured transformation roadmap.</p>
+    </div>
+    <div class="appr-step fi fi-d1">
+      <div class="appr-num">02</div>
+      <h4>Shift Left</h4>
+      <p>Bring quality to design — wireframes, pseudo-code and specs reviewed before a line is written.</p>
+    </div>
+    <div class="appr-step fi fi-d2">
+      <div class="appr-num">03</div>
+      <h4>Automate</h4>
+      <p>Intelligent, self-healing automation across UI, API, performance and security — at scale.</p>
+    </div>
+    <div class="appr-step fi fi-d3">
+      <div class="appr-num">04</div>
+      <h4>Integrate</h4>
+      <p>Wire continuous testing into every CI/CD stage — fail fast, fix faster, ship with confidence.</p>
+    </div>
+    <div class="appr-step fi" style="transition-delay:0.4s">
+      <div class="appr-num">05</div>
+      <h4>Optimise</h4>
+      <p>AI analytics, predictive defect scoring and continuous improvement loops — always getting better.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <span class="section-eyebrow">Insights & Resources</span>
+  <div class="row-header">
+    <h2 class="section-h2">Think. Learn. Engineer.</h2>
+    <a href="#" class="link-arrow">All Insights →</a>
+  </div>
+  <div class="insights-grid">
+    <div class="ins-card fi">
+      <div class="ins-thumb it1">🤖</div>
+      <div class="ins-body">
+        <div class="ins-cat">AI Engineering</div>
+        <h3>How Generative AI is Rewriting the Rules of Test Automation</h3>
+        <p>From self-healing scripts to LLM-generated test suites — a practical look at how AI is transforming QA team productivity.</p>
+        <p class="ins-meta">March 2025 · 6 min read</p>
+      </div>
+    </div>
+    <div class="ins-card fi fi-d1">
+      <div class="ins-thumb it2">🔄</div>
+      <div class="ins-body">
+        <div class="ins-cat">DevOps</div>
+        <h3>Continuous Testing as the Backbone of a High-Performing DevOps Culture</h3>
+        <p>Why embedding testing into every CI/CD stage is the single most impactful quality decision engineering leaders can make.</p>
+        <p class="ins-meta">February 2025 · 5 min read</p>
+      </div>
+    </div>
+    <div class="ins-card fi fi-d2">
+      <div class="ins-thumb it3">📊</div>
+      <div class="ins-body">
+        <div class="ins-cat">Quality Engineering</div>
+        <h3>The QA Maturity Ladder: Moving from Manual Testing to AI-Powered Quality</h3>
+        <p>A practical framework for assessing and elevating your engineering quality capability across five maturity stages.</p>
+        <p class="ins-meta">January 2025 · 8 min read</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to make quality<br>your <em>engineering superpower?</em></h2>
+  <a href="mailto:info@testyantra.com" class="btn-white">Start a Conversation →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="foot-brand">
+      <a href="#" class="nav-logo" style="display:inline-flex;align-items:center;gap:6px">
+        <div class="nav-logo-dot"></div>TestYantra
+      </a>
+      <p>India's leading Quality Engineering company — partnering with global brands to build, test and deliver software they're proud to ship.</p>
+      <div class="foot-social">
+        <a href="#" class="fsoc">in</a>
+        <a href="#" class="fsoc">𝕏</a>
+        <a href="#" class="fsoc">fb</a>
+        <a href="#" class="fsoc">yt</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Quality Engineering</a></li>
+        <li><a href="#">AI Engineering</a></li>
+        <li><a href="#">Application Development</a></li>
+        <li><a href="#">DevOps</a></li>
+        <li><a href="#">Test Automation</a></li>
+        <li><a href="#">Crowd Testing</a></li>
+        <li><a href="#">Security Testing</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Industries</h5>
+      <ul>
+        <li><a href="#">Banking & Finance</a></li>
+        <li><a href="#">Healthcare</a></li>
+        <li><a href="#">Telecom & Media</a></li>
+        <li><a href="#">Retail</a></li>
+        <li><a href="#">SaaS & Hi-Tech</a></li>
+        <li><a href="#">Insurance</a></li>
+        <li><a href="#">Travel</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Global Presence</a></li>
+        <li><a href="#">Awards</a></li>
+        <li><a href="#">CSR Policy</a></li>
+        <li><a href="#">Annual Report</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#">Blog & Articles</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Webinars</a></li>
+        <li><a href="#">QA Academy</a></li>
+        <li><a href="#">Newsroom</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">GDPR</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 TestYantra Software Solutions Pvt. Ltd. All rights reserved.</p>
+    <div class="foot-locs">
+      <a href="#">Bengaluru</a>
+      <a href="#">Mumbai</a>
+      <a href="#">United States</a>
+      <a href="#">United Kingdom</a>
+      <a href="#">APAC</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme switcher
+const root = document.documentElement;
+const dots = document.querySelectorAll('.theme-dot');
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    root.setAttribute('data-theme', dot.dataset.t);
+    dots.forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+    // Update nav bg based on scroll
+    updateNav();
+  });
+});
+
+// Scroll fade in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+// Nav scroll state
+function updateNav() {
+  const nav = document.querySelector('nav');
+  const style = getComputedStyle(root);
+  const navBg = style.getPropertyValue('--navbg').trim();
+  if(window.scrollY > 50) {
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.14)';
+  } else {
+    nav.style.borderBottomColor = '';
+  }
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --muted: #4d5566;
+  --card: #ffffff;
+  --card-border: #e5e7eb;
+  --ring: rgba(243, 129, 24, 0.5);
+  --brand-orange: #f38118;
+  --brand-navy: #001f5c;
+  --brand-peach: #fff4eb;
+  --brand-peach-strong: #fde6d2;
+  --input-fill: #eef2ff;
+  --hero-navy: #0a1628;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-ring: var(--ring);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-peach: var(--brand-peach);
+  --color-brand-peach-strong: var(--brand-peach-strong);
+  --color-input-fill: var(--input-fill);
+  --color-hero-navy: var(--hero-navy);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: rgba(243, 129, 24, 0.2);
+}
