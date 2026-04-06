@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { services } from "@/content/site";
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }>;
 
-export default function ServiceDetailPage({ params }: { params: Params }) {
+export default async function ServiceDetailPage(props: { params: Params }) {
+  const params = await props.params;
   const service = services.find((s) => s.slug === params.slug);
   if (!service) return notFound();
 

@@ -62,8 +62,8 @@ export default async function ContactPage({ searchParams }: Props) {
         <div className="lg:col-span-7">
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg3)] p-6 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.45)] sm:p-8">
             <h2 className="text-xl font-light tracking-tight text-[var(--muted2)]">Send us a message</h2>
-            <form className="mt-8 space-y-5">
-              <div className="grid gap-5 sm:grid-cols-2">
+            <form className="mt-4 space-y-2">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <FormField label="Full Name" name="name" placeholder="John Doe" />
                 <FormField label="Email Address" name="email" placeholder="john@company.com" type="email" />
               </div>

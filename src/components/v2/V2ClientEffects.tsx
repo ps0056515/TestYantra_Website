@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export function V2ClientEffects() {
   useEffect(() => {
     const root = document.documentElement;
+    root.classList.add("v2-effects-ready");
 
     function updateNav() {
       const nav = document.querySelector("nav");
@@ -41,7 +42,13 @@ export function V2ClientEffects() {
       },
       { threshold: 0.1 }
     );
-    document.querySelectorAll(".fi").forEach((el) => obs.observe(el));
+    document.querySelectorAll(".fi").forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        el.classList.add("vis");
+      }
+      obs.observe(el);
+    });
 
     window.addEventListener("scroll", updateNav, { passive: true });
     updateNav();
@@ -50,6 +57,7 @@ export function V2ClientEffects() {
       obs.disconnect();
       window.removeEventListener("scroll", updateNav);
       cleanups.forEach((fn) => fn());
+      root.classList.remove("v2-effects-ready");
     };
   }, []);
 

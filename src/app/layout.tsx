@@ -32,7 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="midnight" className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      data-theme="midnight"
+      className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}
+    >
       <body className="min-h-full">
         <div className="flex min-h-dvh flex-col">
           <V2ClientEffects />
@@ -42,7 +46,9 @@ export default function RootLayout({
             Do not use flex-1 on main: it stretches main to fill the viewport and leaves a huge
             empty band (same as page bg) between content and the footer.
           */}
-          <main className="relative z-0 w-full min-w-0 shrink-0 overflow-visible">{children}</main>
+          <main className="relative z-0 w-full min-w-0 shrink-0 overflow-visible">
+            {children}
+          </main>
           <V2Footer />
         </div>
       </body>

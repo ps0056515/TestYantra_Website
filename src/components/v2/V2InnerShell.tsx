@@ -7,7 +7,7 @@ import { Container } from "@/components/Container";
  */
 export function V2InnerShell({ children }: PropsWithChildren) {
   return (
-    <div className="bg-[var(--bg)] pb-16 pt-[124px] text-[var(--text)] sm:pb-20 sm:pt-[132px]">
+    <div className="bg-[var(--bg)] pb-16 pt-[12px] text-[var(--text)] sm:pb-20 sm:pt-[12px]">
       <Container>{children}</Container>
     </div>
   );
