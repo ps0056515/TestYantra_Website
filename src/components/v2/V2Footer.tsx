@@ -7,8 +7,11 @@ export function V2Footer() {
       <Container>
       <div className="footer-grid">
         <div className="foot-brand">
-          <Link href="/" className="nav-logo" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <div className="nav-logo-dot" />
+          <Link href="/" className="nav-logo" style={{ display: "inline-flex", alignItems: "center", gap: 9 }}>
+            <svg width="28" height="28" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+              <path d="M15 1.5 L26.5 7.5 L26.5 19.5 Q26.5 26 15 29 Q3.5 26 3.5 19.5 L3.5 7.5 Z" fill="#e8401a" />
+              <path d="M10 14.5 L13.5 18.5 L20.5 11" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
             TestYantra
           </Link>
           <p>
@@ -34,25 +37,25 @@ export function V2Footer() {
           <h5>Services</h5>
           <ul>
             <li>
-              <Link href="/services">Quality Engineering</Link>
+              <Link href="/services/managed-qa">Managed QA Services</Link>
             </li>
             <li>
-              <Link href="/services">AI Engineering</Link>
-            </li>
-            <li>
-              <Link href="/services">Application Development</Link>
-            </li>
-            <li>
-              <Link href="/services">DevOps</Link>
-            </li>
-            <li>
-              <Link href="/services">Test Automation</Link>
+              <Link href="/services/test-automation">Test Automation</Link>
             </li>
             <li>
               <Link href="/services/crowd-testing">Crowd Testing</Link>
             </li>
             <li>
-              <Link href="/services">Security Testing</Link>
+              <Link href="/services/ai-testing">AI-Powered Testing</Link>
+            </li>
+            <li>
+              <Link href="/services/performance-engineering">Performance Engineering</Link>
+            </li>
+            <li>
+              <Link href="/services/security-testing">Security Testing</Link>
+            </li>
+            <li>
+              <Link href="/services/devops-cicd">DevOps & CI/CD</Link>
             </li>
           </ul>
         </div>
@@ -60,28 +63,25 @@ export function V2Footer() {
           <h5>Industries</h5>
           <ul>
             <li>
-              <Link href="/industries">Overview</Link>
+              <Link href="/industries">All Industries</Link>
             </li>
             <li>
-              <Link href="/contact?industry=banking-finance">Banking & Finance</Link>
+              <Link href="/industries/banking-finance">Banking & Finance</Link>
             </li>
             <li>
-              <Link href="/contact?industry=healthcare">Healthcare</Link>
+              <Link href="/industries/insurance">Insurance</Link>
             </li>
             <li>
-              <Link href="/contact?industry=media-entertainment">Telecom & Media</Link>
+              <Link href="/industries/media-entertainment">Telecom & Media</Link>
             </li>
             <li>
-              <Link href="/contact?industry=retail-ecommerce">Retail</Link>
+              <Link href="/industries/retail-ecommerce">Retail & E-Commerce</Link>
             </li>
             <li>
-              <Link href="/contact?industry=saas">SaaS & Hi-Tech</Link>
+              <Link href="/industries/travel">Travel</Link>
             </li>
             <li>
-              <Link href="/contact?industry=insurance">Insurance</Link>
-            </li>
-            <li>
-              <Link href="/contact?industry=travel">Travel</Link>
+              <Link href="/industries/consumer-electronics">Consumer Electronics</Link>
             </li>
           </ul>
         </div>

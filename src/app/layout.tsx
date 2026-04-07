@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="midnight"
+      data-theme="light"
       className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full">

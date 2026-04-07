@@ -1,154 +1,140 @@
 import Link from "next/link";
-import { Container } from "@/components/Container";
-import { OutcomesGraph } from "@/components/OutcomesGraph";
-import { RoiEstimator } from "@/components/RoiEstimator";
-import {
-  caseStudies,
-  ldOutcomeMetrics,
-  ldOutcomesPillars,
-  ldRoiDefaults,
-} from "@/content/site";
+import { V2InnerShell } from "@/components/v2/V2InnerShell";
+import { articles } from "@/content/articles";
+
+const CATEGORY_COLORS: Record<string, string> = {
+  "AI Engineering": "text-[var(--accent)]",
+  DevOps: "text-[var(--teal,rgba(86,220,255,0.85))]",
+  "Quality Engineering": "text-[var(--indigo,rgba(129,140,248,1))]",
+  "Performance Engineering": "text-[var(--gold,rgba(251,191,36,1))]",
+  "Security Testing": "text-[var(--accent)]",
+  Industry: "text-[var(--teal,rgba(86,220,255,0.85))]",
+};
+
+const reports = [
+  {
+    title: "QA Maturity Report 2026",
+    description:
+      "Benchmark your quality engineering capability against 350+ engineering organisations across banking, retail, media, and healthcare.",
+    cta: "Request Report",
+  },
+  {
+    title: "AI in Testing 2026",
+    description:
+      "How 400+ QA leaders are adopting generative AI, self-healing automation, and predictive analytics — with adoption rates, ROI data, and pitfalls to avoid.",
+    cta: "Request Report",
+  },
+  {
+    title: "DevOps Quality Benchmarks",
+    description:
+      "Deployment frequency, change failure rates, and quality gate metrics from high-performing engineering teams using continuous testing pipelines.",
+    cta: "Request Report",
+  },
+];
 
 export default function OutcomesPage() {
   return (
-    <div className="bg-white pb-12 pt-[124px] text-foreground sm:pb-16 sm:pt-[132px]">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3 py-1 text-xs text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-[rgba(86,220,255,0.85)]" />
-              Enterprise L&D ROI • Skills intelligence
+    <V2InnerShell>
+      <div className="max-w-3xl">
+        <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+          Insights & Resources
+        </div>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text)] sm:text-4xl">
+          Think. Learn. Engineer.
+        </h1>
+        <p className="mt-4 text-base leading-7 text-[var(--muted2)]">
+          Perspectives, research, and practical guidance from TestYantra&apos;s quality engineering
+          practice — helping engineering leaders make sharper decisions about quality, automation, and
+          delivery speed.
+        </p>
+      </div>
+
+      <div className="mt-10">
+        <div className="flex items-end justify-between gap-4">
+          <div className="text-sm font-semibold tracking-tight text-[var(--text)]">Latest articles</div>
+          <Link
+            href="/client-success"
+            className="text-xs text-[var(--muted)] transition hover:text-[var(--text)]"
+          >
+            View case studies →
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          {articles.map((a) => (
+            <Link
+              key={a.slug}
+              href={`/outcomes/${a.slug}`}
+              className="group flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.2)] transition hover:border-[var(--accent)] hover:shadow-[0_4px_32px_rgba(0,0,0,0.25)]"
+            >
+              <div
+                className={`text-xs font-semibold uppercase tracking-wider ${CATEGORY_COLORS[a.category] ?? "text-[var(--accent)]"}`}
+              >
+                {a.category}
+              </div>
+              <div className="mt-2 flex-1 text-base font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition">
+                {a.title}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-[var(--muted2)]">{a.excerpt}</p>
+              <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-4">
+                <span className="text-xs text-[var(--muted)]">{a.date}</span>
+                <span className="text-xs font-medium text-[var(--accent)] transition group-hover:underline">
+                  Read article →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <div className="text-sm font-semibold tracking-tight text-[var(--text)]">Research & reports</div>
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          {reports.map((r) => (
+            <div
+              key={r.title}
+              className="flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6"
+            >
+              <div className="flex-1">
+                <div className="text-base font-semibold tracking-tight text-[var(--text)]">{r.title}</div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">{r.description}</p>
+              </div>
+              <div className="mt-5">
+                <Link
+                  href="/contact"
+                  className="inline-flex h-9 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 text-xs font-semibold text-[var(--text)] transition hover:bg-[var(--bg3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                >
+                  {r.cta} →
+                </Link>
+              </div>
             </div>
-            <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
-              Prove learning impact with AI-guided skills signals.
-            </h1>
-            <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-muted sm:text-lg">
-              Build readiness faster, validate proficiency, and show leaders the outcomes that
-              matter: time-to-competency, completion, mobility, and confidence.
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-12 rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 sm:p-8">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-8">
+            <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+              QA Academy
+            </div>
+            <div className="mt-2 text-xl font-semibold tracking-tight text-[var(--text)]">
+              Looking for structured QA training?
+            </div>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">
+              TestYantra&apos;s Academy offers job-ready training paths through QSpiders and JSpiders —
+              backed by ISTQB® accreditation and a track record of 600,000+ certified trainees.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="#roi"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-6 text-sm font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring"
-              >
-                Run ROI estimate
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-card-border bg-card px-6 text-sm font-semibold text-foreground transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-ring"
-              >
-                Talk to an L&D specialist
-              </Link>
-            </div>
           </div>
-
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-card-border bg-card p-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted">
-                What leaders get
-              </div>
-              <div className="mt-4 grid gap-3">
-                {ldOutcomesPillars.map((p) => (
-                  <div
-                    key={p.title}
-                    className="rounded-xl border border-card-border/60 bg-black/10 p-4"
-                  >
-                    <div className="text-sm font-semibold tracking-tight">{p.title}</div>
-                    <div className="mt-1 text-sm leading-6 text-muted">{p.description}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="lg:col-span-4 lg:justify-self-end">
+            <Link
+              href="/academy"
+              className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[var(--accent)] px-6 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] sm:w-auto"
+            >
+              Explore Academy
+            </Link>
           </div>
         </div>
-
-        <div className="mt-12">
-          <OutcomesGraph metrics={ldOutcomeMetrics} />
-        </div>
-
-        <div id="roi" className="mt-12 scroll-mt-24">
-          <RoiEstimator defaults={ldRoiDefaults} />
-        </div>
-
-        <div className="mt-12">
-          <div className="flex items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted">
-                Customer stories
-              </div>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-                Outcomes you can take to the board.
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-muted sm:text-base">
-                A few examples of how skills programs translate into readiness and measurable impact.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {caseStudies.map((cs) => (
-              <div key={cs.title} className="rounded-2xl border border-card-border bg-card p-6">
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted">
-                  {cs.industry}
-                </div>
-                <div className="mt-2 text-lg font-semibold tracking-tight">{cs.title}</div>
-                <div className="mt-4 grid gap-3">
-                  <Block label="Problem" text={cs.problem} />
-                  <Block label="Approach" text={cs.approach} />
-                </div>
-                <div className="mt-5 grid gap-2 sm:grid-cols-3">
-                  {cs.results.map((r) => (
-                    <div
-                      key={r.label}
-                      className="rounded-xl border border-card-border/60 bg-black/10 p-4"
-                    >
-                      <div className="text-xs font-semibold uppercase tracking-wider text-muted">
-                        {r.label}
-                      </div>
-                      <div className="mt-1 text-sm font-semibold tracking-tight">{r.value}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 rounded-2xl border border-card-border bg-card p-6 sm:p-8">
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-8">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted">
-                Next step
-              </div>
-              <div className="mt-2 text-xl font-semibold tracking-tight">
-                Want an ROI-ready cohort plan for your roles?
-              </div>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                We’ll map roles to skills, define measurable readiness criteria, and propose a
-                cohort plan with signals leaders can track.
-              </p>
-            </div>
-            <div className="lg:col-span-4 lg:justify-self-end">
-              <Link
-                href="/contact"
-                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-foreground px-6 text-sm font-semibold text-background shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring sm:w-auto"
-              >
-                Get a cohort plan
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
+      </div>
+    </V2InnerShell>
   );
 }
-
-function Block({ label, text }: { label: string; text: string }) {
-  return (
-    <div className="rounded-xl border border-card-border/60 bg-black/10 p-4">
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted">{label}</div>
-      <div className="mt-1 text-sm leading-6 text-muted">{text}</div>
-    </div>
-  );
-}
-

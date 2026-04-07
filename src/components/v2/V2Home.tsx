@@ -39,24 +39,43 @@ export function V2Home() {
           style={{ position: "relative", zIndex: 1 }}
         >
           <div className="hv-wrap">
+            {/* Static orbit rings */}
             <div className="hv-ring hvr1" />
             <div className="hv-ring hvr2" />
             <div className="hv-ring hvr3" />
+
+            {/* Animated signal dots — separate from rings so rings stay static */}
+            <div className="hv-orb horb1" />
+            <div className="hv-orb horb2" />
+            <div className="hv-orb horb3" />
+            <div className="hv-orb horb4" />
+
+            {/* Center orb */}
             <div className="hv-center">
-              <span style={{ fontWeight: 700, fontSize: 13 }}>TYSS</span>
-              <span className="hv-center-label">QUALITY CORE</span>
+              <div className="hv-pulse-r hpr1" />
+              <div className="hv-pulse-r hpr2" />
+              <div className="hv-inner-badge">
+                <span className="hv-monogram">TY</span>
+                <span className="hv-center-label">QUALITY CORE</span>
+              </div>
             </div>
+
+            {/* Satellite nodes */}
             <div className="hv-node hn1">
-              🧪<span className="hv-node-label">QE</span>
+              <div className="hv-node-icon-wrap ni-qe">🧪</div>
+              <span className="hv-node-name">Quality Eng.</span>
             </div>
             <div className="hv-node hn2">
-              🤖<span className="hv-node-label">AI</span>
+              <div className="hv-node-icon-wrap ni-ai">🤖</div>
+              <span className="hv-node-name">AI Testing</span>
             </div>
             <div className="hv-node hn3">
-              🚀<span className="hv-node-label">DevOps</span>
+              <div className="hv-node-icon-wrap ni-devops">🚀</div>
+              <span className="hv-node-name">DevOps</span>
             </div>
             <div className="hv-node hn4">
-              💻<span className="hv-node-label">Dev</span>
+              <div className="hv-node-icon-wrap ni-dev">💻</div>
+              <span className="hv-node-name">Dev</span>
             </div>
           </div>
         </div>
@@ -112,9 +131,9 @@ export function V2Home() {
               turn quality from a gate into a continuous competitive advantage —
               across functional, regression, performance and security testing.
             </p>
-            <a href="#services" className="pillar-cta pc1">
+            <Link href="/services/managed-qa" className="pillar-cta pc1">
               Discover QE →
-            </a>
+            </Link>
             <div className="pillar-n">01</div>
           </div>
           <div className="pillar fi fi-d1">
@@ -126,9 +145,9 @@ export function V2Home() {
               intelligence, self-healing frameworks, and predictive defect
               analytics — dramatically cutting release cycle time.
             </p>
-            <a href="#ai" className="pillar-cta pc2">
+            <Link href="/services/ai-testing" className="pillar-cta pc2">
               Discover AI →
-            </a>
+            </Link>
             <div className="pillar-n">02</div>
           </div>
           <div className="pillar fi fi-d2">
@@ -140,9 +159,9 @@ export function V2Home() {
               cloud-native microservices — built quality-first with automated
               unit testing and code quality gates embedded from sprint zero.
             </p>
-            <a href="#services" className="pillar-cta pc3">
+            <Link href="/services/application-development" className="pillar-cta pc3">
               Discover Dev →
-            </a>
+            </Link>
             <div className="pillar-n">03</div>
           </div>
           <div className="pillar fi fi-d3">
@@ -155,9 +174,9 @@ export function V2Home() {
               management and deployment orchestration — engineered for zero-risk
               delivery.
             </p>
-            <a href="#services" className="pillar-cta pc4">
+            <Link href="/services/devops-cicd" className="pillar-cta pc4">
               Discover DevOps →
-            </a>
+            </Link>
             <div className="pillar-n">04</div>
           </div>
         </div>
@@ -176,7 +195,7 @@ export function V2Home() {
           </Link>
         </div>
         <div className="services-grid">
-          <div className="svc-card fi">
+          <Link href="/services/managed-qa" className="svc-card fi">
             <span className="svc-icon">🔬</span>
             <h3>Managed QA Services</h3>
             <p>
@@ -189,8 +208,9 @@ export function V2Home() {
               <span className="pill">Test Strategy</span>
               <span className="pill">Governance</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d1">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/test-automation" className="svc-card fi fi-d1">
             <span className="svc-icon">⚡</span>
             <h3>Test Automation Engineering</h3>
             <p>
@@ -204,8 +224,9 @@ export function V2Home() {
               <span className="pill">Cypress</span>
               <span className="pill">Appium</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d2">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/crowd-testing" className="svc-card fi fi-d2">
             <span className="svc-icon">👥</span>
             <h3>Crowd Testing</h3>
             <p>
@@ -218,8 +239,9 @@ export function V2Home() {
               <span className="pill">Localization</span>
               <span className="pill">Exploratory</span>
             </div>
-          </div>
-          <div className="svc-card fi">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/devops-cicd" className="svc-card fi">
             <span className="svc-icon">🔄</span>
             <h3>DevOps & Continuous Testing</h3>
             <p>
@@ -232,8 +254,9 @@ export function V2Home() {
               <span className="pill">Jenkins</span>
               <span className="pill">GitHub Actions</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d1">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/application-development" className="svc-card fi fi-d1">
             <span className="svc-icon">💻</span>
             <h3>Application Development</h3>
             <p>
@@ -246,8 +269,9 @@ export function V2Home() {
               <span className="pill">Node.js</span>
               <span className="pill">Microservices</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d2">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/crowd-testing" className="svc-card fi fi-d2">
             <span className="svc-icon">📱</span>
             <h3>Mobile & Digital Testing</h3>
             <p>
@@ -260,8 +284,9 @@ export function V2Home() {
               <span className="pill">Android</span>
               <span className="pill">Flutter</span>
             </div>
-          </div>
-          <div className="svc-card fi">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/performance-engineering" className="svc-card fi">
             <span className="svc-icon">🏋️</span>
             <h3>Performance Engineering</h3>
             <p>
@@ -274,8 +299,9 @@ export function V2Home() {
               <span className="pill">Gatling</span>
               <span className="pill">k6</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d1">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/security-testing" className="svc-card fi fi-d1">
             <span className="svc-icon">🔐</span>
             <h3>Security Testing</h3>
             <p>
@@ -288,8 +314,9 @@ export function V2Home() {
               <span className="pill">OWASP</span>
               <span className="pill">Pen Testing</span>
             </div>
-          </div>
-          <div className="svc-card fi fi-d2">
+            <span className="svc-learn">Learn more →</span>
+          </Link>
+          <Link href="/services/training" className="svc-card fi fi-d2">
             <span className="svc-icon">🎓</span>
             <h3>Training & QA Academy</h3>
             <p>
@@ -302,7 +329,8 @@ export function V2Home() {
               <span className="pill">Certifications</span>
               <span className="pill">Workshops</span>
             </div>
-          </div>
+            <span className="svc-learn">Learn more →</span>
+          </Link>
         </div>
       </section>
 
@@ -741,7 +769,7 @@ export function V2Home() {
           </Link>
         </div>
         <div className="insights-grid">
-          <div className="ins-card fi">
+          <Link href="/outcomes/generative-ai-test-automation" className="ins-card fi" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="ins-thumb it1">🤖</div>
             <div className="ins-body">
               <div className="ins-cat">AI Engineering</div>
@@ -753,9 +781,10 @@ export function V2Home() {
                 practical look at how AI is transforming QA team productivity.
               </p>
               <p className="ins-meta">March 2025 · 6 min read</p>
+              <p className="ins-read-cta">Read article →</p>
             </div>
-          </div>
-          <div className="ins-card fi fi-d1">
+          </Link>
+          <Link href="/outcomes/continuous-testing-devops-culture" className="ins-card fi fi-d1" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="ins-thumb it2">🔄</div>
             <div className="ins-body">
               <div className="ins-cat">DevOps</div>
@@ -768,9 +797,10 @@ export function V2Home() {
                 impactful quality decision engineering leaders can make.
               </p>
               <p className="ins-meta">February 2025 · 5 min read</p>
+              <p className="ins-read-cta">Read article →</p>
             </div>
-          </div>
-          <div className="ins-card fi fi-d2">
+          </Link>
+          <Link href="/outcomes/qa-maturity-ladder" className="ins-card fi fi-d2" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="ins-thumb it3">📊</div>
             <div className="ins-body">
               <div className="ins-cat">Quality Engineering</div>
@@ -783,8 +813,9 @@ export function V2Home() {
                 engineering quality capability across five maturity stages.
               </p>
               <p className="ins-meta">January 2025 · 8 min read</p>
+              <p className="ins-read-cta">Read article →</p>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 

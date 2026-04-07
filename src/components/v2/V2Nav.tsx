@@ -4,7 +4,10 @@ export function V2Nav() {
   return (
     <nav>
       <Link href="/" className="nav-logo">
-        <div className="nav-logo-dot" />
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" className="nav-logo-mark" aria-hidden="true">
+          <path d="M15 1.5 L26.5 7.5 L26.5 19.5 Q26.5 26 15 29 Q3.5 26 3.5 19.5 L3.5 7.5 Z" fill="var(--accent)" />
+          <path d="M10 14.5 L13.5 18.5 L20.5 11" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
         TestYantra
       </Link>
       <ul className="nav-center">
@@ -20,16 +23,16 @@ export function V2Nav() {
                   <Link href="/services/managed-qa">Managed QA Services</Link>
                 </li>
                 <li>
-                  <Link href="/services">Test Automation</Link>
+                  <Link href="/services/test-automation">Test Automation Engineering</Link>
                 </li>
                 <li>
                   <Link href="/services/crowd-testing">Crowd Testing</Link>
                 </li>
                 <li>
-                  <Link href="/services">Performance Engineering</Link>
+                  <Link href="/services/performance-engineering">Performance Engineering</Link>
                 </li>
                 <li>
-                  <Link href="/services">Security Testing</Link>
+                  <Link href="/services/security-testing">Security Testing</Link>
                 </li>
               </ul>
             </div>
@@ -37,16 +40,16 @@ export function V2Nav() {
               <h6>AI Engineering</h6>
               <ul>
                 <li>
-                  <Link href="/services">AI Test Generation</Link>
+                  <Link href="/services/ai-testing">AI-Powered Testing</Link>
                 </li>
                 <li>
-                  <Link href="/services">ML Defect Analytics</Link>
+                  <Link href="/services/ai-testing">Self-Healing Automation</Link>
                 </li>
                 <li>
-                  <Link href="/services">Self-Healing Automation</Link>
+                  <Link href="/services/ai-testing">Predictive Defect Analytics</Link>
                 </li>
                 <li>
-                  <Link href="/services">GenAI Integration</Link>
+                  <Link href="/services/ai-testing">Visual AI & Accessibility</Link>
                 </li>
               </ul>
             </div>
@@ -54,16 +57,16 @@ export function V2Nav() {
               <h6>Development & DevOps</h6>
               <ul>
                 <li>
-                  <Link href="/services">Application Development</Link>
+                  <Link href="/services/application-development">Application Development</Link>
                 </li>
                 <li>
-                  <Link href="/services">DevOps & CI/CD</Link>
+                  <Link href="/services/devops-cicd">DevOps & CI/CD</Link>
                 </li>
                 <li>
-                  <Link href="/services">Cloud Engineering</Link>
+                  <Link href="/services/application-development">Cloud-Native Engineering</Link>
                 </li>
                 <li>
-                  <Link href="/services">Mobile Engineering</Link>
+                  <Link href="/services/training">Training & QA Academy</Link>
                 </li>
               </ul>
             </div>
@@ -78,13 +81,10 @@ export function V2Nav() {
               <h6>Financial Services</h6>
               <ul>
                 <li>
-                  <Link href="/contact?industry=banking-finance">Banking & Payments</Link>
+                  <Link href="/industries/banking-finance">Banking & Finance</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=insurance">Insurance</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=fintech">FinTech</Link>
+                  <Link href="/industries/insurance">Insurance</Link>
                 </li>
               </ul>
             </div>
@@ -92,19 +92,19 @@ export function V2Nav() {
               <h6>Other Sectors</h6>
               <ul>
                 <li>
-                  <Link href="/contact?industry=healthcare">Healthcare & Life Sciences</Link>
+                  <Link href="/industries/media-entertainment">Telecom & Media</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=media-entertainment">Telecom & Media</Link>
+                  <Link href="/industries/retail-ecommerce">Retail & E-Commerce</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=retail-ecommerce">Retail & E-Commerce</Link>
+                  <Link href="/industries/travel">Travel</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=saas">SaaS & Hi-Tech</Link>
+                  <Link href="/industries/communications">Communications</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=travel">Travel</Link>
+                  <Link href="/industries/consumer-electronics">Consumer Electronics</Link>
                 </li>
               </ul>
             </div>
@@ -122,16 +122,13 @@ export function V2Nav() {
               <h6>Resources</h6>
               <ul>
                 <li>
-                  <Link href="/outcomes">Blog & Articles</Link>
+                  <Link href="/outcomes">Insights & Articles</Link>
                 </li>
                 <li>
                   <Link href="/client-success">Case Studies</Link>
                 </li>
                 <li>
-                  <Link href="/outcomes">Webinars & Events</Link>
-                </li>
-                <li>
-                  <Link href="/academy">QA Training</Link>
+                  <Link href="/academy">QA Academy</Link>
                 </li>
               </ul>
             </div>
@@ -142,10 +139,10 @@ export function V2Nav() {
                   <Link href="/outcomes">QA Maturity Report</Link>
                 </li>
                 <li>
-                  <Link href="/outcomes">AI in Testing 2025</Link>
+                  <Link href="/outcomes">AI in Testing 2026</Link>
                 </li>
                 <li>
-                  <Link href="/outcomes">DevOps Benchmarks</Link>
+                  <Link href="/outcomes">DevOps Quality Benchmarks</Link>
                 </li>
               </ul>
             </div>
@@ -160,30 +157,27 @@ export function V2Nav() {
               <h6>About</h6>
               <ul>
                 <li>
-                  <Link href="/company/locations">Who We Are</Link>
+                  <Link href="/company/leadership">About TestYantra</Link>
                 </li>
                 <li>
-                  <Link href="/company/leadership">Leadership</Link>
+                  <Link href="/company/leadership">Leadership Team</Link>
                 </li>
                 <li>
                   <Link href="/company/locations">Global Presence</Link>
                 </li>
-                <li>
-                  <Link href="/company/leadership">Awards & Recognition</Link>
-                </li>
               </ul>
             </div>
             <div className="mega-col">
-              <h6>Community</h6>
+              <h6>Connect</h6>
               <ul>
                 <li>
                   <Link href="/contact">Careers</Link>
                 </li>
                 <li>
-                  <Link href="/contact">CSR & Sustainability</Link>
+                  <Link href="/contact">Partner with Us</Link>
                 </li>
                 <li>
-                  <Link href="/contact">Newsroom</Link>
+                  <Link href="/contact">Contact</Link>
                 </li>
               </ul>
             </div>
