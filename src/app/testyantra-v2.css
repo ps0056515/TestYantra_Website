@@ -15,6 +15,7 @@
   --indigo: #5c6fff;
   --gold: #f0a500;
   --navbg: rgba(8, 9, 26, 0.94);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(255, 255, 255, 0.14));
 }
 [data-theme="slate"] {
   --bg: #0e1117;
@@ -32,6 +33,7 @@
   --indigo: #5c6fff;
   --gold: #f0a500;
   --navbg: rgba(14, 17, 23, 0.94);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(255, 255, 255, 0.12));
 }
 [data-theme="forest"] {
   --bg: #071410;
@@ -49,6 +51,7 @@
   --indigo: #5c6fff;
   --gold: #f0a500;
   --navbg: rgba(7, 20, 16, 0.94);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(236, 246, 242, 0.12));
 }
 [data-theme="navy"] {
   --bg: #04091e;
@@ -66,6 +69,7 @@
   --indigo: #6c80ff;
   --gold: #f0a500;
   --navbg: rgba(4, 9, 30, 0.94);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(234, 240, 255, 0.14));
 }
 [data-theme="charcoal"] {
   --bg: #111111;
@@ -83,6 +87,7 @@
   --indigo: #5c6fff;
   --gold: #f0a500;
   --navbg: rgba(17, 17, 17, 0.96);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(255, 255, 255, 0.12));
 }
 [data-theme="light"] {
   --bg: #f4f6fa;
@@ -100,6 +105,7 @@
   --indigo: #4338ca;
   --gold: #b45309;
   --navbg: rgba(244, 246, 250, 0.97);
+  --image-content-shadow: drop-shadow(0 20px 32px rgba(15, 23, 42, 0.2));
 }
 
 /* ── LIGHT THEME OVERRIDES (elements with hardcoded dark values) ── */

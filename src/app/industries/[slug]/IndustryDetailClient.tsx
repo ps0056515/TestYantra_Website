@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { industries, services, caseStudies } from "@/content/site";
@@ -8,13 +9,48 @@ import { INDUSTRY_ART } from "@/components/v2/IndustryArt";
 import { CheckCircle2, ArrowRight, ChevronRight } from "lucide-react";
 
 const INDUSTRY_SERVICES: Record<string, string[]> = {
-  "banking-finance": ["managed-qa", "test-automation", "security-testing", "performance-engineering"],
-  insurance: ["managed-qa", "test-automation", "security-testing", "professional-services"],
-  "retail-ecommerce": ["crowd-testing", "performance-engineering", "test-automation", "managed-qa"],
-  "media-entertainment": ["crowd-testing", "test-automation", "performance-engineering", "devops-cicd"],
-  communications: ["managed-qa", "test-automation", "performance-engineering", "professional-services"],
-  travel: ["performance-engineering", "test-automation", "crowd-testing", "security-testing"],
-  "consumer-electronics": ["crowd-testing", "ai-testing", "test-automation", "managed-qa"],
+  "banking-finance": [
+    "managed-qa",
+    "test-automation",
+    "security-testing",
+    "performance-engineering",
+  ],
+  insurance: [
+    "managed-qa",
+    "test-automation",
+    "security-testing",
+    "professional-services",
+  ],
+  "retail-ecommerce": [
+    "crowd-testing",
+    "performance-engineering",
+    "test-automation",
+    "managed-qa",
+  ],
+  "media-entertainment": [
+    "crowd-testing",
+    "test-automation",
+    "performance-engineering",
+    "devops-cicd",
+  ],
+  communications: [
+    "managed-qa",
+    "test-automation",
+    "performance-engineering",
+    "professional-services",
+  ],
+  travel: [
+    "performance-engineering",
+    "test-automation",
+    "crowd-testing",
+    "security-testing",
+  ],
+  "consumer-electronics": [
+    "crowd-testing",
+    "ai-testing",
+    "test-automation",
+    "managed-qa",
+  ],
 };
 
 type Industry = (typeof industries)[number];
@@ -23,24 +59,29 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
   const [activeSubVertical, setActiveSubVertical] = useState(0);
   const sv = industry.subVerticals[activeSubVertical];
 
-  const ArtComponent = INDUSTRY_ART[industry.slug];
   const relevantServiceSlugs = INDUSTRY_SERVICES[industry.slug] ?? [];
   const relevantServices = relevantServiceSlugs
     .map((s) => services.find((svc) => svc.slug === s))
     .filter(Boolean) as typeof services;
   const caseStudy =
-    industry.caseStudyIndex !== undefined ? caseStudies[industry.caseStudyIndex] : undefined;
+    industry.caseStudyIndex !== undefined
+      ? caseStudies[industry.caseStudyIndex]
+      : undefined;
 
   return (
     <V2InnerShell>
       {/* ── Hero ── */}
       <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
-          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Industry</div>
+          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Industry
+          </div>
           <h1 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-[var(--text)] sm:text-4xl">
             {industry.name}
           </h1>
-          <p className="mt-4 text-base leading-7 text-[var(--muted2)] sm:text-lg">{industry.detail}</p>
+          <p className="mt-4 text-base leading-7 text-[var(--muted2)] sm:text-lg">
+            {industry.detail}
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={`/contact?industry=${industry.contactSlug}`}
@@ -57,11 +98,15 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
           </div>
         </div>
         <div className="lg:col-span-5">
-          {ArtComponent ? (
-            <ArtComponent className="w-full rounded-2xl shadow-[0_12px_48px_rgba(0,0,0,0.35)]" />
-          ) : (
-            <div className="h-48 w-full rounded-2xl border border-[var(--border)] bg-[var(--bg2)]" />
-          )}
+          <div className="relative h-[520px] w-full overflow-hidden">
+            <Image
+              src={INDUSTRY_ART[industry.slug]}
+              alt={industry.name}
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-contain object-right [filter:var(--image-content-shadow)]"
+            />
+          </div>
         </div>
       </div>
 
@@ -72,7 +117,9 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
             key={s.label}
             className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-5 text-center"
           >
-            <div className="text-2xl font-semibold tracking-tight text-[var(--text)]">{s.value}</div>
+            <div className="text-2xl font-semibold tracking-tight text-[var(--text)]">
+              {s.value}
+            </div>
             <div className="mt-1 text-xs text-[var(--muted)]">{s.label}</div>
           </div>
         ))}
@@ -111,15 +158,22 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
 
             {/* Tab content */}
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 lg:col-span-8">
-              <div className="text-lg font-semibold tracking-tight text-[var(--text)]">{sv.name}</div>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">{sv.description}</p>
+              <div className="text-lg font-semibold tracking-tight text-[var(--text)]">
+                {sv.name}
+              </div>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">
+                {sv.description}
+              </p>
               <div className="mt-5">
                 <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
                   Our offerings
                 </div>
                 <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {sv.offerings.map((o) => (
-                    <li key={o} className="flex items-start gap-2 text-sm leading-5 text-[var(--muted2)]">
+                    <li
+                      key={o}
+                      className="flex items-start gap-2 text-sm leading-5 text-[var(--muted2)]"
+                    >
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
                       {o}
                     </li>
@@ -142,7 +196,9 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
       {/* ── Use Cases + Challenges ── */}
       <div className="mt-12 grid gap-4 lg:grid-cols-3">
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 lg:col-span-2">
-          <div className="text-sm font-semibold tracking-tight text-[var(--text)]">Key use cases</div>
+          <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
+            Key use cases
+          </div>
           <ul className="mt-4 grid gap-2 sm:grid-cols-2">
             {industry.useCases.map((u) => (
               <li
@@ -155,10 +211,15 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
           </ul>
         </div>
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6">
-          <div className="text-sm font-semibold tracking-tight text-[var(--text)]">Common challenges</div>
+          <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
+            Common challenges
+          </div>
           <ul className="mt-4 grid gap-3">
             {industry.challenges.map((c) => (
-              <li key={c} className="flex items-start gap-2 text-sm leading-6 text-[var(--muted2)]">
+              <li
+                key={c}
+                className="flex items-start gap-2 text-sm leading-6 text-[var(--muted2)]"
+              >
                 <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
                 {c}
               </li>
@@ -181,10 +242,14 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
                 className="group rounded-xl border border-[var(--border)] bg-[var(--bg2)] px-4 py-4 transition hover:border-[var(--border2)] hover:bg-[var(--bg3)]"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <div className="text-sm font-semibold text-[var(--text)]">{svc.name}</div>
+                  <div className="text-sm font-semibold text-[var(--text)]">
+                    {svc.name}
+                  </div>
                   <ArrowRight className="h-4 w-4 shrink-0 text-[var(--muted)] transition group-hover:text-[var(--text)]" />
                 </div>
-                <div className="mt-1 text-xs leading-5 text-[var(--muted2)]">{svc.summary}</div>
+                <div className="mt-1 text-xs leading-5 text-[var(--muted2)]">
+                  {svc.summary}
+                </div>
               </Link>
             ))}
           </div>
@@ -200,16 +265,24 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
           <div className="mt-2 text-xl font-semibold tracking-tight text-[var(--text)]">
             {caseStudy.title}
           </div>
-          <p className="mt-3 text-sm leading-6 text-[var(--muted2)]">{caseStudy.problem}</p>
-          <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">{caseStudy.approach}</p>
+          <p className="mt-3 text-sm leading-6 text-[var(--muted2)]">
+            {caseStudy.problem}
+          </p>
+          <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">
+            {caseStudy.approach}
+          </p>
           <div className="mt-5 grid grid-cols-3 gap-3">
             {caseStudy.results.map((r) => (
               <div
                 key={r.label}
                 className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-center"
               >
-                <div className="text-base font-semibold text-[var(--text)]">{r.value}</div>
-                <div className="mt-0.5 text-xs text-[var(--muted)]">{r.label}</div>
+                <div className="text-base font-semibold text-[var(--text)]">
+                  {r.value}
+                </div>
+                <div className="mt-0.5 text-xs text-[var(--muted)]">
+                  {r.label}
+                </div>
               </div>
             ))}
           </div>
@@ -235,8 +308,9 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
               Speak with a {industry.name} quality specialist
             </div>
             <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">
-              Tell us about your engineering challenge and we&apos;ll map the right combination of services,
-              tooling, and delivery model for your context.
+              Tell us about your engineering challenge and we&apos;ll map the
+              right combination of services, tooling, and delivery model for
+              your context.
             </p>
           </div>
           <div className="lg:col-span-4 lg:justify-self-end">
@@ -251,7 +325,10 @@ export function IndustryDetailClient({ industry }: { industry: Industry }) {
       </div>
 
       <div className="mt-6">
-        <Link href="/industries" className="text-sm text-[var(--muted)] transition hover:text-[var(--text)]">
+        <Link
+          href="/industries"
+          className="text-sm text-[var(--muted)] transition hover:text-[var(--text)]"
+        >
           ← All industries
         </Link>
       </div>

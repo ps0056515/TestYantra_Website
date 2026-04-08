@@ -1312,8 +1312,21 @@ dots.forEach(dot => {
 });
 
 // Scroll fade in
+const aboveFold = new Set();
+document.querySelectorAll('.fi').forEach(el => {
+  if (el.getBoundingClientRect().top < window.innerHeight) {
+    aboveFold.add(el);
+  }
+});
+
+requestAnimationFrame(() => {
+  aboveFold.forEach(el => el.classList.add('vis'));
+});
+
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('vis');
+  });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 
