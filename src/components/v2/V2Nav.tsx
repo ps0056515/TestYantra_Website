@@ -43,13 +43,13 @@ export function V2Nav() {
                   <Link href="/services/ai-testing">AI-Powered Testing</Link>
                 </li>
                 <li>
-                  <Link href="/services/ai-testing">Self-Healing Automation</Link>
+                  <Link href="/services/self-healing-automation">Self-Healing Automation</Link>
                 </li>
                 <li>
-                  <Link href="/services/ai-testing">Predictive Defect Analytics</Link>
+                  <Link href="/services/predictive-defect-analytics">Predictive Defect Analytics</Link>
                 </li>
                 <li>
-                  <Link href="/services/ai-testing">Visual AI & Accessibility</Link>
+                  <Link href="/services/visual-ai-accessibility">Visual AI & Accessibility</Link>
                 </li>
               </ul>
             </div>
@@ -63,7 +63,7 @@ export function V2Nav() {
                   <Link href="/services/devops-cicd">DevOps & CI/CD</Link>
                 </li>
                 <li>
-                  <Link href="/services/application-development">Cloud-Native Engineering</Link>
+                  <Link href="/services/cloud-native-engineering">Cloud-Native Engineering</Link>
                 </li>
                 <li>
                   <Link href="/services/training">Training & QA Academy</Link>
