@@ -348,14 +348,32 @@ export function V2Home() {
               <br />
               into every test
             </h2>
-            <p className="section-sub" style={{ marginBottom: 40 }}>
+            <p className="section-sub" style={{ marginBottom: 28 }}>
               Our AI Engineering practice applies generative AI, machine
               learning and intelligent automation to every stage of the software
               quality lifecycle — predicting failures before they reach
               production.
             </p>
-            <Link href="/services" className="btn-accent">
-              Explore TestYantra.AI
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 40 }}>
+              {["IntelliTest™", "HealBot™", "DefectIQ™", "VisionAI™"].map((p) => (
+                <span
+                  key={p}
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 600,
+                    padding: "4px 12px",
+                    borderRadius: 100,
+                    border: "1px solid rgba(92,111,255,0.35)",
+                    background: "rgba(92,111,255,0.08)",
+                    color: "var(--indigo)",
+                  }}
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+            <Link href="/ai" className="btn-accent">
+              Explore TestYantra.AI →
             </Link>
           </div>
           <div className="ai-cards fi">
