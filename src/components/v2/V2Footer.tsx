@@ -35,6 +35,7 @@ export function V2Footer() {
             <h5>TestYantra.AI</h5>
             <ul>
               <li><Link href="/ai">AI Overview</Link></li>
+              <li><Link href="/ai/agentic-suite">⚡ Agentic Suite</Link></li>
               <li><Link href="/ai#ai-products">IntelliTest™</Link></li>
               <li><Link href="/ai#ai-products">HealBot™</Link></li>
               <li><Link href="/ai#ai-products">DefectIQ™</Link></li>

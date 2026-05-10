@@ -318,6 +318,84 @@ export default function AIPage() {
           </div>
         </div>
 
+        {/* ── AGENTIC SUITE FEATURE BLOCK ──────────────────────── */}
+        <div className="mt-24">
+          <div
+            style={{
+              borderRadius: 24,
+              background: "linear-gradient(135deg, rgba(240,165,0,0.1) 0%, rgba(240,165,0,0.04) 50%, var(--bg2) 100%)",
+              border: "2px solid rgba(240,165,0,0.3)",
+              padding: "48px 40px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Dot-grid background texture */}
+            <div style={{
+              position: "absolute", inset: 0, opacity: 0.035,
+              backgroundImage: "radial-gradient(circle at 1px 1px, #f0a500 1px, transparent 0)",
+              backgroundSize: "24px 24px",
+            }} />
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                borderRadius: 100, border: "1px solid rgba(240,165,0,0.4)",
+                background: "rgba(240,165,0,0.1)", padding: "5px 14px", marginBottom: 20,
+              }}>
+                <span style={{ fontSize: 14 }}>⚡</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#f0a500" }}>
+                  Flagship Product
+                </span>
+              </div>
+              <h2 style={{
+                fontFamily: "var(--font-fraunces, serif)",
+                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
+                fontWeight: 600, color: "var(--text)", lineHeight: 1.2, marginBottom: 16,
+              }}>
+                The Agentic Suite
+              </h2>
+              <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--muted2)", maxWidth: 600, marginBottom: 32 }}>
+                An orchestrated multi-agent system that autonomously authors tests, heals broken automation, triages failures and predicts release risk — embedded in your stack, running on your tools. No rip-and-replace.
+              </p>
+              {/* Agent pills */}
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 32 }}>
+                {[
+                  { label: "🕹️ Orchestrator Agent", color: "#f0a500" },
+                  { label: "💗 Self-Healing Agent", color: "#e8401a" },
+                  { label: "</> Test Authoring Agent", color: "#5c6fff" },
+                  { label: "🔍 Triage & Root-Cause Agent", color: "#00bfa8" },
+                  { label: "📈 Predictive Reporting", color: "#5c6fff" },
+                  { label: "+ 3 more on roadmap", color: "#6b7280" },
+                ].map((a) => (
+                  <span key={a.label} style={{
+                    fontSize: 12, fontWeight: 600, padding: "5px 14px", borderRadius: 100,
+                    background: `${a.color}12`, color: a.color, border: `1px solid ${a.color}30`,
+                  }}>
+                    {a.label}
+                  </span>
+                ))}
+              </div>
+              {/* Metrics strip */}
+              <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 36 }}>
+                {[
+                  { label: "MAINTENANCE COST", dir: "↓" },
+                  { label: "COVERAGE", dir: "↑" },
+                  { label: "CYCLE TIME", dir: "↓" },
+                  { label: "DEFECT ESCAPE", dir: "↓" },
+                ].map((m) => (
+                  <div key={m.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", color: "var(--muted2)", textTransform: "uppercase" }}>{m.label}</span>
+                    <span style={{ fontSize: 20, fontWeight: 800, color: m.dir === "↑" ? "#00bfa8" : "#e8401a" }}>{m.dir}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/ai/agentic-suite" className="btn-accent" style={{ display: "inline-block" }}>
+                Explore the Agentic Suite →
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* ── NAMED AI PRODUCTS ──────────────────────────────────── */}
         <div className="mt-24" id="ai-products">
           <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">AI Products & Platforms</div>

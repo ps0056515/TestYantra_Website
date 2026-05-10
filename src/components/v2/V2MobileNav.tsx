@@ -127,6 +127,16 @@ export function V2MobileNav() {
             <span>TestYantra.AI</span>
             <span className="mobile-ai-badge">New</span>
           </Link>
+          <Link
+            href="/ai/agentic-suite"
+            className="mobile-ai-link"
+            style={{ background: "rgba(240,165,0,0.08)", borderColor: "rgba(240,165,0,0.25)" }}
+            onClick={close}
+          >
+            <span style={{ fontSize: 18 }}>⚡</span>
+            <span>Agentic Suite</span>
+            <span className="mobile-ai-badge" style={{ background: "rgba(240,165,0,0.2)", color: "#f0a500" }}>Flagship</span>
+          </Link>
 
           {/* Accordion sections */}
           {sections.map((section) => (

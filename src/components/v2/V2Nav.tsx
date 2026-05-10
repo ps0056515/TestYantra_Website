@@ -12,11 +12,33 @@ export function V2Nav() {
         TestYantra
       </Link>
       <ul className="nav-center">
-        {/* ── TESTYANTRA.AI (featured) ── */}
+        {/* ── TESTYANTRA.AI (featured dropdown) ── */}
         <li>
           <Link href="/ai" style={{ color: "var(--indigo)", fontWeight: 600 }}>
             TestYantra.AI <span style={{ fontSize: 9, verticalAlign: "super", opacity: 0.8 }}>✦</span>
+            <span className="nav-chevron">▾</span>
           </Link>
+          <div className="mega-drop" style={{ minWidth: 380 }}>
+            <div className="mega-col">
+              <h6 style={{ color: "var(--indigo)" }}>TestYantra.AI</h6>
+              <ul>
+                <li><Link href="/ai">AI Overview</Link></li>
+                <li><Link href="/ai#ai-products">AI Product Suite</Link></li>
+                <li><Link href="/capabilities/intelligent-automation">Intelligent Automation</Link></li>
+                <li><Link href="/services/ai-testing">AI-Powered Testing</Link></li>
+              </ul>
+            </div>
+            <div className="mega-col">
+              <h6 style={{ color: "#f0a500" }}>⚡ Agentic Suite</h6>
+              <ul>
+                <li><Link href="/ai/agentic-suite">Agentic Suite Overview</Link></li>
+                <li><Link href="/ai/agentic-suite">Orchestrator Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Self-Healing Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Test Authoring Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Triage &amp; Root-Cause Agent</Link></li>
+              </ul>
+            </div>
+          </div>
         </li>
 
         {/* ── CAPABILITIES ── */}
