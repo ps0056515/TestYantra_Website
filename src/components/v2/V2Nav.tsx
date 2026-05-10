@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { V2MobileNav } from "@/components/v2/V2MobileNav";
 
 export function V2Nav() {
   return (
@@ -31,6 +32,7 @@ export function V2Nav() {
                 <li><Link href="/services/managed-qa">Managed QA Services</Link></li>
                 <li><Link href="/services/crowd-testing">Crowd Testing</Link></li>
                 <li><Link href="/services/crowd-testing">Mobile & Digital Testing</Link></li>
+                <li><Link href="/digital-offering">Digital Offering</Link></li>
               </ul>
             </div>
             <div className="mega-col">
@@ -158,7 +160,7 @@ export function V2Nav() {
                 <li><Link href="/company/leadership">About TestYantra</Link></li>
                 <li><Link href="/company/locations">Global Presence</Link></li>
                 <li><Link href="/contact">Careers</Link></li>
-                <li><Link href="/contact">Newsroom</Link></li>
+                <li><Link href="/annual-report">Annual Report</Link></li>
               </ul>
             </div>
           </div>
@@ -173,6 +175,7 @@ export function V2Nav() {
         <Link href="/contact" className="nav-cta">
           Talk to Us
         </Link>
+        <V2MobileNav />
       </div>
     </nav>
   );

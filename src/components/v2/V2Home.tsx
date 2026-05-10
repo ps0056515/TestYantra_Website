@@ -86,13 +86,13 @@ export function V2Home() {
           <div className="stat-num">
             360<sup>+</sup>
           </div>
-          <div className="stat-desc">Global Clients</div>
+          <div className="stat-desc">Active Clients</div>
         </div>
         <div className="stat-cell fi fi-d1">
           <div className="stat-num">
             17<sup>+</sup>
           </div>
-          <div className="stat-desc">Years in Quality Engineering</div>
+          <div className="stat-desc">Years of Excellence</div>
         </div>
         <div className="stat-cell fi fi-d2">
           <div className="stat-num">
@@ -105,6 +105,16 @@ export function V2Home() {
             11<sup>+</sup>
           </div>
           <div className="stat-desc">Global Locations</div>
+        </div>
+        <div className="stat-cell fi" style={{ transitionDelay: "0.4s" }}>
+          <div className="stat-num">
+            600k<sup>+</sup>
+          </div>
+          <div className="stat-desc">Certified Trainees</div>
+        </div>
+        <div className="stat-cell fi fi-d1" style={{ transitionDelay: "0.5s" }}>
+          <div className="stat-num">7<sup>+</sup></div>
+          <div className="stat-desc">Industries Served</div>
         </div>
       </div>
 

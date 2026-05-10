@@ -6,6 +6,7 @@ import { V2ClientEffects } from "@/components/v2/V2ClientEffects";
 import { V2Footer } from "@/components/v2/V2Footer";
 import { V2Nav } from "@/components/v2/V2Nav";
 import { V2ThemeSwitcher } from "@/components/v2/V2ThemeSwitcher";
+import { CookieConsent } from "@/components/v2/CookieConsent";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
             {children}
           </main>
           <V2Footer />
+          <CookieConsent />
         </div>
       </body>
     </html>

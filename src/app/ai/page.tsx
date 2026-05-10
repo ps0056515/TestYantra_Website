@@ -169,7 +169,7 @@ export default function AIPage() {
             </span>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 60, alignItems: "start" }}>
+          <div className="ai-hero-grid">
             <div>
               <h1
                 style={{
@@ -208,6 +208,7 @@ export default function AIPage() {
 
             {/* Stat cluster */}
             <div
+              className="ai-hero-stats"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",

@@ -49,7 +49,8 @@ export function V2Footer() {
               <li><Link href="/capabilities/quality-engineering">Quality Engineering</Link></li>
               <li><Link href="/capabilities/intelligent-automation">Intelligent Automation</Link></li>
               <li><Link href="/capabilities/development">Development &amp; DevOps</Link></li>
-              <li><Link href="/capabilities">All Capabilities</Link></li>
+              <li><Link href="/digital-offering">Digital Offering</Link></li>
+              <li><Link href="/services/crowd-testing">Crowd Testing</Link></li>
             </ul>
           </div>
 
@@ -79,9 +80,11 @@ export function V2Footer() {
             <h5>Company &amp; Resources</h5>
             <ul>
               <li><Link href="/company/leadership">About TestYantra</Link></li>
+              <li><Link href="/company/locations">Global Presence</Link></li>
               <li><Link href="/client-success">Client Stories</Link></li>
               <li><Link href="/outcomes">Blog &amp; Articles</Link></li>
               <li><Link href="/academy">QA Academy</Link></li>
+              <li><Link href="/annual-report">Annual Report</Link></li>
               <li><Link href="/contact">Careers</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
             </ul>
