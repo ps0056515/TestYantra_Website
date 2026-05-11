@@ -18,7 +18,7 @@ export function V2Nav() {
             TestYantra.AI <span style={{ fontSize: 9, verticalAlign: "super", opacity: 0.8 }}>✦</span>
             <span className="nav-chevron">▾</span>
           </Link>
-          <div className="mega-drop" style={{ minWidth: 380 }}>
+          <div className="mega-drop" style={{ minWidth: 720, gap: 20 }}>
             <div className="mega-col">
               <h6 style={{ color: "var(--indigo)" }}>TestYantra.AI</h6>
               <ul>
@@ -29,13 +29,21 @@ export function V2Nav() {
               </ul>
             </div>
             <div className="mega-col">
-              <h6 style={{ color: "#f0a500" }}>⚡ Agentic Suite</h6>
+              <h6 style={{ color: "#f0a500" }}>⚡ Agentic Suite — QA &amp; Testing</h6>
               <ul>
-                <li><Link href="/ai/agentic-suite">Agentic Suite Overview</Link></li>
-                <li><Link href="/ai/agentic-suite">Orchestrator Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Suite Overview</Link></li>
                 <li><Link href="/ai/agentic-suite">Self-Healing Agent</Link></li>
                 <li><Link href="/ai/agentic-suite">Test Authoring Agent</Link></li>
                 <li><Link href="/ai/agentic-suite">Triage &amp; Root-Cause Agent</Link></li>
+              </ul>
+            </div>
+            <div className="mega-col">
+              <h6 style={{ color: "#5c6fff" }}>🛠️ Agentic Suite — Dev &amp; Eng</h6>
+              <ul>
+                <li><Link href="/ai/agentic-suite">Requirements &amp; Story Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Code Generation Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">Architecture &amp; Design Agent</Link></li>
+                <li><Link href="/ai/agentic-suite">CI/CD &amp; Deployment Agent</Link></li>
               </ul>
             </div>
           </div>

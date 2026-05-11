@@ -355,17 +355,19 @@ export default function AIPage() {
                 The Agentic Suite
               </h2>
               <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--muted2)", maxWidth: 600, marginBottom: 32 }}>
-                An orchestrated multi-agent system that autonomously authors tests, heals broken automation, triages failures and predicts release risk — embedded in your stack, running on your tools. No rip-and-replace.
+                One Orchestrator coordinates two specialist suites — QA &amp; Testing and Development &amp; Engineering — running autonomously from requirements to production. Embedded in your stack, your repo, your tools.
               </p>
               {/* Agent pills */}
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 32 }}>
                 {[
-                  { label: "🕹️ Orchestrator Agent", color: "#f0a500" },
+                  { label: "🕹️ Orchestrator", color: "#f0a500" },
+                  { label: "🧪 QA & Testing Suite", color: "#e8401a" },
+                  { label: "🛠️ Development Suite", color: "#5c6fff" },
+                  { label: "📄 Requirements & Story", color: "#f0a500" },
                   { label: "💗 Self-Healing Agent", color: "#e8401a" },
-                  { label: "</> Test Authoring Agent", color: "#5c6fff" },
-                  { label: "🔍 Triage & Root-Cause Agent", color: "#00bfa8" },
-                  { label: "📈 Predictive Reporting", color: "#5c6fff" },
-                  { label: "+ 3 more on roadmap", color: "#6b7280" },
+                  { label: "</> Code Generation", color: "#5c6fff" },
+                  { label: "🔍 Triage & Root-Cause", color: "#00bfa8" },
+                  { label: "+ 8 more agents", color: "#6b7280" },
                 ].map((a) => (
                   <span key={a.label} style={{
                     fontSize: 12, fontWeight: 600, padding: "5px 14px", borderRadius: 100,

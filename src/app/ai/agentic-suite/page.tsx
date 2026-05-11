@@ -4,7 +4,7 @@ import { V2InnerShell } from "@/components/v2/V2InnerShell";
 export const metadata = {
   title: "Agentic Suite — TestYantra.AI",
   description:
-    "TestYantra Agentic Suite: An orchestrated multi-agent system that autonomously generates, heals, triages and governs quality engineering — embedded in your stack, not bolted on.",
+    "TestYantra Agentic Suite: An orchestrated multi-agent system spanning QA, testing, and full-cycle development — autonomously authors code, heals tests, triages failures and governs releases. Embedded in your stack.",
 };
 
 /* ── P1 Agents ─────────────────────────────────────────────── */
@@ -119,6 +119,87 @@ const stackItems = [
   },
 ];
 
+/* ── Dev P1 Agents ─────────────────────────────────────────── */
+const devP1Agents = [
+  {
+    id: "requirements-story",
+    label: "REQUIREMENTS",
+    priority: "P1",
+    icon: "📄",
+    title: "Requirements & Story Agent",
+    tagline: "Converts BRDs, PRDs, and stakeholder input into structured user stories with acceptance criteria, edge cases, and JIRA/ADO tickets — ready for sprint planning.",
+    capabilities: [
+      "BRD / PRD → structured user stories",
+      "Acceptance criteria + edge case generation",
+      "JIRA / ADO ticket creation, auto-linked",
+      "Sprint-planning ready output",
+    ],
+    color: "#f0a500",
+  },
+  {
+    id: "code-generation",
+    label: "DEV",
+    priority: "P1",
+    icon: "</>",
+    title: "Code Generation & Review Agent",
+    tagline: "Scaffolds boilerplate, implements features from stories, enforces coding standards, runs static analysis, and raises PR-ready diffs with inline annotations.",
+    capabilities: [
+      "Feature scaffolding from user stories",
+      "Coding standards enforcement + static analysis",
+      "PR-ready diffs with inline annotations",
+      "Auto-reviewer comments on code quality",
+    ],
+    color: "#5c6fff",
+  },
+  {
+    id: "architecture-design",
+    label: "DESIGN",
+    priority: "P1",
+    icon: "🏗️",
+    title: "Architecture & Design Agent",
+    tagline: "Evaluates system designs against patterns (SOLID, 12-factor, domain-driven). Flags coupling, suggests refactors, generates ADRs, and maps component dependencies.",
+    capabilities: [
+      "Design review against SOLID / 12-factor patterns",
+      "Coupling detection and refactor suggestions",
+      "Architecture Decision Records (ADR) generation",
+      "Component dependency mapping",
+    ],
+    color: "#00bfa8",
+  },
+];
+
+/* ── Dev P2/P3 Agents ──────────────────────────────────────── */
+const devFutureAgents = [
+  {
+    priority: "P2",
+    icon: "🚀",
+    title: "CI/CD & Deployment Agent",
+    desc: "Watches pipeline runs, auto-diagnoses build/test failures, suggests fixes, gates releases on quality thresholds, and orchestrates rollbacks.",
+    color: "#5c6fff",
+  },
+  {
+    priority: "P3",
+    icon: "🔒",
+    title: "Security & Compliance Agent",
+    desc: "SAST/DAST analysis, dependency CVE scanning, secrets detection, OWASP/SOC2 policy checks — attaches evidence to PRs and blocks non-compliant merges.",
+    color: "#e8401a",
+  },
+  {
+    priority: "P3",
+    icon: "📚",
+    title: "Documentation Agent",
+    desc: "Auto-generates API docs, changelogs, runbooks, and architecture wikis from code diffs, PR merges, and ADRs. Keeps docs in sync with each release.",
+    color: "#f0a500",
+  },
+  {
+    priority: "P3",
+    icon: "📊",
+    title: "Observability & Incident Agent",
+    desc: "Monitors prod metrics, correlates anomalies to recent deployments, pinpoints likely root cause, routes to on-call team, and drafts RCA documents.",
+    color: "#00bfa8",
+  },
+];
+
 /* ── Priority badge colours ────────────────────────────────── */
 const priorityColor: Record<string, string> = {
   P1: "#f0a500",
@@ -164,13 +245,27 @@ export default function AgenticSuitePage() {
             fontWeight: 600, lineHeight: 1.1,
             color: "var(--text)", marginBottom: 20,
           }}>
-            Autonomous quality engineering.<br />
+            Autonomous SDLC engineering.<br />
             <span style={{ color: "#f0a500" }}>Orchestrated.</span> Embedded. Governed.
           </h1>
-          <p style={{ fontSize: 17, lineHeight: 1.75, color: "var(--muted2)", maxWidth: 640, marginBottom: 40 }}>
-            The Agentic Suite is a coordinated multi-agent system that autonomously authors tests, heals broken automation,
-            triages failures and predicts release risk — running inside your stack, not replacing it.
+          <p style={{ fontSize: 17, lineHeight: 1.75, color: "var(--muted2)", maxWidth: 640, marginBottom: 24 }}>
+            One Orchestrator Agent coordinates two specialist suites — QA &amp; Testing and Development &amp; Engineering —
+            running autonomously inside your stack from requirements to production.
           </p>
+          {/* Suite pills */}
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 40 }}>
+            {[
+              { label: "🧪 QA & Testing Suite", color: "#e8401a" },
+              { label: "🛠️ Development Suite", color: "#5c6fff" },
+            ].map((s) => (
+              <span key={s.label} style={{
+                fontSize: 13, fontWeight: 600, padding: "6px 18px", borderRadius: 100,
+                background: `${s.color}12`, color: s.color, border: `1px solid ${s.color}30`,
+              }}>
+                {s.label}
+              </span>
+            ))}
+          </div>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <Link href="/contact" className="btn-accent">Request a Demo →</Link>
             <Link href="/ai" className="btn-outline">← Back to TestYantra.AI</Link>
@@ -256,8 +351,23 @@ export default function AgenticSuitePage() {
           </div>
         </div>
 
+        {/* ── QA SUITE SECTION HEADER ────────────────────────── */}
+        <div className="mt-14" style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            borderRadius: 10, border: "1px solid rgba(232,64,26,0.35)",
+            background: "rgba(232,64,26,0.08)", padding: "8px 20px",
+          }}>
+            <span style={{ fontSize: 16 }}>🧪</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#e8401a" }}>
+              QA &amp; Testing Suite
+            </span>
+          </div>
+          <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+        </div>
+
         {/* ── P1 AGENTS ──────────────────────────────────────── */}
-        <div className="mt-8">
+        <div className="mt-6">
           <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-5">
             Priority 1 — Now Available
           </div>
@@ -402,6 +512,124 @@ export default function AgenticSuitePage() {
           </div>
         </div>
 
+        {/* ── DEV SUITE SECTION HEADER ───────────────────────── */}
+        <div className="mt-16" style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            borderRadius: 10, border: "1px solid rgba(92,111,255,0.35)",
+            background: "rgba(92,111,255,0.08)", padding: "8px 20px",
+          }}>
+            <span style={{ fontSize: 16 }}>🛠️</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#5c6fff" }}>
+              Development &amp; Engineering Suite
+            </span>
+          </div>
+          <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+        </div>
+
+        {/* Dev P1 agents */}
+        <div className="mt-6">
+          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-5">
+            Priority 1 — Now Available
+          </div>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {devP1Agents.map((agent) => (
+              <div
+                key={agent.id}
+                style={{
+                  borderRadius: 18,
+                  background: "var(--bg2)",
+                  border: `1px solid ${agent.color}35`,
+                  padding: "28px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <div style={{
+                  position: "absolute", inset: "0 0 auto 0", height: 3,
+                  borderRadius: "18px 18px 0 0",
+                  background: agent.color,
+                }} />
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, marginTop: 4 }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: agent.color }}>
+                    {agent.label}
+                  </span>
+                  <span style={{
+                    fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 100,
+                    background: `${priorityColor.P1}20`, color: priorityColor.P1,
+                    border: `1px solid ${priorityColor.P1}40`,
+                  }}>
+                    P1 Now
+                  </span>
+                </div>
+                <div style={{
+                  width: 48, height: 48, borderRadius: 14,
+                  background: `${agent.color}18`, border: `1px solid ${agent.color}30`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: agent.icon === "</>" ? 14 : 28, fontWeight: 700,
+                  color: agent.icon === "</>" ? agent.color : "inherit",
+                  marginBottom: 16, flexShrink: 0,
+                }}>
+                  {agent.icon}
+                </div>
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--text)", margin: "0 0 10px", fontFamily: "var(--font-fraunces, serif)" }}>
+                  {agent.title}
+                </h3>
+                <p style={{ fontSize: 13, color: "var(--muted2)", lineHeight: 1.65, margin: "0 0 16px", flex: 1 }}>
+                  {agent.tagline}
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  {agent.capabilities.map((cap) => (
+                    <li key={cap} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "var(--muted2)" }}>
+                      <span style={{ color: agent.color, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dev P2/P3 agents */}
+        <div className="mt-8">
+          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-5">
+            Priority 2 &amp; 3 — Roadmap
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {devFutureAgents.map((agent) => (
+              <div
+                key={agent.title}
+                style={{
+                  borderRadius: 16,
+                  background: "var(--bg2)",
+                  border: "1px solid var(--border)",
+                  padding: "22px 20px",
+                  opacity: 0.85,
+                  position: "relative",
+                }}
+              >
+                <div style={{
+                  position: "absolute", top: 16, right: 16,
+                  fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 100,
+                  background: `${priorityColor[agent.priority]}15`,
+                  color: priorityColor[agent.priority],
+                  border: `1px solid ${priorityColor[agent.priority]}35`,
+                }}>
+                  {agent.priority}
+                </div>
+                <div style={{ fontSize: 28, marginBottom: 12 }}>{agent.icon}</div>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text)", margin: "0 0 8px", fontFamily: "var(--font-fraunces, serif)" }}>
+                  {agent.title}
+                </h3>
+                <p style={{ fontSize: 12, color: "var(--muted2)", lineHeight: 1.6, margin: 0 }}>{agent.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ── ORCHESTRATOR FLOW DIAGRAM (text) ───────────────── */}
         <div className="mt-14">
           <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-2">How it works</div>
@@ -515,35 +743,48 @@ export default function AgenticSuitePage() {
 
         {/* ── PRODUCT MAPPING ────────────────────────────────── */}
         <div className="mt-14">
-          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-2">Product Mapping</div>
+          <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mb-2">Full Agent Roster</div>
           <h2 className="mt-1 text-2xl font-semibold text-[var(--text)] mb-6">
-            How the Agentic Suite powers TestYantra.AI products
+            Every agent, every suite — at a glance
           </h2>
           <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-[var(--border)] bg-[var(--bg2)]">
+                  <th className="px-5 py-3 text-left font-semibold text-[var(--muted2)]">Suite</th>
                   <th className="px-5 py-3 text-left font-semibold text-[var(--muted2)]">Agent</th>
-                  <th className="px-5 py-3 text-left font-semibold text-[var(--muted2)]">TestYantra.AI Product</th>
                   <th className="px-5 py-3 text-left font-semibold text-[var(--muted2)]">Priority</th>
                   <th className="px-5 py-3 text-left font-semibold text-[var(--muted2)]">Key Outcome</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { agent: "Self-Healing Agent", product: "HealBot™", priority: "P1", outcome: "Eliminates automation maintenance overhead" },
-                  { agent: "Test Authoring Agent", product: "IntelliTest™", priority: "P1", outcome: "BDD → runnable Playwright in minutes" },
-                  { agent: "Triage & Root-Cause Agent", product: "New capability", priority: "P1", outcome: "Failure classified and routed in < 2 min" },
-                  { agent: "Predictive Reporting", product: "DefectIQ™", priority: "P2", outcome: "Release-readiness score before go/no-go" },
-                  { agent: "Test Generator", product: "IntelliTest™", priority: "P3", outcome: "Stories + Figma → traced BDD test cases" },
-                  { agent: "API & Contract", product: "New capability", priority: "P3", outcome: "Microservice contract coverage automated" },
-                  { agent: "Test Data & Env", product: "New capability", priority: "P3", outcome: "PII-safe data provisioned on demand" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Self-Healing Agent", priority: "P1", outcome: "Eliminates automation maintenance overhead" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Test Authoring Agent", priority: "P1", outcome: "BDD → runnable Playwright in minutes" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Triage & Root-Cause Agent", priority: "P1", outcome: "Failure classified and routed in < 2 min" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Predictive Reporting", priority: "P2", outcome: "Release-readiness score before go/no-go" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Test Generator", priority: "P3", outcome: "Stories + Figma → traced BDD test cases" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "API & Contract", priority: "P3", outcome: "Microservice contract coverage automated" },
+                  { suite: "QA & Testing", suiteColor: "#e8401a", agent: "Test Data & Env", priority: "P3", outcome: "PII-safe data provisioned on demand" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Requirements & Story Agent", priority: "P1", outcome: "BRDs → sprint-ready JIRA stories in minutes" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Code Generation & Review Agent", priority: "P1", outcome: "Story → PR-ready code with static analysis" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Architecture & Design Agent", priority: "P1", outcome: "Design reviewed against SOLID / 12-factor patterns" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "CI/CD & Deployment Agent", priority: "P2", outcome: "Build failures diagnosed and fixed automatically" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Security & Compliance Agent", priority: "P3", outcome: "Non-compliant PRs blocked before merge" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Documentation Agent", priority: "P3", outcome: "Docs always in sync with the latest release" },
+                  { suite: "Dev & Eng", suiteColor: "#5c6fff", agent: "Observability & Incident Agent", priority: "P3", outcome: "Root cause pinpointed, RCA drafted automatically" },
                 ].map((row, i) => (
                   <tr key={row.agent} className={`border-b border-[var(--border)] transition hover:bg-[var(--surface)] ${i % 2 === 0 ? "" : "bg-[var(--surface)]"}`}>
-                    <td className="px-5 py-3.5 font-medium text-[var(--text)]">{row.agent}</td>
                     <td className="px-5 py-3.5">
-                      <span className="text-[var(--accent)] font-semibold">{row.product}</span>
+                      <span style={{
+                        fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 100,
+                        background: `${row.suiteColor}12`, color: row.suiteColor,
+                        border: `1px solid ${row.suiteColor}25`, whiteSpace: "nowrap",
+                      }}>
+                        {row.suite}
+                      </span>
                     </td>
+                    <td className="px-5 py-3.5 font-medium text-[var(--text)]">{row.agent}</td>
                     <td className="px-5 py-3.5">
                       <span style={{
                         fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 100,
@@ -577,11 +818,11 @@ export default function AgenticSuitePage() {
             fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
             fontWeight: 600, color: "var(--text)", marginBottom: 16,
           }}>
-            Ready to deploy autonomous quality engineering?
+            Ready to deploy autonomous SDLC engineering?
           </h2>
           <p className="text-sm text-[var(--muted2)] max-w-lg mx-auto mb-8">
-            The Agentic Suite runs in your repo, your pipeline, your tools — no platform migration, no rip-and-replace.
-            P1 agents can be deployed in a two-week sprint.
+            Start with the QA Suite, the Dev Suite, or both. Agents run in your repo, your pipeline, your tools —
+            no platform migration, no rip-and-replace. P1 agents deploy in a two-week sprint.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-accent">Request a P1 Deployment →</Link>
