@@ -1,44 +1,58 @@
 import Link from "next/link";
+import {
+  aiLane01,
+  aiLane02,
+  aiOverview,
+  capabilityGroups,
+  deliveryModels,
+  ecosystemIntro,
+  hero,
+  heroStats,
+  practiceAreas,
+  serviceCatalogue,
+  teamModels,
+} from "@/content/home";
+import { businessUnits, caseStudies, industries } from "@/content/site";
+import { V2CapabilityTabs } from "./V2CapabilityTabs";
+
+const pillarColors: Record<string, string> = {
+  accent: "pb1 pi1 pc1",
+  teal: "pb2 pi2 pc2",
+  indigo: "pb3 pi3 pc3",
+  gold: "pb4 pi4 pc4",
+  violet: "pb5 pi5 pc5",
+};
 
 export function V2Home() {
   return (
     <>
+      {/* HERO */}
       <section className="hero">
         <div className="hero-glow" />
         <div className="hero-grid" />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div className="hero-eyebrow">
             <div className="eyebrow-dot" />
-            Quality Engineering · AI · Development · DevOps
+            {hero.eyebrow}
           </div>
           <h1>
-            Quality isn&apos;t
+            {hero.titleLine1}
             <br />
-            a phase —
-            <br />
-            it&apos;s a <span className="italic-highlight">discipline</span>
-            <br />
-            we <span className="teal-word">engineer</span>
+            {hero.titleLine2}{" "}
+            <span className="italic-highlight">{hero.titleHighlight}</span>
           </h1>
-          <p className="hero-sub">
-            TestYantra partners with global brands to weave quality into every
-            layer of software delivery — from design to deployment, from
-            automation to AI-powered intelligence.
-          </p>
+          <p className="hero-sub">{hero.subtitle}</p>
           <div className="hero-actions">
-            <a href="#pillars" className="btn-accent">
-              Explore Our Services
+            <a href={hero.ctaPrimary.href} className="btn-accent">
+              {hero.ctaPrimary.label}
             </a>
-            <a href="#client-success" className="btn-outline">
-              See Client Stories →
-            </a>
+            <Link href={hero.ctaSecondary.href} className="btn-outline">
+              {hero.ctaSecondary.label} →
+            </Link>
           </div>
         </div>
-        <div
-          className="hero-visual"
-          style={{ position: "relative", zIndex: 1 }}
-        >
-          <div className="hv-wrap">
+        <div className="hero-visual" style={{ position: "relative", zIndex: 1 }}>
+          <div className="hv-wrap hv-wrap-lg">
             <div className="hv-ring hvr1" />
             <div className="hv-ring hvr2" />
             <div className="hv-ring hvr3" />
@@ -47,756 +61,334 @@ export function V2Home() {
               <span className="hv-center-label">QUALITY CORE</span>
             </div>
             <div className="hv-node hn1">
-              🧪<span className="hv-node-label">QE</span>
+              🛡️<span className="hv-node-label">QA</span>
             </div>
             <div className="hv-node hn2">
-              🤖<span className="hv-node-label">AI</span>
+              🧪<span className="hv-node-label">QE</span>
             </div>
             <div className="hv-node hn3">
-              🚀<span className="hv-node-label">DevOps</span>
+              🤖<span className="hv-node-label">AI</span>
             </div>
             <div className="hv-node hn4">
               💻<span className="hv-node-label">Dev</span>
             </div>
+            <div className="hv-node hn5">
+              🚀<span className="hv-node-label">Ops</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="stats-bar">
-        <div className="stat-cell fi">
-          <div className="stat-num">
-            360<sup>+</sup>
+      {/* STATS */}
+      <div className="stats-bar stats-bar-5">
+        {heroStats.map((s, i) => (
+          <div key={s.label} className={`stat-cell fi${i ? ` fi-d${Math.min(i, 3)}` : ""}`}>
+            <div className="stat-num">
+              {s.value}
+              {s.suffix ? <sup>{s.suffix}</sup> : null}
+            </div>
+            <div className="stat-desc">{s.label}</div>
           </div>
-          <div className="stat-desc">Global Clients</div>
-        </div>
-        <div className="stat-cell fi fi-d1">
-          <div className="stat-num">
-            17<sup>+</sup>
-          </div>
-          <div className="stat-desc">Years in Quality Engineering</div>
-        </div>
-        <div className="stat-cell fi fi-d2">
-          <div className="stat-num">
-            2200<sup>+</sup>
-          </div>
-          <div className="stat-desc">Automation Engineers</div>
-        </div>
-        <div className="stat-cell fi fi-d3">
-          <div className="stat-num">
-            11<sup>+</sup>
-          </div>
-          <div className="stat-desc">Global Locations</div>
-        </div>
+        ))}
       </div>
 
+      {/* PRACTICE AREAS */}
       <section className="pillars" id="pillars">
-        <span className="section-eyebrow">Four Engineering Pillars</span>
+        <span className="section-eyebrow">What We Deliver</span>
         <div className="row-header">
           <h2 className="section-h2">
-            What we deliver,
+            Five practice areas.
             <br />
-            end to end
+            One embedded partner.
           </h2>
-          <p className="section-sub">
-            From quality strategy to AI-enabled automation and full-stack
-            development — four practice areas, one seamless engineering partner.
+          <p className="section-sub" style={{ marginBottom: 0 }}>
+            From quality assurance to AI-powered testing and development — five disciplines, one
+            seamless engineering partner.
           </p>
         </div>
-        <div className="pillars-row">
-          <div className="pillar fi">
-            <div className="pillar-bar pb1" />
-            <div className="pillar-icon pi1">🧪</div>
-            <h3>Quality Engineering</h3>
-            <p>
-              Platform-driven, Shift-Left quality at the heart of delivery. We
-              turn quality from a gate into a continuous competitive advantage —
-              across functional, regression, performance and security testing.
-            </p>
-            <a href="#services" className="pillar-cta pc1">
-              Discover QE →
-            </a>
-            <div className="pillar-n">01</div>
-          </div>
-          <div className="pillar fi fi-d1">
-            <div className="pillar-bar pb2" />
-            <div className="pillar-icon pi2">🤖</div>
-            <h3>AI Engineering</h3>
-            <p>
-              Generative AI meets quality engineering. We deploy ML-driven test
-              intelligence, self-healing frameworks, and predictive defect
-              analytics — dramatically cutting release cycle time.
-            </p>
-            <a href="#ai" className="pillar-cta pc2">
-              Discover AI →
-            </a>
-            <div className="pillar-n">02</div>
-          </div>
-          <div className="pillar fi fi-d2">
-            <div className="pillar-bar pb3" />
-            <div className="pillar-icon pi3">💻</div>
-            <h3>Development</h3>
-            <p>
-              Full-stack application engineering — web, mobile, APIs and
-              cloud-native microservices — built quality-first with automated
-              unit testing and code quality gates embedded from sprint zero.
-            </p>
-            <a href="#services" className="pillar-cta pc3">
-              Discover Dev →
-            </a>
-            <div className="pillar-n">03</div>
-          </div>
-          <div className="pillar fi fi-d3">
-            <div className="pillar-bar pb4" />
-            <div className="pillar-icon pi4">🚀</div>
-            <h3>DevOps</h3>
-            <p>
-              Continuous testing woven into every CI/CD stage.
-              Infrastructure-as-code, release automation, configuration
-              management and deployment orchestration — engineered for zero-risk
-              delivery.
-            </p>
-            <a href="#services" className="pillar-cta pc4">
-              Discover DevOps →
-            </a>
-            <div className="pillar-n">04</div>
-          </div>
+        <div className="pillars-row pillars-row-5">
+          {practiceAreas.map((p, i) => {
+            const c = pillarColors[p.color] ?? pillarColors.accent;
+            const [bar, icon, cta] = c.split(" ");
+            const inner = (
+              <>
+                <div className={`pillar-bar ${bar}`} />
+                <div className={`pillar-icon ${icon}`}>{p.icon}</div>
+                <h3>{p.title}</h3>
+                <p>{p.description}</p>
+                <span className={`pillar-cta ${cta}`}>Explore →</span>
+                <div className="pillar-n">0{i + 1}</div>
+              </>
+            );
+            return p.href.startsWith("/") ? (
+              <Link key={p.id} href={p.href} className="pillar fi fi-d1 pillar-link">
+                {inner}
+              </Link>
+            ) : (
+              <a key={p.id} href={p.href} className="pillar fi fi-d1 pillar-link">
+                {inner}
+              </a>
+            );
+          })}
         </div>
       </section>
 
+      {/* ECOSYSTEM */}
+      <section className="ecosystem" id="ecosystem">
+        <div className="eco-glow" />
+        <span className="section-eyebrow">{ecosystemIntro.eyebrow}</span>
+        <h2 className="section-h2 fi">
+          {ecosystemIntro.title.split("\n").map((line, i) => (
+            <span key={line}>
+              {i > 0 && <br />}
+              {line}
+            </span>
+          ))}
+        </h2>
+        <p className="section-sub fi">{ecosystemIntro.subtitle}</p>
+        <div className="eco-grid">
+          {businessUnits.map((unit, i) => (
+            <div key={unit.id} className={`eco-card fi fi-d${Math.min(i, 3)}`}>
+              <div className="eco-icon" style={{ borderColor: unit.accent }}>
+                {unit.icon}
+              </div>
+              <div className="eco-tag">{unit.tagline}</div>
+              <h3>{unit.name}</h3>
+              <p>{unit.description}</p>
+              {unit.stats ? (
+                <div className="eco-stats">
+                  {unit.stats.map((s) => (
+                    <div key={s.label}>
+                      <strong>{s.value}</strong>
+                      <span>{s.label}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+              <ul className="eco-highlights">
+                {unit.highlights?.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+              {unit.external ? (
+                <a
+                  href={unit.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="eco-cta"
+                >
+                  Visit {unit.name} ↗
+                </a>
+              ) : (
+                <Link href={unit.href} className="eco-cta">
+                  Explore {unit.name} →
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICE CATALOGUE */}
       <section className="services" id="services">
-        <span className="section-eyebrow">Service Catalog</span>
+        <span className="section-eyebrow">Service Catalogue</span>
         <div className="row-header">
           <h2 className="section-h2">
-            Everything you need
+            Comprehensive. Specialized.
             <br />
-            to ship with confidence
+            At every layer of quality.
           </h2>
           <Link href="/services" className="link-arrow">
-            View All Services →
+            All Services →
           </Link>
         </div>
-        <div className="services-grid">
-          <div className="svc-card fi">
-            <span className="svc-icon">🔬</span>
-            <h3>Managed QA Services</h3>
-            <p>
-              End-to-end quality as a managed service — dedicated teams,
-              tooling, governance and continuous improvement metrics owned by
-              TestYantra.
+        <div className="catalog-grid">
+          {serviceCatalogue.map((name, i) => (
+            <div key={name} className={`catalog-pill fi${i % 4 ? ` fi-d${i % 4}` : ""}`}>
+              {name}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CAPABILITIES TABS */}
+      <section className="capabilities" id="capabilities">
+        <span className="section-eyebrow">Deep Capabilities</span>
+        <h2 className="section-h2 fi">Expertise that runs deep</h2>
+        <p className="section-sub fi">
+          Three capability domains — explore what we deliver across QA, QE, and production
+          monitoring.
+        </p>
+        <V2CapabilityTabs groups={capabilityGroups} />
+      </section>
+
+      {/* ENGAGEMENT MODELS */}
+      <section className="engage" id="engage">
+        <span className="section-eyebrow">Engagement Models</span>
+        <div className="engage-split">
+          <div>
+            <h2 className="section-h2">Team models</h2>
+            <p className="section-sub">
+              Whether you need to scale fast, build a CoE, or extend your bench — we flex to your
+              operating model.
             </p>
-            <div className="svc-pills">
-              <span className="pill">QA COE</span>
-              <span className="pill">Test Strategy</span>
-              <span className="pill">Governance</span>
+            <div className="engage-cards">
+              {teamModels.map((m, i) => (
+                <div key={m.title} className={`engage-card fi fi-d${Math.min(i, 3)}`}>
+                  <h4>{m.title}</h4>
+                  <p>{m.description}</p>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="svc-card fi fi-d1">
-            <span className="svc-icon">⚡</span>
-            <h3>Test Automation Engineering</h3>
-            <p>
-              Building scalable, maintainable automation frameworks across UI,
-              API, mobile and data layers — integrated deep into your CI/CD
-              pipeline.
+          <div>
+            <h2 className="section-h2">Delivery models</h2>
+            <p className="section-sub">
+              Six commercial models designed for enterprise agility — from outcome-based engagements
+              to full managed operations.
             </p>
-            <div className="svc-pills">
-              <span className="pill">Selenium</span>
-              <span className="pill">Playwright</span>
-              <span className="pill">Cypress</span>
-              <span className="pill">Appium</span>
-            </div>
-          </div>
-          <div className="svc-card fi fi-d2">
-            <span className="svc-icon">👥</span>
-            <h3>Crowd Testing</h3>
-            <p>
-              Global crowd of real-device testers across geographies, OS
-              versions, and network conditions — go live with unmatched coverage
-              and real-world confidence.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">Real Devices</span>
-              <span className="pill">Localization</span>
-              <span className="pill">Exploratory</span>
-            </div>
-          </div>
-          <div className="svc-card fi">
-            <span className="svc-icon">🔄</span>
-            <h3>DevOps & Continuous Testing</h3>
-            <p>
-              Embedding quality into every build stage — Jenkins, GitHub
-              Actions, Azure DevOps, GitLab CI — with continuous feedback loops
-              and automated gates.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">CI/CD</span>
-              <span className="pill">Jenkins</span>
-              <span className="pill">GitHub Actions</span>
-            </div>
-          </div>
-          <div className="svc-card fi fi-d1">
-            <span className="svc-icon">💻</span>
-            <h3>Application Development</h3>
-            <p>
-              Full-stack and cloud-native application engineering — React,
-              Node.js, microservices and APIs — with quality embedded from the
-              first commit.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">React</span>
-              <span className="pill">Node.js</span>
-              <span className="pill">Microservices</span>
-            </div>
-          </div>
-          <div className="svc-card fi fi-d2">
-            <span className="svc-icon">📱</span>
-            <h3>Mobile & Digital Testing</h3>
-            <p>
-              Functional, performance and compatibility testing across iOS,
-              Android and cross-platform apps using real device clouds and
-              device farms.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">iOS</span>
-              <span className="pill">Android</span>
-              <span className="pill">Flutter</span>
-            </div>
-          </div>
-          <div className="svc-card fi">
-            <span className="svc-icon">🏋️</span>
-            <h3>Performance Engineering</h3>
-            <p>
-              Load, stress, soak and scalability testing — JMeter, Gatling, k6 —
-              ensuring your systems hold up under real-world peak demand and
-              beyond.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">JMeter</span>
-              <span className="pill">Gatling</span>
-              <span className="pill">k6</span>
-            </div>
-          </div>
-          <div className="svc-card fi fi-d1">
-            <span className="svc-icon">🔐</span>
-            <h3>Security Testing</h3>
-            <p>
-              VAPT, penetration testing, OWASP compliance and secure code review
-              — protecting your applications and data from modern threat
-              landscapes.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">VAPT</span>
-              <span className="pill">OWASP</span>
-              <span className="pill">Pen Testing</span>
-            </div>
-          </div>
-          <div className="svc-card fi fi-d2">
-            <span className="svc-icon">🎓</span>
-            <h3>Training & QA Academy</h3>
-            <p>
-              Structured upskilling for QA and engineering teams — bootcamps,
-              certification programs and workshops in automation, AI testing and
-              DevOps.
-            </p>
-            <div className="svc-pills">
-              <span className="pill">Bootcamps</span>
-              <span className="pill">Certifications</span>
-              <span className="pill">Workshops</span>
+            <div className="delivery-list">
+              {deliveryModels.map((m, i) => (
+                <div key={m.num} className={`delivery-row fi fi-d${Math.min(i, 3)}`}>
+                  <span className="delivery-num">{m.num}</span>
+                  <div>
+                    <h4>{m.title}</h4>
+                    <p>{m.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
+      {/* AI */}
       <section className="ai-spot" id="ai">
         <div className="ai-inner">
           <div className="ai-left">
-            <span
-              className="section-eyebrow"
-              style={{ color: "var(--indigo)" }}
-            >
-              TestYantra.AI
-            </span>
-            <h2 className="section-h2">
-              Intelligence built
-              <br />
-              into every test
-            </h2>
+            <span className="section-eyebrow">{aiOverview.eyebrow}</span>
+            <h2 className="section-h2">{aiOverview.title}</h2>
             <p className="section-sub" style={{ marginBottom: 40 }}>
-              Our AI Engineering practice applies generative AI, machine
-              learning and intelligent automation to every stage of the software
-              quality lifecycle — predicting failures before they reach
-              production.
+              {aiOverview.subtitle}
             </p>
-            <Link href="/services" className="btn-accent">
-              Explore TestYantra.AI
-            </Link>
-          </div>
-          <div className="ai-cards fi">
-            <div className="ai-card">
-              <div className="ai-card-icon">🧠</div>
-              <div>
-                <h4>AI-Powered Test Generation</h4>
-                <p>
-                  Auto-generate comprehensive test suites from requirements,
-                  user stories and code diffs using large language models — 60%
-                  faster coverage.
-                </p>
-              </div>
-            </div>
-            <div className="ai-card">
-              <div className="ai-card-icon">📊</div>
-              <div>
-                <h4>Predictive Defect Analytics</h4>
-                <p>
-                  ML models trained on code quality signals identify high-risk
-                  areas before testing begins — reducing defect leakage and
-                  re-test cycles.
-                </p>
-              </div>
-            </div>
-            <div className="ai-card">
-              <div className="ai-card-icon">⚡</div>
-              <div>
-                <h4>Self-Healing Automation</h4>
-                <p>
-                  AI-driven test maintenance auto-repairs broken scripts when
-                  UIs change — zero manual intervention, no delayed releases.
-                </p>
-              </div>
-            </div>
-            <div className="ai-card">
-              <div className="ai-card-icon">🔍</div>
-              <div>
-                <h4>Visual AI Testing</h4>
-                <p>
-                  Computer vision-powered UI comparison and accessibility checks
-                  at pixel level — catch rendering bugs humans miss every time.
-                </p>
-              </div>
+            <div className="ai-lane-cards">
+              {aiOverview.lanes.map((lane) => (
+                <a key={lane.id} href={lane.href} className="ai-lane-card">
+                  <span className="ai-lane-label">{lane.label}</span>
+                  <h4>{lane.title}</h4>
+                  <p>{lane.description}</p>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
+      <section className="ai-lanes-detail" id={aiLane01.id}>
+        <div className="ai-lane-header">
+          <span className="section-eyebrow">{aiLane01.eyebrow}</span>
+          <h2 className="section-h2">{aiLane01.title}</h2>
+          <p className="section-sub">{aiLane01.intro}</p>
+        </div>
+        <div className="ai-detail-grid">
+          {aiLane01.items.map((item, i) => (
+            <div key={item.title} className={`ai-detail-card fi fi-d${Math.min(i, 3)}`}>
+              <span className="ai-detail-tag">{item.tag}</span>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ai-lanes-detail ai-lanes-alt" id={aiLane02.id}>
+        <div className="ai-lane-header">
+          <span className="section-eyebrow">{aiLane02.eyebrow}</span>
+          <h2 className="section-h2">{aiLane02.title}</h2>
+          <p className="section-sub">{aiLane02.intro}</p>
+        </div>
+        <div className="ai-detail-grid">
+          {aiLane02.items.map((item, i) => (
+            <div key={item.title} className={`ai-detail-card fi fi-d${Math.min(i, 3)}`}>
+              <h4>{item.title}</h4>
+              <div className="ai-detail-sub">{item.subtitle}</div>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CLIENT SUCCESS */}
       <section className="client-success" id="client-success">
         <span className="section-eyebrow">Client Success</span>
         <div className="row-header">
-          <h2 className="section-h2">
-            Outcomes that move
-            <br />
-            the needle
-          </h2>
+          <h2 className="section-h2">Outcomes that move the needle</h2>
           <Link href="/client-success" className="link-arrow">
             All Case Studies →
           </Link>
         </div>
         <div className="cs-grid">
-          <div className="cs-card fi">
-            <div className="cs-thumb cst1">
-              🏦
-              <span className="cs-industry ci1">Banking</span>
-            </div>
-            <div className="cs-body">
-              <h3>
-                Transforming QA for a Global Retail Bank&apos;s Digital Channels
-              </h3>
-              <p>
-                A Tier-1 bank needed to accelerate digital releases while
-                maintaining regulatory compliance across 14 markets. TestYantra
-                built a centralised QA COE with an AI-augmented automation
-                framework.
-              </p>
-              <div className="cs-metric">
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-acc">72%</div>
-                  <div className="cs-m-label">Faster release cycles</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-teal">60%</div>
-                  <div className="cs-m-label">Defect leakage reduction</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-ind">3×</div>
-                  <div className="cs-m-label">Automation coverage</div>
+          {caseStudies.map((cs, i) => (
+            <div key={cs.title} className={`cs-card fi fi-d${Math.min(i, 3)}`}>
+              <div className={`cs-thumb cst${(i % 3) + 1}`}>
+                {["🏦", "📡", "🏥"][i % 3]}
+                <span className={`cs-industry ci${(i % 3) + 1}`}>{cs.industry}</span>
+              </div>
+              <div className="cs-body">
+                <h3>{cs.title}</h3>
+                <p>{cs.problem}</p>
+                <div className="cs-metric">
+                  {cs.results.map((r) => (
+                    <div key={r.label} className="cs-m-item">
+                      <div
+                        className={`cs-m-num ${["m-acc", "m-teal", "m-ind"][cs.results.indexOf(r) % 3]}`}
+                      >
+                        {r.value}
+                      </div>
+                      <div className="cs-m-label">{r.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="cs-card fi fi-d1">
-            <div className="cs-thumb cst2">
-              📡
-              <span className="cs-industry ci2">Telecom</span>
-            </div>
-            <div className="cs-body">
-              <h3>
-                Continuous Testing Pipeline for a Leading OTT Streaming Platform
-              </h3>
-              <p>
-                A global media giant faced quality bottlenecks slowing their
-                streaming platform releases. TestYantra embedded continuous
-                testing into their DevOps pipeline, enabling daily deployments.
-              </p>
-              <div className="cs-metric">
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-ind">Daily</div>
-                  <div className="cs-m-label">Deploy frequency</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-acc">85%</div>
-                  <div className="cs-m-label">Test automation rate</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-teal">40%</div>
-                  <div className="cs-m-label">Cost reduction</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="cs-card fi fi-d2">
-            <div className="cs-thumb cst3">
-              🏥
-              <span className="cs-industry ci3">Healthcare</span>
-            </div>
-            <div className="cs-body">
-              <h3>
-                HIPAA-Compliant Quality Engineering for a HealthTech Platform
-              </h3>
-              <p>
-                A fast-growing digital health company needed robust quality and
-                security testing across patient-facing apps without slowing down
-                their aggressive product roadmap.
-              </p>
-              <div className="cs-metric">
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-teal">100%</div>
-                  <div className="cs-m-label">HIPAA compliance</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-acc">55%</div>
-                  <div className="cs-m-label">Faster regression</div>
-                </div>
-                <div className="cs-m-item">
-                  <div className="cs-m-num m-ind">Zero</div>
-                  <div className="cs-m-label">Prod defects</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      <div className="clients-strip">
-        <p className="strip-label">
-          Trusted by 360+ global brands across industries
-        </p>
-        <div className="logo-row fi">
-          <div className="logo-cell">FinServ Co</div>
-          <div className="logo-cell">Telecom Giant</div>
-          <div className="logo-cell">HealthTech</div>
-          <div className="logo-cell">Retail Brand</div>
-          <div className="logo-cell">SaaS Leader</div>
-          <div className="logo-cell">Media House</div>
-          <div className="logo-cell">InsureTech</div>
-          <div className="logo-cell">Travel Tech</div>
-          <div className="logo-cell">E-Commerce</div>
-          <div className="logo-cell">Consumer App</div>
-          <div className="logo-cell">BankingCo</div>
-          <div className="logo-cell">Hi-Tech ISV</div>
-        </div>
-      </div>
-
+      {/* INDUSTRIES */}
       <section className="industries" id="industries">
-        <span className="section-eyebrow">Industries</span>
-        <h2 className="section-h2 fi">
-          Built for sectors that
-          <br />
-          cannot afford failure
-        </h2>
-        <div className="ind-grid">
-          <div className="ind-card fi">
-            <span className="ind-icon">🏦</span>
-            <h3>Banking & Finance</h3>
-            <p>
-              Core banking, payments, open banking and regulatory compliance.
-            </p>
-          </div>
-          <div className="ind-card fi fi-d1">
-            <span className="ind-icon">🛡️</span>
-            <h3>Insurance</h3>
-            <p>
-              Policy systems, claims processing, underwriting and insuretech.
-            </p>
-          </div>
-          <div className="ind-card fi fi-d2">
-            <span className="ind-icon">🏥</span>
-            <h3>Healthcare & Life Sciences</h3>
-            <p>EHR systems, medical devices, HIPAA and clinical trials.</p>
-          </div>
-          <div className="ind-card fi fi-d3">
-            <span className="ind-icon">📡</span>
-            <h3>Telecom & Media</h3>
-            <p>BSS/OSS, OTT streaming, network functions and broadcast.</p>
-          </div>
-          <div className="ind-card fi">
-            <span className="ind-icon">🛒</span>
-            <h3>Retail & E-Commerce</h3>
-            <p>Omnichannel platforms, POS, supply chain and loyalty apps.</p>
-          </div>
-          <div className="ind-card fi fi-d1">
-            <span className="ind-icon">✈️</span>
-            <h3>Travel & Hospitality</h3>
-            <p>Booking engines, GDS, loyalty platforms and traveller apps.</p>
-          </div>
-          <div className="ind-card fi fi-d2">
-            <span className="ind-icon">⚙️</span>
-            <h3>SaaS & Hi-Tech</h3>
-            <p>
-              Product engineering, regression automation and DevOps quality.
-            </p>
-          </div>
-          <div className="ind-card fi fi-d3">
-            <span className="ind-icon">🌐</span>
-            <h3>Internet & Consumer</h3>
-            <p>High-traffic platforms, gaming, social and consumer mobile.</p>
-          </div>
+        <span className="section-eyebrow">14 Industries</span>
+        <h2 className="section-h2 fi">Built for sectors that cannot afford failure</h2>
+        <div className="ind-grid ind-grid-dense">
+          {industries.map((ind, i) => (
+            <Link
+              key={ind.slug}
+              href={`/contact?industry=${encodeURIComponent(ind.slug)}`}
+              className={`ind-card fi fi-d${Math.min(i % 4, 3)}`}
+            >
+              <span className="ind-icon">{ind.icon}</span>
+              <h3>{ind.name}</h3>
+              <p>{ind.summary}</p>
+            </Link>
+          ))}
         </div>
-      </section>
-
-      <section className="why" id="why">
-        <span className="section-eyebrow">Why TestYantra</span>
-        <div className="why-inner">
-          <div>
-            <h2 className="section-h2 fi">
-              Your quality engineering
-              <br />
-              transformation partner
-            </h2>
-            <p className="section-sub fi" style={{ marginBottom: 0 }}>
-              We don&apos;t just test software. We embed quality thinking across
-              your engineering organization — from Shift-Left strategy to
-              AI-powered delivery pipelines — so that quality becomes your
-              team&apos;s natural output, not an afterthought.
-            </p>
-            <div className="why-points">
-              <div className="why-pt fi">
-                <div className="why-icon">🎯</div>
-                <div>
-                  <h4>Test-to-Fit Philosophy</h4>
-                  <p>
-                    Every engagement starts with understanding your business
-                    roadmap, then designing a quality solution that fits
-                    precisely — not a generic template.
-                  </p>
-                </div>
-              </div>
-              <div className="why-pt fi fi-d1">
-                <div className="why-icon">🔬</div>
-                <div>
-                  <h4>Deep Automation DNA</h4>
-                  <p>
-                    With 2,200+ automation engineers across tools and domains,
-                    we bring unmatched depth to every framework conversation.
-                  </p>
-                </div>
-              </div>
-              <div className="why-pt fi fi-d2">
-                <div className="why-icon">🌍</div>
-                <div>
-                  <h4>Global Follow-the-Sun Delivery</h4>
-                  <p>
-                    Offices across India, US, UK and 11+ locations — continuous
-                    delivery coverage for enterprises that operate around the
-                    clock.
-                  </p>
-                </div>
-              </div>
-              <div className="why-pt fi fi-d3">
-                <div className="why-icon">📈</div>
-                <div>
-                  <h4>Structured QA Transformation</h4>
-                  <p>
-                    Our maturity assessment framework benchmarks your current
-                    state and builds a time-bound roadmap to world-class
-                    quality.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="maturity-card fi">
-              <h3>QA Maturity Assessment</h3>
-              <p>Where does your engineering quality stand today?</p>
-              <div className="mat-levels">
-                <div className="mat-row">
-                  <span className="mat-name">Initial</span>
-                  <div className="mat-track">
-                    <div className="mat-fill mf1" />
-                  </div>
-                  <span className="mat-tag">L1</span>
-                </div>
-                <div className="mat-row">
-                  <span className="mat-name">Managed</span>
-                  <div className="mat-track">
-                    <div className="mat-fill mf2" />
-                  </div>
-                  <span className="mat-tag">L2</span>
-                </div>
-                <div className="mat-row">
-                  <span className="mat-name">Defined</span>
-                  <div className="mat-track">
-                    <div className="mat-fill mf3" />
-                  </div>
-                  <span className="mat-tag">L3</span>
-                </div>
-                <div className="mat-row">
-                  <span className="mat-name">Quantified</span>
-                  <div className="mat-track">
-                    <div className="mat-fill mf4" />
-                  </div>
-                  <span className="mat-tag">L4</span>
-                </div>
-                <div className="mat-row">
-                  <span className="mat-name">Optimizing</span>
-                  <div className="mat-track">
-                    <div className="mat-fill mf5" />
-                  </div>
-                  <span className="mat-tag">L5</span>
-                </div>
-              </div>
-              <div className="mat-note">
-                Our clients typically progress from L2 to L4 within 10–14
-                months, with 40–65% faster release cycles and measurable
-                reduction in production defects.
-              </div>
-              <Link
-                href="/contact"
-                className="btn-accent"
-                style={{ display: "block", textAlign: "center", marginTop: 24 }}
-              >
-                Take the Free Assessment
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="approach">
-        <span className="section-eyebrow">Our Approach</span>
-        <h2 className="section-h2 fi">
-          Swift Quality —{" "}
-          <em style={{ fontStyle: "italic", fontWeight: 300 }}>
-            the TestYantra way
-          </em>
-        </h2>
-        <div className="approach-steps">
-          <div className="appr-step fi">
-            <div className="appr-num">01</div>
-            <h4>Assess</h4>
-            <p>
-              Benchmark current QA maturity, map gaps and build a structured
-              transformation roadmap.
-            </p>
-          </div>
-          <div className="appr-step fi fi-d1">
-            <div className="appr-num">02</div>
-            <h4>Shift Left</h4>
-            <p>
-              Bring quality to design — wireframes, pseudo-code and specs
-              reviewed before a line is written.
-            </p>
-          </div>
-          <div className="appr-step fi fi-d2">
-            <div className="appr-num">03</div>
-            <h4>Automate</h4>
-            <p>
-              Intelligent, self-healing automation across UI, API, performance
-              and security — at scale.
-            </p>
-          </div>
-          <div className="appr-step fi fi-d3">
-            <div className="appr-num">04</div>
-            <h4>Integrate</h4>
-            <p>
-              Wire continuous testing into every CI/CD stage — fail fast, fix
-              faster, ship with confidence.
-            </p>
-          </div>
-          <div className="appr-step fi" style={{ transitionDelay: "0.4s" }}>
-            <div className="appr-num">05</div>
-            <h4>Optimise</h4>
-            <p>
-              AI analytics, predictive defect scoring and continuous improvement
-              loops — always getting better.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="insights" id="insights">
-        <span className="section-eyebrow">Insights & Resources</span>
-        <div className="row-header">
-          <h2 className="section-h2">Think. Learn. Engineer.</h2>
-          <Link href="/outcomes" className="link-arrow">
-            All Insights →
+        <div className="ind-more fi">
+          <Link href="/industries" className="link-arrow">
+            View all industries →
           </Link>
         </div>
-        <div className="insights-grid">
-          <div className="ins-card fi">
-            <div className="ins-thumb it1">🤖</div>
-            <div className="ins-body">
-              <div className="ins-cat">AI Engineering</div>
-              <h3>
-                How Generative AI is Rewriting the Rules of Test Automation
-              </h3>
-              <p>
-                From self-healing scripts to LLM-generated test suites — a
-                practical look at how AI is transforming QA team productivity.
-              </p>
-              <p className="ins-meta">March 2025 · 6 min read</p>
-            </div>
-          </div>
-          <div className="ins-card fi fi-d1">
-            <div className="ins-thumb it2">🔄</div>
-            <div className="ins-body">
-              <div className="ins-cat">DevOps</div>
-              <h3>
-                Continuous Testing as the Backbone of a High-Performing DevOps
-                Culture
-              </h3>
-              <p>
-                Why embedding testing into every CI/CD stage is the single most
-                impactful quality decision engineering leaders can make.
-              </p>
-              <p className="ins-meta">February 2025 · 5 min read</p>
-            </div>
-          </div>
-          <div className="ins-card fi fi-d2">
-            <div className="ins-thumb it3">📊</div>
-            <div className="ins-body">
-              <div className="ins-cat">Quality Engineering</div>
-              <h3>
-                The QA Maturity Ladder: Moving from Manual Testing to AI-Powered
-                Quality
-              </h3>
-              <p>
-                A practical framework for assessing and elevating your
-                engineering quality capability across five maturity stages.
-              </p>
-              <p className="ins-meta">January 2025 · 8 min read</p>
-            </div>
-          </div>
-        </div>
       </section>
 
+      {/* CTA */}
       <div className="cta-band">
         <h2>
-          Ready to make quality
+          Ready to accelerate quality
           <br />
-          your <em>engineering superpower?</em>
+          and <em>ship with confidence?</em>
         </h2>
-        <a href="mailto:info@testyantra.com" className="btn-white">
+        <Link href="/contact" className="btn-white">
           Start a Conversation →
-        </a>
+        </Link>
       </div>
     </>
   );

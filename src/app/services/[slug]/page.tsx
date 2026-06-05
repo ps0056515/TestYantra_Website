@@ -1,12 +1,19 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { services } from "@/content/site";
 
 type Params = { slug: string };
 
+export function generateStaticParams() {
+  return services.map((s) => ({ slug: s.slug }));
+}
+
 export default function ServiceDetailPage({ params }: { params: Params }) {
   const service = services.find((s) => s.slug === params.slug);
   if (!service) return notFound();
+
+  const isDev = service.slug === "development";
 
   return (
     <V2InnerShell>
@@ -42,6 +49,13 @@ export default function ServiceDetailPage({ params }: { params: Params }) {
           </ul>
         </div>
       </div>
+      {isDev ? (
+        <div className="mt-8">
+          <Link href="/development" className="link-arrow">
+            Learn more about TechnoElevate →
+          </Link>
+        </div>
+      ) : null}
     </V2InnerShell>
   );
 }

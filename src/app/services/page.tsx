@@ -11,7 +11,8 @@ export default function ServicesPage() {
           Quality engineering, delivered in the shape you need.
         </h1>
         <p className="mt-4 text-sm leading-6 text-[var(--muted2)] sm:text-base">
-          Build confidence at every stage—strategy, automation, execution, and capability uplift.
+          Managed QA, AI quality engineering, TechnoElevate development, crowd testing, and academy
+          training — one group, unified delivery.
         </p>
       </div>
 
