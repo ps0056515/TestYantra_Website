@@ -152,6 +152,26 @@ export const businessUnits: BusinessUnit[] = [
     ],
   },
   {
+    id: "fireflink",
+    name: "FireFlink",
+    tagline: "AI-Powered Scriptless Testing",
+    description:
+      "A next-generation scriptless test automation platform using NLP, AI, and predictive analytics to automate web, mobile, API, and enterprise applications.",
+    href: "https://www.fireflink.com/",
+    external: true,
+    icon: "🔥",
+    accent: "var(--accent)",
+    stats: [
+      { value: "4×", label: "Faster automation" },
+      { value: "Zero", label: "Code required" },
+    ],
+    highlights: [
+      "AI & NLP natural language test writing",
+      "Scriptless automation for Web, Mobile, API",
+      "Enterprise support for SAP, Salesforce",
+    ],
+  },
+  {
     id: "academy",
     name: "Academy",
     tagline: "QSpiders & JSpiders Training",

@@ -14,6 +14,8 @@ import {
 } from "@/content/home";
 import { businessUnits, caseStudies, industries } from "@/content/site";
 import { V2CapabilityTabs } from "./V2CapabilityTabs";
+import { AnimatedCounter } from "./AnimatedCounter";
+import { ScrollAnimate } from "./ScrollAnimate";
 
 const pillarColors: Record<string, string> = {
   accent: "pb1 pi1 pc1",
@@ -84,7 +86,7 @@ export function V2Home() {
         {heroStats.map((s, i) => (
           <div key={s.label} className={`stat-cell fi${i ? ` fi-d${Math.min(i, 3)}` : ""}`}>
             <div className="stat-num">
-              {s.value}
+              <AnimatedCounter value={s.value} />
               {s.suffix ? <sup>{s.suffix}</sup> : null}
             </div>
             <div className="stat-desc">{s.label}</div>
@@ -94,38 +96,40 @@ export function V2Home() {
 
       {/* PRACTICE AREAS */}
       <section className="pillars" id="pillars">
-        <span className="section-eyebrow">What We Deliver</span>
-        <div className="row-header">
-          <h2 className="section-h2">
-            Five practice areas.
-            <br />
-            One embedded partner.
-          </h2>
-          <p className="section-sub" style={{ marginBottom: 0 }}>
-            From quality assurance to AI-powered testing and development — five disciplines, one
-            seamless engineering partner.
-          </p>
-        </div>
+        <ScrollAnimate direction="up">
+          <span className="section-eyebrow">What We Deliver</span>
+          <div className="row-header">
+            <h2 className="section-h2">
+              Five practice areas.
+              <br />
+              One embedded partner.
+            </h2>
+            <p className="section-sub" style={{ marginBottom: 0 }}>
+              From quality assurance to AI-powered testing and development — five disciplines, one
+              seamless engineering partner.
+            </p>
+          </div>
+        </ScrollAnimate>
         <div className="pillars-row pillars-row-5">
           {practiceAreas.map((p, i) => {
             const c = pillarColors[p.color] ?? pillarColors.accent;
             const [bar, icon, cta] = c.split(" ");
             const inner = (
-              <>
+              <ScrollAnimate direction="up" delay={i * 80} className="h-full">
                 <div className={`pillar-bar ${bar}`} />
                 <div className={`pillar-icon ${icon}`}>{p.icon}</div>
                 <h3>{p.title}</h3>
                 <p>{p.description}</p>
                 <span className={`pillar-cta ${cta}`}>Explore →</span>
                 <div className="pillar-n">0{i + 1}</div>
-              </>
+              </ScrollAnimate>
             );
             return p.href.startsWith("/") ? (
-              <Link key={p.id} href={p.href} className="pillar fi fi-d1 pillar-link">
+              <Link key={p.id} href={p.href} className="pillar pillar-link">
                 {inner}
               </Link>
             ) : (
-              <a key={p.id} href={p.href} className="pillar fi fi-d1 pillar-link">
+              <a key={p.id} href={p.href} className="pillar pillar-link">
                 {inner}
               </a>
             );
@@ -136,90 +140,116 @@ export function V2Home() {
       {/* ECOSYSTEM */}
       <section className="ecosystem" id="ecosystem">
         <div className="eco-glow" />
-        <span className="section-eyebrow">{ecosystemIntro.eyebrow}</span>
-        <h2 className="section-h2 fi">
-          {ecosystemIntro.title.split("\n").map((line, i) => (
-            <span key={line}>
-              {i > 0 && <br />}
-              {line}
-            </span>
-          ))}
-        </h2>
-        <p className="section-sub fi">{ecosystemIntro.subtitle}</p>
+        <ScrollAnimate direction="up">
+          <span className="section-eyebrow">{ecosystemIntro.eyebrow}</span>
+          <h2 className="section-h2">
+            {ecosystemIntro.title.split("\n").map((line, i) => (
+              <span key={line}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
+          </h2>
+          <p className="section-sub">{ecosystemIntro.subtitle}</p>
+        </ScrollAnimate>
         <div className="eco-grid">
           {businessUnits.map((unit, i) => (
-            <div key={unit.id} className={`eco-card fi fi-d${Math.min(i, 3)}`}>
-              <div className="eco-icon" style={{ borderColor: unit.accent }}>
-                {unit.icon}
-              </div>
-              <div className="eco-tag">{unit.tagline}</div>
-              <h3>{unit.name}</h3>
-              <p>{unit.description}</p>
-              {unit.stats ? (
-                <div className="eco-stats">
-                  {unit.stats.map((s) => (
-                    <div key={s.label}>
-                      <strong>{s.value}</strong>
-                      <span>{s.label}</span>
-                    </div>
-                  ))}
+            <ScrollAnimate key={unit.id} direction="up" delay={i * 100} className="h-full">
+              <div className="eco-card h-full" style={{ margin: 0 }}>
+                <div className="eco-icon" style={{ borderColor: unit.accent }}>
+                  {unit.icon}
                 </div>
-              ) : null}
-              <ul className="eco-highlights">
-                {unit.highlights?.map((h) => (
-                  <li key={h}>{h}</li>
-                ))}
-              </ul>
-              {unit.external ? (
-                <a
-                  href={unit.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="eco-cta"
-                >
-                  Visit {unit.name} ↗
-                </a>
-              ) : (
-                <Link href={unit.href} className="eco-cta">
-                  Explore {unit.name} →
-                </Link>
-              )}
-            </div>
+                <div className="eco-tag">{unit.tagline}</div>
+                <h3>{unit.name}</h3>
+                <p>{unit.description}</p>
+                {unit.stats ? (
+                  <div className="eco-stats">
+                    {unit.stats.map((s) => (
+                      <div key={s.label}>
+                        <strong><AnimatedCounter value={s.value} /></strong>
+                        <span>{s.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+                <ul className="eco-highlights">
+                  {unit.highlights?.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+                {unit.external ? (
+                  <a
+                    href={unit.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="eco-cta"
+                  >
+                    Visit {unit.name} ↗
+                  </a>
+                ) : (
+                  <Link href={unit.href} className="eco-cta">
+                    Explore {unit.name} →
+                  </Link>
+                )}
+              </div>
+            </ScrollAnimate>
           ))}
         </div>
       </section>
 
       {/* SERVICE CATALOGUE */}
-      <section className="services" id="services">
-        <span className="section-eyebrow">Service Catalogue</span>
-        <div className="row-header">
-          <h2 className="section-h2">
-            Comprehensive. Specialized.
-            <br />
-            At every layer of quality.
-          </h2>
-          <Link href="/services" className="link-arrow">
-            All Services →
-          </Link>
-        </div>
-        <div className="catalog-grid">
-          {serviceCatalogue.map((name, i) => (
-            <div key={name} className={`catalog-pill fi${i % 4 ? ` fi-d${i % 4}` : ""}`}>
-              {name}
+      <section className="services relative overflow-hidden" id="services">
+        {/* Decorative background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--accent)]/5 blur-[120px] rounded-full pointer-events-none" />
+        
+        <ScrollAnimate direction="up" className="relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block px-3 py-1 mb-6 text-xs font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 rounded-full border border-[var(--accent)]/20">
+              Service Catalogue
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text)] mb-6">
+              Comprehensive. Specialized.
+              <br />
+              <span className="text-[var(--muted)]">At every layer of quality.</span>
+            </h2>
+            <div className="flex justify-center">
+              <Link href="/services" className="inline-flex items-center gap-2 text-[var(--accent)] font-semibold hover:gap-3 transition-all">
+                Explore All Services <span>→</span>
+              </Link>
             </div>
+          </div>
+        </ScrollAnimate>
+
+        <div className="relative z-10 flex flex-wrap justify-center gap-3 md:gap-4 max-w-6xl mx-auto">
+          {serviceCatalogue.map((name, i) => (
+            <ScrollAnimate key={name} direction="up" delay={i * 30}>
+              <Link href="/services">
+                <div className="group relative px-5 py-3 md:px-7 md:py-4 rounded-2xl border border-[var(--border2)] bg-[var(--surface)] hover:bg-[var(--bg)] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex items-center gap-3">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="w-2 h-2 rounded-full bg-[var(--muted)] group-hover:bg-[var(--accent)] transition-colors duration-300 shadow-[0_0_8px_rgba(0,0,0,0)] group-hover:shadow-[var(--accent)]" />
+                  <span className="text-sm md:text-base font-semibold text-[var(--muted2)] group-hover:text-[var(--text)] transition-colors duration-300 whitespace-nowrap">
+                    {name}
+                  </span>
+                </div>
+              </Link>
+            </ScrollAnimate>
           ))}
         </div>
       </section>
 
       {/* CAPABILITIES TABS */}
       <section className="capabilities" id="capabilities">
-        <span className="section-eyebrow">Deep Capabilities</span>
-        <h2 className="section-h2 fi">Expertise that runs deep</h2>
-        <p className="section-sub fi">
-          Three capability domains — explore what we deliver across QA, QE, and production
-          monitoring.
-        </p>
-        <V2CapabilityTabs groups={capabilityGroups} />
+        <ScrollAnimate direction="up">
+          <span className="section-eyebrow">Deep Capabilities</span>
+          <h2 className="section-h2">Expertise that runs deep</h2>
+          <p className="section-sub">
+            Three capability domains — explore what we deliver across QA, QE, and production
+            monitoring.
+          </p>
+        </ScrollAnimate>
+        <ScrollAnimate direction="up" delay={100}>
+          <V2CapabilityTabs groups={capabilityGroups} />
+        </ScrollAnimate>
       </section>
 
       {/* ENGAGEMENT MODELS */}
@@ -227,35 +257,43 @@ export function V2Home() {
         <span className="section-eyebrow">Engagement Models</span>
         <div className="engage-split">
           <div>
-            <h2 className="section-h2">Team models</h2>
-            <p className="section-sub">
-              Whether you need to scale fast, build a CoE, or extend your bench — we flex to your
-              operating model.
-            </p>
+            <ScrollAnimate direction="left">
+              <h2 className="section-h2">Team models</h2>
+              <p className="section-sub">
+                Whether you need to scale fast, build a CoE, or extend your bench — we flex to your
+                operating model.
+              </p>
+            </ScrollAnimate>
             <div className="engage-cards">
               {teamModels.map((m, i) => (
-                <div key={m.title} className={`engage-card fi fi-d${Math.min(i, 3)}`}>
-                  <h4>{m.title}</h4>
-                  <p>{m.description}</p>
-                </div>
+                <ScrollAnimate key={m.title} direction="left" delay={i * 80} className="w-full">
+                  <div className="engage-card w-full" style={{ margin: 0 }}>
+                    <h4>{m.title}</h4>
+                    <p>{m.description}</p>
+                  </div>
+                </ScrollAnimate>
               ))}
             </div>
           </div>
           <div>
-            <h2 className="section-h2">Delivery models</h2>
-            <p className="section-sub">
-              Six commercial models designed for enterprise agility — from outcome-based engagements
-              to full managed operations.
-            </p>
+            <ScrollAnimate direction="right">
+              <h2 className="section-h2">Delivery models</h2>
+              <p className="section-sub">
+                Six commercial models designed for enterprise agility — from outcome-based engagements
+                to full managed operations.
+              </p>
+            </ScrollAnimate>
             <div className="delivery-list">
               {deliveryModels.map((m, i) => (
-                <div key={m.num} className={`delivery-row fi fi-d${Math.min(i, 3)}`}>
-                  <span className="delivery-num">{m.num}</span>
-                  <div>
-                    <h4>{m.title}</h4>
-                    <p>{m.description}</p>
+                <ScrollAnimate key={m.num} direction="right" delay={i * 80} className="w-full">
+                  <div className="delivery-row w-full" style={{ margin: 0 }}>
+                    <span className="delivery-num">{m.num}</span>
+                    <div>
+                      <h4>{m.title}</h4>
+                      <p>{m.description}</p>
+                    </div>
                   </div>
-                </div>
+                </ScrollAnimate>
               ))}
             </div>
           </div>
@@ -265,7 +303,7 @@ export function V2Home() {
       {/* AI */}
       <section className="ai-spot" id="ai">
         <div className="ai-inner">
-          <div className="ai-left">
+          <ScrollAnimate direction="left" className="ai-left">
             <span className="section-eyebrow">{aiOverview.eyebrow}</span>
             <h2 className="section-h2">{aiOverview.title}</h2>
             <p className="section-sub" style={{ marginBottom: 30 }}>
@@ -299,8 +337,8 @@ export function V2Home() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="ai-right">
+          </ScrollAnimate>
+          <ScrollAnimate direction="right" className="ai-right">
             <div className="ai-lane-cards">
               {aiOverview.lanes.map((lane) => (
                 <a key={lane.id} href={lane.href} className="ai-lane-card">
@@ -313,116 +351,136 @@ export function V2Home() {
                 </a>
               ))}
             </div>
-          </div>
+          </ScrollAnimate>
         </div>
       </section>
 
       <section className="ai-lanes-detail" id={aiLane01.id}>
-        <div className="ai-lane-header">
-          <span className="section-eyebrow">{aiLane01.eyebrow}</span>
-          <h2 className="section-h2">{aiLane01.title}</h2>
-          <p className="section-sub">{aiLane01.intro}</p>
-        </div>
+        <ScrollAnimate direction="up">
+          <div className="ai-lane-header">
+            <span className="section-eyebrow">{aiLane01.eyebrow}</span>
+            <h2 className="section-h2">{aiLane01.title}</h2>
+            <p className="section-sub">{aiLane01.intro}</p>
+          </div>
+        </ScrollAnimate>
         <div className="ai-detail-grid">
           {aiLane01.items.map((item, i) => (
-            <div key={item.title} className={`ai-detail-card fi fi-d${Math.min(i, 3)}`}>
-              <span className="ai-detail-tag">{item.tag}</span>
-              <h4>{item.title}</h4>
-              <p>{item.description}</p>
-            </div>
+            <ScrollAnimate key={item.title} direction="up" delay={i * 80} className="h-full">
+              <div className="ai-detail-card h-full" style={{ margin: 0 }}>
+                <span className="ai-detail-tag">{item.tag}</span>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+              </div>
+            </ScrollAnimate>
           ))}
         </div>
       </section>
 
       <section className="ai-lanes-detail ai-lanes-alt" id={aiLane02.id}>
-        <div className="ai-lane-header">
-          <span className="section-eyebrow">{aiLane02.eyebrow}</span>
-          <h2 className="section-h2">{aiLane02.title}</h2>
-          <p className="section-sub">{aiLane02.intro}</p>
-        </div>
+        <ScrollAnimate direction="up">
+          <div className="ai-lane-header">
+            <span className="section-eyebrow">{aiLane02.eyebrow}</span>
+            <h2 className="section-h2">{aiLane02.title}</h2>
+            <p className="section-sub">{aiLane02.intro}</p>
+          </div>
+        </ScrollAnimate>
         <div className="ai-detail-grid">
           {aiLane02.items.map((item, i) => (
-            <div key={item.title} className={`ai-detail-card fi fi-d${Math.min(i, 3)}`}>
-              <h4>{item.title}</h4>
-              <div className="ai-detail-sub">{item.subtitle}</div>
-              <p>{item.description}</p>
-            </div>
+            <ScrollAnimate key={item.title} direction="up" delay={i * 80} className="h-full">
+              <div className="ai-detail-card h-full" style={{ margin: 0 }}>
+                <h4>{item.title}</h4>
+                <div className="ai-detail-sub">{item.subtitle}</div>
+                <p>{item.description}</p>
+              </div>
+            </ScrollAnimate>
           ))}
         </div>
       </section>
 
       {/* CLIENT SUCCESS */}
       <section className="client-success" id="client-success">
-        <span className="section-eyebrow">Client Success</span>
-        <div className="row-header">
-          <h2 className="section-h2">Outcomes that move the needle</h2>
-          <Link href="/client-success" className="link-arrow">
-            All Case Studies →
-          </Link>
-        </div>
+        <ScrollAnimate direction="up">
+          <span className="section-eyebrow">Client Success</span>
+          <div className="row-header">
+            <h2 className="section-h2">Outcomes that move the needle</h2>
+            <Link href="/client-success" className="link-arrow">
+              All Case Studies →
+            </Link>
+          </div>
+        </ScrollAnimate>
         <div className="cs-grid">
           {caseStudies.map((cs, i) => (
-            <div key={cs.title} className={`cs-card fi fi-d${Math.min(i, 3)}`}>
-              <div className={`cs-thumb cst${(i % 3) + 1}`}>
-                {["🏦", "📡", "🏥"][i % 3]}
-                <span className={`cs-industry ci${(i % 3) + 1}`}>{cs.industry}</span>
-              </div>
-              <div className="cs-body">
-                <h3>{cs.title}</h3>
-                <p>{cs.problem}</p>
-                <div className="cs-metric">
-                  {cs.results.map((r) => (
-                    <div key={r.label} className="cs-m-item">
-                      <div
-                        className={`cs-m-num ${["m-acc", "m-teal", "m-ind"][cs.results.indexOf(r) % 3]}`}
-                      >
-                        {r.value}
+            <ScrollAnimate key={cs.title} direction="up" delay={i * 100} className="h-full">
+              <div className="cs-card h-full" style={{ margin: 0 }}>
+                <div className={`cs-thumb cst${(i % 3) + 1}`}>
+                  {["🏦", "📡", "🏥"][i % 3]}
+                  <span className={`cs-industry ci${(i % 3) + 1}`}>{cs.industry}</span>
+                </div>
+                <div className="cs-body">
+                  <h3>{cs.title}</h3>
+                  <p>{cs.problem}</p>
+                  <div className="cs-metric">
+                    {cs.results.map((r) => (
+                      <div key={r.label} className="cs-m-item">
+                        <div
+                          className={`cs-m-num ${["m-acc", "m-teal", "m-ind"][cs.results.indexOf(r) % 3]}`}
+                        >
+                          <AnimatedCounter value={r.value} />
+                        </div>
+                        <div className="cs-m-label">{r.label}</div>
                       </div>
-                      <div className="cs-m-label">{r.label}</div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollAnimate>
           ))}
         </div>
       </section>
 
       {/* INDUSTRIES */}
       <section className="industries" id="industries">
-        <span className="section-eyebrow">14 Industries</span>
-        <h2 className="section-h2 fi">Built for sectors that cannot afford failure</h2>
+        <ScrollAnimate direction="up">
+          <span className="section-eyebrow">14 Industries</span>
+          <h2 className="section-h2">Built for sectors that cannot afford failure</h2>
+        </ScrollAnimate>
         <div className="ind-grid ind-grid-dense">
           {industries.map((ind, i) => (
-            <Link
-              key={ind.slug}
-              href={`/contact?industry=${encodeURIComponent(ind.slug)}`}
-              className={`ind-card fi fi-d${Math.min(i % 4, 3)}`}
-            >
-              <span className="ind-icon">{ind.icon}</span>
-              <h3>{ind.name}</h3>
-              <p>{ind.summary}</p>
-            </Link>
+            <ScrollAnimate key={ind.slug} direction="up" delay={i * 30} className="h-full">
+              <Link
+                href={`/contact?industry=${encodeURIComponent(ind.slug)}`}
+                className="ind-card h-full"
+                style={{ margin: 0 }}
+              >
+                <span className="ind-icon">{ind.icon}</span>
+                <h3>{ind.name}</h3>
+                <p>{ind.summary}</p>
+              </Link>
+            </ScrollAnimate>
           ))}
         </div>
-        <div className="ind-more fi">
-          <Link href="/industries" className="link-arrow">
-            View all industries →
-          </Link>
+        <div className="ind-more">
+          <ScrollAnimate direction="up">
+            <Link href="/industries" className="link-arrow">
+              View all industries →
+            </Link>
+          </ScrollAnimate>
         </div>
       </section>
 
       {/* CTA */}
-      <div className="cta-band">
-        <h2>
-          Ready to accelerate quality
-          <br />
-          and <em>ship with confidence?</em>
-        </h2>
-        <Link href="/contact" className="btn-white">
-          Start a Conversation →
-        </Link>
-      </div>
+      <ScrollAnimate direction="up">
+        <div className="cta-band">
+          <h2>
+            Ready to accelerate quality
+            <br />
+            and <em>ship with confidence?</em>
+          </h2>
+          <Link href="/contact" className="btn-white">
+            Start a Conversation →
+          </Link>
+        </div>
+      </ScrollAnimate>
     </>
   );
 }

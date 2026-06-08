@@ -4,14 +4,17 @@ import { businessUnits, brand, technoElevate } from "@/content/site";
 export function V2Nav() {
   return (
     <nav>
-      <Link href="/" className="nav-logo">
-        <div className="nav-logo-dot" />
-        TestYantra
+      <Link href="/" className="nav-logo" style={{ gap: 0 }}>
+        <span className="nav-logo-text">
+          <span className="light-text">TES</span>
+          <span className="orange-text">TY</span>
+          <span className="light-text">ANTRA</span>
+        </span>
       </Link>
       <ul className="nav-center">
         <li>
           <Link href="/services">
-            Services <span className="nav-chevron">▾</span>
+            QA Services <span className="nav-chevron">▾</span>
           </Link>
           <div className="mega-drop">
             <div className="mega-col">

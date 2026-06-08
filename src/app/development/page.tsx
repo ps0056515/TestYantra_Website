@@ -2,6 +2,7 @@ import Link from "next/link";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { technoElevate, businessUnits } from "@/content/site";
 import { ScrollAnimate } from "@/components/v2/ScrollAnimate";
+import { AnimatedCounter } from "@/components/v2/AnimatedCounter";
 
 export default function DevelopmentPage() {
   const teUnit = businessUnits.find((u) => u.id === "technoelevate");
@@ -67,15 +68,21 @@ export default function DevelopmentPage() {
             <ScrollAnimate direction="left" delay={250}>
               <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-4 shadow-sm hover:border-[var(--indigo)]/20 transition">
-                  <div className="text-2xl font-extrabold text-[var(--indigo)]">900+</div>
+                  <div className="text-2xl font-extrabold text-[var(--indigo)]">
+                    <AnimatedCounter value="900" />+
+                  </div>
                   <div className="text-xs font-semibold text-[var(--muted)] mt-1">Developers</div>
                 </div>
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-4 shadow-sm hover:border-[var(--indigo)]/20 transition">
-                  <div className="text-2xl font-extrabold text-[var(--indigo)]">100%</div>
+                  <div className="text-2xl font-extrabold text-[var(--indigo)]">
+                    <AnimatedCounter value="100" />%
+                  </div>
                   <div className="text-xs font-semibold text-[var(--muted)] mt-1">Quality-first</div>
                 </div>
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-4 shadow-sm hover:border-[var(--indigo)]/20 transition">
-                  <div className="text-2xl font-extrabold text-[var(--indigo)]">7</div>
+                  <div className="text-2xl font-extrabold text-[var(--indigo)]">
+                    <AnimatedCounter value="7" />
+                  </div>
                   <div className="text-xs font-semibold text-[var(--muted)] mt-1">Service lines</div>
                 </div>
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-4 shadow-sm hover:border-[var(--indigo)]/20 transition">
