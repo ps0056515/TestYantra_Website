@@ -387,8 +387,8 @@ export const aiLane02 = {
 } as const;
 
 export const ecosystemIntro = {
-  eyebrow: "The Test Yantra Group",
-  title: "One ecosystem.\nThree engines of delivery.",
+  eyebrow: "The TestYantra Group",
+  title: "One ecosystem.\nFour engines of delivery.",
   subtitle:
     "Quality engineering, software development, and talent transformation — unified under a single trusted partner.",
 } as const;
