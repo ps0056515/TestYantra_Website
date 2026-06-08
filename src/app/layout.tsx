@@ -33,6 +33,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="midnight" className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('tyss-theme') || 'midnight';
+                document.documentElement.setAttribute('data-theme', theme);
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full">
         <div className="flex min-h-dvh flex-col">
           <V2ClientEffects />

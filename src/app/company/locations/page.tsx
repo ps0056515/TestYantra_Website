@@ -24,9 +24,20 @@ export default function LocationsPage() {
             className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6"
           >
             {loc.unit ? (
-              <span className="inline-block rounded-full bg-[var(--surface)] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--indigo)]">
-                {loc.unit}
-              </span>
+              loc.unit === "TechnoElevate" ? (
+                <a
+                  href="https://technoelevate.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-full bg-[var(--surface)] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--indigo)] hover:underline"
+                >
+                  {loc.unit} ↗
+                </a>
+              ) : (
+                <span className="inline-block rounded-full bg-[var(--surface)] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--indigo)]">
+                  {loc.unit}
+                </span>
+              )
             ) : null}
             <div className="mt-2 text-sm font-semibold tracking-tight text-[var(--text)]">{loc.country}</div>
             <div className="mt-1 text-sm text-[var(--muted)]">{loc.city}</div>

@@ -14,7 +14,7 @@ export function V2Footer() {
             </Link>
             <p>
               {brand.tagline} — partnering with global brands to build, test, and deliver software
-              they&apos;re proud to ship. Part of the Test Yantra group with TechnoElevate and
+              they&apos;re proud to ship. Part of the Test Yantra group with <a href="https://technoelevate.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>TechnoElevate</a> and
               Academy.
             </p>
             <div className="foot-social">
@@ -39,7 +39,7 @@ export function V2Footer() {
                 <Link href="/services/managed-qa">Managed QA</Link>
               </li>
               <li>
-                <Link href="/#capabilities-qe">Test Automation</Link>
+                <Link href="/services/test-automation">Test Automation</Link>
               </li>
               <li>
                 <Link href="/services/crowd-testing">Crowd Testing</Link>
@@ -48,7 +48,7 @@ export function V2Footer() {
                 <Link href="/services/ai-quality">AI Quality Engineering</Link>
               </li>
               <li>
-                <Link href="/#capabilities-monitoring">Production Monitoring</Link>
+                <Link href="/services/production-monitoring">Production Monitoring</Link>
               </li>
               <li>
                 <Link href="/services/professional-services">Advisory & BOT</Link>
@@ -58,17 +58,20 @@ export function V2Footer() {
           <div className="foot-col">
             <h5>Group Companies</h5>
             <ul>
-              {businessUnits.map((u) => (
-                <li key={u.id}>
-                  {u.external ? (
-                    <a href={u.href} target="_blank" rel="noopener noreferrer">
-                      {u.name}
-                    </a>
-                  ) : (
-                    <Link href={u.href}>{u.name}</Link>
-                  )}
-                </li>
-              ))}
+              {businessUnits.map((u) => {
+                const isTE = u.id === "technoelevate";
+                return (
+                  <li key={u.id}>
+                    {u.external || isTE ? (
+                      <a href={isTE ? "https://technoelevate.com/" : u.href} target="_blank" rel="noopener noreferrer">
+                        {u.name} ↗
+                      </a>
+                    ) : (
+                      <Link href={u.href}>{u.name}</Link>
+                    )}
+                  </li>
+                );
+              })}
               <li>
                 <a href={technoElevate.url} target="_blank" rel="noopener noreferrer">
                   technoelevate.com ↗
@@ -121,7 +124,7 @@ export function V2Footer() {
           <p>© {new Date().getFullYear()} {brand.legalName} All rights reserved.</p>
           <div className="foot-locs">
             <Link href="/company/locations">Bengaluru HQ</Link>
-            <Link href="/company/locations">TechnoElevate</Link>
+            <a href="https://technoelevate.com/" target="_blank" rel="noopener noreferrer">TechnoElevate ↗</a>
             <Link href="/company/locations">United States</Link>
             <Link href="/company/locations">United Kingdom</Link>
             <Link href="/company/locations">APAC</Link>

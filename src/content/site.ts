@@ -9,7 +9,14 @@ export type ServiceSlug =
   | "professional-services"
   | "training"
   | "ai-quality"
-  | "development";
+  | "development"
+  | "functional-testing"
+  | "accessibility-uat"
+  | "test-automation"
+  | "api-microservices"
+  | "production-monitoring"
+  | "testing-ai"
+  | "ai-in-testing";
 
 export type Service = {
   slug: ServiceSlug;
@@ -17,6 +24,9 @@ export type Service = {
   summary: string;
   bullets: string[];
   outcomes: string[];
+  description: string;
+  technologies: string[];
+  useCases: string[];
 };
 
 export type Location = {
@@ -176,58 +186,58 @@ export const technoElevate = {
   cloudImage:
     "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80&auto=format&fit=crop",
   description:
-    "TechnoElevate is the product engineering studio within TestYantra — from LLM-powered applications to ML scoring engines and computer-vision systems, we design, build, and scale enterprise software with 900+ skilled professionals.",
+    "TechnoElevate is the specialized product engineering studio within TestYantra. Partnering with global leaders like Kotak, CARS24, and LegalDST, our 900+ certified engineers design, build, and scale cloud-native web, mobile, data, and enterprise AI systems using CMMI Level 3 architecture-first practices.",
   announcement:
-    "AI-powered product engineering — LLM, RAG, and ML at enterprise scale, with TestYantra quality guardrails built in.",
+    "Partnering with Kotak, CARS24, and LegalDST to deliver custom product engineering with TestYantra quality guardrails built in.",
   services: [
     {
       icon: "🌐",
-      title: "Application Development",
+      title: "Application Development & Management",
       description:
-        "Enterprise-grade web and mobile apps — modern frameworks, design systems, and CI/CD-first delivery from concept to production.",
-      pills: ["React", "Java", "Mobile", "Design Systems"],
+        "Enterprise web platforms and design systems — built with React, Next.js, and Angular, delivering modern frontend architectures.",
+      pills: ["React", "Next.js", "Angular", "PWAs"],
+    },
+    {
+      icon: "📱",
+      title: "Mobile Engineering",
+      description:
+        "High-performance native and cross-platform mobile apps for iOS and Android, leveraging Flutter, React Native, and Swift.",
+      pills: ["React Native", "Flutter", "iOS / Swift", "Android / Kotlin"],
     },
     {
       icon: "☁️",
-      title: "Cloud Transformation",
+      title: "Cloud & Infrastructure",
       description:
-        "Migrate, modernize, and optimize on AWS, Azure, and GCP — cloud-native architecture with security and scalability at the core.",
-      pills: ["AWS", "Azure", "GCP", "DevOps"],
+        "AWS, GCP, and Azure cloud migrations, serverless container orchestration, and automated CI/CD pipelines under DevOps/SRE standards.",
+      pills: ["AWS", "Azure", "GCP", "Kubernetes", "DevOps"],
     },
     {
       icon: "📈",
       title: "Data & Analytics",
       description:
-        "Data pipelines, warehouses, and analytics platforms that turn raw data into decisions — built for volume, velocity, and trust.",
-      pills: ["ETL", "BI", "Data Lakes", "Dashboards"],
+        "Data lakes, warehouses, event streaming pipelines, and real-time business intelligence dashboards built for high throughput.",
+      pills: ["Snowflake", "Apache Kafka", "Flink", "BI Dashboards"],
+    },
+    {
+      icon: "🧠",
+      title: "AI & LLM Integration",
+      description:
+        "Enterprise-grade LLM retrieval-augmented generation (RAG) pipelines, proprietary vector databases, and semantic search.",
+      pills: ["LLMs", "RAG", "Vector DBs", "Semantic Search"],
+    },
+    {
+      icon: "🤖",
+      title: "Agentic AI & Automation",
+      description:
+        "Multi-agent workflow orchestration using LangGraph and CrewAI with automated document processing and decision flows.",
+      pills: ["Agents", "LangGraph", "CrewAI", "Document AI"],
     },
     {
       icon: "🔌",
       title: "Enterprise Integration & APIs",
       description:
-        "Connect legacy and modern systems with robust API layers, middleware, and event-driven architectures that scale.",
-      pills: ["REST", "GraphQL", "Microservices", "ESB"],
-    },
-    {
-      icon: "🛠️",
-      title: "Managed Services",
-      description:
-        "End-to-end ownership of delivery with defined SLAs, governance, and continuous improvement — imagine, engineer, and manage.",
-      pills: ["Dedicated Teams", "SLA-driven", "24/7 Support"],
-    },
-    {
-      icon: "👥",
-      title: "Professional Staffing",
-      description:
-        "Role-based augmentation — developers, architects, data engineers, and AI specialists onshore, offshore, or hybrid.",
-      pills: ["Staff Aug", "Team Extension", "Leadership"],
-    },
-    {
-      icon: "🧪",
-      title: "Quality-Integrated Delivery",
-      description:
-        "Every build inherits TestYantra QE — shift-left testing, automation, and production monitoring from sprint zero.",
-      pills: ["Test Automation", "CI/CD", "Monitoring"],
+        "Building robust middleware systems and custom API connectors to sync legacy structures with modern SaaS platforms.",
+      pills: ["REST", "GraphQL", "SAP", "HubSpot / Salesforce"],
     },
   ],
   aiHub: {
@@ -316,8 +326,7 @@ export const services: Service[] = [
   {
     slug: "managed-qa",
     name: "Managed QA Services",
-    summary:
-      "Own quality end-to-end with a managed testing function built for scale, speed, and predictable outcomes.",
+    summary: "Own quality end-to-end with a managed testing function built for scale, speed, and predictable outcomes.",
     bullets: [
       "Independent Verification & Validation (IV&V)",
       "Managed POD and Centre of Excellence models",
@@ -329,12 +338,18 @@ export const services: Service[] = [
       "Higher release confidence with measurable quality gates",
       "Lower total cost of quality via automation and reuse",
     ],
+    description: "Our Managed QA services provide global enterprises with end-to-end quality ownership. We handle the entire testing lifecycle, from initial QA strategy, resourcing, test design, and execution, through to release sign-off. Utilizing SLA-driven pod structures and dedicated Centre of Excellence (CoE) architectures, we optimize your QA spend, build robust traceability, and improve deployment predictability.",
+    technologies: ["Jira", "Confluence", "TestRail", "HP ALM", "Zephyr", "Qase"],
+    useCases: [
+      "Enterprise ERP migration quality verification",
+      "Continuous daily release cycles for global SaaS products",
+      "Establishment of SLA-backed offshore QA centers"
+    ]
   },
   {
     slug: "crowd-testing",
     name: "Crowd Testing",
-    summary:
-      "Test in the real world—devices, networks, locales, and user behaviors—before your users do.",
+    summary: "Test in the real world—devices, networks, locales, and user behaviors—before your users do.",
     bullets: [
       "Fast on-demand coverage across devices and geographies",
       "Exploratory testing with structured findings",
@@ -345,12 +360,18 @@ export const services: Service[] = [
       "Quicker feedback loops for pre-release readiness",
       "Higher app store ratings and fewer production regressions",
     ],
+    description: "Leverage a distributed workforce of professional testers on-demand to validate your application under actual real-world conditions. Test across hundreds of unique device-OS combinations, active cellular networks, localized languages, and specific regional user profiles to identify edge cases, usability problems, and performance bottlenecks before your production users do.",
+    technologies: ["Appium", "BrowserStack", "SauceLabs", "TestFlight", "Firebase Beta"],
+    useCases: [
+      "Geo-fenced payment flows and digital checkout testing",
+      "Cross-device hardware/OS compatibility audits for mobile apps",
+      "Multilingual localization verification for global user launches"
+    ]
   },
   {
     slug: "ai-quality",
     name: "AI Quality Engineering",
-    summary:
-      "Test AI systems with rigour and deploy AI to transform how you test — two lanes, one integrated practice.",
+    summary: "Test AI systems with rigour and deploy AI to transform how you test — two lanes, one integrated practice.",
     bullets: [
       "Model validation, drift monitoring, and bias auditing",
       "LLM & Gen AI validation — RAG, hallucination, prompt injection",
@@ -362,29 +383,44 @@ export const services: Service[] = [
       "Up to 60% reduction in automation maintenance overhead",
       "Future-proof QE teams with AI-native skills",
     ],
+    description: "Our integrated AI Quality Engineering practice covers two core dimensions: validating AI and machine learning systems for safety, bias, and correctness (Lane 01), and deploying intelligent AI agents to automate and optimize standard testing pipelines (Lane 02). We ensure your AI models perform reliably under heavy workload, maintain alignment, and run efficiently.",
+    technologies: ["Python", "TensorFlow", "PyTorch", "MLflow", "LangChain", "OpenAI API"],
+    useCases: [
+      "RAG search pipeline accuracy and safety validation",
+      "Bias audits and compliance checking for predictive models",
+      "Self-healing Playwright automation scripts for dynamic UIs"
+    ]
   },
   {
     slug: "development",
     name: "Development (TechnoElevate)",
-    summary:
-      "Quality-first software development through TechnoElevate — custom engineering, managed delivery, and staffing.",
+    summary: "TechnoElevate is the product engineering studio within TestYantra — designing, building, and scaling software solutions at scale.",
     bullets: [
-      "Full-stack and cloud-native application engineering",
-      "Managed services with SLA-driven accountability",
-      "Role-based staffing and team augmentation",
-      "Integrated TestYantra QE on every engagement",
+      "Application Development & Management (React, Next.js, PWAs)",
+      "Mobile Engineering (Native iOS/Android, React Native, Flutter)",
+      "Enterprise AI & LLM Integration (RAG, agentic workflows)",
+      "Data Platforms & Analytics (Snowflake, Event pipelines, BI)",
+      "Cloud Transformation & DevOps (AWS, Azure, GCP, Kubernetes)",
+      "Enterprise middleware integrations (Stripe, HubSpot, SAP)",
     ],
     outcomes: [
-      "Faster time-to-market with built-in quality",
-      "Flexible commercial models from project to managed ops",
-      "Single partner for build and validate",
+      "Architecture-first engineering with CMMI Level 3 quality",
+      "Accelerated delivery with embedded TestYantra validation",
+      "Flexible engagement (scrum pods, managed projects, staffing)",
     ],
+    description: "TechnoElevate is the specialized product engineering studio within TestYantra. Partnering with global enterprises, Kotak, CARS24, and LegalDST, TechnoElevate designs, builds, and scales modern software solutions. The studio combines architecture-first development, agile methodologies, CMMI Level 3 quality processes, and integrated quality engineering to deploy clean, high-performance web, mobile, cloud-native, and AI-enabled platforms.",
+    technologies: ["React", "Next.js", "Angular", "iOS & Android", "React Native", "Flutter", "LLMs & RAG", "LangGraph", "Kubernetes", "Snowflake", "AWS / Azure / GCP"],
+    useCases: [
+      "BFSI automation and secure fintech portals",
+      "Enterprise AI integration with cited RAG pipelines",
+      "Greenfield product builds and legacy systems modernization",
+      "Cloud-native migrations and high-scale Kubernetes deployments"
+    ]
   },
   {
     slug: "professional-services",
     name: "Professional Services",
-    summary:
-      "Specialists who plug into your teams to accelerate delivery, quality engineering, and transformation initiatives.",
+    summary: "Specialists who plug into your teams to accelerate delivery, quality engineering, and transformation initiatives.",
     bullets: [
       "Quality engineering leadership and test strategy",
       "Automation frameworks and toolchain integration",
@@ -396,12 +432,18 @@ export const services: Service[] = [
       "Reduced operational friction across teams",
       "Smoother releases with clearer accountability",
     ],
+    description: "Deploy highly qualified quality engineering specialists to accelerate your critical projects. From advisory consulting and maturity audits to building custom automation architectures, our experts integrate directly into your engineering loops to reduce technical debt and build scalable quality pipelines.",
+    technologies: ["Agile/Scrum", "DevOps Consulting", "GitLab CI", "GitHub Actions", "SonarQube"],
+    useCases: [
+      "Systematic QA maturity and process audits for enterprise apps",
+      "CI/CD release pipeline test automation setups",
+      "Build, Operate & Transfer (BOT) framework scaling"
+    ]
   },
   {
     slug: "training",
     name: "Training & Academy",
-    summary:
-      "Build job-ready capability through QSpiders, JSpiders, and enterprise cohort programmes.",
+    summary: "Build job-ready capability through QSpiders, JSpiders, and enterprise cohort programmes.",
     bullets: [
       "Training-as-a-service for fresh job aspirants",
       "Software testing learning paths (QSpiders; ISTQB® partner)",
@@ -413,6 +455,174 @@ export const services: Service[] = [
       "Improved hiring readiness and ramp-up speed",
       "Consistent skill standards across distributed orgs",
     ],
+    description: "Accelerate workforce capabilities through QSpiders (ISTQB® partner) and JSpiders. We deliver tailored talent cohort programs, fresh graduate bootcamps, and continuous upskilling in modern engineering and AI testing practices, providing organizations with job-ready tech professionals.",
+    technologies: ["ISTQB Syllabus", "Java/J2EE", "Python", "Manual Testing Core", "Automation Basics"],
+    useCases: [
+      "Onboarding fresh graduate cohorts for enterprise needs",
+      "Continuous QA team upskilling on Playwright and AI frameworks",
+      "Upskilling software developers in modern J2EE practices"
+    ]
+  },
+  {
+    slug: "functional-testing",
+    name: "Functional & E2E Testing",
+    summary: "Ensure every function, integration, and user journey operates exactly as intended across your entire system topology.",
+    bullets: [
+      "Functional & System Integration Testing (SIT)",
+      "End-to-End (E2E) user journey validation",
+      "Regression testing and impact analysis",
+      "Cross-browser and cross-device validation"
+    ],
+    outcomes: [
+      "Zero critical defects escaping to production",
+      "Comprehensive test coverage across complex workflows",
+      "Accelerated deployment readiness with high confidence"
+    ],
+    description: "Ensure complete correctness of system features and business workflows. We design comprehensive system integration and regression suites that validate critical user pathways across diverse browsers, devices, and network profiles, preventing regressions and safeguarding customer journeys.",
+    technologies: ["Selenium", "Jira", "Xray", "Zephyr", "Postman", "Charles Proxy"],
+    useCases: [
+      "Core e-commerce checkout and billing pathway verification",
+      "End-to-end transaction validations in secure banking apps",
+      "Continuous regression validation for legacy system updates"
+    ]
+  },
+  {
+    slug: "accessibility-uat",
+    name: "Accessibility & UAT",
+    summary: "Inclusive digital products validated by real business stakeholders and compliance standards.",
+    bullets: [
+      "WCAG 2.1 / ADA compliance auditing and validation",
+      "Screen reader, keyboard navigation, and color contrast audits",
+      "User Acceptance Testing (UAT) governance and support",
+      "Business process validation and operational readiness"
+    ],
+    outcomes: [
+      "100% compliance with digital accessibility standards",
+      "Stakeholder-approved releases with verified business rules",
+      "Improved customer satisfaction and inclusive user experiences"
+    ],
+    description: "Build inclusive software products that comply with ADA and WCAG 2.1 digital accessibility standards. Our team executes screen reader, keyboard navigation, and contrast audits, alongside coordinating user acceptance testing to align application performance with actual business requirements.",
+    technologies: ["JAWS", "NVDA", "VoiceOver", "Axe DevTools", "Color Contrast Analyzer"],
+    useCases: [
+      "Accessibility audit and WCAG compliance certification for government portals",
+      "User Acceptance Testing coordination for healthcare applications",
+      "Validation of keyboard-only control pathways in public portals"
+    ]
+  },
+  {
+    slug: "test-automation",
+    name: "Test Automation Engineering",
+    summary: "Build modular, high-speed, and low-maintenance test automation suites that run inside your CI/CD pipeline.",
+    bullets: [
+      "Playwright, Selenium, and Cypress custom framework design",
+      "API and UI test automation integration",
+      "CI/CD pipeline test execution and gating",
+      "AI-augmented self-healing and smart test execution"
+    ],
+    outcomes: [
+      "Up to 80% reduction in regression testing cycle time",
+      "High-confidence release gates in CI/CD pipeline",
+      "Significant decrease in test maintenance overhead"
+    ],
+    description: "Replace repetitive manual testing loops with high-speed automated validation suites. We design, deploy, and maintain custom automation frameworks that plug directly into your deployment pipelines, delivering immediate execution feedback and robust test gating.",
+    technologies: ["Playwright", "Selenium", "Cypress", "Appium", "JUnit", "TestNG"],
+    useCases: [
+      "Automating deployment pipeline regression test gates",
+      "Cross-platform automation framework consolidation for SaaS applications",
+      "Automating end-to-end API data verification workflows"
+    ]
+  },
+  {
+    slug: "api-microservices",
+    name: "API & Microservices Testing",
+    summary: "Validate the integrity, contract reliability, and performance of your APIs and microservices mesh.",
+    bullets: [
+      "API contract testing and schema validation",
+      "Integration testing of microservices and message queues",
+      "Performance, load, and security testing of endpoints",
+      "Mocking and service virtualization for parallel testing"
+    ],
+    outcomes: [
+      "Robust integration reliability before UI integration",
+      "Faster defect isolation at the service level",
+      "Prevention of breaking changes across service updates"
+    ],
+    description: "Validate the functionality, contract integrity, and security of backend APIs and microservices architectures. We perform service contract verification and virtualize external systems, enabling developers to test updates independently and deploy safely.",
+    technologies: ["Postman", "RestAssured", "Pact Contract Testing", "Swagger", "WireMock", "Kafka"],
+    useCases: [
+      "Contract validation for microservices and event queues",
+      "Load and performance profiling for REST/GraphQL APIs",
+      "Mocking third-party dependency APIs for test isolation"
+    ]
+  },
+  {
+    slug: "production-monitoring",
+    name: "Production Monitoring & Observability",
+    summary: "Proactive, continuous quality verification in production environments so issues are caught before users feel them.",
+    bullets: [
+      "Synthetic monitoring and scripted user journey checks",
+      "Real User Monitoring (RUM) and error tracking",
+      "Observability and APM integration (Datadog, Dynatrace, New Relic)",
+      "L1/L2/L3 production quality support and incident triage"
+    ],
+    outcomes: [
+      "Mean Time to Detect (MTTD) reduced to minutes",
+      "Proactive issue resolution before customer impact",
+      "Always-on validation of production user experience"
+    ],
+    description: "Ensure quality verification doesn't end at deployment. We configure continuous synthetic checks and user-monitoring telemetry, routing alerts to active incident triage centers to identify and resolve performance errors before they affect customers.",
+    technologies: ["Datadog", "Dynatrace", "New Relic", "Splunk", "Grafana", "PagerDuty"],
+    useCases: [
+      "24/7 synthetic monitoring scripts for e-commerce checkout paths",
+      "Core API transaction latency and error-rate monitoring",
+      "Proactive alert routing and issue resolution playbook integration"
+    ]
+  },
+  {
+    slug: "testing-ai",
+    name: "Testing the AI (Lane 01)",
+    summary: "Rigorous validation of AI and machine learning systems for model accuracy, data drift, bias, and responsible output.",
+    bullets: [
+      "Model accuracy, precision, and recall validation",
+      "Data drift and concept drift detection in production",
+      "Bias auditing and compliance checking for regulated sectors",
+      "LLM validation — RAG pipelines, hallucinations, safety gates"
+    ],
+    outcomes: [
+      "Deploy AI models with verified accuracy and compliance",
+      "Prevent silent model degradation and drift in production",
+      "Mitigate ethical, legal, and operational AI risks"
+    ],
+    description: "Run advanced validation procedures for AI models and Generative AI pipelines. We evaluate systems for response hallucinations, bias, model drift, and safety vulnerabilities, ensuring predictable outputs and operational security.",
+    technologies: ["LlamaGuard", "DeepEval", "Guardrails AI", "Ragas", "Pandas", "Scikit-Learn"],
+    useCases: [
+      "Hallucination rate auditing for LLM chatbots",
+      "RAG response validity and prompt injection auditing",
+      "Model precision verification and drift reporting for finance models"
+    ]
+  },
+  {
+    slug: "ai-in-testing",
+    name: "AI in Testing (Lane 02)",
+    summary: "Accelerate your quality operations by embedding AI, agentic automation, and LLM-assisted pipelines into the test lifecycle.",
+    bullets: [
+      "Agentic automation frameworks (Playwright + MCP)",
+      "AI-assisted test generation and documentation",
+      "Self-healing automation test suites",
+      "AI-driven framework migrations from legacy stacks"
+    ],
+    outcomes: [
+      "Up to 60% reduction in automation maintenance effort",
+      "Faster stand-up of automated test suites",
+      "Future-proof QA teams with AI-native skills"
+    ],
+    description: "Supercharge your test engineering efficiency by embedding Generative AI and automated agents. We implement self-healing code selectors, prompt-to-test-case generators, and automated logs triage systems, cutting test suite maintenance overhead.",
+    technologies: ["GitHub Copilot", "Cursor AI", "Playwright + AI Agents", "LangChain Agents", "Prompt Engineering"],
+    useCases: [
+      "Self-healing UI element locator automated scripts",
+      "AI-assisted test case description and data generation",
+      "Automated testing suite migrations from legacy frameworks to modern stacks"
+    ]
   },
 ];
 

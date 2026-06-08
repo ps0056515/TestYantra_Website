@@ -8,6 +8,7 @@ export function V2ThemeSwitcher() {
         <div className="theme-dot td-forest" data-t="forest" title="Forest" />
         <div className="theme-dot td-navy" data-t="navy" title="Navy" />
         <div className="theme-dot td-charcoal" data-t="charcoal" title="Charcoal" />
+        <div className="theme-dot td-light" data-t="light" title="Light" />
       </div>
     </div>
   );

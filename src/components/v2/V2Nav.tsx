@@ -21,13 +21,13 @@ export function V2Nav() {
                   <Link href="/services/managed-qa">Managed QA Services</Link>
                 </li>
                 <li>
-                  <Link href="/#capabilities-qa">Functional & E2E Testing</Link>
+                  <Link href="/services/functional-testing">Functional & E2E Testing</Link>
                 </li>
                 <li>
                   <Link href="/services/crowd-testing">Crowd Testing</Link>
                 </li>
                 <li>
-                  <Link href="/#capabilities-qa">Accessibility & UAT</Link>
+                  <Link href="/services/accessibility-uat">Accessibility & UAT</Link>
                 </li>
               </ul>
             </div>
@@ -35,13 +35,13 @@ export function V2Nav() {
               <h6>Quality Engineering</h6>
               <ul>
                 <li>
-                  <Link href="/#capabilities-qe">Test Automation</Link>
+                  <Link href="/services/test-automation">Test Automation</Link>
                 </li>
                 <li>
-                  <Link href="/#capabilities-qe">API & Microservices</Link>
+                  <Link href="/services/api-microservices">API & Microservices</Link>
                 </li>
                 <li>
-                  <Link href="/#capabilities-monitoring">Production Monitoring</Link>
+                  <Link href="/services/production-monitoring">Production Monitoring</Link>
                 </li>
                 <li>
                   <Link href="/services/professional-services">Audit & Advisory</Link>
@@ -52,10 +52,10 @@ export function V2Nav() {
               <h6>TestYantra AI</h6>
               <ul>
                 <li>
-                  <Link href="/#ai-lane-01">Testing the AI</Link>
+                  <Link href="/services/testing-ai">Testing the AI</Link>
                 </li>
                 <li>
-                  <Link href="/#ai-lane-02">AI in Testing</Link>
+                  <Link href="/services/ai-in-testing">AI in Testing</Link>
                 </li>
                 <li>
                   <Link href="/services/ai-quality">AI Quality Engineering</Link>
@@ -145,17 +145,20 @@ export function V2Nav() {
             <div className="mega-col">
               <h6>Group</h6>
               <ul>
-                {businessUnits.map((u) => (
-                  <li key={u.id}>
-                    {u.external ? (
-                      <a href={u.href} target="_blank" rel="noopener noreferrer">
-                        {u.name} ↗
-                      </a>
-                    ) : (
-                      <Link href={u.href}>{u.name}</Link>
-                    )}
-                  </li>
-                ))}
+                {businessUnits.map((u) => {
+                  const isTE = u.id === "technoelevate";
+                  return (
+                    <li key={u.id}>
+                      {u.external || isTE ? (
+                        <a href={isTE ? "https://technoelevate.com/" : u.href} target="_blank" rel="noopener noreferrer">
+                          {u.name} ↗
+                        </a>
+                      ) : (
+                        <Link href={u.href}>{u.name}</Link>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="mega-col">

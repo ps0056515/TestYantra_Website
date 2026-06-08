@@ -268,15 +268,48 @@ export function V2Home() {
           <div className="ai-left">
             <span className="section-eyebrow">{aiOverview.eyebrow}</span>
             <h2 className="section-h2">{aiOverview.title}</h2>
-            <p className="section-sub" style={{ marginBottom: 40 }}>
+            <p className="section-sub" style={{ marginBottom: 30 }}>
               {aiOverview.subtitle}
             </p>
+            
+            {/* Animated Interactive Runtime Console Mock */}
+            <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 overflow-hidden shadow-lg hidden md:block select-none max-w-lg mt-6">
+              <div className="flex items-center gap-1.5 border-b border-[var(--border)] pb-3 mb-4">
+                <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+                <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+                <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
+                <span className="text-[10px] font-mono text-[var(--muted)] ml-2 uppercase tracking-wider">TestYantra Agentic Runtime v1.0.4</span>
+              </div>
+              <div className="font-mono text-xs space-y-2.5 text-[var(--muted2)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-[var(--teal)]">&gt;</span>
+                  <span>init_autonomous_verification_agent...</span>
+                </div>
+                <div className="flex items-center gap-2 pl-4">
+                  <span className="text-[var(--indigo)]">●</span>
+                  <span>Loading Playwright driver instance...</span>
+                </div>
+                <div className="flex items-center gap-2 pl-4">
+                  <span className="text-[var(--teal)]">✓</span>
+                  <span>Self-healing parser attached successfully.</span>
+                </div>
+                <div className="flex items-center gap-2 text-white bg-[var(--indigo)]/10 p-2 rounded-lg border border-[var(--indigo)]/20 animate-pulse">
+                  <span className="text-[var(--indigo)]">&gt;&gt;</span>
+                  <span>Running LLM scoring and drift validation loops.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="ai-right">
             <div className="ai-lane-cards">
               {aiOverview.lanes.map((lane) => (
                 <a key={lane.id} href={lane.href} className="ai-lane-card">
                   <span className="ai-lane-label">{lane.label}</span>
                   <h4>{lane.title}</h4>
                   <p>{lane.description}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-[var(--indigo)] mt-4 group-hover:underline">
+                    View Lane details &rarr;
+                  </span>
                 </a>
               ))}
             </div>
