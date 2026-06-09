@@ -1334,6 +1334,12 @@ section {
   opacity: 0.85;
   transition: all 0.2s;
 }
+.logo-sprite {
+  display: block;
+  width: 120px;
+  height: 48px;
+  background-repeat: no-repeat;
+}
 .logo-cell:hover {
   background: var(--bg3);
 }
@@ -2697,6 +2703,7 @@ footer {
   filter: grayscale(0) brightness(1);
   opacity: 1;
 }
+
 [data-theme="light"] .stat-card {
   border-color: rgba(15, 23, 42, 0.08);
   background: #ffffff;

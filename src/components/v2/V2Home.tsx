@@ -16,7 +16,7 @@ import {
   serviceCatalogueIntro,
   teamModels,
 } from "@/content/home";
-import { businessUnits, caseStudies, clientTrustStrip, industries, trustedClients } from "@/content/site";
+import { businessUnits, caseStudies, clientTrustStrip, industries, logoSprite, trustedClients } from "@/content/site";
 import { V2CapabilityTabs } from "./V2CapabilityTabs";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { ScrollAnimate } from "./ScrollAnimate";
@@ -147,26 +147,33 @@ export function V2Home() {
         <div className="clients-strip-headline">{clientTrustStrip.headline}</div>
         <p className="clients-strip-sub">{clientTrustStrip.subline}</p>
         <div className="logo-wall">
-          {trustedClients.map((client) => (
-            <div
-              key={client.name}
-              className="logo-cell"
-              title={client.name}
-              style={{ "--client-color": client.color } as CSSProperties}
-            >
-              {client.logo ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={client.logo} alt={client.name} className="logo-img" />
-              ) : (
-                <>
-                  <span className="logo-mark" aria-hidden="true">
-                    {client.initial}
-                  </span>
-                  <span className="logo-name">{client.name}</span>
-                </>
-              )}
-            </div>
-          ))}
+          {trustedClients.map((client) => {
+            // Scale factor: display width (120px) / sprite cell width (200px)
+            const scale = 120 / logoSprite.cellWidth;
+            const offsetX = -(client.spriteIndex * logoSprite.cellWidth * scale);
+            const totalW = logoSprite.cellWidth * logoSprite.count * scale;
+            const totalH = logoSprite.cellHeight * scale;
+            return (
+              <div
+                key={client.name}
+                className="logo-cell"
+                title={client.name}
+                style={{ "--client-color": client.color } as CSSProperties}
+              >
+                <span
+                  className="logo-sprite"
+                  role="img"
+                  aria-label={client.name}
+                  style={{
+                    backgroundImage: `url(${logoSprite.src})`,
+                    backgroundPosition: `${offsetX}px center`,
+                    backgroundSize: `${totalW}px ${totalH}px`,
+                  }}
+                />
+                <span className="logo-name">{client.name}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
