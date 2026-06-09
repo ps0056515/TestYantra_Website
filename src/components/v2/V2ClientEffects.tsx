@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 
 export function V2ClientEffects() {
@@ -16,7 +15,20 @@ export function V2ClientEffects() {
       }
     }
 
+    // Load saved theme or default to midnight
+    const savedTheme = localStorage.getItem("tyss-theme") || "midnight";
+    root.setAttribute("data-theme", savedTheme);
+
     const dots = document.querySelectorAll(".theme-dot");
+    dots.forEach((dot) => {
+      const el = dot as HTMLElement;
+      if (el.dataset.t === savedTheme) {
+        el.classList.add("active");
+      } else {
+        el.classList.remove("active");
+      }
+    });
+
     const cleanups: (() => void)[] = [];
 
     dots.forEach((dot) => {
@@ -25,6 +37,7 @@ export function V2ClientEffects() {
         const t = el.dataset.t;
         if (!t) return;
         root.setAttribute("data-theme", t);
+        localStorage.setItem("tyss-theme", t);
         dots.forEach((d) => d.classList.remove("active"));
         el.classList.add("active");
         updateNav();

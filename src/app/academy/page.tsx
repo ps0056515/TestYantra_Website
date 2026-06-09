@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
+import { ScrollAnimate } from "@/components/v2/ScrollAnimate";
 import { businessUnits } from "@/content/site";
 
 export default function AcademyPage() {
@@ -7,103 +10,210 @@ export default function AcademyPage() {
 
   return (
     <V2InnerShell>
-      <div className="max-w-3xl">
-        <div className="text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">Academy</div>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--text)] sm:text-4xl">
-          Two learning engines. One mission: job-ready capability.
-        </h1>
-        <p className="mt-4 text-sm leading-6 text-[var(--muted2)] sm:text-base">
-          {academy?.description}
-        </p>
-      </div>
-
-      <div className="mt-10 grid gap-4 lg:grid-cols-2">
-        <Card
-          title="QSpiders"
-          eyebrow="Software testing"
-          description="A best-in-class learning solutions organization headquartered in Bangalore, with courses in software testing and official ISTQB® partnership."
-          highlights={[
-            "Specialist faculty with deep subject matter expertise",
-            "Outcome-focused training for job aspirants",
-            "Placement assistance and employer hiring support",
-            "Scale: competency building at high volume",
-          ]}
-          ctaHref="https://qspiders.com/"
-          ctaLabel="Visit QSpiders"
-        />
-        <Card
-          title="JSpiders"
-          eyebrow="Java/J2EE development"
-          description="A finishing-school approach designed to bridge the gap between industry requirements and academic curricula — focused on Java development capability."
-          highlights={[
-            "Role-ready Java/J2EE learning paths",
-            "Practical projects and mentorship",
-            "Designed for the needs of IT hubs",
-            "Hiring readiness and placement support",
-          ]}
-          ctaHref="https://www.jspiders.com"
-          ctaLabel="Visit JSpiders"
-        />
-      </div>
-
-      <div className="mt-10 rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6">
-        <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
-          Want an enterprise cohort program?
-        </div>
-        <p className="mt-2 text-sm leading-6 text-[var(--muted2)]">
-          We can tailor learning paths, assessments, and outcomes reporting for teams and hiring
-          pipelines — including AI training for talent from our TestYantra AI practice.
-        </p>
-        <div className="mt-5">
-          <Link href="/contact?interest=training" className="btn-accent">
-            Talk to our training team
-          </Link>
+      {/* HERO SECTION */}
+      <div className="relative overflow-hidden mb-24 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/10 via-transparent to-[var(--indigo)]/5 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--accent)]/10 blur-[120px] rounded-full pointer-events-none" />
+        
+        <div className="relative z-10 max-w-3xl">
+          <ScrollAnimate direction="up">
+            <div className="inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 rounded-full border border-[var(--accent)]/20">
+              TestYantra Academy
+            </div>
+          </ScrollAnimate>
+          
+          <ScrollAnimate direction="up" delay={100}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text)] leading-tight mb-6">
+              Premier learning engines.
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-[var(--indigo)]">
+                One mission: Job-ready capability.
+              </span>
+            </h1>
+          </ScrollAnimate>
+          
+          <ScrollAnimate direction="up" delay={200}>
+            <p className="text-base md:text-lg text-[var(--muted2)] leading-relaxed max-w-2xl mb-8">
+              {academy?.description || "Empowering the next generation of software testing and development professionals. We bridge the gap between academic curricula and enterprise technical requirements through rigorous finishing-school methodologies."}
+            </p>
+          </ScrollAnimate>
         </div>
       </div>
+
+      {/* ACADEMY CARDS */}
+      <div className="grid gap-8 lg:grid-cols-3 mb-20">
+        <ScrollAnimate direction="left" delay={100}>
+          <div className="group relative h-full flex flex-col p-8 md:p-10 rounded-3xl border border-[var(--border2)] bg-[var(--surface)] hover:bg-[var(--bg)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--indigo)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10 flex-1">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--indigo)]/10 flex items-center justify-center border border-[var(--indigo)]/20 text-2xl">
+                    🎯
+                  </div>
+                  <h2 className="text-3xl font-bold text-[var(--text)] tracking-tight">QSpiders</h2>
+                </div>
+                <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[var(--indigo)] bg-[var(--indigo)]/10 rounded-full">
+                  Software Testing
+                </span>
+              </div>
+              
+              <p className="text-base text-[var(--muted2)] leading-relaxed mb-8">
+                Recognized globally as a best-in-class learning organization. QSpiders operates as an official ISTQB® partner and provides the industry's most robust software testing finishing school, placing thousands of aspirants annually.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  "Specialist Faculty",
+                  "ISTQB® Certification",
+                  "450k+ Alumni Network",
+                  "Scale & Competency",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--indigo)]" />
+                    <span className="text-sm font-medium text-[var(--text)]">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative z-10 pt-6 mt-auto border-t border-[var(--border)]">
+              <a
+                href="https://qspiders.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--indigo)] hover:gap-3 transition-all"
+              >
+                Explore QSpiders Campus <span>→</span>
+              </a>
+            </div>
+          </div>
+        </ScrollAnimate>
+
+        <ScrollAnimate direction="right" delay={200}>
+          <div className="group relative h-full flex flex-col p-8 md:p-10 rounded-3xl border border-[var(--border2)] bg-[var(--surface)] hover:bg-[var(--bg)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--teal)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10 flex-1">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--teal)]/10 flex items-center justify-center border border-[var(--teal)]/20 text-2xl">
+                    ☕
+                  </div>
+                  <h2 className="text-3xl font-bold text-[var(--text)] tracking-tight">JSpiders</h2>
+                </div>
+                <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[var(--teal)] bg-[var(--teal)]/10 rounded-full">
+                  Java & Full-Stack
+                </span>
+              </div>
+              
+              <p className="text-base text-[var(--muted2)] leading-relaxed mb-8">
+                A dedicated development hub engineered to bridge the enterprise skills gap. JSpiders focuses intensively on Java, J2EE, Spring frameworks, and modern full-stack development paths designed specifically for IT hub hiring pipelines.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  "Java/J2EE Pathways",
+                  "Microservices Mastery",
+                  "Practical Projects",
+                  "Employer Placement",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--teal)]" />
+                    <span className="text-sm font-medium text-[var(--text)]">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative z-10 pt-6 mt-auto border-t border-[var(--border)]">
+              <a
+                href="https://www.jspiders.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--teal)] hover:gap-3 transition-all"
+              >
+                Explore JSpiders Campus <span>→</span>
+              </a>
+            </div>
+          </div>
+        </ScrollAnimate>
+
+        <ScrollAnimate direction="up" delay={300}>
+          <div className="group relative h-full flex flex-col p-8 md:p-10 rounded-3xl border border-[var(--border2)] bg-[var(--surface)] hover:bg-[var(--bg)] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10 flex-1">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--gold)]/10 flex items-center justify-center border border-[var(--gold)]/20 text-2xl">
+                    ✈️
+                  </div>
+                  <h2 className="text-3xl font-bold text-[var(--text)] tracking-tight">ZupFly</h2>
+                </div>
+                <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[var(--gold)] bg-[var(--gold)]/10 rounded-full">
+                  Study Abroad
+                </span>
+              </div>
+              
+              <p className="text-base text-[var(--muted2)] leading-relaxed mb-8">
+                Powered by the massive QSpiders legacy. ZupFly provides world-class study abroad coaching for GMAT, GRE, IELTS, and TOEFL, coupled with elite MS & MBA admissions counseling and partnerships with over 200 global universities.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  "GMAT & GRE Prep",
+                  "IELTS & TOEFL",
+                  "MS & MBA Admissions",
+                  "200+ Univ Partners",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--gold)]" />
+                    <span className="text-sm font-medium text-[var(--text)]">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative z-10 pt-6 mt-auto border-t border-[var(--border)]">
+              <a
+                href="https://zupfly.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--gold)] hover:gap-3 transition-all"
+              >
+                Explore ZupFly <span>→</span>
+              </a>
+            </div>
+          </div>
+        </ScrollAnimate>
+      </div>
+
+      {/* ENTERPRISE COHORT CTA */}
+      <ScrollAnimate direction="up" delay={100}>
+        <div className="relative overflow-hidden rounded-3xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--accent)]/10 blur-[80px] rounded-full pointer-events-none" />
+          
+          <div className="relative z-10 max-w-2xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-[var(--text)] tracking-tight mb-4">
+              Require a Custom Enterprise Cohort?
+            </h3>
+            <p className="text-base text-[var(--muted2)] leading-relaxed">
+              We tailor corporate learning paths, competency assessments, and outcomes reporting directly for your enterprise hiring pipelines. Upskill your talent with hands-on AI training directly from the TestYantra AI Practice.
+            </p>
+          </div>
+          
+          <div className="relative z-10 shrink-0">
+            <Link 
+              href="/contact?interest=training" 
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[var(--text)] text-[var(--bg)] font-bold shadow-md hover:scale-105 transition-transform duration-300"
+            >
+              Talk to our training team
+            </Link>
+          </div>
+        </div>
+      </ScrollAnimate>
     </V2InnerShell>
-  );
-}
-
-function Card({
-  eyebrow,
-  title,
-  description,
-  highlights,
-  ctaHref,
-  ctaLabel,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-  highlights: string[];
-  ctaHref: string;
-  ctaLabel: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6">
-      <div className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">{eyebrow}</div>
-      <div className="mt-2 text-xl font-semibold tracking-tight text-[var(--text)]">{title}</div>
-      <p className="mt-3 text-sm leading-6 text-[var(--muted2)]">{description}</p>
-      <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-        {highlights.map((h) => (
-          <li
-            key={h}
-            className="rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs text-[var(--muted2)]"
-          >
-            {h}
-          </li>
-        ))}
-      </ul>
-      <div className="mt-6 flex items-center justify-between gap-4">
-        <a
-          href={ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-[var(--border2)] bg-[var(--surface)] px-4 py-2 text-sm font-medium text-[var(--text)] transition hover:border-[var(--accent)]"
-        >
-          {ctaLabel} ↗
-        </a>
-      </div>
-    </div>
   );
 }
