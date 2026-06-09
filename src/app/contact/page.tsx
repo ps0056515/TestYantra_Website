@@ -6,6 +6,7 @@ import { industrySlugToContactLabel } from "@/lib/contactIndustry";
 const INTEREST_OPTIONS = [
   "Quality Engineering & Testing",
   "TechnoElevate — Development & Staffing",
+  "TechnoElevate — Talent Platform (Build Your Team)",
   "AI Quality Engineering",
   "Training & Academy",
   "General Inquiry",
@@ -26,9 +27,11 @@ export default async function ContactPage({ searchParams }: Props) {
   const defaultInterest =
     interest === "development"
       ? "TechnoElevate — Development & Staffing"
-      : interest === "training"
-        ? "Training & Academy"
-        : INTEREST_OPTIONS[0];
+      : interest === "talent"
+        ? "TechnoElevate — Talent Platform (Build Your Team)"
+        : interest === "training"
+          ? "Training & Academy"
+          : INTEREST_OPTIONS[0];
 
   return (
     <V2InnerShell>

@@ -1,18 +1,22 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import {
   aiLane01,
   aiLane02,
   aiOverview,
   capabilityGroups,
+  ctaBand,
   deliveryModels,
   ecosystemIntro,
   hero,
+  heroOfferLine,
   heroStats,
   practiceAreas,
   serviceCatalogue,
+  serviceCatalogueIntro,
   teamModels,
 } from "@/content/home";
-import { businessUnits, caseStudies, industries } from "@/content/site";
+import { businessUnits, caseStudies, clientTrustStrip, industries, trustedClients } from "@/content/site";
 import { V2CapabilityTabs } from "./V2CapabilityTabs";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { ScrollAnimate } from "./ScrollAnimate";
@@ -24,6 +28,37 @@ const pillarColors: Record<string, string> = {
   gold: "pb4 pi4 pc4",
   violet: "pb5 pi5 pc5",
 };
+
+type CatalogueLaneProps = {
+  lane: (typeof serviceCatalogue)[keyof typeof serviceCatalogue];
+  accentVar: "--accent" | "--indigo";
+  delayOffset?: number;
+};
+
+function CatalogueLane({ lane, accentVar, delayOffset = 0 }: CatalogueLaneProps) {
+  const accentClass = accentVar === "--indigo" ? "catalogue-pill-indigo" : "catalogue-pill-accent";
+  return (
+    <div className="catalogue-lane">
+      <div className="catalogue-lane-header">
+        <h3 className={`catalogue-lane-title ${accentClass}-title`}>{lane.label}</h3>
+        <p className="catalogue-lane-sub">{lane.subtitle}</p>
+      </div>
+      <div className="catalogue-pills">
+        {lane.items.map((item, i) => (
+          <ScrollAnimate key={item.label} direction="up" delay={delayOffset + i * 30}>
+            <Link href={item.href}>
+              <div className={`catalogue-pill group ${accentClass}`}>
+                <div className="catalogue-pill-shine" />
+                <span className="catalogue-pill-dot" />
+                <span className="catalogue-pill-label">{item.label}</span>
+              </div>
+            </Link>
+          </ScrollAnimate>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function V2Home() {
   return (
@@ -59,8 +94,8 @@ export function V2Home() {
             <div className="hv-ring hvr2" />
             <div className="hv-ring hvr3" />
             <div className="hv-center">
-              <span style={{ fontWeight: 700, fontSize: 13 }}>TYSS</span>
-              <span className="hv-center-label">QUALITY CORE</span>
+              <span style={{ fontWeight: 700, fontSize: 13 }}>GROUP</span>
+              <span className="hv-center-label">DELIVERY HUB</span>
             </div>
             <div className="hv-node hn1">
               🛡️<span className="hv-node-label">QA</span>
@@ -92,6 +127,47 @@ export function V2Home() {
             <div className="stat-desc">{s.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* LIFECYCLE OFFER LINE */}
+      <div className="hero-offer">
+        <p className="hero-offer-text">
+          <span className="hero-offer-label">{heroOfferLine.label}</span>
+          {heroOfferLine.pillars.map((pillar, i) => (
+            <span key={pillar}>
+              {i > 0 ? <span className="hero-offer-sep"> · </span> : null}
+              {pillar}
+            </span>
+          ))}
+        </p>
+      </div>
+
+      {/* TRUSTED BY */}
+      <div className="clients-strip">
+        <div className="clients-strip-headline">{clientTrustStrip.headline}</div>
+        <p className="clients-strip-sub">{clientTrustStrip.subline}</p>
+        <div className="logo-wall">
+          {trustedClients.map((client) => (
+            <div
+              key={client.name}
+              className="logo-cell"
+              title={client.name}
+              style={{ "--client-color": client.color } as CSSProperties}
+            >
+              {client.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={client.logo} alt={client.name} className="logo-img" />
+              ) : (
+                <>
+                  <span className="logo-mark" aria-hidden="true">
+                    {client.initial}
+                  </span>
+                  <span className="logo-name">{client.name}</span>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* PRACTICE AREAS */}
@@ -208,32 +284,24 @@ export function V2Home() {
               Service Catalogue
             </span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text)] mb-6">
-              Comprehensive. Specialized.
+              {serviceCatalogueIntro.titleLine1}
               <br />
-              <span className="text-[var(--muted)]">At every layer of quality.</span>
+              <span className="text-[var(--muted)]">{serviceCatalogueIntro.titleLine2}</span>
             </h2>
-            <div className="flex justify-center">
-              <Link href="/services" className="inline-flex items-center gap-2 text-[var(--accent)] font-semibold hover:gap-3 transition-all">
-                Explore All Services <span>→</span>
+            <div className="flex flex-wrap justify-center gap-6">
+              <Link href={serviceCatalogueIntro.qaCta.href} className="inline-flex items-center gap-2 text-[var(--accent)] font-semibold hover:gap-3 transition-all">
+                {serviceCatalogueIntro.qaCta.label} <span>→</span>
+              </Link>
+              <Link href={serviceCatalogueIntro.devCta.href} className="inline-flex items-center gap-2 text-[var(--indigo)] font-semibold hover:gap-3 transition-all">
+                {serviceCatalogueIntro.devCta.label} <span>→</span>
               </Link>
             </div>
           </div>
         </ScrollAnimate>
 
-        <div className="relative z-10 flex flex-wrap justify-center gap-3 md:gap-4 max-w-6xl mx-auto">
-          {serviceCatalogue.map((name, i) => (
-            <ScrollAnimate key={name} direction="up" delay={i * 30}>
-              <Link href="/services">
-                <div className="group relative px-5 py-3 md:px-7 md:py-4 rounded-2xl border border-[var(--border2)] bg-[var(--surface)] hover:bg-[var(--bg)] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex items-center gap-3">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="w-2 h-2 rounded-full bg-[var(--muted)] group-hover:bg-[var(--accent)] transition-colors duration-300 shadow-[0_0_8px_rgba(0,0,0,0)] group-hover:shadow-[var(--accent)]" />
-                  <span className="text-sm md:text-base font-semibold text-[var(--muted2)] group-hover:text-[var(--text)] transition-colors duration-300 whitespace-nowrap">
-                    {name}
-                  </span>
-                </div>
-              </Link>
-            </ScrollAnimate>
-          ))}
+        <div className="relative z-10 max-w-6xl mx-auto space-y-14">
+          <CatalogueLane lane={serviceCatalogue.qa} accentVar="--accent" />
+          <CatalogueLane lane={serviceCatalogue.development} accentVar="--indigo" delayOffset={100} />
         </div>
       </section>
 
@@ -244,7 +312,7 @@ export function V2Home() {
           <h2 className="section-h2">Expertise that runs deep</h2>
           <p className="section-sub">
             Three capability domains — explore what we deliver across QA, QE, and production
-            monitoring.
+            monitoring. Product engineering lives under TechnoElevate.
           </p>
         </ScrollAnimate>
         <ScrollAnimate direction="up" delay={100}>
@@ -472,12 +540,12 @@ export function V2Home() {
       <ScrollAnimate direction="up">
         <div className="cta-band">
           <h2>
-            Ready to accelerate quality
+            {ctaBand.line1}
             <br />
-            and <em>ship with confidence?</em>
+            and <em>{ctaBand.line2}</em>
           </h2>
           <Link href="/contact" className="btn-white">
-            Start a Conversation →
+            {ctaBand.button}
           </Link>
         </div>
       </ScrollAnimate>

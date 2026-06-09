@@ -21,9 +21,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "TestYantra — Quality Engineering Redefined",
+  title: "TestYantra — End-to-End Engineering",
   description:
-    "AI-augmented quality engineering, TestYantra AI, and software development via TechnoElevate — helping enterprises build better software, faster, from code to production.",
+    "The Test Yantra group — quality engineering, product development, and talent platform. Build, validate, and launch software from concept to production.",
 };
 
 export default function RootLayout({

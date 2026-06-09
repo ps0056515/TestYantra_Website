@@ -1,14 +1,21 @@
 /** Homepage content sourced from TestYantra_Website_Content.pptx + group ecosystem */
 
+import { technoElevate } from "./site";
+
 export const hero = {
-  eyebrow: "Quality Engineering Redefined",
-  titleLine1: "Accelerate Quality.",
+  eyebrow: "End-to-End Engineering",
+  titleLine1: "Build Better.",
   titleLine2: "Ship with",
   titleHighlight: "Confidence.",
   subtitle:
-    "AI-augmented quality engineering and testing services that help enterprises build better software, faster — from code to production.",
+    "AI-augmented engineering services that help enterprises build, validate, and launch software faster — from concept to production.",
   ctaPrimary: { label: "Explore Our Capabilities", href: "#pillars" },
   ctaSecondary: { label: "Talk to an Expert", href: "/contact" },
+} as const;
+
+export const heroOfferLine = {
+  label: "One partner across the lifecycle",
+  pillars: ["Quality Engineering", "Product Development", "Talent Platform"] as const,
 } as const;
 
 export const heroStats = [
@@ -76,22 +83,58 @@ export const practiceAreas: PracticeArea[] = [
   },
 ];
 
-export const serviceCatalogue = [
-  "End-to-End Testing",
-  "Test Automation Engineering",
-  "Load Testing & App Performance",
-  "CX Testing",
-  "Accessibility Testing",
-  "API / Microservices Testing",
-  "ETL / Data Warehouse Testing",
-  "IoT Testing",
-  "Package Application Testing",
-  "Service Virtualisation",
-  "UAT & Business Assurance",
-  "Mobile App Testing",
-  "Device & Embedded Testing",
-  "Cloud Assurance",
-] as const;
+export type ServiceCatalogueItem = {
+  label: string;
+  href: string;
+};
+
+export const serviceCatalogueIntro = {
+  titleLine1: "Comprehensive. Specialized.",
+  titleLine2: "From build to validation.",
+  qaCta: { label: "Explore QA Services", href: "/services" },
+  devCta: { label: "Explore TechnoElevate", href: "/development" },
+} as const;
+
+const qaCatalogueItems: ServiceCatalogueItem[] = [
+  { label: "End-to-End Testing", href: "/services/functional-testing" },
+  { label: "Test Automation Engineering", href: "/services/test-automation" },
+  { label: "Load Testing & App Performance", href: "/services/functional-testing" },
+  { label: "CX Testing", href: "/services/functional-testing" },
+  { label: "Accessibility Testing", href: "/services/accessibility-uat" },
+  { label: "API / Microservices Testing", href: "/services/api-microservices" },
+  { label: "ETL / Data Warehouse Testing", href: "/services/managed-qa" },
+  { label: "IoT Testing", href: "/services/managed-qa" },
+  { label: "Package Application Testing", href: "/services/managed-qa" },
+  { label: "Service Virtualisation", href: "/services/api-microservices" },
+  { label: "UAT & Business Assurance", href: "/services/accessibility-uat" },
+  { label: "Mobile App Testing", href: "/services/functional-testing" },
+  { label: "Device & Embedded Testing", href: "/services/managed-qa" },
+  { label: "Cloud Assurance", href: "/services/production-monitoring" },
+];
+
+const developmentCatalogueItems: ServiceCatalogueItem[] = [
+  ...technoElevate.services.map((service) => ({
+    label: service.title,
+    href: "/development",
+  })),
+  {
+    label: "Talent Platform & Team Building",
+    href: "/development#talent-platform",
+  },
+];
+
+export const serviceCatalogue = {
+  qa: {
+    label: "Quality Engineering",
+    subtitle: "TestYantra — validation, automation, and AI-powered quality",
+    items: qaCatalogueItems,
+  },
+  development: {
+    label: "Product Development",
+    subtitle: "TechnoElevate — engineering, cloud, AI, and dedicated teams",
+    items: developmentCatalogueItems,
+  },
+} as const;
 
 export type CapabilityGroup = {
   id: string;
@@ -388,7 +431,13 @@ export const aiLane02 = {
 
 export const ecosystemIntro = {
   eyebrow: "The Test Yantra Group",
-  title: "One ecosystem.\nThree engines of delivery.",
+  title: "One ecosystem.\nOne partner.",
   subtitle:
-    "Quality engineering, software development, and talent transformation — unified under a single trusted partner.",
+    "From academy-trained talent to product engineering and quality validation — build, staff, test, and scale under a single trusted group. No handoffs between brands.",
+} as const;
+
+export const ctaBand = {
+  line1: "Ready to build better",
+  line2: "and ship with confidence?",
+  button: "Start a Conversation →",
 } as const;

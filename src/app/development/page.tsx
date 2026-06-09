@@ -53,14 +53,9 @@ export default function DevelopmentPage() {
                 <Link href="/contact?interest=development" className="btn-outline hover:bg-[var(--bg2)] hover:scale-[1.02] transition duration-300">
                   Start a Project
                 </Link>
-                <a
-                  href={technoElevate.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline hover:bg-[var(--bg2)] hover:scale-[1.02] transition duration-300"
-                >
-                  technoelevate.com ↗
-                </a>
+                <Link href="/contact?interest=talent" className="btn-outline hover:bg-[var(--bg2)] hover:scale-[1.02] transition duration-300">
+                  Build Your Team
+                </Link>
               </div>
             </ScrollAnimate>
 
@@ -229,6 +224,117 @@ export default function DevelopmentPage() {
               </ScrollAnimate>
             ))}
           </div>
+        </div>
+
+        {/* TALENT PLATFORM — Staffing & team building */}
+        <div id={technoElevate.talentPlatform.id} className="space-y-12 border-t border-[var(--border)] pt-24 scroll-mt-24">
+          <div className="max-w-3xl space-y-4">
+            <ScrollAnimate direction="up">
+              <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
+                {technoElevate.talentPlatform.eyebrow}
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
+                {technoElevate.talentPlatform.title}
+              </h2>
+              <p className="text-sm leading-relaxed text-[var(--muted2)] sm:text-base font-medium mt-4">
+                {technoElevate.talentPlatform.subtitle}
+              </p>
+            </ScrollAnimate>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {technoElevate.talentPlatform.poolStats.map((s, i) => (
+              <ScrollAnimate key={s.label} direction="up" delay={i * 40}>
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-5 text-center shadow-sm">
+                  <div className="text-2xl font-extrabold text-[var(--accent)]">{s.value}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] mt-1">{s.label}</div>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+
+          <div>
+            <ScrollAnimate direction="up">
+              <h3 className="text-lg font-bold text-[var(--text)] mb-2">Choose how you engage</h3>
+              <p className="text-xs text-[var(--muted2)] font-semibold mb-6 max-w-2xl">
+                Six flexible models — from a single specialist to a full squad built from our bench and academy pipeline.
+              </p>
+            </ScrollAnimate>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {technoElevate.talentPlatform.engagementOptions.map((opt, i) => (
+                <ScrollAnimate key={opt.title} direction="up" delay={i * 40}>
+                  <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 h-full hover:border-[var(--accent)]/30 transition shadow-sm">
+                    <div className="text-2xl mb-3">{opt.icon}</div>
+                    <h4 className="text-base font-bold text-[var(--text)]">{opt.title}</h4>
+                    <p className="text-xs text-[var(--muted2)] mt-2 leading-relaxed font-semibold">{opt.description}</p>
+                    <div className="mt-4 pt-3 border-t border-[var(--border)]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">Best for </span>
+                      <span className="text-[10px] font-semibold text-[var(--accent)]">{opt.bestFor}</span>
+                    </div>
+                  </div>
+                </ScrollAnimate>
+              ))}
+            </div>
+          </div>
+
+          <ScrollAnimate direction="up">
+            <div className="rounded-3xl border border-[var(--border)] bg-gradient-to-br from-[var(--bg2)] to-[var(--bg3)] p-8 sm:p-10">
+              <h3 className="text-lg font-bold text-[var(--text)]">How it works</h3>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                {technoElevate.talentPlatform.howItWorks.map((step) => (
+                  <div key={step.step} className="relative">
+                    <div className="text-3xl font-extrabold text-[var(--accent)]/20 font-display">{step.step}</div>
+                    <h4 className="text-sm font-bold text-[var(--text)] mt-1">{step.title}</h4>
+                    <p className="text-[11px] text-[var(--muted2)] mt-1 leading-relaxed font-semibold">{step.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollAnimate>
+
+          <div>
+            <ScrollAnimate direction="up">
+              <h3 className="text-lg font-bold text-[var(--text)] mb-2">Technology bench</h3>
+              <p className="text-xs text-[var(--muted2)] font-semibold mb-6 max-w-2xl">
+                Form teams across the stacks you run — from legacy enterprise to modern cloud and AI.
+              </p>
+            </ScrollAnimate>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {technoElevate.talentPlatform.techBench.map((row, i) => (
+                <ScrollAnimate key={row.category} direction="up" delay={i * 30}>
+                  <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--indigo)]">{row.category}</div>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {row.skills.map((skill) => (
+                        <span key={skill} className="rounded-md bg-[var(--bg2)] px-2 py-0.5 text-[10px] font-bold text-[var(--muted2)] border border-[var(--border)]">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </ScrollAnimate>
+              ))}
+            </div>
+          </div>
+
+          <ScrollAnimate direction="up">
+            <div className="rounded-3xl border border-[var(--teal)]/30 bg-[var(--teal)]/5 p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div className="max-w-2xl">
+                <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--teal)]">Academy pipeline</div>
+                <p className="text-sm text-[var(--muted2)] mt-3 font-semibold leading-relaxed">
+                  {technoElevate.talentPlatform.academyNote}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3 shrink-0">
+                <Link href="/academy" className="btn-outline text-sm">
+                  Explore Academy →
+                </Link>
+                <Link href="/contact?interest=talent" className="btn-accent text-sm">
+                  Request a bench shortlist
+                </Link>
+              </div>
+            </div>
+          </ScrollAnimate>
         </div>
 
         {/* VALUES SECTION */}
