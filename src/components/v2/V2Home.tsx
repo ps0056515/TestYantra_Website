@@ -115,14 +115,16 @@ export function V2Home() {
             const c = pillarColors[p.color] ?? pillarColors.accent;
             const [bar, icon, cta] = c.split(" ");
             const inner = (
-              <ScrollAnimate direction="up" delay={i * 80} className="h-full">
+              <>
                 <div className={`pillar-bar ${bar}`} />
-                <div className={`pillar-icon ${icon}`}>{p.icon}</div>
-                <h3>{p.title}</h3>
-                <p>{p.description}</p>
-                <span className={`pillar-cta ${cta}`}>Explore →</span>
-                <div className="pillar-n">0{i + 1}</div>
-              </ScrollAnimate>
+                <ScrollAnimate direction="up" delay={i * 80} className="h-full">
+                  <div className={`pillar-icon ${icon}`}>{p.icon}</div>
+                  <h3>{p.title}</h3>
+                  <p>{p.description}</p>
+                  <span className={`pillar-cta ${cta}`}>Explore →</span>
+                  <div className="pillar-n">0{i + 1}</div>
+                </ScrollAnimate>
+              </>
             );
             return p.href.startsWith("/") ? (
               <Link key={p.id} href={p.href} className="pillar pillar-link">
