@@ -91,13 +91,46 @@ export type Industry = {
 export const brand = {
   name: "TestYantra",
   legalName: "Test Yantra Software Solutions Pvt Ltd.",
-  tagline: "Quality Engineering Redefined",
+  tagline: "End-to-End Engineering",
+  groupStatement:
+    "The Test Yantra group — one partner from bench to production.",
   emailPrimary: "contactus@testyantra.com",
   emailSolutions: "solutions@testyantraglobal.com",
   emailAlt: "info@testyantra.com",
   phoneIndia: "+91 9742490958",
   linkedIn: "https://www.linkedin.com/company/test-yantra-software-solutions",
 } as const;
+
+/** Named enterprises — homepage & trust sections */
+export type TrustedClient = {
+  name: string;
+  initial: string;
+  color: string;
+  logo?: string;
+};
+
+export const clientTrustStrip = {
+  headline: "20,000,000+ automated tests and counting!",
+  subline:
+    "Trusted by 217+ enterprises across banking, fintech, media, retail, and SaaS — from QA to product engineering.",
+} as const;
+
+export const trustedClients: TrustedClient[] = [
+  { name: "Kotak", initial: "K", color: "#ed1c24" },
+  { name: "CARS24", initial: "C", color: "#0057b8" },
+  { name: "LegalDST", initial: "L", color: "#1e3a5f" },
+  { name: "Capgemini", initial: "C", color: "#0070ad" },
+  { name: "Google", initial: "G", color: "#4285f4" },
+  { name: "Kuku FM", initial: "K", color: "#e8401a" },
+  { name: "Motilal Oswal", initial: "M", color: "#f9a825" },
+  { name: "NCDEX", initial: "N", color: "#8b4513" },
+  { name: "Nergy", initial: "N", color: "#2563eb" },
+  { name: "nimbbl", initial: "n", color: "#111827" },
+  { name: "Paymentz", initial: "P", color: "#0d9488" },
+  { name: "QSS Technosoft", initial: "Q", color: "#dc2626" },
+  { name: "Quilo", initial: "Q", color: "#0f172a" },
+  { name: "Securden", initial: "S", color: "#16a34a" },
+];
 
 /** Canonical stats from content deck — used site-wide */
 export const stats: Stat[] = [
@@ -147,8 +180,8 @@ export const businessUnits: BusinessUnit[] = [
     ],
     highlights: [
       "Full-stack & cloud-native development",
-      "Managed services & project delivery",
-      "Role-based staffing & augmentation",
+      "Talent platform — 900+ engineer pool",
+      "Build squads from academy-trained bench",
     ],
   },
   {
@@ -335,6 +368,82 @@ export const technoElevate = {
       description: "Production AI with guardrails — beyond proof-of-concept, into regulated enterprise deployment.",
     },
   ],
+  talentPlatform: {
+    id: "talent-platform",
+    eyebrow: "Staffing & Team Building",
+    title: "Your talent platform — build teams from a trained bench",
+    subtitle:
+      "TechnoElevate is more than project delivery. Companies adopt engineers from our 900+ professional pool — or compose dedicated squads from bench-ready, academy-trained talent across every major technology stack.",
+    poolStats: [
+      { value: "900+", label: "Engineers in pool" },
+      { value: "600k+", label: "Academy-trained pipeline" },
+      { value: "50+", label: "Technology stacks" },
+      { value: "48hr", label: "Typical shortlist turnaround" },
+    ],
+    engagementOptions: [
+      {
+        icon: "👤",
+        title: "Individual specialists",
+        description:
+          "Add one or more engineers — developers, QA, DevOps, data, or AI — to your existing team with flexible duration and ramp time.",
+        bestFor: "Gap-fill, niche skills, surge capacity",
+      },
+      {
+        icon: "👥",
+        title: "Dedicated squad",
+        description:
+          "A pre-formed cross-functional pod (e.g. 3 devs + 1 QA + 1 lead) working exclusively on your product, managed by TechnoElevate.",
+        bestFor: "Product builds, long-running programs",
+      },
+      {
+        icon: "🏗️",
+        title: "Build your own team",
+        description:
+          "Pick roles from our bench — mix senior architects, mid-level developers, and fresh academy graduates — and we assemble your custom roster.",
+        bestFor: "Startups and enterprises scaling fast",
+      },
+      {
+        icon: "🎓",
+        title: "Academy-to-bench pipeline",
+        description:
+          "Access QSpiders & JSpiders trained candidates — job-ready in software testing and Java/J2EE — vetted and onboarded through TechnoElevate.",
+        bestFor: "High-volume hiring, graduate programs",
+      },
+      {
+        icon: "🌍",
+        title: "Global delivery mix",
+        description:
+          "Blend onshore, nearshore, and offshore resources from Test Yantra’s six locations — optimized for timezone coverage and cost.",
+        bestFor: "Follow-the-sun, hybrid models",
+      },
+      {
+        icon: "🔄",
+        title: "Try-then-scale",
+        description:
+          "Start with a small bench trial (individual or mini-squad), evaluate fit and velocity, then scale the team without re-recruiting.",
+        bestFor: "Risk reduction, proof before commit",
+      },
+    ],
+    howItWorks: [
+      { step: "01", title: "Share your stack & roles", detail: "Tell us technologies, seniority mix, team size, and timeline." },
+      { step: "02", title: "Receive curated shortlists", detail: "Profiles from our pool and academy bench — matched to your requirements." },
+      { step: "03", title: "Interview & select", detail: "You choose who joins; we handle contracts, onboarding, and IT setup." },
+      { step: "04", title: "Embed & deliver", detail: "Resources join your tools, stand-ups, and culture — with TestYantra QE optional." },
+      { step: "05", title: "Scale or rotate", detail: "Add capacity, swap roles, or convert to permanent hire as needs evolve." },
+    ],
+    techBench: [
+      { category: "Frontend & Web", skills: ["React", "Next.js", "Angular", "Vue", "TypeScript", "PWAs"] },
+      { category: "Backend & APIs", skills: ["Java", "Spring", "Node.js", "Python", ".NET", "Go", "GraphQL"] },
+      { category: "Mobile", skills: ["iOS / Swift", "Android / Kotlin", "React Native", "Flutter"] },
+      { category: "Cloud & DevOps", skills: ["AWS", "Azure", "GCP", "Kubernetes", "Terraform", "CI/CD"] },
+      { category: "Data & AI", skills: ["Snowflake", "Kafka", "Spark", "LLM / RAG", "ML", "Python"] },
+      { category: "Quality & Testing", skills: ["Selenium", "Playwright", "API testing", "Performance", "Security"] },
+      { category: "Enterprise", skills: ["SAP", "Salesforce", "Oracle", "ServiceNow", "Mainframe"] },
+      { category: "Academy tracks", skills: ["Manual QA", "Automation QA", "Java / J2EE", "ISTQB® ready"] },
+    ],
+    academyNote:
+      "Our 600k+ academy alumni feed a continuous bench of trained candidates — QSpiders for testing, JSpiders for Java development — assessed and deployment-ready through TechnoElevate.",
+  },
   social: {
     facebook: "https://www.facebook.com/technoelevate/",
     twitter: "https://twitter.com/technoelevate",

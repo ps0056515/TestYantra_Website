@@ -16,9 +16,20 @@ export function V2Footer() {
               </span>
             </Link>
             <p>
-              {brand.tagline} — partnering with global brands to build, test, and deliver software
-              they&apos;re proud to ship. Part of the Test Yantra group with <a href="https://technoelevate.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>TechnoElevate</a>, <a href="https://www.fireflink.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>FireFlink</a>, and
-              Academy.
+              {brand.groupStatement} Quality engineering, product development, automation, and
+              talent — through TestYantra,{" "}
+              <Link href="/development" style={{ color: "var(--accent)", fontWeight: 600 }}>
+                TechnoElevate
+              </Link>
+              ,{" "}
+              <a href="https://www.fireflink.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
+                FireFlink
+              </a>
+              , and{" "}
+              <Link href="/academy" style={{ color: "var(--accent)", fontWeight: 600 }}>
+                Academy
+              </Link>
+              .
             </p>
             <div className="foot-social">
               <a href={brand.linkedIn} className="fsoc" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
@@ -61,21 +72,17 @@ export function V2Footer() {
           <div className="foot-col">
             <h5>Group Companies</h5>
             <ul>
-              {businessUnits.map((u) => {
-                const isTE = u.id === "technoelevate";
-                return (
-                  <li key={u.id}>
-                    {u.external || isTE ? (
-                      <a href={isTE ? "https://technoelevate.com/" : u.href} target="_blank" rel="noopener noreferrer">
-                        {u.name} ↗
-                      </a>
-                    ) : (
-                      <Link href={u.href}>{u.name}</Link>
-                    )}
-                  </li>
-                );
-              })}
-              
+              {businessUnits.map((u) => (
+                <li key={u.id}>
+                  {u.external ? (
+                    <a href={u.href} target="_blank" rel="noopener noreferrer">
+                      {u.name} ↗
+                    </a>
+                  ) : (
+                    <Link href={u.href}>{u.name}</Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="foot-col">
@@ -123,7 +130,7 @@ export function V2Footer() {
           <p>© {new Date().getFullYear()} {brand.legalName} All rights reserved.</p>
           <div className="foot-locs">
             <Link href="/company/locations">Bengaluru HQ</Link>
-            <a href="https://technoelevate.com/" target="_blank" rel="noopener noreferrer">TechnoElevate ↗</a>
+            <Link href="/development">TechnoElevate</Link>
             <Link href="/company/locations">United States</Link>
             <Link href="/company/locations">United Kingdom</Link>
             <Link href="/company/locations">APAC</Link>

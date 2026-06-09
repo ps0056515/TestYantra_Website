@@ -107,15 +107,13 @@ export function V2Nav() {
                   <Link href="/development">Overview</Link>
                 </li>
                 <li>
-                  <a href={technoElevate.url} target="_blank" rel="noopener noreferrer">
-                    technoelevate.com ↗
-                  </a>
-                </li>
-                <li>
                   <Link href="/services/development">Development Services</Link>
                 </li>
                 <li>
-                  <Link href="/contact?interest=development">Staffing & Augmentation</Link>
+                  <Link href="/development#talent-platform">Talent Platform</Link>
+                </li>
+                <li>
+                  <Link href="/contact?interest=talent">Build Your Team</Link>
                 </li>
               </ul>
             </div>
@@ -231,3 +229,4 @@ export function V2Nav() {
     </nav>
   );
 }
+
