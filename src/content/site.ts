@@ -107,7 +107,20 @@ export type TrustedClient = {
   initial: string;
   color: string;
   logo?: string;
+  /** Index in the sprite sheet (0-based, left to right) */
+  spriteIndex: number;
 };
+
+/** Sprite configuration for the brand logos sprite image */
+export const logoSprite = {
+  src: "/images/brand_logos_sprite.png",
+  /** Total number of logos in the sprite */
+  count: 14,
+  /** Each logo cell width in px (at 1x) */
+  cellWidth: 200,
+  /** Each logo cell height in px (at 1x) */
+  cellHeight: 80,
+} as const;
 
 export const clientTrustStrip = {
   headline: "20,000,000+ automated tests and counting!",
@@ -116,20 +129,20 @@ export const clientTrustStrip = {
 } as const;
 
 export const trustedClients: TrustedClient[] = [
-  { name: "Kotak", initial: "K", color: "#ed1c24" },
-  { name: "CARS24", initial: "C", color: "#0057b8" },
-  { name: "LegalDST", initial: "L", color: "#1e3a5f" },
-  { name: "Capgemini", initial: "C", color: "#0070ad" },
-  { name: "Google", initial: "G", color: "#4285f4" },
-  { name: "Kuku FM", initial: "K", color: "#e8401a" },
-  { name: "Motilal Oswal", initial: "M", color: "#f9a825" },
-  { name: "NCDEX", initial: "N", color: "#8b4513" },
-  { name: "Nergy", initial: "N", color: "#2563eb" },
-  { name: "nimbbl", initial: "n", color: "#111827" },
-  { name: "Paymentz", initial: "P", color: "#0d9488" },
-  { name: "QSS Technosoft", initial: "Q", color: "#dc2626" },
-  { name: "Quilo", initial: "Q", color: "#0f172a" },
-  { name: "Securden", initial: "S", color: "#16a34a" },
+  { name: "Kotak", initial: "K", color: "#ed1c24", spriteIndex: 0 },
+  { name: "CARS24", initial: "C", color: "#0057b8", spriteIndex: 1 },
+  { name: "LegalDST", initial: "L", color: "#1e3a5f", spriteIndex: 2 },
+  { name: "Capgemini", initial: "C", color: "#0070ad", spriteIndex: 3 },
+  { name: "Google", initial: "G", color: "#4285f4", spriteIndex: 4 },
+  { name: "Kuku FM", initial: "K", color: "#e8401a", spriteIndex: 5 },
+  { name: "Motilal Oswal", initial: "M", color: "#f9a825", spriteIndex: 6 },
+  { name: "NCDEX", initial: "N", color: "#8b4513", spriteIndex: 7 },
+  { name: "Nergy", initial: "N", color: "#2563eb", spriteIndex: 8 },
+  { name: "nimbbl", initial: "n", color: "#111827", spriteIndex: 9 },
+  { name: "Paymentz", initial: "P", color: "#0d9488", spriteIndex: 10 },
+  { name: "QSS Technosoft", initial: "Q", color: "#dc2626", spriteIndex: 11 },
+  { name: "Quilo", initial: "Q", color: "#0f172a", spriteIndex: 12 },
+  { name: "Securden", initial: "S", color: "#16a34a", spriteIndex: 13 },
 ];
 
 /** Canonical stats from content deck — used site-wide */

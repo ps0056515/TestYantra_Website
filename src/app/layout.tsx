@@ -32,13 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="midnight" className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}>
+    <html lang="en" suppressHydrationWarning data-theme="light" className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('tyss-theme') || 'midnight';
+                const theme = localStorage.getItem('tyss-theme') || 'light';
                 document.documentElement.setAttribute('data-theme', theme);
               } catch (_) {}
             `,

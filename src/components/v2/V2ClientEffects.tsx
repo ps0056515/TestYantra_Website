@@ -15,8 +15,8 @@ export function V2ClientEffects() {
       }
     }
 
-    // Load saved theme or default to midnight
-    const savedTheme = localStorage.getItem("tyss-theme") || "midnight";
+    // Load saved theme or default to light
+    const savedTheme = localStorage.getItem("tyss-theme") || "light";
     root.setAttribute("data-theme", savedTheme);
 
     const dots = document.querySelectorAll(".theme-dot");
