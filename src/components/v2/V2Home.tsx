@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import {
   aiLane01,
   aiLane02,
@@ -11,12 +10,14 @@ import {
   hero,
   heroOfferLine,
   heroStats,
+  heroValueAdds,
   practiceAreas,
   serviceCatalogue,
   serviceCatalogueIntro,
   teamModels,
 } from "@/content/home";
-import { businessUnits, caseStudies, clientTrustStrip, industries, logoSprite, trustedClients } from "@/content/site";
+import { businessUnits, caseStudies, clientTrustStrip, industries, trustedClientGroups } from "@/content/site";
+import { ClientLogoCell } from "./ClientLogoCell";
 import { V2CapabilityTabs } from "./V2CapabilityTabs";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { ScrollAnimate } from "./ScrollAnimate";
@@ -43,15 +44,22 @@ function CatalogueLane({ lane, accentVar, delayOffset = 0 }: CatalogueLaneProps)
         <h3 className={`catalogue-lane-title ${accentClass}-title`}>{lane.label}</h3>
         <p className="catalogue-lane-sub">{lane.subtitle}</p>
       </div>
-      <div className="catalogue-pills">
-        {lane.items.map((item, i) => (
-          <ScrollAnimate key={item.label} direction="up" delay={delayOffset + i * 30}>
-            <Link href={item.href}>
-              <div className={`catalogue-pill group ${accentClass}`}>
-                <div className="catalogue-pill-shine" />
-                <span className="catalogue-pill-dot" />
-                <span className="catalogue-pill-label">{item.label}</span>
-              </div>
+      <div className="catalogue-value-grid">
+        {lane.valueCards.map((card, i) => (
+          <ScrollAnimate key={card.title} direction="up" delay={delayOffset + i * 50}>
+            <Link href={card.href} className="catalogue-value-link">
+              <article className={`catalogue-value-card ${accentClass}`}>
+                <h4 className="catalogue-value-title">{card.title}</h4>
+                <p className="catalogue-value-outcome">{card.outcome}</p>
+                <div className="catalogue-value-tags">
+                  {card.services.map((service) => (
+                    <span key={service} className="catalogue-value-tag">
+                      {service}
+                    </span>
+                  ))}
+                </div>
+                <span className="catalogue-value-cta">Learn more →</span>
+              </article>
             </Link>
           </ScrollAnimate>
         ))}
@@ -129,51 +137,58 @@ export function V2Home() {
         ))}
       </div>
 
-      {/* LIFECYCLE OFFER LINE */}
-      <div className="hero-offer">
-        <p className="hero-offer-text">
+      {/* VALUE ADDITION */}
+      <div className="hero-value-adds">
+        <div className="hero-value-adds-header">
           <span className="hero-offer-label">{heroOfferLine.label}</span>
-          {heroOfferLine.pillars.map((pillar, i) => (
-            <span key={pillar}>
-              {i > 0 ? <span className="hero-offer-sep"> · </span> : null}
-              {pillar}
-            </span>
+          <p className="hero-value-adds-intro">
+            {heroOfferLine.pillars.map((pillar, i) => (
+              <span key={pillar}>
+                {i > 0 ? <span className="hero-offer-sep"> · </span> : null}
+                {pillar}
+              </span>
+            ))}
+          </p>
+        </div>
+        <div className="hero-value-grid">
+          {heroValueAdds.map((item, i) => (
+            <ScrollAnimate key={item.title} direction="up" delay={i * 60}>
+              <div className="hero-value-card">
+                <div className="hero-value-top">
+                  <span className="hero-value-icon" aria-hidden="true">
+                    {item.icon}
+                  </span>
+                  <span className="hero-value-metric">{item.metric}</span>
+                </div>
+                <h3 className="hero-value-title">{item.title}</h3>
+                <p className="hero-value-detail">{item.detail}</p>
+              </div>
+            </ScrollAnimate>
           ))}
-        </p>
+        </div>
       </div>
 
       {/* TRUSTED BY */}
       <div className="clients-strip">
         <div className="clients-strip-headline">{clientTrustStrip.headline}</div>
         <p className="clients-strip-sub">{clientTrustStrip.subline}</p>
-        <div className="logo-wall">
-          {trustedClients.map((client) => {
-            // Scale factor: display width (120px) / sprite cell width (200px)
-            const scale = 120 / logoSprite.cellWidth;
-            const offsetX = -(client.spriteIndex * logoSprite.cellWidth * scale);
-            const totalW = logoSprite.cellWidth * logoSprite.count * scale;
-            const totalH = logoSprite.cellHeight * scale;
-            return (
-              <div
-                key={client.name}
-                className="logo-cell"
-                title={client.name}
-                style={{ "--client-color": client.color } as CSSProperties}
-              >
-                <span
-                  className="logo-sprite"
-                  role="img"
-                  aria-label={client.name}
-                  style={{
-                    backgroundImage: `url(${logoSprite.src})`,
-                    backgroundPosition: `${offsetX}px center`,
-                    backgroundSize: `${totalW}px ${totalH}px`,
-                  }}
-                />
-                <span className="logo-name">{client.name}</span>
+        <div className="clients-groups">
+          {trustedClientGroups.map((group) => (
+            <div key={group.label} className="clients-group">
+              <h3 className="clients-group-label">{group.label}</h3>
+              <div className="logo-wall logo-wall-dense">
+                {group.clients.map((client) => (
+                  <ClientLogoCell
+                    key={client.name}
+                    name={client.name}
+                    domain={client.domain}
+                    logoDomain={client.logoDomain}
+                    wordmarkOnly={client.wordmarkOnly}
+                  />
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -188,7 +203,7 @@ export function V2Home() {
               One embedded partner.
             </h2>
             <p className="section-sub" style={{ marginBottom: 0 }}>
-              From quality assurance to AI-powered testing and development — five disciplines, one
+              From quality assurance to AI-powered testing and product engineering — five disciplines, one
               seamless engineering partner.
             </p>
           </div>

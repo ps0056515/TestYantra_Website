@@ -1,12 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { CapabilityGroup } from "@/content/home";
-import { ScrollAnimate } from "./ScrollAnimate";
+
+function tabIndexFromHash(groups: CapabilityGroup[]): number {
+  if (typeof window === "undefined") return 0;
+  const hash = window.location.hash.slice(1);
+  const idx = groups.findIndex((g) => g.id === hash);
+  return idx >= 0 ? idx : 0;
+}
 
 export function V2CapabilityTabs({ groups }: { groups: CapabilityGroup[] }) {
   const [active, setActive] = useState(0);
   const group = groups[active];
+
+  useEffect(() => {
+    setActive(tabIndexFromHash(groups));
+    const onHashChange = () => setActive(tabIndexFromHash(groups));
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, [groups]);
 
   return (
     <div className="mt-12 space-y-12">

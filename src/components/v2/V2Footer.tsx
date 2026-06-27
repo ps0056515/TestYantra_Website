@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { brand, businessUnits, technoElevate } from "@/content/site";
+import { brand, businessUnits, groupExternalUrls, technoElevate } from "@/content/site";
 
 export function V2Footer() {
   return (
@@ -16,19 +16,19 @@ export function V2Footer() {
               </span>
             </Link>
             <p>
-              {brand.groupStatement} Quality engineering, product development, automation, and
+              {brand.groupStatement} Quality engineering, product engineering, automation, and
               talent — through TestYantra,{" "}
-              <Link href="/development" style={{ color: "var(--accent)", fontWeight: 600 }}>
+              <a href={groupExternalUrls.technoElevate} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
                 TechnoElevate
-              </Link>
+              </a>
               ,{" "}
               <a href="https://www.fireflink.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
                 FireFlink
               </a>
               , and{" "}
-              <Link href="/academy" style={{ color: "var(--accent)", fontWeight: 600 }}>
+              <a href={groupExternalUrls.academy} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
                 Academy
-              </Link>
+              </a>
               .
             </p>
             <div className="foot-social">
@@ -41,7 +41,7 @@ export function V2Footer() {
               <a href={technoElevate.social.facebook} className="fsoc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
               </a>
-              <a href={technoElevate.social.linkedIn} className="fsoc" aria-label="Website" target="_blank" rel="noopener noreferrer">
+              <a href={technoElevate.url} className="fsoc" aria-label="TechnoElevate website" target="_blank" rel="noopener noreferrer">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               </a>
             </div>
@@ -65,7 +65,7 @@ export function V2Footer() {
                 <Link href="/services/production-monitoring">Production Monitoring</Link>
               </li>
               <li>
-                <Link href="/services/professional-services">Advisory & BOT</Link>
+                <Link href="/services/professional-services">Professional Services</Link>
               </li>
             </ul>
           </div>
@@ -95,10 +95,10 @@ export function V2Footer() {
                 <Link href="/contact?industry=banking-finance">Banking & Finance</Link>
               </li>
               <li>
-                <Link href="/contact?industry=healthcare">Healthcare</Link>
+                <Link href="/contact?industry=healthcare">Healthcare & Life Sciences</Link>
               </li>
               <li>
-                <Link href="/contact?industry=media-entertainment">Media & Telecom</Link>
+                <Link href="/contact?industry=media-entertainment">Media & Entertainment</Link>
               </li>
               <li>
                 <Link href="/contact?industry=saas-hitech">SaaS & Hi-Tech</Link>
@@ -130,7 +130,7 @@ export function V2Footer() {
           <p>© {new Date().getFullYear()} {brand.legalName} All rights reserved.</p>
           <div className="foot-locs">
             <Link href="/company/locations">Bengaluru HQ</Link>
-            <Link href="/development">TechnoElevate</Link>
+            <a href={groupExternalUrls.technoElevate} target="_blank" rel="noopener noreferrer">TechnoElevate</a>
             <Link href="/company/locations">United States</Link>
             <Link href="/company/locations">United Kingdom</Link>
             <Link href="/company/locations">APAC</Link>

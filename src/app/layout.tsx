@@ -23,7 +23,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "TestYantra — End-to-End Engineering",
   description:
-    "The Test Yantra group — quality engineering, product development, and talent platform. Build, validate, and launch software from concept to production.",
+    "The Test Yantra group — quality engineering, product engineering, and talent platform. Build, validate, and launch software from concept to production.",
 };
 
 export default function RootLayout({

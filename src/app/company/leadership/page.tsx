@@ -8,7 +8,7 @@ const leadershipPoints = [
   "Built multiple business verticals to support enterprise QA needs across domains and technologies.",
   "Established a crowd testing service platform for flexible and fast QA coverage across B2B and B2C apps.",
   "Created a training organization supporting large-scale hiring and capability development for IT companies.",
-  "Launched TechnoElevate as the group's software development unit — 900+ engineers delivering quality-first builds.",
+  "Launched TechnoElevate as the group's product engineering unit — 900+ engineers delivering quality-first builds.",
   "Grew a high-performing leadership team spanning QE, development, training, and delivery functions.",
   "Scaled delivery with a large, globally distributed testing and engineering organization.",
 ];

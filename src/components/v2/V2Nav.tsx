@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { businessUnits, brand, technoElevate } from "@/content/site";
+import { businessUnits, brand, groupExternalUrls, technoElevate } from "@/content/site";
 
 export function V2Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +75,7 @@ export function V2Nav() {
                   <Link href="/services/production-monitoring">Production Monitoring</Link>
                 </li>
                 <li>
-                  <Link href="/services/professional-services">Audit & Advisory</Link>
+                  <Link href="/services/professional-services">Professional Services</Link>
                 </li>
               </ul>
             </div>
@@ -101,13 +101,13 @@ export function V2Nav() {
           </Link>
           <div className={`mega-drop ${activeSubmenu === "development" ? "mobile-show" : ""}`} style={{ minWidth: 340 }}>
             <div className="mega-col">
-              <h6>Development Unit</h6>
+              <h6>Product Engineering</h6>
               <ul>
                 <li>
                   <Link href="/development">Overview</Link>
                 </li>
                 <li>
-                  <Link href="/services/development">Development Services</Link>
+                  <Link href="/services/development">Product Engineering Services</Link>
                 </li>
                 <li>
                   <Link href="/development#talent-platform">Talent Platform</Link>
@@ -142,10 +142,10 @@ export function V2Nav() {
               <h6>Other Sectors</h6>
               <ul>
                 <li>
-                  <Link href="/contact?industry=healthcare">Healthcare</Link>
+                  <Link href="/contact?industry=healthcare">Healthcare & Life Sciences</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=media-entertainment">Media & Telecom</Link>
+                  <Link href="/contact?industry=media-entertainment">Media & Entertainment</Link>
                 </li>
                 <li>
                   <Link href="/contact?industry=retail-ecommerce">Retail</Link>
@@ -174,20 +174,17 @@ export function V2Nav() {
             <div className="mega-col">
               <h6>Group</h6>
               <ul>
-                {businessUnits.map((u) => {
-                  const isTE = u.id === "technoelevate";
-                  return (
-                    <li key={u.id}>
-                      {u.external || isTE ? (
-                        <a href={isTE ? "https://technoelevate.com/" : u.href} target="_blank" rel="noopener noreferrer">
-                          {u.name} ↗
-                        </a>
-                      ) : (
-                        <Link href={u.href}>{u.name}</Link>
-                      )}
-                    </li>
-                  );
-                })}
+                {businessUnits.map((u) => (
+                  <li key={u.id}>
+                    {u.external ? (
+                      <a href={u.href} target="_blank" rel="noopener noreferrer">
+                        {u.name} ↗
+                      </a>
+                    ) : (
+                      <Link href={u.href}>{u.name}</Link>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="mega-col">
@@ -200,7 +197,9 @@ export function V2Nav() {
                   <Link href="/company/leadership">Leadership</Link>
                 </li>
                 <li>
-                  <Link href="/academy">Academy</Link>
+                  <a href={groupExternalUrls.academy} target="_blank" rel="noopener noreferrer">
+                    Academy ↗
+                  </a>
                 </li>
                 <li>
                   <Link href="/contact">Careers</Link>

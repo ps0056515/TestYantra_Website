@@ -2,15 +2,7 @@ import Link from "next/link";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { brand, industries, technoElevate } from "@/content/site";
 import { industrySlugToContactLabel } from "@/lib/contactIndustry";
-
-const INTEREST_OPTIONS = [
-  "Quality Engineering & Testing",
-  "TechnoElevate — Development & Staffing",
-  "TechnoElevate — Talent Platform (Build Your Team)",
-  "AI Quality Engineering",
-  "Training & Academy",
-  "General Inquiry",
-] as const;
+import { INTEREST_OPTIONS, interestSlugToContactLabel } from "@/lib/contactInterest";
 
 const industrySelectOptions = [...industries.map((i) => i.name), "Other"];
 
@@ -24,14 +16,7 @@ export default async function ContactPage({ searchParams }: Props) {
   const defaultIndustry =
     fromSlug && industrySelectOptions.includes(fromSlug) ? fromSlug : industrySelectOptions[0];
 
-  const defaultInterest =
-    interest === "development"
-      ? "TechnoElevate — Development & Staffing"
-      : interest === "talent"
-        ? "TechnoElevate — Talent Platform (Build Your Team)"
-        : interest === "training"
-          ? "Training & Academy"
-          : INTEREST_OPTIONS[0];
+  const defaultInterest = interestSlugToContactLabel(interest);
 
   return (
     <V2InnerShell>
@@ -43,7 +28,7 @@ export default async function ContactPage({ searchParams }: Props) {
             <span className="text-[var(--accent)]">Ship with confidence.</span>
           </h1>
           <p className="mt-4 text-base leading-7 text-[var(--muted2)]">
-            Whether you need QE, AI testing, software development via TechnoElevate, or training —
+            Whether you need QE, AI testing, product engineering via TechnoElevate, or training —
             one group, one conversation.
           </p>
           <ul className="mt-10 space-y-8">

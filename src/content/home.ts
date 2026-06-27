@@ -1,7 +1,5 @@
 /** Homepage content sourced from TestYantra_Website_Content.pptx + group ecosystem */
 
-import { technoElevate } from "./site";
-
 export const hero = {
   eyebrow: "End-to-End Engineering",
   titleLine1: "Build Better.",
@@ -14,9 +12,36 @@ export const hero = {
 } as const;
 
 export const heroOfferLine = {
-  label: "One partner across the lifecycle",
-  pillars: ["Quality Engineering", "Product Development", "Talent Platform"] as const,
+  label: "Why partners choose us",
+  pillars: ["Quality Engineering", "Product Engineering", "Talent Platform"] as const,
 } as const;
+
+export const heroValueAdds = [
+  {
+    icon: "⚡",
+    metric: "72%",
+    title: "Faster releases",
+    detail: "Accelerated delivery cycles across regulated and high-velocity programmes",
+  },
+  {
+    icon: "🛡️",
+    metric: "60%",
+    title: "Fewer defect escapes",
+    detail: "Shift-left QA, automation, and production monitoring that catches issues early",
+  },
+  {
+    icon: "👥",
+    metric: "900+",
+    title: "Engineers on bench",
+    detail: "Academy-trained talent you can staff, squad, or scale — across every major stack",
+  },
+  {
+    icon: "🔗",
+    metric: "1",
+    title: "Partner end-to-end",
+    detail: "Build, validate, and launch under one group — no vendor handoffs between teams",
+  },
+] as const;
 
 export const heroStats = [
   { value: "217", suffix: "+", label: "Clients" },
@@ -66,9 +91,9 @@ export const practiceAreas: PracticeArea[] = [
   {
     id: "dev",
     icon: "💻",
-    title: "Development",
+    title: "Product Engineering",
     description:
-      "Quality-first software development via TechnoElevate — aligned to your engineering standards and delivery cadence.",
+      "Architecture-first product engineering via TechnoElevate — build, scale, and validate under one group.",
     href: "/development",
     color: "gold",
   },
@@ -88,6 +113,13 @@ export type ServiceCatalogueItem = {
   href: string;
 };
 
+export type CatalogueValueCard = {
+  title: string;
+  outcome: string;
+  services: string[];
+  href: string;
+};
+
 export const serviceCatalogueIntro = {
   titleLine1: "Comprehensive. Specialized.",
   titleLine2: "From build to validation.",
@@ -95,30 +127,74 @@ export const serviceCatalogueIntro = {
   devCta: { label: "Explore TechnoElevate", href: "/development" },
 } as const;
 
-const qaCatalogueItems: ServiceCatalogueItem[] = [
-  { label: "End-to-End Testing", href: "/services/functional-testing" },
-  { label: "Test Automation Engineering", href: "/services/test-automation" },
-  { label: "Load Testing & App Performance", href: "/services/functional-testing" },
-  { label: "CX Testing", href: "/services/functional-testing" },
-  { label: "Accessibility Testing", href: "/services/accessibility-uat" },
-  { label: "API / Microservices Testing", href: "/services/api-microservices" },
-  { label: "ETL / Data Warehouse Testing", href: "/services/managed-qa" },
-  { label: "IoT Testing", href: "/services/managed-qa" },
-  { label: "Package Application Testing", href: "/services/managed-qa" },
-  { label: "Service Virtualisation", href: "/services/api-microservices" },
-  { label: "UAT & Business Assurance", href: "/services/accessibility-uat" },
-  { label: "Mobile App Testing", href: "/services/functional-testing" },
-  { label: "Device & Embedded Testing", href: "/services/managed-qa" },
-  { label: "Cloud Assurance", href: "/services/production-monitoring" },
+const qaCatalogueValues: CatalogueValueCard[] = [
+  {
+    title: "Ship without surprises",
+    outcome: "Full user-journey validation before production — fewer escapes, happier customers.",
+    services: ["End-to-End Testing", "CX Testing", "Mobile App Testing", "UAT & Business Assurance"],
+    href: "/services/functional-testing",
+  },
+  {
+    title: "Automate what repeats",
+    outcome: "CI/CD-integrated automation that gates releases — up to 85% coverage in mature programmes.",
+    services: ["Test Automation Engineering", "API / Microservices Testing", "Service Virtualisation"],
+    href: "/services/test-automation",
+  },
+  {
+    title: "Perform at peak load",
+    outcome: "Know your limits before your users do — scalability benchmarks and bottleneck analysis.",
+    services: ["Load Testing & App Performance", "Cloud Assurance"],
+    href: "/services/production-monitoring",
+  },
+  {
+    title: "Build for everyone",
+    outcome: "Inclusive digital experiences with WCAG 2.1 / ADA compliance built into every release.",
+    services: ["Accessibility Testing", "UAT & Business Assurance"],
+    href: "/services/accessibility-uat",
+  },
+  {
+    title: "Trust your data",
+    outcome: "Data completeness, accuracy, and lineage validated across warehouses and pipelines.",
+    services: ["ETL / Data Warehouse Testing"],
+    href: "/services/managed-qa",
+  },
+  {
+    title: "Cover complex platforms",
+    outcome: "Specialised assurance for packaged, embedded, and connected systems at enterprise scale.",
+    services: ["Package Application Testing", "IoT Testing", "Device & Embedded Testing"],
+    href: "/services/managed-qa",
+  },
 ];
 
-const developmentCatalogueItems: ServiceCatalogueItem[] = [
-  ...technoElevate.services.map((service) => ({
-    label: service.title,
-    href: "/development",
-  })),
+const developmentCatalogueValues: CatalogueValueCard[] = [
   {
-    label: "Talent Platform & Team Building",
+    title: "Build modern products",
+    outcome: "Architecture-first web and mobile engineering with quality guardrails from day one.",
+    services: ["Application Development & Management", "Mobile Engineering"],
+    href: "/development",
+  },
+  {
+    title: "Scale on cloud",
+    outcome: "Cloud migrations, Kubernetes, and DevOps pipelines that keep pace with your roadmap.",
+    services: ["Cloud & Infrastructure"],
+    href: "/development",
+  },
+  {
+    title: "Unlock data & AI",
+    outcome: "Production-grade data platforms, LLM/RAG, and agentic workflows — validated by TestYantra AI.",
+    services: ["Data & Analytics", "AI & LLM Integration", "Agentic AI & Automation"],
+    href: "/development#ai-hub",
+  },
+  {
+    title: "Connect the enterprise",
+    outcome: "Middleware and API integrations that sync legacy systems with modern SaaS platforms.",
+    services: ["Enterprise Integration & APIs"],
+    href: "/development",
+  },
+  {
+    title: "Staff your squad",
+    outcome: "900+ academy-trained engineers — pick specialists or compose full teams from the bench.",
+    services: ["Talent Platform & Team Building"],
     href: "/development#talent-platform",
   },
 ];
@@ -127,12 +203,12 @@ export const serviceCatalogue = {
   qa: {
     label: "Quality Engineering",
     subtitle: "TestYantra — validation, automation, and AI-powered quality",
-    items: qaCatalogueItems,
+    valueCards: qaCatalogueValues,
   },
   development: {
-    label: "Product Development",
+    label: "Product Engineering",
     subtitle: "TechnoElevate — engineering, cloud, AI, and dedicated teams",
-    items: developmentCatalogueItems,
+    valueCards: developmentCatalogueValues,
   },
 } as const;
 

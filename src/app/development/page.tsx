@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
-import { technoElevate, businessUnits } from "@/content/site";
+import { groupExternalUrls, technoElevate } from "@/content/site";
 import { ScrollAnimate } from "@/components/v2/ScrollAnimate";
 import { AnimatedCounter } from "@/components/v2/AnimatedCounter";
 
 export default function DevelopmentPage() {
-  const teUnit = businessUnits.find((u) => u.id === "technoelevate");
   const { aiHub } = technoElevate;
 
   return (
@@ -37,8 +36,12 @@ export default function DevelopmentPage() {
             <ScrollAnimate direction="left" delay={100}>
               <h1 className="text-4xl font-extrabold tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl font-display leading-[1.15]">
                 {technoElevate.tagline}
-                <span className="block text-[var(--indigo)]">with AI at the core</span>
               </h1>
+            </ScrollAnimate>
+            <ScrollAnimate direction="left" delay={125}>
+              <p className="text-lg sm:text-xl text-[var(--indigo)] font-semibold max-w-2xl leading-snug">
+                {technoElevate.heroSubline}
+              </p>
             </ScrollAnimate>
             <ScrollAnimate direction="left" delay={150}>
               <p className="text-base leading-7 text-[var(--muted2)] sm:text-lg max-w-2xl font-medium">
@@ -46,17 +49,9 @@ export default function DevelopmentPage() {
               </p>
             </ScrollAnimate>
             <ScrollAnimate direction="left" delay={200}>
-              <div className="pt-4 flex flex-wrap gap-4">
-                <a href="#ai-hub" className="btn-accent shadow-lg shadow-[var(--indigo)]/15 hover:shadow-[var(--indigo)]/30 hover:scale-[1.02] transition duration-300" style={{ background: "var(--indigo)", borderColor: "var(--indigo)" }}>
-                  Explore AI Hub
-                </a>
-                <Link href="/contact?interest=development" className="btn-outline hover:bg-[var(--bg2)] hover:scale-[1.02] transition duration-300">
-                  Start a Project
-                </Link>
-                <Link href="/contact?interest=talent" className="btn-outline hover:bg-[var(--bg2)] hover:scale-[1.02] transition duration-300">
-                  Build Your Team
-                </Link>
-              </div>
+              <p className="text-sm text-[var(--muted2)] font-semibold">
+                Choose your path below — managed product engineering or talent from our bench.
+              </p>
             </ScrollAnimate>
 
             {/* Stats Pill Matrix */}
@@ -81,8 +76,10 @@ export default function DevelopmentPage() {
                   <div className="text-xs font-semibold text-[var(--muted)] mt-1">Service lines</div>
                 </div>
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-4 shadow-sm hover:border-[var(--indigo)]/20 transition">
-                  <div className="text-2xl font-extrabold text-[var(--indigo)]">AI</div>
-                  <div className="text-xs font-semibold text-[var(--muted)] mt-1">Production-ready</div>
+                  <div className="text-2xl font-extrabold text-[var(--indigo)]">
+                    <AnimatedCounter value="6" />
+                  </div>
+                  <div className="text-xs font-semibold text-[var(--muted)] mt-1">Global locations</div>
                 </div>
               </div>
             </ScrollAnimate>
@@ -110,12 +107,264 @@ export default function DevelopmentPage() {
           </div>
         </div>
 
-        {/* AI HUB SECTION */}
+        {/* CHOOSE YOUR PATH */}
+        <div className="space-y-8 scroll-mt-24" id="choose-path">
+          <ScrollAnimate direction="up">
+            <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+              Start here
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)] mt-2">
+              What are you looking for?
+            </h2>
+            <p className="text-sm text-[var(--muted2)] font-semibold mt-2 max-w-2xl">
+              Two clear engagement models — pick the one that matches how you buy.
+            </p>
+          </ScrollAnimate>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {technoElevate.clientPaths.map((path, i) => (
+              <ScrollAnimate key={path.id} direction="up" delay={i * 80}>
+                <div className="te-path-card h-full flex flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+                        {path.eyebrow}
+                      </span>
+                      <h3 className="text-xl font-bold text-[var(--text)] mt-1 flex items-center gap-2">
+                        <span aria-hidden>{path.icon}</span>
+                        {path.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-[var(--muted2)] font-semibold leading-relaxed mt-4 flex-1">
+                    {path.description}
+                  </p>
+                  <ul className="mt-5 space-y-2">
+                    {path.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-xs font-semibold text-[var(--muted2)]">
+                        <span className="text-[var(--indigo)] mt-0.5">✓</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[11px] font-bold text-[var(--muted)] mt-5 uppercase tracking-wide">
+                    Best for: <span className="text-[var(--text)] normal-case">{path.bestFor}</span>
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link
+                      href={path.href}
+                      className="btn-accent text-sm shadow-lg shadow-[var(--indigo)]/15"
+                      style={{ background: "var(--indigo)", borderColor: "var(--indigo)" }}
+                    >
+                      {path.cta} →
+                    </Link>
+                    <a href={`#${path.sectionId}`} className="btn-outline text-sm hover:bg-[var(--bg2)]">
+                      See how it works ↓
+                    </a>
+                  </div>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+        </div>
+
+        {/* GROUP DIFFERENTIATOR — early */}
+        <div className="rounded-3xl border border-[var(--indigo)]/20 bg-gradient-to-br from-[var(--indigo)]/5 to-[var(--bg2)] p-8 sm:p-10 space-y-8">
+          <ScrollAnimate direction="up">
+            <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+              {technoElevate.differentiator.eyebrow}
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)] mt-2 max-w-3xl">
+              {technoElevate.differentiator.title}
+            </h2>
+            <p className="text-sm sm:text-base text-[var(--muted2)] font-semibold mt-3 max-w-3xl leading-relaxed">
+              {technoElevate.differentiator.subtitle}
+            </p>
+          </ScrollAnimate>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {technoElevate.differentiator.points.map((pt, i) => (
+              <ScrollAnimate key={pt.title} direction="up" delay={i * 60}>
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 h-full">
+                  <h4 className="text-sm font-bold text-[var(--text)]">{pt.title}</h4>
+                  <p className="text-xs text-[var(--muted2)] mt-2 leading-relaxed font-semibold">{pt.description}</p>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+        </div>
+
+        {/* PROOF — client programmes */}
+        <div className="space-y-10 border-t border-[var(--border)] pt-24" id="proof">
+          <ScrollAnimate direction="up">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+              <div className="max-w-2xl">
+                <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
+                  Delivery proof
+                </div>
+                <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
+                  Production programmes, not slide decks
+                </h2>
+                <p className="text-sm text-[var(--muted2)] font-semibold mt-3">
+                  {technoElevate.announcement}
+                </p>
+              </div>
+              <Link href="/client-success" className="link-arrow text-sm font-semibold shrink-0">
+                More case studies
+              </Link>
+            </div>
+          </ScrollAnimate>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {technoElevate.teCaseStudies.map((cs, i) => (
+              <ScrollAnimate key={cs.title} direction="up" delay={i * 60}>
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 h-full flex flex-col shadow-sm hover:border-[var(--indigo)]/25 transition">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+                      {cs.client}
+                    </span>
+                    <span className="text-[10px] font-bold text-[var(--muted)]">{cs.industry}</span>
+                  </div>
+                  <h3 className="text-base font-bold text-[var(--text)] leading-snug">{cs.title}</h3>
+                  <p className="text-xs text-[var(--muted2)] mt-3 font-semibold leading-relaxed flex-1">
+                    {cs.problem}
+                  </p>
+                  <p className="text-xs text-[var(--muted2)] mt-2 font-semibold leading-relaxed">
+                    <span className="text-[var(--text)]">Approach: </span>
+                    {cs.approach}
+                  </p>
+                  <div className="mt-5 pt-4 border-t border-[var(--border)] grid grid-cols-3 gap-2">
+                    {cs.results.map((r) => (
+                      <div key={r.label}>
+                        <div className="text-xs font-extrabold text-[var(--accent)]">{r.value}</div>
+                        <div className="text-[9px] font-bold uppercase tracking-wider text-[var(--muted)] mt-0.5">
+                          {r.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+        </div>
+
+        {/* WHO THIS IS FOR */}
+        <div className="space-y-8">
+          <ScrollAnimate direction="up">
+            <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--muted)]">
+              Who we work with
+            </div>
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--text)] mt-2">
+              Built for buyers with real delivery pressure
+            </h2>
+          </ScrollAnimate>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {technoElevate.idealFor.map((row, i) => (
+              <ScrollAnimate key={row.label} direction="up" delay={i * 50}>
+                <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
+                  <h4 className="text-sm font-bold text-[var(--text)]">{row.label}</h4>
+                  <p className="text-xs text-[var(--muted2)] mt-2 font-semibold leading-relaxed">{row.detail}</p>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+        </div>
+
+        {/* DELIVERY MODELS — build path */}
+        <div id="delivery-models" className="space-y-10 border-t border-[var(--border)] pt-24 scroll-mt-24">
+          <ScrollAnimate direction="up">
+            <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+              Build with us
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
+              How we deliver managed projects
+            </h2>
+            <p className="text-sm text-[var(--muted2)] font-semibold mt-3 max-w-2xl">
+              Four commercial models — from a dedicated squad on your backlog to a fixed-scope MVP or AI platform build.
+            </p>
+          </ScrollAnimate>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {technoElevate.deliveryModels.map((m, i) => (
+              <ScrollAnimate key={m.num} direction="up" delay={i * 40}>
+                <div className="delivery-row rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 hover:border-[var(--indigo)]/30 transition">
+                  <span className="delivery-num">{m.num}</span>
+                  <div>
+                    <h4 className="text-base font-bold text-[var(--text)]">{m.title}</h4>
+                    <p className="text-xs text-[var(--muted2)] mt-2 font-semibold leading-relaxed">{m.description}</p>
+                    <p className="text-[10px] font-bold text-[var(--indigo)] mt-3 uppercase tracking-wide">
+                      {m.bestFor}
+                    </p>
+                  </div>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+          <ScrollAnimate direction="up">
+            <Link
+              href="/contact?interest=development"
+              className="inline-flex btn-accent text-sm"
+              style={{ background: "var(--indigo)", borderColor: "var(--indigo)" }}
+            >
+              Discuss your programme →
+            </Link>
+          </ScrollAnimate>
+        </div>
+
+        {/* SEVEN SERVICE LINES SECTION */}
+        <div className="space-y-12 border-t border-[var(--border)] pt-24">
+          <div className="flex flex-col md:flex-row justify-between md:items-end gap-6">
+            <div className="max-w-2xl space-y-4">
+              <ScrollAnimate direction="up">
+                <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
+                  Core Engineering
+                </div>
+                <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
+                  Seven Service Lines.<br />End-to-End Delivery.
+                </h2>
+              </ScrollAnimate>
+            </div>
+            <div className="max-w-md">
+              <ScrollAnimate direction="up" delay={100}>
+                <p className="text-xs sm:text-sm text-[var(--muted2)] font-semibold leading-relaxed">
+                  From strategy and consulting through app development, cloud infrastructure, event-driven data systems, and managed operations — we imagine, engineer, modernize, and manage.
+                </p>
+              </ScrollAnimate>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {technoElevate.services.map((svc, i) => (
+              <ScrollAnimate key={svc.title} direction="up" delay={i * 50}>
+                <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-md hover:border-[var(--indigo)]/30 hover:shadow-xl hover:shadow-[var(--indigo)]/5 transition-all duration-300 group overflow-hidden h-full flex flex-col justify-between">
+                  <div className="absolute top-4 right-4 text-3xl font-extrabold text-[var(--text)]/5 group-hover:text-[var(--indigo)]/15 transition duration-300 select-none">
+                    0{i + 1}
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="text-3xl">{svc.icon}</div>
+                    <h3 className="text-lg font-bold text-[var(--text)]">{svc.title}</h3>
+                    <p className="text-xs leading-relaxed text-[var(--muted2)] font-semibold">{svc.description}</p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-[var(--border)]">
+                    <div className="flex flex-wrap gap-1.5">
+                      {svc.pills.map((p) => (
+                        <span key={p} className="inline-block rounded-lg bg-[var(--surface)] px-2 py-0.5 text-[10px] font-bold text-[var(--muted2)] border border-[var(--border)]">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </ScrollAnimate>
+            ))}
+          </div>
+        </div>
+
+        {/* AI HUB — when your build needs AI */}
         <div id="ai-hub" className="space-y-12 border-t border-[var(--border)] pt-24 scroll-mt-24">
           <div className="max-w-3xl space-y-4">
             <ScrollAnimate direction="up">
               <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--teal)]">
-                {aiHub.eyebrow}
+                Optional specialization · {aiHub.eyebrow}
               </div>
               <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
                 {aiHub.title}
@@ -158,7 +407,6 @@ export default function DevelopmentPage() {
             ))}
           </div>
 
-          {/* Real-world AI use cases */}
           <ScrollAnimate direction="up" className="pt-6">
             <div className="rounded-3xl border border-[var(--border)] bg-[var(--bg2)] p-8">
               <div className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-4">Real-world AI we build</div>
@@ -174,64 +422,12 @@ export default function DevelopmentPage() {
           </ScrollAnimate>
         </div>
 
-        {/* SEVEN SERVICE LINES SECTION */}
-        <div className="space-y-12 border-t border-[var(--border)] pt-24">
-          <div className="flex flex-col md:flex-row justify-between md:items-end gap-6">
-            <div className="max-w-2xl space-y-4">
-              <ScrollAnimate direction="up">
-                <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
-                  Core Engineering
-                </div>
-                <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
-                  Seven Service Lines.<br />End-to-End Delivery.
-                </h2>
-              </ScrollAnimate>
-            </div>
-            <div className="max-w-md">
-              <ScrollAnimate direction="up" delay={100}>
-                <p className="text-xs sm:text-sm text-[var(--muted2)] font-semibold leading-relaxed">
-                  From strategy and consulting through app development, cloud infrastructure, event-driven data systems, and managed operations — we imagine, engineer, modernize, and manage.
-                </p>
-              </ScrollAnimate>
-            </div>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {technoElevate.services.map((svc, i) => (
-              <ScrollAnimate key={svc.title} direction="up" delay={i * 50}>
-                <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-md hover:border-[var(--indigo)]/30 hover:shadow-xl hover:shadow-[var(--indigo)]/5 transition-all duration-300 group overflow-hidden h-full flex flex-col justify-between">
-                  {/* Watermark index */}
-                  <div className="absolute top-4 right-4 text-3xl font-extrabold text-[var(--text)]/5 group-hover:text-[var(--indigo)]/15 transition duration-300 select-none">
-                    0{i + 1}
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="text-3xl">{svc.icon}</div>
-                    <h3 className="text-lg font-bold text-[var(--text)]">{svc.title}</h3>
-                    <p className="text-xs leading-relaxed text-[var(--muted2)] font-semibold">{svc.description}</p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-[var(--border)]">
-                    <div className="flex flex-wrap gap-1.5">
-                      {svc.pills.map((p) => (
-                        <span key={p} className="inline-block rounded-lg bg-[var(--surface)] px-2 py-0.5 text-[10px] font-bold text-[var(--muted2)] border border-[var(--border)]">
-                          {p}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </ScrollAnimate>
-            ))}
-          </div>
-        </div>
-
-        {/* TALENT PLATFORM — Staffing & team building */}
+        {/* TALENT PLATFORM — Staff your team */}
         <div id={technoElevate.talentPlatform.id} className="space-y-12 border-t border-[var(--border)] pt-24 scroll-mt-24">
           <div className="max-w-3xl space-y-4">
             <ScrollAnimate direction="up">
               <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
-                {technoElevate.talentPlatform.eyebrow}
+                Staff your team
               </div>
               <h2 className="text-3xl font-bold tracking-tight text-[var(--text)] sm:text-4xl mt-2">
                 {technoElevate.talentPlatform.title}
@@ -326,9 +522,9 @@ export default function DevelopmentPage() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 shrink-0">
-                <Link href="/academy" className="btn-outline text-sm">
-                  Explore Academy →
-                </Link>
+                <a href={groupExternalUrls.academy} target="_blank" rel="noopener noreferrer" className="btn-outline text-sm">
+                  Explore Academy ↗
+                </a>
                 <Link href="/contact?interest=talent" className="btn-accent text-sm">
                   Request a bench shortlist
                 </Link>
@@ -374,7 +570,7 @@ export default function DevelopmentPage() {
                   Build with quality built in
                 </h2>
                 <p className="text-sm leading-relaxed text-[var(--muted2)] font-semibold mt-4">
-                  TechnoElevate + TestYantra = one partner for development, AI, and validation. No handoffs. No gaps.
+                  TechnoElevate + TestYantra = one partner for product engineering, AI, and validation. No handoffs. No gaps.
                 </p>
                 <ul className="mt-8 space-y-4">
                   <li className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-[var(--muted2)]">
@@ -431,12 +627,18 @@ export default function DevelopmentPage() {
           <div className="rounded-3xl p-12 text-center relative overflow-hidden bg-gradient-to-br from-[var(--indigo)] via-[#2A1F6E] to-[#1E1452] shadow-2xl text-white">
             <div className="absolute inset-0 bg-dot-grid opacity-[0.05]" />
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl relative z-10">
-              Ship AI-powered software<br />
-              <em className="text-[var(--teal)] not-italic">validated from day one.</em>
+              Ship software with quality<br />
+              <em className="text-[var(--teal)] not-italic">built in from day one.</em>
             </h2>
-            <div className="mt-8 flex justify-center gap-4 relative z-10">
+            <p className="mt-4 text-sm text-white/80 font-semibold relative z-10 max-w-xl mx-auto">
+              Managed product engineering or talent from our bench — one group, one conversation.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
               <Link href="/contact?interest=development" className="rounded-xl bg-white px-5 py-3 text-sm font-bold text-[var(--indigo)] hover:bg-white/90 shadow-lg transition">
-                Talk to TechnoElevate &rarr;
+                Start a project →
+              </Link>
+              <Link href="/contact?interest=talent" className="rounded-xl border border-white/30 px-5 py-3 text-sm font-bold text-white hover:bg-white/10 transition">
+                Build your team →
               </Link>
             </div>
           </div>

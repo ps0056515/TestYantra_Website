@@ -9,6 +9,26 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "unavatar.io",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "img.logo.dev",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "t2.gstatic.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+        pathname: "/**",
+      },
     ],
   },
 };

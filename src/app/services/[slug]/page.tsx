@@ -49,6 +49,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
   if (!service) return notFound();
 
   const isDev = service.slug === "development";
+  const hasBenefits = Boolean(service.benefits?.length);
   const heroImg = getHeroImage(service.slug);
 
   return (
@@ -133,7 +134,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
               Overview
             </a>
             <a href="#use-cases" className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--muted2)] hover:text-[var(--accent)] shrink-0 transition">
-              Use Cases
+              {hasBenefits ? "Benefits" : "Use Cases"}
             </a>
             <a href="#technologies" className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[var(--muted2)] hover:text-[var(--accent)] shrink-0 transition">
               Technologies
@@ -239,37 +240,59 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
             <div id="use-cases" className="space-y-8 scroll-mt-40">
               <div>
                 <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)] mb-1">
-                  Solutions
+                  {service.benefits?.length ? "Benefits" : "Solutions"}
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-[var(--text)]">
-                  Key Use Cases &amp; Engagement Scopes
+                  {service.benefits?.length
+                    ? service.benefitsSectionTitle ?? `${service.name} Benefits`
+                    : "Key Use Cases & Engagement Scopes"}
                 </h2>
               </div>
               <div className="grid gap-6 sm:grid-cols-2">
-                {service.useCases.map((uc, i) => (
-                  <div
-                    key={i}
-                    className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-md hover:border-[var(--accent)]/30 hover:shadow-xl hover:shadow-[var(--accent)]/5 transition-all duration-300 group overflow-hidden"
-                  >
-                    {/* Glowing corner overlay */}
-                    <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-tr from-[var(--accent)]/5 to-[var(--indigo)]/5 rounded-full blur-xl group-hover:scale-150 transition duration-500" />
-                    
-                    {/* Small visual top highlight border */}
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--indigo)] opacity-0 group-hover:opacity-100 transition duration-300" />
-                    
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
-                        Scenario 0{i + 1}
-                      </span>
-                      <span className="text-[10px] font-bold text-[var(--muted)] border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 rounded-md">
-                        Active Scope
-                      </span>
-                    </div>
-                    <p className="text-xs leading-relaxed text-[var(--muted2)] sm:text-sm font-semibold group-hover:text-[var(--text)] transition duration-200 relative z-10">
-                      {uc}
-                    </p>
-                  </div>
-                ))}
+                {service.benefits?.length
+                  ? service.benefits.map((benefit, i) => (
+                      <div
+                        key={benefit.title}
+                        className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-md hover:border-[var(--accent)]/30 hover:shadow-xl hover:shadow-[var(--accent)]/5 transition-all duration-300 group overflow-hidden"
+                      >
+                        <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-tr from-[var(--accent)]/5 to-[var(--indigo)]/5 rounded-full blur-xl group-hover:scale-150 transition duration-500" />
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--indigo)] opacity-0 group-hover:opacity-100 transition duration-300" />
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
+                            Benefit 0{i + 1}
+                          </span>
+                          <span className="text-[10px] font-bold text-[var(--muted)] border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 rounded-md">
+                            Core value
+                          </span>
+                        </div>
+                        <h3 className="text-sm font-bold text-[var(--text)] mb-2 relative z-10">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-xs leading-relaxed text-[var(--muted2)] sm:text-sm font-semibold group-hover:text-[var(--text)] transition duration-200 relative z-10">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    ))
+                  : service.useCases.map((uc, i) => (
+                      <div
+                        key={i}
+                        className="relative rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-md hover:border-[var(--accent)]/30 hover:shadow-xl hover:shadow-[var(--accent)]/5 transition-all duration-300 group overflow-hidden"
+                      >
+                        <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-tr from-[var(--accent)]/5 to-[var(--indigo)]/5 rounded-full blur-xl group-hover:scale-150 transition duration-500" />
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--accent)] to-[var(--indigo)] opacity-0 group-hover:opacity-100 transition duration-300" />
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--accent)]">
+                            Scenario 0{i + 1}
+                          </span>
+                          <span className="text-[10px] font-bold text-[var(--muted)] border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 rounded-md">
+                            Active Scope
+                          </span>
+                        </div>
+                        <p className="text-xs leading-relaxed text-[var(--muted2)] sm:text-sm font-semibold group-hover:text-[var(--text)] transition duration-200 relative z-10">
+                          {uc}
+                        </p>
+                      </div>
+                    ))}
               </div>
             </div>
           </ScrollAnimate>

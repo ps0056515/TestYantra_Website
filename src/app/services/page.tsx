@@ -75,7 +75,7 @@ export default function ServicesPage() {
 
           <ScrollAnimate direction="left" delay={200}>
             <p className="text-base leading-7 text-[var(--muted2)] sm:text-lg max-w-2xl">
-              Scroll down to explore our comprehensive suites of QA, Quality Engineering, AI validation, Software Development, and Training services. We provide flexible pods, center-of-excellence setups, and fully managed outcomes.
+              Scroll down to explore our comprehensive suites of QA, Quality Engineering, AI validation, Product Engineering, and Training services. We provide flexible pods, center-of-excellence setups, and fully managed outcomes.
             </p>
           </ScrollAnimate>
 
@@ -169,7 +169,7 @@ export default function ServicesPage() {
             {
               id: "solutions",
               title: "Enterprise Solutions",
-              description: "Technology assessments, software delivery through TechnoElevate, and workforce upskilling programs.",
+              description: "Technology assessments, product engineering through TechnoElevate, and workforce upskilling programs.",
               slugs: ["professional-services", "development", "training"],
               color: "var(--gold)",
             },
