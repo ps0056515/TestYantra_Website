@@ -1563,8 +1563,8 @@ export const locations: Location[] = [
     city: "Bangalore — Innovexce",
     unit: "Innovexce",
     addressLines: [
-      "Gopalan CoWorks, #92/9, 3rd Floor,",
-      "Above Reliance Smart Bazaar, 80 feet Road, Kathriguppe, Bangalore 560085",
+      "#88, 3rd Floor, Brigade Chambers,",
+      "Gandhi Bazaar Main Rd, Basavanagudi, Bangalore-560004, Karnataka, India",
     ],
     phone: "+91 9742490958",
   },

@@ -1476,14 +1476,10 @@ section {
   transition: transform 0.2s;
 }
 .logo-img-external.dark-adjust {
-  background-color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 6px;
+  filter: invert(0.9) grayscale(1) brightness(1.8);
 }
 [data-theme="light"] .logo-img-external.dark-adjust {
-  background-color: transparent;
-  padding: 0;
-  border-radius: 0;
+  filter: none;
 }
 .logo-name-sub {
   font-size: 9px;

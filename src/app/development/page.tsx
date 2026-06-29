@@ -766,9 +766,9 @@ export default function DevelopmentPage() {
                         Address
                       </div>
                       <p className="text-[var(--muted2)] mt-1 leading-relaxed">
-                        Gopalan CoWorks, #92/9, 3rd Floor,
+                        #88, 3rd Floor, Brigade Chambers,
                         <br />
-                        80 feet Road, Kathriguppe, Bangalore 560085
+                        Gandhi Bazaar Main Rd, Basavanagudi, Bangalore-560004
                       </p>
                     </div>
                   </div>
