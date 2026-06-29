@@ -8,6 +8,7 @@ interface ScrollAnimateProps {
   direction?: Direction;
   delay?: number;
   className?: string;
+  animateOnMount?: boolean;
 }
 
 export function ScrollAnimate({
@@ -15,11 +16,17 @@ export function ScrollAnimate({
   direction = "up",
   delay = 0,
   className = "",
+  animateOnMount = false,
 }: PropsWithChildren<ScrollAnimateProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (animateOnMount) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -37,7 +44,7 @@ export function ScrollAnimate({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [animateOnMount]);
 
   const animationClass =
     direction === "left"
