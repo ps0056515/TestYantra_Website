@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { INTEREST_OPTIONS } from "@/lib/contactInterest";
-import emailjs from "@emailjs/browser";
 
 type ContactFormProps = {
   defaultInterest: string;
@@ -31,37 +30,30 @@ export function ContactForm({
     
     setStatus("submitting");
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.warn(
-        "EmailJS credentials missing. Please set NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, and NEXT_PUBLIC_EMAILJS_PUBLIC_KEY in your environment variables. Falling back to simulation."
-      );
-      setTimeout(() => {
-        setStatus("success");
-      }, 1500);
-      return;
-    }
-
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: name,
-          reply_to: email,
-          interest: interest,
-          industry: industry,
-          message: message,
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        publicKey
-      );
+        body: JSON.stringify({
+          name,
+          email,
+          interest,
+          industry,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Form submission failed.");
+      }
+
       setStatus("success");
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send enquiry. Please try again or email us directly at contactus@testyantra.com.");
+    } catch (error: any) {
+      console.error("Submission Error:", error);
+      alert(error.message || "Failed to submit enquiry. Please try again or email us directly at contactus@testyantra.com.");
       setStatus("idle");
     }
   };
