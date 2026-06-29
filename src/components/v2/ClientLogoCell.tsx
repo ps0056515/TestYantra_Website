@@ -18,6 +18,8 @@ export function ClientLogoCell({ name, domain, logoDomain, wordmarkOnly }: Clien
 
   const tryNext = () => setSourceIndex((i) => i + 1);
 
+  const isDarkAdjust = name === "Canara HSBC" || name === "EaseMyTrip";
+
   return (
     <div
       className={`logo-cell ${exhausted ? "logo-cell-text" : "logo-cell-logo"}`}
@@ -29,7 +31,7 @@ export function ClientLogoCell({ name, domain, logoDomain, wordmarkOnly }: Clien
           <img
             src={sources[sourceIndex]}
             alt={name}
-            className="logo-img-external"
+            className={`logo-img-external ${isDarkAdjust ? "dark-adjust" : ""}`}
             loading="lazy"
             decoding="async"
             onError={tryNext}

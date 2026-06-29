@@ -1475,6 +1475,16 @@ section {
   opacity: 1;
   transition: transform 0.2s;
 }
+.logo-img-external.dark-adjust {
+  background-color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+[data-theme="light"] .logo-img-external.dark-adjust {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
 .logo-name-sub {
   font-size: 9px;
   font-weight: 600;
