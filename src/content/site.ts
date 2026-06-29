@@ -96,7 +96,7 @@ export type Industry = {
 };
 
 export const groupExternalUrls = {
-  technoElevate: "https://www.technoelevate.com/",
+  Innovexce: "https://technoelevate.com/",
   academy: "https://www.qspiders.com/",
 } as const;
 
@@ -197,7 +197,9 @@ export const trustedClientGroups: TrustedClientGroup[] = [
 ];
 
 /** Flat list — all trusted clients */
-export const trustedClients: TrustedClient[] = trustedClientGroups.flatMap((g) => g.clients);
+export const trustedClients: TrustedClient[] = trustedClientGroups.flatMap(
+  (g) => g.clients,
+);
 
 /** Canonical stats from content deck — used site-wide */
 export const stats: Stat[] = [
@@ -231,12 +233,12 @@ export const businessUnits: BusinessUnit[] = [
     ],
   },
   {
-    id: "technoelevate",
-    name: "TechnoElevate",
+    id: "Innovexce",
+    name: "Innovexce",
     tagline: "Product Engineering & Staffing",
     description:
       "Test Yantra's fast-growing product engineering unit — custom engineering, managed delivery, and role-based staffing with 900+ skilled professionals.",
-    href: groupExternalUrls.technoElevate,
+    href: groupExternalUrls.Innovexce,
     external: true,
     email: "contactus@technoelevate.com",
     icon: "💻",
@@ -293,9 +295,9 @@ export const businessUnits: BusinessUnit[] = [
   },
 ];
 
-export const technoElevate = {
-  name: "TechnoElevate",
-  url: groupExternalUrls.technoElevate,
+export const Innovexce = {
+  name: "Innovexce",
+  url: groupExternalUrls.Innovexce,
   email: "contactus@technoelevate.com",
   phone: "+91 9742490958",
   tagline: "Software Engineering at Scale",
@@ -308,7 +310,7 @@ export const technoElevate = {
   cloudImage:
     "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80&auto=format&fit=crop",
   description:
-    "TechnoElevate is the specialized product engineering studio within TestYantra. Partnering with global leaders like Kotak, CARS24, and LegalDST, our 900+ certified engineers design, build, and scale cloud-native web, mobile, data, and enterprise AI systems using CMMI Level 3 architecture-first practices.",
+    "Innovexce is the specialized product engineering studio within TestYantra. Partnering with global leaders like Kotak, CARS24, and LegalDST, our 900+ certified engineers design, build, and scale cloud-native web, mobile, data, and enterprise AI systems using CMMI Level 3 architecture-first practices.",
   announcement:
     "Partnering with Kotak, CARS24, and LegalDST to deliver custom product engineering with TestYantra quality guardrails built in.",
   clientPaths: [
@@ -323,7 +325,11 @@ export const technoElevate = {
       cta: "Start a project",
       href: "/contact?interest=development",
       sectionId: "delivery-models",
-      bullets: ["Dedicated cross-functional squads", "CMMI Level 3 governance", "QA embedded, not bolted on"],
+      bullets: [
+        "Dedicated cross-functional squads",
+        "CMMI Level 3 governance",
+        "QA embedded, not bolted on",
+      ],
     },
     {
       id: "staff",
@@ -336,14 +342,18 @@ export const technoElevate = {
       cta: "Build your team",
       href: "/contact?interest=talent",
       sectionId: "talent-platform",
-      bullets: ["48hr typical shortlist", "50+ stacks covered", "Try-then-scale before you commit"],
+      bullets: [
+        "48hr typical shortlist",
+        "50+ stacks covered",
+        "Try-then-scale before you commit",
+      ],
     },
   ],
   differentiator: {
     eyebrow: "Why one group",
     title: "Build and validate under one roof",
     subtitle:
-      "Most partners build software or test it. TechnoElevate engineers while TestYantra validates — same group, one conversation, no vendor handoffs between build and QA.",
+      "Most partners build software or test it. Innovexce engineers while TestYantra validates — same group, one conversation, no vendor handoffs between build and QA.",
     points: [
       {
         title: "No build-to-QA handoff",
@@ -395,15 +405,18 @@ export const technoElevate = {
   idealFor: [
     {
       label: "Enterprise & regulated",
-      detail: "BFSI, healthcare, and insurance — products that cannot ship without audit-ready quality.",
+      detail:
+        "BFSI, healthcare, and insurance — products that cannot ship without audit-ready quality.",
     },
     {
       label: "Scale-ups & ISVs",
-      detail: "Greenfield or rebuild programmes that need a squad now, not a six-month hiring plan.",
+      detail:
+        "Greenfield or rebuild programmes that need a squad now, not a six-month hiring plan.",
     },
     {
       label: "IT & engineering leaders",
-      detail: "Staff aug, dedicated pods, or hybrid onshore/offshore from our six global locations.",
+      detail:
+        "Staff aug, dedicated pods, or hybrid onshore/offshore from our six global locations.",
     },
   ],
   teCaseStudies: [
@@ -414,7 +427,7 @@ export const technoElevate = {
       problem:
         "Needed to accelerate digital product delivery while maintaining architecture standards and release governance across a complex regulatory environment.",
       approach:
-        "TechnoElevate managed squad with architecture-first delivery, CI/CD integration, and embedded TestYantra regression and release validation.",
+        "Innovexce managed squad with architecture-first delivery, CI/CD integration, and embedded TestYantra regression and release validation.",
       results: [
         { label: "Delivery model", value: "Managed squad" },
         { label: "Quality", value: "Embedded QE" },
@@ -428,7 +441,7 @@ export const technoElevate = {
       problem:
         "High-velocity product roadmap required scalable web and mobile engineering without sacrificing release confidence.",
       approach:
-        "Cross-functional TechnoElevate pod on modern frontend and API layers, with shift-left test automation from TestYantra.",
+        "Cross-functional Innovexce pod on modern frontend and API layers, with shift-left test automation from TestYantra.",
       results: [
         { label: "Engagement", value: "Product squad" },
         { label: "Coverage", value: "Web + API" },
@@ -442,7 +455,7 @@ export const technoElevate = {
       problem:
         "Enterprise legal research product needed production-grade RAG with cited sources and validation before regulated client rollout.",
       approach:
-        "TechnoElevate AI Hub delivery — RAG pipeline and agent workflows — validated by TestYantra AI (bias, drift, LLM safety).",
+        "Innovexce AI Hub delivery — RAG pipeline and agent workflows — validated by TestYantra AI (bias, drift, LLM safety).",
       results: [
         { label: "Capability", value: "RAG + agents" },
         { label: "Validation", value: "TestYantra AI" },
@@ -552,28 +565,44 @@ export const technoElevate = {
       },
     ],
     useCases: [
-      { label: "Legal research", detail: "LLM-powered document analysis with cited sources" },
-      { label: "Credit scoring", detail: "ML engines for lending and risk assessment" },
-      { label: "Retail vision", detail: "Computer vision for inventory and shelf analytics" },
-      { label: "Ops automation", detail: "Agentic workflows across enterprise back-office" },
+      {
+        label: "Legal research",
+        detail: "LLM-powered document analysis with cited sources",
+      },
+      {
+        label: "Credit scoring",
+        detail: "ML engines for lending and risk assessment",
+      },
+      {
+        label: "Retail vision",
+        detail: "Computer vision for inventory and shelf analytics",
+      },
+      {
+        label: "Ops automation",
+        detail: "Agentic workflows across enterprise back-office",
+      },
     ],
   },
   values: [
     {
       title: "Value-based outcomes",
-      description: "We investigate each case thoroughly and deliver as true partners — not just vendors.",
+      description:
+        "We investigate each case thoroughly and deliver as true partners — not just vendors.",
     },
     {
       title: "Domain + technology",
-      description: "Proven methodologies combined with deep business domain knowledge across 14 industries.",
+      description:
+        "Proven methodologies combined with deep business domain knowledge across 14 industries.",
     },
     {
       title: "Agile & flat",
-      description: "Small, credible teams — developers, strategists, and designers who stay close to your product.",
+      description:
+        "Small, credible teams — developers, strategists, and designers who stay close to your product.",
     },
     {
       title: "AI, not hype",
-      description: "Production AI with guardrails — beyond proof-of-concept, into regulated enterprise deployment.",
+      description:
+        "Production AI with guardrails — beyond proof-of-concept, into regulated enterprise deployment.",
     },
   ],
   talentPlatform: {
@@ -581,7 +610,7 @@ export const technoElevate = {
     eyebrow: "Staffing & Team Building",
     title: "Your talent platform — build teams from a trained bench",
     subtitle:
-      "TechnoElevate is more than project delivery. Companies adopt engineers from our 900+ professional pool — or compose dedicated squads from bench-ready, academy-trained talent across every major technology stack.",
+      "Innovexce is more than project delivery. Companies adopt engineers from our 900+ professional pool — or compose dedicated squads from bench-ready, academy-trained talent across every major technology stack.",
     poolStats: [
       { value: "900+", label: "Engineers in pool" },
       { value: "600k+", label: "Academy-trained pipeline" },
@@ -600,7 +629,7 @@ export const technoElevate = {
         icon: "👥",
         title: "Dedicated squad",
         description:
-          "A pre-formed cross-functional pod (e.g. 3 devs + 1 QA + 1 lead) working exclusively on your product, managed by TechnoElevate.",
+          "A pre-formed cross-functional pod (e.g. 3 devs + 1 QA + 1 lead) working exclusively on your product, managed by Innovexce.",
         bestFor: "Product builds, long-running programs",
       },
       {
@@ -614,7 +643,7 @@ export const technoElevate = {
         icon: "🎓",
         title: "Academy-to-bench pipeline",
         description:
-          "Access QSpiders & JSpiders trained candidates — job-ready in software testing and Java/J2EE — vetted and onboarded through TechnoElevate.",
+          "Access QSpiders & JSpiders trained candidates — job-ready in software testing and Java/J2EE — vetted and onboarded through Innovexce.",
         bestFor: "High-volume hiring, graduate programs",
       },
       {
@@ -633,29 +662,91 @@ export const technoElevate = {
       },
     ],
     howItWorks: [
-      { step: "01", title: "Share your stack & roles", detail: "Tell us technologies, seniority mix, team size, and timeline." },
-      { step: "02", title: "Receive curated shortlists", detail: "Profiles from our pool and academy bench — matched to your requirements." },
-      { step: "03", title: "Interview & select", detail: "You choose who joins; we handle contracts, onboarding, and IT setup." },
-      { step: "04", title: "Embed & deliver", detail: "Resources join your tools, stand-ups, and culture — with TestYantra QE optional." },
-      { step: "05", title: "Scale or rotate", detail: "Add capacity, swap roles, or convert to permanent hire as needs evolve." },
+      {
+        step: "01",
+        title: "Share your stack & roles",
+        detail: "Tell us technologies, seniority mix, team size, and timeline.",
+      },
+      {
+        step: "02",
+        title: "Receive curated shortlists",
+        detail:
+          "Profiles from our pool and academy bench — matched to your requirements.",
+      },
+      {
+        step: "03",
+        title: "Interview & select",
+        detail:
+          "You choose who joins; we handle contracts, onboarding, and IT setup.",
+      },
+      {
+        step: "04",
+        title: "Embed & deliver",
+        detail:
+          "Resources join your tools, stand-ups, and culture — with TestYantra QE optional.",
+      },
+      {
+        step: "05",
+        title: "Scale or rotate",
+        detail:
+          "Add capacity, swap roles, or convert to permanent hire as needs evolve.",
+      },
     ],
     techBench: [
-      { category: "Frontend & Web", skills: ["React", "Next.js", "Angular", "Vue", "TypeScript", "PWAs"] },
-      { category: "Backend & APIs", skills: ["Java", "Spring", "Node.js", "Python", ".NET", "Go", "GraphQL"] },
-      { category: "Mobile", skills: ["iOS / Swift", "Android / Kotlin", "React Native", "Flutter"] },
-      { category: "Cloud & DevOps", skills: ["AWS", "Azure", "GCP", "Kubernetes", "Terraform", "CI/CD"] },
-      { category: "Data & AI", skills: ["Snowflake", "Kafka", "Spark", "LLM / RAG", "ML", "Python"] },
-      { category: "Quality & Testing", skills: ["Selenium", "Playwright", "API testing", "Performance", "Security"] },
-      { category: "Enterprise", skills: ["SAP", "Salesforce", "Oracle", "ServiceNow", "Mainframe"] },
-      { category: "Academy tracks", skills: ["Manual QA", "Automation QA", "Java / J2EE", "ISTQB® ready"] },
+      {
+        category: "Frontend & Web",
+        skills: ["React", "Next.js", "Angular", "Vue", "TypeScript", "PWAs"],
+      },
+      {
+        category: "Backend & APIs",
+        skills: [
+          "Java",
+          "Spring",
+          "Node.js",
+          "Python",
+          ".NET",
+          "Go",
+          "GraphQL",
+        ],
+      },
+      {
+        category: "Mobile",
+        skills: ["iOS / Swift", "Android / Kotlin", "React Native", "Flutter"],
+      },
+      {
+        category: "Cloud & DevOps",
+        skills: ["AWS", "Azure", "GCP", "Kubernetes", "Terraform", "CI/CD"],
+      },
+      {
+        category: "Data & AI",
+        skills: ["Snowflake", "Kafka", "Spark", "LLM / RAG", "ML", "Python"],
+      },
+      {
+        category: "Quality & Testing",
+        skills: [
+          "Selenium",
+          "Playwright",
+          "API testing",
+          "Performance",
+          "Security",
+        ],
+      },
+      {
+        category: "Enterprise",
+        skills: ["SAP", "Salesforce", "Oracle", "ServiceNow", "Mainframe"],
+      },
+      {
+        category: "Academy tracks",
+        skills: ["Manual QA", "Automation QA", "Java / J2EE", "ISTQB® ready"],
+      },
     ],
     academyNote:
-      "Our 600k+ academy alumni feed a continuous bench of trained candidates — QSpiders for testing, JSpiders for Java development — assessed and deployment-ready through TechnoElevate.",
+      "Our 600k+ academy alumni feed a continuous bench of trained candidates — QSpiders for testing, JSpiders for Java development — assessed and deployment-ready through Innovexce.",
   },
   social: {
-    facebook: "https://www.facebook.com/technoelevate/",
-    twitter: "https://twitter.com/technoelevate",
-    linkedIn: "https://www.linkedin.com/company/technoelevate",
+    facebook: "https://www.facebook.com/Innovexce/",
+    twitter: "https://twitter.com/Innovexce",
+    linkedIn: "https://www.linkedin.com/company/Innovexce",
   },
 } as const;
 
@@ -663,7 +754,8 @@ export const services: Service[] = [
   {
     slug: "managed-qa",
     name: "Managed QA Services",
-    summary: "Own quality end-to-end with a managed testing function built for scale, speed, and predictable outcomes.",
+    summary:
+      "Own quality end-to-end with a managed testing function built for scale, speed, and predictable outcomes.",
     bullets: [
       "Independent Verification & Validation (IV&V)",
       "Managed POD and Centre of Excellence models",
@@ -675,8 +767,16 @@ export const services: Service[] = [
       "Higher release confidence with measurable quality gates",
       "Lower total cost of quality via automation and reuse",
     ],
-    description: "Our Managed QA services provide global enterprises with end-to-end quality ownership. We handle the entire testing lifecycle, from initial QA strategy, resourcing, test design, and execution, through to release sign-off. Utilizing SLA-driven pod structures and dedicated Centre of Excellence (CoE) architectures, we optimize your QA spend, build robust traceability, and improve deployment predictability.",
-    technologies: ["Jira", "Confluence", "TestRail", "HP ALM", "Zephyr", "Qase"],
+    description:
+      "Our Managed QA services provide global enterprises with end-to-end quality ownership. We handle the entire testing lifecycle, from initial QA strategy, resourcing, test design, and execution, through to release sign-off. Utilizing SLA-driven pod structures and dedicated Centre of Excellence (CoE) architectures, we optimize your QA spend, build robust traceability, and improve deployment predictability.",
+    technologies: [
+      "Jira",
+      "Confluence",
+      "TestRail",
+      "HP ALM",
+      "Zephyr",
+      "Qase",
+    ],
     useCases: [],
     benefitsSectionTitle: "Managed QA Service Benefits",
     benefits: [
@@ -715,7 +815,8 @@ export const services: Service[] = [
   {
     slug: "crowd-testing",
     name: "Crowd Testing",
-    summary: "Test in the real world—devices, networks, locales, and user behaviors—before your users do.",
+    summary:
+      "Test in the real world—devices, networks, locales, and user behaviors—before your users do.",
     bullets: [
       "Fast on-demand coverage across devices and geographies",
       "Exploratory testing with structured findings",
@@ -726,8 +827,15 @@ export const services: Service[] = [
       "Quicker feedback loops for pre-release readiness",
       "Higher app store ratings and fewer production regressions",
     ],
-    description: "Leverage a distributed workforce of professional testers on-demand to validate your application under actual real-world conditions. Test across hundreds of unique device-OS combinations, active cellular networks, localized languages, and specific regional user profiles to identify edge cases, usability problems, and performance bottlenecks before your production users do.",
-    technologies: ["Appium", "BrowserStack", "SauceLabs", "TestFlight", "Firebase Beta"],
+    description:
+      "Leverage a distributed workforce of professional testers on-demand to validate your application under actual real-world conditions. Test across hundreds of unique device-OS combinations, active cellular networks, localized languages, and specific regional user profiles to identify edge cases, usability problems, and performance bottlenecks before your production users do.",
+    technologies: [
+      "Appium",
+      "BrowserStack",
+      "SauceLabs",
+      "TestFlight",
+      "Firebase Beta",
+    ],
     useCases: [],
     benefitsSectionTitle: "Crowd Testing Benefits",
     benefits: [
@@ -766,7 +874,8 @@ export const services: Service[] = [
   {
     slug: "ai-quality",
     name: "AI Quality Engineering",
-    summary: "Test AI systems with rigour and deploy AI to transform how you test — two lanes, one integrated practice.",
+    summary:
+      "Test AI systems with rigour and deploy AI to transform how you test — two lanes, one integrated practice.",
     bullets: [
       "Model validation, drift monitoring, and bias auditing",
       "LLM & Gen AI validation — RAG, hallucination, prompt injection",
@@ -778,8 +887,16 @@ export const services: Service[] = [
       "Up to 60% reduction in automation maintenance overhead",
       "Future-proof QE teams with AI-native skills",
     ],
-    description: "Our integrated AI Quality Engineering practice covers two core dimensions: validating AI and machine learning systems for safety, bias, and correctness (Lane 01), and deploying intelligent AI agents to automate and optimize standard testing pipelines (Lane 02). We ensure your AI models perform reliably under heavy workload, maintain alignment, and run efficiently.",
-    technologies: ["Python", "TensorFlow", "PyTorch", "MLflow", "LangChain", "OpenAI API"],
+    description:
+      "Our integrated AI Quality Engineering practice covers two core dimensions: validating AI and machine learning systems for safety, bias, and correctness (Lane 01), and deploying intelligent AI agents to automate and optimize standard testing pipelines (Lane 02). We ensure your AI models perform reliably under heavy workload, maintain alignment, and run efficiently.",
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "MLflow",
+      "LangChain",
+      "OpenAI API",
+    ],
     useCases: [],
     benefitsSectionTitle: "AI Quality Engineering Benefits",
     benefits: [
@@ -818,7 +935,8 @@ export const services: Service[] = [
   {
     slug: "development",
     name: "Product Engineering",
-    summary: "TechnoElevate is the product engineering studio within TestYantra — designing, building, and scaling software solutions at scale.",
+    summary:
+      "Innovexce is the product engineering studio within TestYantra — designing, building, and scaling software solutions at scale.",
     bullets: [
       "Application Development & Management (React, Next.js, PWAs)",
       "Mobile Engineering (Native iOS/Android, React Native, Flutter)",
@@ -832,8 +950,21 @@ export const services: Service[] = [
       "Accelerated delivery with embedded TestYantra validation",
       "Flexible engagement (scrum pods, managed projects, staffing)",
     ],
-    description: "TechnoElevate is the specialized product engineering studio within TestYantra. Partnering with global enterprises, Kotak, CARS24, and LegalDST, TechnoElevate designs, builds, and scales modern software solutions. The studio combines architecture-first development, agile methodologies, CMMI Level 3 quality processes, and integrated quality engineering to deploy clean, high-performance web, mobile, cloud-native, and AI-enabled platforms.",
-    technologies: ["React", "Next.js", "Angular", "iOS & Android", "React Native", "Flutter", "LLMs & RAG", "LangGraph", "Kubernetes", "Snowflake", "AWS / Azure / GCP"],
+    description:
+      "Innovexce is the specialized product engineering studio within TestYantra. Partnering with global enterprises, Kotak, CARS24, and LegalDST, Innovexce designs, builds, and scales modern software solutions. The studio combines architecture-first development, agile methodologies, CMMI Level 3 quality processes, and integrated quality engineering to deploy clean, high-performance web, mobile, cloud-native, and AI-enabled platforms.",
+    technologies: [
+      "React",
+      "Next.js",
+      "Angular",
+      "iOS & Android",
+      "React Native",
+      "Flutter",
+      "LLMs & RAG",
+      "LangGraph",
+      "Kubernetes",
+      "Snowflake",
+      "AWS / Azure / GCP",
+    ],
     useCases: [],
     benefitsSectionTitle: "Product Engineering Benefits",
     benefits: [
@@ -845,7 +976,7 @@ export const services: Service[] = [
       {
         title: "Quality built in, not bolted on",
         description:
-          "TestYantra validation embedded in every TechnoElevate delivery — build and test under one group, no handoffs.",
+          "TestYantra validation embedded in every Innovexce delivery — build and test under one group, no handoffs.",
       },
       {
         title: "Enterprise AI & data platforms",
@@ -872,7 +1003,8 @@ export const services: Service[] = [
   {
     slug: "professional-services",
     name: "Professional Services",
-    summary: "Specialists who plug into your teams to accelerate delivery, quality engineering, and transformation initiatives.",
+    summary:
+      "Specialists who plug into your teams to accelerate delivery, quality engineering, and transformation initiatives.",
     bullets: [
       "Quality engineering leadership and test strategy",
       "Automation frameworks and toolchain integration",
@@ -884,8 +1016,15 @@ export const services: Service[] = [
       "Reduced operational friction across teams",
       "Smoother releases with clearer accountability",
     ],
-    description: "Deploy highly qualified quality engineering specialists to accelerate your critical projects. From advisory consulting and maturity audits to building custom automation architectures, our experts integrate directly into your engineering loops to reduce technical debt and build scalable quality pipelines.",
-    technologies: ["Agile/Scrum", "DevOps Consulting", "GitLab CI", "GitHub Actions", "SonarQube"],
+    description:
+      "Deploy highly qualified quality engineering specialists to accelerate your critical projects. From advisory consulting and maturity audits to building custom automation architectures, our experts integrate directly into your engineering loops to reduce technical debt and build scalable quality pipelines.",
+    technologies: [
+      "Agile/Scrum",
+      "DevOps Consulting",
+      "GitLab CI",
+      "GitHub Actions",
+      "SonarQube",
+    ],
     useCases: [],
     benefitsSectionTitle: "Professional Services Benefits",
     benefits: [
@@ -924,7 +1063,8 @@ export const services: Service[] = [
   {
     slug: "training",
     name: "Training & Academy",
-    summary: "Build job-ready capability through QSpiders, JSpiders, and enterprise cohort programmes.",
+    summary:
+      "Build job-ready capability through QSpiders, JSpiders, and enterprise cohort programmes.",
     bullets: [
       "Training-as-a-service for fresh job aspirants",
       "Software testing learning paths (QSpiders; ISTQB® partner)",
@@ -936,8 +1076,15 @@ export const services: Service[] = [
       "Improved hiring readiness and ramp-up speed",
       "Consistent skill standards across distributed orgs",
     ],
-    description: "Accelerate workforce capabilities through QSpiders (ISTQB® partner) and JSpiders. We deliver tailored talent cohort programs, fresh graduate bootcamps, and continuous upskilling in modern engineering and AI testing practices, providing organizations with job-ready tech professionals.",
-    technologies: ["ISTQB Syllabus", "Java/J2EE", "Python", "Manual Testing Core", "Automation Basics"],
+    description:
+      "Accelerate workforce capabilities through QSpiders (ISTQB® partner) and JSpiders. We deliver tailored talent cohort programs, fresh graduate bootcamps, and continuous upskilling in modern engineering and AI testing practices, providing organizations with job-ready tech professionals.",
+    technologies: [
+      "ISTQB Syllabus",
+      "Java/J2EE",
+      "Python",
+      "Manual Testing Core",
+      "Automation Basics",
+    ],
     useCases: [],
     benefitsSectionTitle: "Training & Academy Benefits",
     benefits: [
@@ -969,27 +1116,36 @@ export const services: Service[] = [
       {
         title: "Bench-to-project pipeline",
         description:
-          "Academy output feeds TechnoElevate's talent platform — train, assess, and staff from one ecosystem.",
+          "Academy output feeds Innovexce's talent platform — train, assess, and staff from one ecosystem.",
       },
     ],
   },
   {
     slug: "functional-testing",
     name: "Functional & E2E Testing",
-    summary: "Ensure every function, integration, and user journey operates exactly as intended across your entire system topology.",
+    summary:
+      "Ensure every function, integration, and user journey operates exactly as intended across your entire system topology.",
     bullets: [
       "Functional & System Integration Testing (SIT)",
       "End-to-End (E2E) user journey validation",
       "Regression testing and impact analysis",
-      "Cross-browser and cross-device validation"
+      "Cross-browser and cross-device validation",
     ],
     outcomes: [
       "Zero critical defects escaping to production",
       "Comprehensive test coverage across complex workflows",
-      "Accelerated deployment readiness with high confidence"
+      "Accelerated deployment readiness with high confidence",
     ],
-    description: "Ensure complete correctness of system features and business workflows. We design comprehensive system integration and regression suites that validate critical user pathways across diverse browsers, devices, and network profiles, preventing regressions and safeguarding customer journeys.",
-    technologies: ["Selenium", "Jira", "Xray", "Zephyr", "Postman", "Charles Proxy"],
+    description:
+      "Ensure complete correctness of system features and business workflows. We design comprehensive system integration and regression suites that validate critical user pathways across diverse browsers, devices, and network profiles, preventing regressions and safeguarding customer journeys.",
+    technologies: [
+      "Selenium",
+      "Jira",
+      "Xray",
+      "Zephyr",
+      "Postman",
+      "Charles Proxy",
+    ],
     useCases: [],
     benefitsSectionTitle: "Functional & E2E Testing Benefits",
     benefits: [
@@ -1028,20 +1184,28 @@ export const services: Service[] = [
   {
     slug: "accessibility-uat",
     name: "Accessibility & UAT",
-    summary: "Inclusive digital products validated by real business stakeholders and compliance standards.",
+    summary:
+      "Inclusive digital products validated by real business stakeholders and compliance standards.",
     bullets: [
       "WCAG 2.1 / ADA compliance auditing and validation",
       "Screen reader, keyboard navigation, and color contrast audits",
       "User Acceptance Testing (UAT) governance and support",
-      "Business process validation and operational readiness"
+      "Business process validation and operational readiness",
     ],
     outcomes: [
       "100% compliance with digital accessibility standards",
       "Stakeholder-approved releases with verified business rules",
-      "Improved customer satisfaction and inclusive user experiences"
+      "Improved customer satisfaction and inclusive user experiences",
     ],
-    description: "Build inclusive software products that comply with ADA and WCAG 2.1 digital accessibility standards. Our team executes screen reader, keyboard navigation, and contrast audits, alongside coordinating user acceptance testing to align application performance with actual business requirements.",
-    technologies: ["JAWS", "NVDA", "VoiceOver", "Axe DevTools", "Color Contrast Analyzer"],
+    description:
+      "Build inclusive software products that comply with ADA and WCAG 2.1 digital accessibility standards. Our team executes screen reader, keyboard navigation, and contrast audits, alongside coordinating user acceptance testing to align application performance with actual business requirements.",
+    technologies: [
+      "JAWS",
+      "NVDA",
+      "VoiceOver",
+      "Axe DevTools",
+      "Color Contrast Analyzer",
+    ],
     useCases: [],
     benefitsSectionTitle: "Accessibility & UAT Benefits",
     benefits: [
@@ -1080,20 +1244,29 @@ export const services: Service[] = [
   {
     slug: "test-automation",
     name: "Test Automation Engineering",
-    summary: "Build modular, high-speed, and low-maintenance test automation suites that run inside your CI/CD pipeline.",
+    summary:
+      "Build modular, high-speed, and low-maintenance test automation suites that run inside your CI/CD pipeline.",
     bullets: [
       "Playwright, Selenium, and Cypress custom framework design",
       "API and UI test automation integration",
       "CI/CD pipeline test execution and gating",
-      "AI-augmented self-healing and smart test execution"
+      "AI-augmented self-healing and smart test execution",
     ],
     outcomes: [
       "Up to 80% reduction in regression testing cycle time",
       "High-confidence release gates in CI/CD pipeline",
-      "Significant decrease in test maintenance overhead"
+      "Significant decrease in test maintenance overhead",
     ],
-    description: "Replace repetitive manual testing loops with high-speed automated validation suites. We design, deploy, and maintain custom automation frameworks that plug directly into your deployment pipelines, delivering immediate execution feedback and robust test gating.",
-    technologies: ["Playwright", "Selenium", "Cypress", "Appium", "JUnit", "TestNG"],
+    description:
+      "Replace repetitive manual testing loops with high-speed automated validation suites. We design, deploy, and maintain custom automation frameworks that plug directly into your deployment pipelines, delivering immediate execution feedback and robust test gating.",
+    technologies: [
+      "Playwright",
+      "Selenium",
+      "Cypress",
+      "Appium",
+      "JUnit",
+      "TestNG",
+    ],
     useCases: [],
     benefitsSectionTitle: "Test Automation Engineering Benefits",
     benefits: [
@@ -1132,20 +1305,29 @@ export const services: Service[] = [
   {
     slug: "api-microservices",
     name: "API & Microservices Testing",
-    summary: "Validate the integrity, contract reliability, and performance of your APIs and microservices mesh.",
+    summary:
+      "Validate the integrity, contract reliability, and performance of your APIs and microservices mesh.",
     bullets: [
       "API contract testing and schema validation",
       "Integration testing of microservices and message queues",
       "Performance, load, and security testing of endpoints",
-      "Mocking and service virtualization for parallel testing"
+      "Mocking and service virtualization for parallel testing",
     ],
     outcomes: [
       "Robust integration reliability before UI integration",
       "Faster defect isolation at the service level",
-      "Prevention of breaking changes across service updates"
+      "Prevention of breaking changes across service updates",
     ],
-    description: "Validate the functionality, contract integrity, and security of backend APIs and microservices architectures. We perform service contract verification and virtualize external systems, enabling developers to test updates independently and deploy safely.",
-    technologies: ["Postman", "RestAssured", "Pact Contract Testing", "Swagger", "WireMock", "Kafka"],
+    description:
+      "Validate the functionality, contract integrity, and security of backend APIs and microservices architectures. We perform service contract verification and virtualize external systems, enabling developers to test updates independently and deploy safely.",
+    technologies: [
+      "Postman",
+      "RestAssured",
+      "Pact Contract Testing",
+      "Swagger",
+      "WireMock",
+      "Kafka",
+    ],
     useCases: [],
     benefitsSectionTitle: "API & Microservices Testing Benefits",
     benefits: [
@@ -1184,20 +1366,29 @@ export const services: Service[] = [
   {
     slug: "production-monitoring",
     name: "Production Monitoring & Observability",
-    summary: "Proactive, continuous quality verification in production environments so issues are caught before users feel them.",
+    summary:
+      "Proactive, continuous quality verification in production environments so issues are caught before users feel them.",
     bullets: [
       "Synthetic monitoring and scripted user journey checks",
       "Real User Monitoring (RUM) and error tracking",
       "Observability and APM integration (Datadog, Dynatrace, New Relic)",
-      "L1/L2/L3 production quality support and incident triage"
+      "L1/L2/L3 production quality support and incident triage",
     ],
     outcomes: [
       "Mean Time to Detect (MTTD) reduced to minutes",
       "Proactive issue resolution before customer impact",
-      "Always-on validation of production user experience"
+      "Always-on validation of production user experience",
     ],
-    description: "Ensure quality verification doesn't end at deployment. We configure continuous synthetic checks and user-monitoring telemetry, routing alerts to active incident triage centers to identify and resolve performance errors before they affect customers.",
-    technologies: ["Datadog", "Dynatrace", "New Relic", "Splunk", "Grafana", "PagerDuty"],
+    description:
+      "Ensure quality verification doesn't end at deployment. We configure continuous synthetic checks and user-monitoring telemetry, routing alerts to active incident triage centers to identify and resolve performance errors before they affect customers.",
+    technologies: [
+      "Datadog",
+      "Dynatrace",
+      "New Relic",
+      "Splunk",
+      "Grafana",
+      "PagerDuty",
+    ],
     useCases: [],
     benefitsSectionTitle: "Production Monitoring Benefits",
     benefits: [
@@ -1236,20 +1427,29 @@ export const services: Service[] = [
   {
     slug: "testing-ai",
     name: "Testing the AI (Lane 01)",
-    summary: "Rigorous validation of AI and machine learning systems for model accuracy, data drift, bias, and responsible output.",
+    summary:
+      "Rigorous validation of AI and machine learning systems for model accuracy, data drift, bias, and responsible output.",
     bullets: [
       "Model accuracy, precision, and recall validation",
       "Data drift and concept drift detection in production",
       "Bias auditing and compliance checking for regulated sectors",
-      "LLM validation — RAG pipelines, hallucinations, safety gates"
+      "LLM validation — RAG pipelines, hallucinations, safety gates",
     ],
     outcomes: [
       "Deploy AI models with verified accuracy and compliance",
       "Prevent silent model degradation and drift in production",
-      "Mitigate ethical, legal, and operational AI risks"
+      "Mitigate ethical, legal, and operational AI risks",
     ],
-    description: "Run advanced validation procedures for AI models and Generative AI pipelines. We evaluate systems for response hallucinations, bias, model drift, and safety vulnerabilities, ensuring predictable outputs and operational security.",
-    technologies: ["LlamaGuard", "DeepEval", "Guardrails AI", "Ragas", "Pandas", "Scikit-Learn"],
+    description:
+      "Run advanced validation procedures for AI models and Generative AI pipelines. We evaluate systems for response hallucinations, bias, model drift, and safety vulnerabilities, ensuring predictable outputs and operational security.",
+    technologies: [
+      "LlamaGuard",
+      "DeepEval",
+      "Guardrails AI",
+      "Ragas",
+      "Pandas",
+      "Scikit-Learn",
+    ],
     useCases: [],
     benefitsSectionTitle: "Testing the AI Benefits",
     benefits: [
@@ -1288,20 +1488,28 @@ export const services: Service[] = [
   {
     slug: "ai-in-testing",
     name: "AI in Testing (Lane 02)",
-    summary: "Accelerate your quality operations by embedding AI, agentic automation, and LLM-assisted pipelines into the test lifecycle.",
+    summary:
+      "Accelerate your quality operations by embedding AI, agentic automation, and LLM-assisted pipelines into the test lifecycle.",
     bullets: [
       "Agentic automation frameworks (Playwright + MCP)",
       "AI-assisted test generation and documentation",
       "Self-healing automation test suites",
-      "AI-driven framework migrations from legacy stacks"
+      "AI-driven framework migrations from legacy stacks",
     ],
     outcomes: [
       "Up to 60% reduction in automation maintenance effort",
       "Faster stand-up of automated test suites",
-      "Future-proof QA teams with AI-native skills"
+      "Future-proof QA teams with AI-native skills",
     ],
-    description: "Supercharge your test engineering efficiency by embedding Generative AI and automated agents. We implement self-healing code selectors, prompt-to-test-case generators, and automated logs triage systems, cutting test suite maintenance overhead.",
-    technologies: ["GitHub Copilot", "Cursor AI", "Playwright + AI Agents", "LangChain Agents", "Prompt Engineering"],
+    description:
+      "Supercharge your test engineering efficiency by embedding Generative AI and automated agents. We implement self-healing code selectors, prompt-to-test-case generators, and automated logs triage systems, cutting test suite maintenance overhead.",
+    technologies: [
+      "GitHub Copilot",
+      "Cursor AI",
+      "Playwright + AI Agents",
+      "LangChain Agents",
+      "Prompt Engineering",
+    ],
     useCases: [],
     benefitsSectionTitle: "AI in Testing Benefits",
     benefits: [
@@ -1352,8 +1560,8 @@ export const locations: Location[] = [
   },
   {
     country: "India",
-    city: "Bangalore — TechnoElevate",
-    unit: "TechnoElevate",
+    city: "Bangalore — Innovexce",
+    unit: "Innovexce",
     addressLines: [
       "Gopalan CoWorks, #92/9, 3rd Floor,",
       "Above Reliance Smart Bazaar, 80 feet Road, Kathriguppe, Bangalore 560085",
@@ -1375,7 +1583,9 @@ export const locations: Location[] = [
   {
     country: "Ireland",
     city: "Dublin",
-    addressLines: ["The black church, St. Mary's place, Dublin, Ireland - D07 P4AX"],
+    addressLines: [
+      "The black church, St. Mary's place, Dublin, Ireland - D07 P4AX",
+    ],
     phone: "+353 19696560",
   },
   {
@@ -1387,13 +1597,17 @@ export const locations: Location[] = [
   {
     country: "Canada",
     city: "Toronto, Ontario",
-    addressLines: ["120, Adelaide Street West Suite 2500, Toronto, Ontario M5H 1T1, Canada"],
+    addressLines: [
+      "120, Adelaide Street West Suite 2500, Toronto, Ontario M5H 1T1, Canada",
+    ],
     phone: "+1 (639) 916-0279",
   },
   {
     country: "Australia",
     city: "Parramatta, NSW",
-    addressLines: ["Suite 43, 37 Campbell Street, Parramatta, NSW 2150, Australia."],
+    addressLines: [
+      "Suite 43, 37 Campbell Street, Parramatta, NSW 2150, Australia.",
+    ],
     phone: "+61452595180",
   },
 ];
@@ -1452,7 +1666,8 @@ export const ldOutcomeMetrics: OutcomeMetric[] = [
     unit: "percent",
     baseline: 11,
     target: 16,
-    description: "Share of roles filled by internal candidates after upskilling.",
+    description:
+      "Share of roles filled by internal candidates after upskilling.",
   },
   {
     key: "managerConfidence",
@@ -1518,77 +1733,124 @@ export const industries: Industry[] = [
     slug: "banking-finance",
     name: "Banking & Finance",
     icon: "🏦",
-    summary: "Core banking, payments, open banking and regulatory compliance at scale.",
-    useCases: ["Core banking modernization", "Payments reliability", "IV&V for regulated systems"],
+    summary:
+      "Core banking, payments, open banking and regulatory compliance at scale.",
+    useCases: [
+      "Core banking modernization",
+      "Payments reliability",
+      "IV&V for regulated systems",
+    ],
   },
   {
     slug: "insurance",
     name: "Insurance",
     icon: "🛡️",
     summary: "Policy, claims, and digital channels under regulatory pressure.",
-    useCases: ["Claims platform releases", "Regulatory testing", "Automation for policy lifecycle"],
+    useCases: [
+      "Claims platform releases",
+      "Regulatory testing",
+      "Automation for policy lifecycle",
+    ],
   },
   {
     slug: "healthcare",
     name: "Healthcare & Life Sciences",
     icon: "🏥",
-    summary: "HIPAA-aware quality for EHR, medical devices, and clinical software.",
-    useCases: ["HIPAA compliance testing", "Medical device validation", "Clinical trial systems"],
+    summary:
+      "HIPAA-aware quality for EHR, medical devices, and clinical software.",
+    useCases: [
+      "HIPAA compliance testing",
+      "Medical device validation",
+      "Clinical trial systems",
+    ],
   },
   {
     slug: "retail-ecommerce",
     name: "Retail & E-Commerce",
     icon: "🛒",
     summary: "Protect conversion and customer trust with peak-load readiness.",
-    useCases: ["Checkout stability", "Performance at scale", "Omnichannel coverage"],
+    useCases: [
+      "Checkout stability",
+      "Performance at scale",
+      "Omnichannel coverage",
+    ],
   },
   {
     slug: "media-entertainment",
     name: "Media & Entertainment",
     icon: "📡",
-    summary: "Streaming, content, and broadcast experiences across devices and networks.",
-    useCases: ["OTT streaming QA", "Playback compatibility", "CDN variability testing"],
+    summary:
+      "Streaming, content, and broadcast experiences across devices and networks.",
+    useCases: [
+      "OTT streaming QA",
+      "Playback compatibility",
+      "CDN variability testing",
+    ],
   },
   {
     slug: "communications",
     name: "Telecom & Communications",
     icon: "📶",
     summary: "BSS/OSS, network functions, and integration reliability.",
-    useCases: ["Network scenario validation", "BSS/OSS testing", "5G app reliability"],
+    useCases: [
+      "Network scenario validation",
+      "BSS/OSS testing",
+      "5G app reliability",
+    ],
   },
   {
     slug: "travel",
     name: "Travel & Hospitality",
     icon: "✈️",
     summary: "Booking flows and payments resilient through seasonality.",
-    useCases: ["Search/booking flows", "GDS integration", "Peak readiness testing"],
+    useCases: [
+      "Search/booking flows",
+      "GDS integration",
+      "Peak readiness testing",
+    ],
   },
   {
     slug: "saas-hitech",
     name: "SaaS & Hi-Tech",
     icon: "⚙️",
-    summary: "Velocity without chaos — CI/CD aligned testing for product teams.",
-    useCases: ["Regression automation", "API contract testing", "DevOps quality gates"],
+    summary:
+      "Velocity without chaos — CI/CD aligned testing for product teams.",
+    useCases: [
+      "Regression automation",
+      "API contract testing",
+      "DevOps quality gates",
+    ],
   },
   {
     slug: "consumer-electronics",
     name: "Consumer Electronics & IoT",
     icon: "📱",
-    summary: "Device, firmware, and embedded testing in real-world environments.",
-    useCases: ["IoT app testing", "Device compatibility", "Embedded systems QA"],
+    summary:
+      "Device, firmware, and embedded testing in real-world environments.",
+    useCases: [
+      "IoT app testing",
+      "Device compatibility",
+      "Embedded systems QA",
+    ],
   },
   {
     slug: "fintech",
     name: "FinTech",
     icon: "💳",
-    summary: "Digital payments, wallets, and lending platforms built for trust.",
-    useCases: ["Payment gateway testing", "Fraud scenario validation", "Open banking APIs"],
+    summary:
+      "Digital payments, wallets, and lending platforms built for trust.",
+    useCases: [
+      "Payment gateway testing",
+      "Fraud scenario validation",
+      "Open banking APIs",
+    ],
   },
   {
     slug: "energy",
     name: "Energy & Utilities",
     icon: "⚡",
-    summary: "Operational technology and customer portals with zero downtime tolerance.",
+    summary:
+      "Operational technology and customer portals with zero downtime tolerance.",
     useCases: ["SCADA integration", "Billing systems", "Smart meter platforms"],
   },
   {
@@ -1596,27 +1858,39 @@ export const industries: Industry[] = [
     name: "Government & Public Sector",
     icon: "🏛️",
     summary: "Accessible, secure digital services for citizens at scale.",
-    useCases: ["Accessibility compliance", "Security testing", "Citizen portal QA"],
+    useCases: [
+      "Accessibility compliance",
+      "Security testing",
+      "Citizen portal QA",
+    ],
   },
   {
     slug: "automotive",
     name: "Automotive",
     icon: "🚗",
     summary: "Connected vehicles, infotainment, and telematics quality.",
-    useCases: ["Infotainment testing", "Telematics validation", "OTA update QA"],
+    useCases: [
+      "Infotainment testing",
+      "Telematics validation",
+      "OTA update QA",
+    ],
   },
   {
     slug: "logistics",
     name: "Logistics & Supply Chain",
     icon: "📦",
     summary: "End-to-end supply chain software that cannot break under load.",
-    useCases: ["WMS/TMS testing", "Route optimisation QA", "Integration testing"],
+    useCases: [
+      "WMS/TMS testing",
+      "Route optimisation QA",
+      "Integration testing",
+    ],
   },
 ];
 
 export const nav = [
   { href: "/services", label: "Services" },
-  { href: "/development", label: "TechnoElevate" },
+  { href: "/development", label: "Innovexce" },
   { href: groupExternalUrls.academy, label: "Academy" },
   { href: "/industries", label: "Industries" },
   { href: "/client-success", label: "Client Success" },

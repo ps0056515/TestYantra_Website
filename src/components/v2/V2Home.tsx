@@ -16,7 +16,13 @@ import {
   serviceCatalogueIntro,
   teamModels,
 } from "@/content/home";
-import { businessUnits, caseStudies, clientTrustStrip, industries, trustedClientGroups } from "@/content/site";
+import {
+  businessUnits,
+  caseStudies,
+  clientTrustStrip,
+  industries,
+  trustedClientGroups,
+} from "@/content/site";
 import { ClientLogoCell } from "./ClientLogoCell";
 import { V2CapabilityTabs } from "./V2CapabilityTabs";
 import { AnimatedCounter } from "./AnimatedCounter";
@@ -36,17 +42,30 @@ type CatalogueLaneProps = {
   delayOffset?: number;
 };
 
-function CatalogueLane({ lane, accentVar, delayOffset = 0 }: CatalogueLaneProps) {
-  const accentClass = accentVar === "--indigo" ? "catalogue-pill-indigo" : "catalogue-pill-accent";
+function CatalogueLane({
+  lane,
+  accentVar,
+  delayOffset = 0,
+}: CatalogueLaneProps) {
+  const accentClass =
+    accentVar === "--indigo"
+      ? "catalogue-pill-indigo"
+      : "catalogue-pill-accent";
   return (
     <div className="catalogue-lane">
       <div className="catalogue-lane-header">
-        <h3 className={`catalogue-lane-title ${accentClass}-title`}>{lane.label}</h3>
+        <h3 className={`catalogue-lane-title ${accentClass}-title`}>
+          {lane.label}
+        </h3>
         <p className="catalogue-lane-sub">{lane.subtitle}</p>
       </div>
       <div className="catalogue-value-grid">
         {lane.valueCards.map((card, i) => (
-          <ScrollAnimate key={card.title} direction="up" delay={delayOffset + i * 50}>
+          <ScrollAnimate
+            key={card.title}
+            direction="up"
+            delay={delayOffset + i * 50}
+          >
             <Link href={card.href} className="catalogue-value-link">
               <article className={`catalogue-value-card ${accentClass}`}>
                 <h4 className="catalogue-value-title">{card.title}</h4>
@@ -96,7 +115,10 @@ export function V2Home() {
             </Link>
           </div>
         </div>
-        <div className="hero-visual" style={{ position: "relative", zIndex: 1 }}>
+        <div
+          className="hero-visual"
+          style={{ position: "relative", zIndex: 1 }}
+        >
           <div className="hv-wrap hv-wrap-lg">
             <div className="hv-ring hvr1" />
             <div className="hv-ring hvr2" />
@@ -127,7 +149,10 @@ export function V2Home() {
       {/* STATS */}
       <div className="stats-bar stats-bar-5">
         {heroStats.map((s, i) => (
-          <div key={s.label} className={`stat-cell fi${i ? ` fi-d${Math.min(i, 3)}` : ""}`}>
+          <div
+            key={s.label}
+            className={`stat-cell fi${i ? ` fi-d${Math.min(i, 3)}` : ""}`}
+          >
             <div className="stat-num">
               <AnimatedCounter value={s.value} />
               {s.suffix ? <sup>{s.suffix}</sup> : null}
@@ -170,7 +195,9 @@ export function V2Home() {
 
       {/* TRUSTED BY */}
       <div className="clients-strip">
-        <div className="clients-strip-headline">{clientTrustStrip.headline}</div>
+        <div className="clients-strip-headline">
+          {clientTrustStrip.headline}
+        </div>
         <p className="clients-strip-sub">{clientTrustStrip.subline}</p>
         <div className="clients-groups">
           {trustedClientGroups.map((group) => (
@@ -203,8 +230,8 @@ export function V2Home() {
               One embedded partner.
             </h2>
             <p className="section-sub" style={{ marginBottom: 0 }}>
-              From quality assurance to AI-powered testing and product engineering — five disciplines, one
-              seamless engineering partner.
+              From quality assurance to AI-powered testing and product
+              engineering — five disciplines, one seamless engineering partner.
             </p>
           </div>
         </ScrollAnimate>
@@ -254,7 +281,12 @@ export function V2Home() {
         </ScrollAnimate>
         <div className="eco-grid">
           {businessUnits.map((unit, i) => (
-            <ScrollAnimate key={unit.id} direction="up" delay={i * 100} className="h-full">
+            <ScrollAnimate
+              key={unit.id}
+              direction="up"
+              delay={i * 100}
+              className="h-full"
+            >
               <div className="eco-card h-full" style={{ margin: 0 }}>
                 <div className="eco-icon" style={{ borderColor: unit.accent }}>
                   {unit.icon}
@@ -266,7 +298,9 @@ export function V2Home() {
                   <div className="eco-stats">
                     {unit.stats.map((s) => (
                       <div key={s.label}>
-                        <strong><AnimatedCounter value={s.value} /></strong>
+                        <strong>
+                          <AnimatedCounter value={s.value} />
+                        </strong>
                         <span>{s.label}</span>
                       </div>
                     ))}
@@ -301,7 +335,7 @@ export function V2Home() {
       <section className="services relative overflow-hidden" id="services">
         {/* Decorative background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--accent)]/5 blur-[120px] rounded-full pointer-events-none" />
-        
+
         <ScrollAnimate direction="up" className="relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-3 py-1 mb-6 text-xs font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 rounded-full border border-[var(--accent)]/20">
@@ -310,13 +344,21 @@ export function V2Home() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text)] mb-6">
               {serviceCatalogueIntro.titleLine1}
               <br />
-              <span className="text-[var(--muted)]">{serviceCatalogueIntro.titleLine2}</span>
+              <span className="text-[var(--muted)]">
+                {serviceCatalogueIntro.titleLine2}
+              </span>
             </h2>
             <div className="flex flex-wrap justify-center gap-6">
-              <Link href={serviceCatalogueIntro.qaCta.href} className="inline-flex items-center gap-2 text-[var(--accent)] font-semibold hover:gap-3 transition-all">
+              <Link
+                href={serviceCatalogueIntro.qaCta.href}
+                className="inline-flex items-center gap-2 text-[var(--accent)] font-semibold hover:gap-3 transition-all"
+              >
                 {serviceCatalogueIntro.qaCta.label} <span>→</span>
               </Link>
-              <Link href={serviceCatalogueIntro.devCta.href} className="inline-flex items-center gap-2 text-[var(--indigo)] font-semibold hover:gap-3 transition-all">
+              <Link
+                href={serviceCatalogueIntro.devCta.href}
+                className="inline-flex items-center gap-2 text-[var(--indigo)] font-semibold hover:gap-3 transition-all"
+              >
                 {serviceCatalogueIntro.devCta.label} <span>→</span>
               </Link>
             </div>
@@ -325,7 +367,11 @@ export function V2Home() {
 
         <div className="relative z-10 max-w-6xl mx-auto space-y-14">
           <CatalogueLane lane={serviceCatalogue.qa} accentVar="--accent" />
-          <CatalogueLane lane={serviceCatalogue.development} accentVar="--indigo" delayOffset={100} />
+          <CatalogueLane
+            lane={serviceCatalogue.development}
+            accentVar="--indigo"
+            delayOffset={100}
+          />
         </div>
       </section>
 
@@ -335,8 +381,9 @@ export function V2Home() {
           <span className="section-eyebrow">Deep Capabilities</span>
           <h2 className="section-h2">Expertise that runs deep</h2>
           <p className="section-sub">
-            Three capability domains — explore what we deliver across QA, QE, and production
-            monitoring. Product engineering lives under TechnoElevate.
+            Three capability domains — explore what we deliver across QA, QE,
+            and production monitoring. Product engineering lives under
+            Innovexce.
           </p>
         </ScrollAnimate>
         <ScrollAnimate direction="up" delay={100}>
@@ -352,13 +399,18 @@ export function V2Home() {
             <ScrollAnimate direction="left">
               <h2 className="section-h2">Team models</h2>
               <p className="section-sub">
-                Whether you need to scale fast, build a CoE, or extend your bench — we flex to your
-                operating model.
+                Whether you need to scale fast, build a CoE, or extend your
+                bench — we flex to your operating model.
               </p>
             </ScrollAnimate>
             <div className="engage-cards">
               {teamModels.map((m, i) => (
-                <ScrollAnimate key={m.title} direction="left" delay={i * 80} className="w-full">
+                <ScrollAnimate
+                  key={m.title}
+                  direction="left"
+                  delay={i * 80}
+                  className="w-full"
+                >
                   <div className="engage-card w-full" style={{ margin: 0 }}>
                     <h4>{m.title}</h4>
                     <p>{m.description}</p>
@@ -371,13 +423,18 @@ export function V2Home() {
             <ScrollAnimate direction="right">
               <h2 className="section-h2">Delivery models</h2>
               <p className="section-sub">
-                Six commercial models designed for enterprise agility — from outcome-based engagements
-                to full managed operations.
+                Six commercial models designed for enterprise agility — from
+                outcome-based engagements to full managed operations.
               </p>
             </ScrollAnimate>
             <div className="delivery-list">
               {deliveryModels.map((m, i) => (
-                <ScrollAnimate key={m.num} direction="right" delay={i * 80} className="w-full">
+                <ScrollAnimate
+                  key={m.num}
+                  direction="right"
+                  delay={i * 80}
+                  className="w-full"
+                >
                   <div className="delivery-row w-full" style={{ margin: 0 }}>
                     <span className="delivery-num">{m.num}</span>
                     <div>
@@ -401,14 +458,16 @@ export function V2Home() {
             <p className="section-sub" style={{ marginBottom: 30 }}>
               {aiOverview.subtitle}
             </p>
-            
+
             {/* Animated Interactive Runtime Console Mock */}
             <div className="relative rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 overflow-hidden shadow-lg hidden md:block select-none max-w-lg mt-6">
               <div className="flex items-center gap-1.5 border-b border-[var(--border)] pb-3 mb-4">
                 <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
                 <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
                 <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
-                <span className="text-[10px] font-mono text-[var(--muted)] ml-2 uppercase tracking-wider">TestYantra Agentic Runtime v1.0.4</span>
+                <span className="text-[10px] font-mono text-[var(--muted)] ml-2 uppercase tracking-wider">
+                  TestYantra Agentic Runtime v1.0.4
+                </span>
               </div>
               <div className="font-mono text-xs space-y-2.5 text-[var(--muted2)]">
                 <div className="flex items-center gap-2">
@@ -457,7 +516,12 @@ export function V2Home() {
         </ScrollAnimate>
         <div className="ai-detail-grid">
           {aiLane01.items.map((item, i) => (
-            <ScrollAnimate key={item.title} direction="up" delay={i * 80} className="h-full">
+            <ScrollAnimate
+              key={item.title}
+              direction="up"
+              delay={i * 80}
+              className="h-full"
+            >
               <div className="ai-detail-card h-full" style={{ margin: 0 }}>
                 <span className="ai-detail-tag">{item.tag}</span>
                 <h4>{item.title}</h4>
@@ -478,7 +542,12 @@ export function V2Home() {
         </ScrollAnimate>
         <div className="ai-detail-grid">
           {aiLane02.items.map((item, i) => (
-            <ScrollAnimate key={item.title} direction="up" delay={i * 80} className="h-full">
+            <ScrollAnimate
+              key={item.title}
+              direction="up"
+              delay={i * 80}
+              className="h-full"
+            >
               <div className="ai-detail-card h-full" style={{ margin: 0 }}>
                 <h4>{item.title}</h4>
                 <div className="ai-detail-sub">{item.subtitle}</div>
@@ -502,11 +571,18 @@ export function V2Home() {
         </ScrollAnimate>
         <div className="cs-grid">
           {caseStudies.map((cs, i) => (
-            <ScrollAnimate key={cs.title} direction="up" delay={i * 100} className="h-full">
+            <ScrollAnimate
+              key={cs.title}
+              direction="up"
+              delay={i * 100}
+              className="h-full"
+            >
               <div className="cs-card h-full" style={{ margin: 0 }}>
                 <div className={`cs-thumb cst${(i % 3) + 1}`}>
                   {["🏦", "📡", "🏥"][i % 3]}
-                  <span className={`cs-industry ci${(i % 3) + 1}`}>{cs.industry}</span>
+                  <span className={`cs-industry ci${(i % 3) + 1}`}>
+                    {cs.industry}
+                  </span>
                 </div>
                 <div className="cs-body">
                   <h3>{cs.title}</h3>
@@ -534,11 +610,18 @@ export function V2Home() {
       <section className="industries" id="industries">
         <ScrollAnimate direction="up">
           <span className="section-eyebrow">14 Industries</span>
-          <h2 className="section-h2">Built for sectors that cannot afford failure</h2>
+          <h2 className="section-h2">
+            Built for sectors that cannot afford failure
+          </h2>
         </ScrollAnimate>
         <div className="ind-grid ind-grid-dense">
           {industries.map((ind, i) => (
-            <ScrollAnimate key={ind.slug} direction="up" delay={i * 30} className="h-full">
+            <ScrollAnimate
+              key={ind.slug}
+              direction="up"
+              delay={i * 30}
+              className="h-full"
+            >
               <Link
                 href={`/contact?industry=${encodeURIComponent(ind.slug)}`}
                 className="ind-card h-full"

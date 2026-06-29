@@ -13,7 +13,11 @@ export const hero = {
 
 export const heroOfferLine = {
   label: "Why partners choose us",
-  pillars: ["Quality Engineering", "Product Engineering", "Talent Platform"] as const,
+  pillars: [
+    "Quality Engineering",
+    "Product Engineering",
+    "Talent Platform",
+  ] as const,
 } as const;
 
 export const heroValueAdds = [
@@ -21,25 +25,29 @@ export const heroValueAdds = [
     icon: "⚡",
     metric: "72%",
     title: "Faster releases",
-    detail: "Accelerated delivery cycles across regulated and high-velocity programmes",
+    detail:
+      "Accelerated delivery cycles across regulated and high-velocity programmes",
   },
   {
     icon: "🛡️",
     metric: "60%",
     title: "Fewer defect escapes",
-    detail: "Shift-left QA, automation, and production monitoring that catches issues early",
+    detail:
+      "Shift-left QA, automation, and production monitoring that catches issues early",
   },
   {
     icon: "👥",
     metric: "900+",
     title: "Engineers on bench",
-    detail: "Academy-trained talent you can staff, squad, or scale — across every major stack",
+    detail:
+      "Academy-trained talent you can staff, squad, or scale — across every major stack",
   },
   {
     icon: "🔗",
     metric: "1",
     title: "Partner end-to-end",
-    detail: "Build, validate, and launch under one group — no vendor handoffs between teams",
+    detail:
+      "Build, validate, and launch under one group — no vendor handoffs between teams",
   },
 ] as const;
 
@@ -93,7 +101,7 @@ export const practiceAreas: PracticeArea[] = [
     icon: "💻",
     title: "Product Engineering",
     description:
-      "Architecture-first product engineering via TechnoElevate — build, scale, and validate under one group.",
+      "Architecture-first product engineering via Innovexce — build, scale, and validate under one group.",
     href: "/development",
     color: "gold",
   },
@@ -124,44 +132,63 @@ export const serviceCatalogueIntro = {
   titleLine1: "Comprehensive. Specialized.",
   titleLine2: "From build to validation.",
   qaCta: { label: "Explore QA Services", href: "/services" },
-  devCta: { label: "Explore TechnoElevate", href: "/development" },
+  devCta: { label: "Explore Innovexce", href: "/development" },
 } as const;
 
 const qaCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Ship without surprises",
-    outcome: "Full user-journey validation before production — fewer escapes, happier customers.",
-    services: ["End-to-End Testing", "CX Testing", "Mobile App Testing", "UAT & Business Assurance"],
+    outcome:
+      "Full user-journey validation before production — fewer escapes, happier customers.",
+    services: [
+      "End-to-End Testing",
+      "CX Testing",
+      "Mobile App Testing",
+      "UAT & Business Assurance",
+    ],
     href: "/services/functional-testing",
   },
   {
     title: "Automate what repeats",
-    outcome: "CI/CD-integrated automation that gates releases — up to 85% coverage in mature programmes.",
-    services: ["Test Automation Engineering", "API / Microservices Testing", "Service Virtualisation"],
+    outcome:
+      "CI/CD-integrated automation that gates releases — up to 85% coverage in mature programmes.",
+    services: [
+      "Test Automation Engineering",
+      "API / Microservices Testing",
+      "Service Virtualisation",
+    ],
     href: "/services/test-automation",
   },
   {
     title: "Perform at peak load",
-    outcome: "Know your limits before your users do — scalability benchmarks and bottleneck analysis.",
+    outcome:
+      "Know your limits before your users do — scalability benchmarks and bottleneck analysis.",
     services: ["Load Testing & App Performance", "Cloud Assurance"],
     href: "/services/production-monitoring",
   },
   {
     title: "Build for everyone",
-    outcome: "Inclusive digital experiences with WCAG 2.1 / ADA compliance built into every release.",
+    outcome:
+      "Inclusive digital experiences with WCAG 2.1 / ADA compliance built into every release.",
     services: ["Accessibility Testing", "UAT & Business Assurance"],
     href: "/services/accessibility-uat",
   },
   {
     title: "Trust your data",
-    outcome: "Data completeness, accuracy, and lineage validated across warehouses and pipelines.",
+    outcome:
+      "Data completeness, accuracy, and lineage validated across warehouses and pipelines.",
     services: ["ETL / Data Warehouse Testing"],
     href: "/services/managed-qa",
   },
   {
     title: "Cover complex platforms",
-    outcome: "Specialised assurance for packaged, embedded, and connected systems at enterprise scale.",
-    services: ["Package Application Testing", "IoT Testing", "Device & Embedded Testing"],
+    outcome:
+      "Specialised assurance for packaged, embedded, and connected systems at enterprise scale.",
+    services: [
+      "Package Application Testing",
+      "IoT Testing",
+      "Device & Embedded Testing",
+    ],
     href: "/services/managed-qa",
   },
 ];
@@ -169,31 +196,40 @@ const qaCatalogueValues: CatalogueValueCard[] = [
 const developmentCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Build modern products",
-    outcome: "Architecture-first web and mobile engineering with quality guardrails from day one.",
+    outcome:
+      "Architecture-first web and mobile engineering with quality guardrails from day one.",
     services: ["Application Development & Management", "Mobile Engineering"],
     href: "/development",
   },
   {
     title: "Scale on cloud",
-    outcome: "Cloud migrations, Kubernetes, and DevOps pipelines that keep pace with your roadmap.",
+    outcome:
+      "Cloud migrations, Kubernetes, and DevOps pipelines that keep pace with your roadmap.",
     services: ["Cloud & Infrastructure"],
     href: "/development",
   },
   {
     title: "Unlock data & AI",
-    outcome: "Production-grade data platforms, LLM/RAG, and agentic workflows — validated by TestYantra AI.",
-    services: ["Data & Analytics", "AI & LLM Integration", "Agentic AI & Automation"],
+    outcome:
+      "Production-grade data platforms, LLM/RAG, and agentic workflows — validated by TestYantra AI.",
+    services: [
+      "Data & Analytics",
+      "AI & LLM Integration",
+      "Agentic AI & Automation",
+    ],
     href: "/development#ai-hub",
   },
   {
     title: "Connect the enterprise",
-    outcome: "Middleware and API integrations that sync legacy systems with modern SaaS platforms.",
+    outcome:
+      "Middleware and API integrations that sync legacy systems with modern SaaS platforms.",
     services: ["Enterprise Integration & APIs"],
     href: "/development",
   },
   {
     title: "Staff your squad",
-    outcome: "900+ academy-trained engineers — pick specialists or compose full teams from the bench.",
+    outcome:
+      "900+ academy-trained engineers — pick specialists or compose full teams from the bench.",
     services: ["Talent Platform & Team Building"],
     href: "/development#talent-platform",
   },
@@ -207,7 +243,7 @@ export const serviceCatalogue = {
   },
   development: {
     label: "Product Engineering",
-    subtitle: "TechnoElevate — engineering, cloud, AI, and dedicated teams",
+    subtitle: "Innovexce — engineering, cloud, AI, and dedicated teams",
     valueCards: developmentCatalogueValues,
   },
 } as const;

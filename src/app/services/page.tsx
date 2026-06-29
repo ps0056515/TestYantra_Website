@@ -39,20 +39,41 @@ function getHeroImage(slug: string): string {
 }
 
 function getCategoryBadge(slug: string) {
-  const qaSlugs = ["managed-qa", "crowd-testing", "functional-testing", "accessibility-uat"];
-  const qeSlugs = ["test-automation", "api-microservices", "production-monitoring"];
+  const qaSlugs = [
+    "managed-qa",
+    "crowd-testing",
+    "functional-testing",
+    "accessibility-uat",
+  ];
+  const qeSlugs = [
+    "test-automation",
+    "api-microservices",
+    "production-monitoring",
+  ];
   const aiSlugs = ["ai-quality", "testing-ai", "ai-in-testing"];
 
   if (qaSlugs.includes(slug)) {
-    return { text: "Quality Assurance", style: "bg-[var(--indigo)]/10 text-[var(--indigo)]" };
+    return {
+      text: "Quality Assurance",
+      style: "bg-[var(--indigo)]/10 text-[var(--indigo)]",
+    };
   }
   if (qeSlugs.includes(slug)) {
-    return { text: "Quality Engineering & Ops", style: "bg-[var(--teal)]/10 text-[var(--teal)]" };
+    return {
+      text: "Quality Engineering & Ops",
+      style: "bg-[var(--teal)]/10 text-[var(--teal)]",
+    };
   }
   if (aiSlugs.includes(slug)) {
-    return { text: "AI & Cognitive Practice", style: "bg-[var(--accent)]/10 text-[var(--accent)]" };
+    return {
+      text: "AI & Cognitive Practice",
+      style: "bg-[var(--accent)]/10 text-[var(--accent)]",
+    };
   }
-  return { text: "Enterprise Solutions", style: "bg-[var(--gold)]/10 text-[var(--gold)]" };
+  return {
+    text: "Enterprise Solutions",
+    style: "bg-[var(--gold)]/10 text-[var(--gold)]",
+  };
 }
 
 export default function ServicesPage() {
@@ -75,7 +96,10 @@ export default function ServicesPage() {
 
           <ScrollAnimate direction="left" delay={200}>
             <p className="text-base leading-7 text-[var(--muted2)] sm:text-lg max-w-2xl">
-              Scroll down to explore our comprehensive suites of QA, Quality Engineering, AI validation, Product Engineering, and Training services. We provide flexible pods, center-of-excellence setups, and fully managed outcomes.
+              Scroll down to explore our comprehensive suites of QA, Quality
+              Engineering, AI validation, Product Engineering, and Training
+              services. We provide flexible pods, center-of-excellence setups,
+              and fully managed outcomes.
             </p>
           </ScrollAnimate>
 
@@ -138,7 +162,9 @@ export default function ServicesPage() {
               Our 13 Practices
             </h2>
             <p className="mt-4 text-sm leading-6 text-[var(--muted2)] sm:text-base">
-              A detailed guide to each of our capabilities. Click on "In-Depth Details" to view core specifications, outcomes, and advanced frameworks for any practice.
+              A detailed guide to each of our capabilities. Click on "In-Depth
+              Details" to view core specifications, outcomes, and advanced
+              frameworks for any practice.
             </p>
           </ScrollAnimate>
         </div>
@@ -148,33 +174,48 @@ export default function ServicesPage() {
             {
               id: "qa",
               title: "Quality Assurance (QA)",
-              description: "Functional validation, exploratory execution, global crowd validation, and accessibility benchmarks.",
-              slugs: ["managed-qa", "crowd-testing", "functional-testing", "accessibility-uat"],
+              description:
+                "Functional validation, exploratory execution, global crowd validation, and accessibility benchmarks.",
+              slugs: [
+                "managed-qa",
+                "crowd-testing",
+                "functional-testing",
+                "accessibility-uat",
+              ],
               color: "var(--indigo)",
             },
             {
               id: "qe",
               title: "Quality Engineering & Ops (QE)",
-              description: "Shift-left engineering, advanced API validation pipelines, performance benchmarking, and real-time observability.",
-              slugs: ["test-automation", "api-microservices", "production-monitoring"],
+              description:
+                "Shift-left engineering, advanced API validation pipelines, performance benchmarking, and real-time observability.",
+              slugs: [
+                "test-automation",
+                "api-microservices",
+                "production-monitoring",
+              ],
               color: "var(--teal)",
             },
             {
               id: "ai",
               title: "AI & Cognitive Practice",
-              description: "Model fairness assessments, drift monitoring, LLM output guardrails, and agentic framework integration.",
+              description:
+                "Model fairness assessments, drift monitoring, LLM output guardrails, and agentic framework integration.",
               slugs: ["ai-quality", "testing-ai", "ai-in-testing"],
               color: "var(--accent)",
             },
             {
               id: "solutions",
               title: "Enterprise Solutions",
-              description: "Technology assessments, product engineering through TechnoElevate, and workforce upskilling programs.",
+              description:
+                "Technology assessments, product engineering through Innovexce, and workforce upskilling programs.",
               slugs: ["professional-services", "development", "training"],
               color: "var(--gold)",
             },
           ].map((cat) => {
-            const catServices = services.filter((s) => cat.slugs.includes(s.slug));
+            const catServices = services.filter((s) =>
+              cat.slugs.includes(s.slug),
+            );
 
             return (
               <section
@@ -209,30 +250,46 @@ export default function ServicesPage() {
                         className="grid gap-12 lg:grid-cols-12 lg:items-center border-b border-[var(--border)] pb-20 last:border-b-0 last:pb-0"
                       >
                         {/* Text Side */}
-                        <div className={`lg:col-span-7 space-y-6 ${isEven ? "" : "lg:order-2"}`}>
+                        <div
+                          className={`lg:col-span-7 space-y-6 ${isEven ? "" : "lg:order-2"}`}
+                        >
                           <ScrollAnimate direction={isEven ? "left" : "right"}>
-                            <span className={`inline-block rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${badge.style}`}>
+                            <span
+                              className={`inline-block rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider ${badge.style}`}
+                            >
                               {badge.text}
                             </span>
                           </ScrollAnimate>
 
-                          <ScrollAnimate direction={isEven ? "left" : "right"} delay={100}>
+                          <ScrollAnimate
+                            direction={isEven ? "left" : "right"}
+                            delay={100}
+                          >
                             <h4 className="text-2xl font-bold tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition">
                               {svc.name}
                             </h4>
                           </ScrollAnimate>
 
-                          <ScrollAnimate direction={isEven ? "left" : "right"} delay={150}>
+                          <ScrollAnimate
+                            direction={isEven ? "left" : "right"}
+                            delay={150}
+                          >
                             <p className="text-sm leading-relaxed text-[var(--muted2)] sm:text-base font-medium">
                               {svc.summary}
                             </p>
                           </ScrollAnimate>
 
                           {/* Bullet features preview */}
-                          <ScrollAnimate direction={isEven ? "left" : "right"} delay={200}>
+                          <ScrollAnimate
+                            direction={isEven ? "left" : "right"}
+                            delay={200}
+                          >
                             <ul className="grid gap-3 sm:grid-cols-2">
                               {svc.bullets.map((b) => (
-                                <li key={b} className="text-sm text-[var(--muted2)] flex items-start gap-2 bg-[var(--bg2)] border border-[var(--border)] rounded-xl p-3 shadow-sm hover:border-[var(--accent)]/30 transition">
+                                <li
+                                  key={b}
+                                  className="text-sm text-[var(--muted2)] flex items-start gap-2 bg-[var(--bg2)] border border-[var(--border)] rounded-xl p-3 shadow-sm hover:border-[var(--accent)]/30 transition"
+                                >
                                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
                                   <span>{b}</span>
                                 </li>
@@ -240,19 +297,32 @@ export default function ServicesPage() {
                             </ul>
                           </ScrollAnimate>
 
-                          <ScrollAnimate direction={isEven ? "left" : "right"} delay={250}>
+                          <ScrollAnimate
+                            direction={isEven ? "left" : "right"}
+                            delay={250}
+                          >
                             <div className="pt-2">
-                              <Link href={`/services/${svc.slug}`} className="btn-outline inline-flex items-center gap-2 group">
+                              <Link
+                                href={`/services/${svc.slug}`}
+                                className="btn-outline inline-flex items-center gap-2 group"
+                              >
                                 In-Depth Details
-                                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                  →
+                                </span>
                               </Link>
                             </div>
                           </ScrollAnimate>
                         </div>
 
                         {/* Visual Side */}
-                        <div className={`lg:col-span-5 flex justify-center ${isEven ? "" : "lg:order-1"}`}>
-                          <ScrollAnimate direction={isEven ? "right" : "left"} delay={150}>
+                        <div
+                          className={`lg:col-span-5 flex justify-center ${isEven ? "" : "lg:order-1"}`}
+                        >
+                          <ScrollAnimate
+                            direction={isEven ? "right" : "left"}
+                            delay={150}
+                          >
                             <div className="relative group w-full max-w-md aspect-square rounded-2xl overflow-hidden border border-[var(--border2)] bg-[var(--surface)] shadow-xl transition duration-500 hover:scale-[1.02] hover:border-[var(--accent)]">
                               <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/5 to-transparent opacity-40 group-hover:opacity-75 transition duration-500" />
                               <img

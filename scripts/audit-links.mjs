@@ -10,10 +10,19 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const src = path.join(root, "src");
 
 const SERVICE_SLUGS = [
-  "managed-qa", "crowd-testing", "functional-testing", "accessibility-uat",
-  "test-automation", "api-microservices", "production-monitoring",
-  "testing-ai", "ai-in-testing", "ai-quality", "development",
-  "professional-services", "training",
+  "managed-qa",
+  "crowd-testing",
+  "functional-testing",
+  "accessibility-uat",
+  "test-automation",
+  "api-microservices",
+  "production-monitoring",
+  "testing-ai",
+  "ai-in-testing",
+  "ai-quality",
+  "development",
+  "professional-services",
+  "training",
 ];
 
 const ROUTES = new Set([
@@ -31,16 +40,29 @@ const ROUTES = new Set([
 ]);
 
 const ANCHORS = new Set([
-  "pillars", "ecosystem", "services", "capabilities",
-  "capabilities-qa", "capabilities-qe", "capabilities-monitoring",
-  "engage", "ai", "ai-lane-01", "ai-lane-02",
-  "services-list", "talent-platform", "ai-hub", "details", "overview",
-  "use-cases", "technologies",
+  "pillars",
+  "ecosystem",
+  "services",
+  "capabilities",
+  "capabilities-qa",
+  "capabilities-qe",
+  "capabilities-monitoring",
+  "engage",
+  "ai",
+  "ai-lane-01",
+  "ai-lane-02",
+  "services-list",
+  "talent-platform",
+  "ai-hub",
+  "details",
+  "overview",
+  "use-cases",
+  "technologies",
 ]);
 
 const INTEREST_MAP = {
-  development: "TechnoElevate — Development & Staffing",
-  talent: "TechnoElevate — Talent Platform (Build Your Team)",
+  development: "Innovexce — Development & Staffing",
+  talent: "Innovexce — Talent Platform (Build Your Team)",
   training: "Training & Academy",
   "ai-quality": "AI Quality Engineering",
   "testing-ai": "AI Quality Engineering",
@@ -77,11 +99,20 @@ for (const file of walk(src)) {
 }
 
 for (const { file, base, hash } of links) {
-  if (base.startsWith("http") || base.startsWith("mailto:") || base.startsWith("tel:")) continue;
+  if (
+    base.startsWith("http") ||
+    base.startsWith("mailto:") ||
+    base.startsWith("tel:")
+  )
+    continue;
   if (base.startsWith("${")) continue;
 
   if (!ROUTES.has(base)) {
-    issues.push({ type: "broken-route", file, href: base + (hash ? `#${hash}` : "") });
+    issues.push({
+      type: "broken-route",
+      file,
+      href: base + (hash ? `#${hash}` : ""),
+    });
     continue;
   }
 
@@ -96,7 +127,13 @@ for (const slug of SERVICE_SLUGS) {
   const fallback = "Quality Engineering & Testing";
   const effective = mapped ?? fallback;
   if (
-    ["ai-quality", "testing-ai", "ai-in-testing", "training", "development"].includes(slug) &&
+    [
+      "ai-quality",
+      "testing-ai",
+      "ai-in-testing",
+      "training",
+      "development",
+    ].includes(slug) &&
     !mapped &&
     slug !== "managed-qa"
   ) {
@@ -110,7 +147,10 @@ for (const slug of SERVICE_SLUGS) {
       note: `Falls back to "${fallback}" instead of Training & Academy (contact maps interest=training only)`,
     });
   }
-  if (["ai-quality", "testing-ai", "ai-in-testing"].includes(slug) && !INTEREST_MAP[slug]) {
+  if (
+    ["ai-quality", "testing-ai", "ai-in-testing"].includes(slug) &&
+    !INTEREST_MAP[slug]
+  ) {
     issues.push({
       type: "interest-mismatch",
       file: "contact/page.tsx",

@@ -716,7 +716,10 @@ footer .nav-logo-text .light-text {
   background: var(--surface);
   padding: 22px 20px;
   height: 100%;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s;
 }
 .hero-value-card:hover {
   border-color: var(--border2);
@@ -1009,7 +1012,11 @@ section {
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .catalogue-value-card:hover {
   background: var(--bg3);
@@ -1541,7 +1548,8 @@ section {
   font-weight: 800;
   color: #ffffff;
   background: var(--client-color, var(--indigo));
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--client-color, var(--indigo)) 35%, transparent);
+  box-shadow: 0 4px 14px
+    color-mix(in srgb, var(--client-color, var(--indigo)) 35%, transparent);
   flex-shrink: 0;
 }
 .logo-name {
@@ -2016,8 +2024,6 @@ footer {
   display: flex;
   gap: 20px;
 }
-
-
 
 /* ── ECOSYSTEM ── */
 .ecosystem {
@@ -2857,7 +2863,7 @@ footer {
 [data-theme="light"] footer {
   background: #0f172a;
   color: #94a3b8;
-  border-top-color: rgba(255,255,255,0.06);
+  border-top-color: rgba(255, 255, 255, 0.06);
 }
 [data-theme="light"] footer h5,
 [data-theme="light"] footer h6 {
@@ -3031,11 +3037,17 @@ footer {
 
 /* ── DOT GRID DECORATIVE PATTERN ── */
 .bg-dot-grid {
-  background-image: radial-gradient(rgba(120, 119, 198, 0.08) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(
+    rgba(120, 119, 198, 0.08) 1.5px,
+    transparent 1.5px
+  );
   background-size: 24px 24px;
 }
 [data-theme="light"] .bg-dot-grid {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.04) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(
+    rgba(15, 23, 42, 0.04) 1.5px,
+    transparent 1.5px
+  );
 }
 
 /* ── RESPONSIVE ── */
@@ -3222,7 +3234,7 @@ footer {
   .nav-chevron.expanded {
     transform: rotate(180deg) !important;
   }
-  
+
   /* Mega dropdown adjustments for mobile */
   .mega-drop {
     position: static !important;
@@ -3351,17 +3363,21 @@ footer {
   }
 }
 
-/* TechnoElevate — client path cards */
+/* Innovexce — client path cards */
 .te-path-card {
   padding: 28px 32px;
   border-radius: 20px;
   border: 1px solid var(--border2);
   background: var(--surface);
   box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.08);
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
 }
 .te-path-card:hover {
   border-color: color-mix(in srgb, var(--indigo) 35%, var(--border2));
-  box-shadow: 0 16px 40px -16px color-mix(in srgb, var(--indigo) 25%, transparent);
+  box-shadow: 0 16px 40px -16px
+    color-mix(in srgb, var(--indigo) 25%, transparent);
   transform: translateY(-2px);
 }

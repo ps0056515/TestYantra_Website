@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
+const SHOW_DEV_INDICATOR = false; // Set to true to display the Next.js compilation/ISR float indicator
+
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["103.182.211.219"],
+  devIndicators: SHOW_DEV_INDICATOR ? undefined : false,
   images: {
     remotePatterns: [
       {

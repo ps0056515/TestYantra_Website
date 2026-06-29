@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { businessUnits, brand, groupExternalUrls, technoElevate } from "@/content/site";
+import {
+  businessUnits,
+  brand,
+  groupExternalUrls,
+  Innovexce,
+} from "@/content/site";
 
 export function V2Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +28,12 @@ export function V2Nav() {
 
   return (
     <nav>
-      <Link href="/" className="nav-logo" style={{ gap: 0 }} onClick={closeMenu}>
+      <Link
+        href="/"
+        className="nav-logo"
+        style={{ gap: 0 }}
+        onClick={closeMenu}
+      >
         <span className="nav-logo-text">
           <span className="light-text">TES</span>
           <span className="orange-text">TY</span>
@@ -31,7 +41,7 @@ export function V2Nav() {
         </span>
       </Link>
 
-      <ul 
+      <ul
         className={`nav-center ${isOpen ? "open" : ""}`}
         onClick={(e) => {
           // Close menu if a link (but not parent) is clicked
@@ -41,10 +51,20 @@ export function V2Nav() {
         }}
       >
         <li>
-          <Link href="/services" onClick={(e) => handleParentClick(e, "services")}>
-            QA Services <span className={`nav-chevron ${activeSubmenu === "services" ? "expanded" : ""}`}>▾</span>
+          <Link
+            href="/services"
+            onClick={(e) => handleParentClick(e, "services")}
+          >
+            QA Services{" "}
+            <span
+              className={`nav-chevron ${activeSubmenu === "services" ? "expanded" : ""}`}
+            >
+              ▾
+            </span>
           </Link>
-          <div className={`mega-drop ${activeSubmenu === "services" ? "mobile-show" : ""}`}>
+          <div
+            className={`mega-drop ${activeSubmenu === "services" ? "mobile-show" : ""}`}
+          >
             <div className="mega-col">
               <h6>Quality Assurance</h6>
               <ul>
@@ -52,13 +72,17 @@ export function V2Nav() {
                   <Link href="/services/managed-qa">Managed QA Services</Link>
                 </li>
                 <li>
-                  <Link href="/services/functional-testing">Functional & E2E Testing</Link>
+                  <Link href="/services/functional-testing">
+                    Functional & E2E Testing
+                  </Link>
                 </li>
                 <li>
                   <Link href="/services/crowd-testing">Crowd Testing</Link>
                 </li>
                 <li>
-                  <Link href="/services/accessibility-uat">Accessibility & UAT</Link>
+                  <Link href="/services/accessibility-uat">
+                    Accessibility & UAT
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -69,13 +93,19 @@ export function V2Nav() {
                   <Link href="/services/test-automation">Test Automation</Link>
                 </li>
                 <li>
-                  <Link href="/services/api-microservices">API & Microservices</Link>
+                  <Link href="/services/api-microservices">
+                    API & Microservices
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/production-monitoring">Production Monitoring</Link>
+                  <Link href="/services/production-monitoring">
+                    Production Monitoring
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/professional-services">Professional Services</Link>
+                  <Link href="/services/professional-services">
+                    Professional Services
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -89,17 +119,30 @@ export function V2Nav() {
                   <Link href="/services/ai-in-testing">AI in Testing</Link>
                 </li>
                 <li>
-                  <Link href="/services/ai-quality">AI Quality Engineering</Link>
+                  <Link href="/services/ai-quality">
+                    AI Quality Engineering
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
         </li>
         <li>
-          <Link href="/development" onClick={(e) => handleParentClick(e, "development")}>
-            TechnoElevate <span className={`nav-chevron ${activeSubmenu === "development" ? "expanded" : ""}`}>▾</span>
+          <Link
+            href="/development"
+            onClick={(e) => handleParentClick(e, "development")}
+          >
+            Innovexce{" "}
+            <span
+              className={`nav-chevron ${activeSubmenu === "development" ? "expanded" : ""}`}
+            >
+              ▾
+            </span>
           </Link>
-          <div className={`mega-drop ${activeSubmenu === "development" ? "mobile-show" : ""}`} style={{ minWidth: 340 }}>
+          <div
+            className={`mega-drop ${activeSubmenu === "development" ? "mobile-show" : ""}`}
+            style={{ minWidth: 340 }}
+          >
             <div className="mega-col">
               <h6>Product Engineering</h6>
               <ul>
@@ -107,10 +150,14 @@ export function V2Nav() {
                   <Link href="/development">Overview</Link>
                 </li>
                 <li>
-                  <Link href="/services/development">Product Engineering Services</Link>
+                  <Link href="/services/development">
+                    Product Engineering Services
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/development#talent-platform">Talent Platform</Link>
+                  <Link href="/development#talent-platform">
+                    Talent Platform
+                  </Link>
                 </li>
                 <li>
                   <Link href="/contact?interest=talent">Build Your Team</Link>
@@ -120,15 +167,28 @@ export function V2Nav() {
           </div>
         </li>
         <li>
-          <Link href="/industries" onClick={(e) => handleParentClick(e, "industries")}>
-            Industries <span className={`nav-chevron ${activeSubmenu === "industries" ? "expanded" : ""}`}>▾</span>
+          <Link
+            href="/industries"
+            onClick={(e) => handleParentClick(e, "industries")}
+          >
+            Industries{" "}
+            <span
+              className={`nav-chevron ${activeSubmenu === "industries" ? "expanded" : ""}`}
+            >
+              ▾
+            </span>
           </Link>
-          <div className={`mega-drop ${activeSubmenu === "industries" ? "mobile-show" : ""}`} style={{ minWidth: 400 }}>
+          <div
+            className={`mega-drop ${activeSubmenu === "industries" ? "mobile-show" : ""}`}
+            style={{ minWidth: 400 }}
+          >
             <div className="mega-col">
               <h6>Financial Services</h6>
               <ul>
                 <li>
-                  <Link href="/contact?industry=banking-finance">Banking & Finance</Link>
+                  <Link href="/contact?industry=banking-finance">
+                    Banking & Finance
+                  </Link>
                 </li>
                 <li>
                   <Link href="/contact?industry=insurance">Insurance</Link>
@@ -142,16 +202,22 @@ export function V2Nav() {
               <h6>Other Sectors</h6>
               <ul>
                 <li>
-                  <Link href="/contact?industry=healthcare">Healthcare & Life Sciences</Link>
+                  <Link href="/contact?industry=healthcare">
+                    Healthcare & Life Sciences
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=media-entertainment">Media & Entertainment</Link>
+                  <Link href="/contact?industry=media-entertainment">
+                    Media & Entertainment
+                  </Link>
                 </li>
                 <li>
                   <Link href="/contact?industry=retail-ecommerce">Retail</Link>
                 </li>
                 <li>
-                  <Link href="/contact?industry=saas-hitech">SaaS & Hi-Tech</Link>
+                  <Link href="/contact?industry=saas-hitech">
+                    SaaS & Hi-Tech
+                  </Link>
                 </li>
                 <li>
                   <Link href="/industries">All 14 Industries →</Link>
@@ -167,17 +233,32 @@ export function V2Nav() {
           <Link href="/client-success">Client Success</Link>
         </li>
         <li>
-          <Link href="/company/leadership" onClick={(e) => handleParentClick(e, "company")}>
-            Company <span className={`nav-chevron ${activeSubmenu === "company" ? "expanded" : ""}`}>▾</span>
+          <Link
+            href="/company/leadership"
+            onClick={(e) => handleParentClick(e, "company")}
+          >
+            Company{" "}
+            <span
+              className={`nav-chevron ${activeSubmenu === "company" ? "expanded" : ""}`}
+            >
+              ▾
+            </span>
           </Link>
-          <div className={`mega-drop ${activeSubmenu === "company" ? "mobile-show" : ""}`} style={{ minWidth: 380 }}>
+          <div
+            className={`mega-drop ${activeSubmenu === "company" ? "mobile-show" : ""}`}
+            style={{ minWidth: 380 }}
+          >
             <div className="mega-col">
               <h6>Group</h6>
               <ul>
                 {businessUnits.map((u) => (
                   <li key={u.id}>
                     {u.external ? (
-                      <a href={u.href} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={u.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {u.name} ↗
                       </a>
                     ) : (
@@ -197,7 +278,11 @@ export function V2Nav() {
                   <Link href="/company/leadership">Leadership</Link>
                 </li>
                 <li>
-                  <a href={groupExternalUrls.academy} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={groupExternalUrls.academy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Academy ↗
                   </a>
                 </li>
@@ -214,9 +299,9 @@ export function V2Nav() {
         <Link href="/contact" className="nav-cta" onClick={closeMenu}>
           Talk to Us
         </Link>
-        
-        <button 
-          className={`nav-mobile-toggle ${isOpen ? "active" : ""}`} 
+
+        <button
+          className={`nav-mobile-toggle ${isOpen ? "active" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -228,4 +313,3 @@ export function V2Nav() {
     </nav>
   );
 }
-
