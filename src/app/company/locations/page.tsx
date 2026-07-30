@@ -2,7 +2,7 @@
 
 import { V2InnerShell } from "@/components/v2/V2InnerShell";
 import { ScrollAnimate } from "@/components/v2/ScrollAnimate";
-import { locations } from "@/content/site";
+import { locations, groupExternalUrls } from "@/content/site";
 
 function getCountryCode(country: string) {
   const codes: Record<string, string> = {
@@ -70,7 +70,7 @@ export default function LocationsPage() {
                   <div className="mb-6">
                     {loc.unit === "Innovexce" ? (
                       <a
-                        href="https://technoelevate.com/"
+                        href={groupExternalUrls.Innovexce}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block rounded-full bg-[var(--accent)]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--accent)] border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-white transition-colors"

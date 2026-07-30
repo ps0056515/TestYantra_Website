@@ -3387,3 +3387,18 @@ footer {
     color-mix(in srgb, var(--indigo) 25%, transparent);
   transform: translateY(-2px);
 }
+
+/* Innovexce — Theme-aware Logo switching */
+.innovexce-logo-light {
+  display: none !important;
+}
+.innovexce-logo-dark {
+  display: block !important;
+}
+
+[data-theme="light"] .innovexce-logo-light {
+  display: block !important;
+}
+[data-theme="light"] .innovexce-logo-dark {
+  display: none !important;
+}

@@ -27,15 +27,32 @@ export default function DevelopmentPage() {
         {/* HERO SECTION */}
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center relative">
           <div className="lg:col-span-7 space-y-6">
-            <ScrollAnimate direction="left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--indigo)]/20 bg-[var(--indigo)]/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--indigo)] shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--indigo)] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--indigo)]"></span>
-                </span>
-                A Test Yantra Company · Product Engineering Studio
-              </div>
-            </ScrollAnimate>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <ScrollAnimate direction="left">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--indigo)]/20 bg-[var(--indigo)]/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--indigo)] shadow-sm backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--indigo)] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--indigo)]"></span>
+                  </span>
+                  A Test Yantra Company · Product Engineering Studio
+                </div>
+              </ScrollAnimate>
+
+              <ScrollAnimate direction="right">
+                <div className="flex items-center">
+                  <img
+                    src="/IE_Dark.png"
+                    alt="Innovexce Logo"
+                    className="innovexce-logo-dark h-9 sm:h-11 w-auto object-contain transition-all duration-300 hover:scale-105"
+                  />
+                  <img
+                    src="/IE_Light.png"
+                    alt="Innovexce Logo"
+                    className="innovexce-logo-light h-9 sm:h-11 w-auto object-contain transition-all duration-300 hover:scale-105"
+                  />
+                </div>
+              </ScrollAnimate>
+            </div>
             <ScrollAnimate direction="left" delay={100}>
               <h1 className="text-4xl font-extrabold tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl font-display leading-[1.15]">
                 {Innovexce.tagline}

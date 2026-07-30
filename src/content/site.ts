@@ -96,7 +96,7 @@ export type Industry = {
 };
 
 export const groupExternalUrls = {
-  Innovexce: "https://technoelevate.com/",
+  Innovexce: "https://innovexce.com/",
   academy: "https://www.qspiders.com/",
 } as const;
 
@@ -240,7 +240,7 @@ export const businessUnits: BusinessUnit[] = [
       "Test Yantra's fast-growing product engineering unit — custom engineering, managed delivery, and role-based staffing with 900+ skilled professionals.",
     href: groupExternalUrls.Innovexce,
     external: true,
-    email: "contactus@technoelevate.com",
+    email: "contactus@innovexce.com",
     icon: "💻",
     accent: "var(--indigo)",
     stats: [
@@ -298,7 +298,7 @@ export const businessUnits: BusinessUnit[] = [
 export const Innovexce = {
   name: "Innovexce",
   url: groupExternalUrls.Innovexce,
-  email: "contactus@technoelevate.com",
+  email: "contactus@innovexce.com",
   phone: "+91 9742490958",
   tagline: "Software Engineering at Scale",
   heroSubline:

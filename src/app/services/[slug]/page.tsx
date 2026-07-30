@@ -76,15 +76,36 @@ export default async function ServiceDetailPage({
         {/* RICH SPLIT HERO SECTION */}
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center relative pb-16">
           <div className="lg:col-span-7 space-y-6">
-            <ScrollAnimate direction="left">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--accent)] shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
-                </span>
-                Practice Area &amp; Capability
-              </div>
-            </ScrollAnimate>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <ScrollAnimate direction="left">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--accent)] shadow-sm backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
+                  </span>
+                  {isDev
+                    ? "A Test Yantra Company · Product Engineering Studio"
+                    : "Practice Area & Capability"}
+                </div>
+              </ScrollAnimate>
+
+              {isDev && (
+                <ScrollAnimate direction="right">
+                  <div className="flex items-center">
+                    <img
+                      src="/IE_Dark.png"
+                      alt="Innovexce Logo"
+                      className="innovexce-logo-dark h-9 sm:h-11 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    />
+                    <img
+                      src="/IE_Light.png"
+                      alt="Innovexce Logo"
+                      className="innovexce-logo-light h-9 sm:h-11 w-auto object-contain transition-all duration-300 hover:scale-105"
+                    />
+                  </div>
+                </ScrollAnimate>
+              )}
+            </div>
             <ScrollAnimate direction="left" delay={100}>
               <h1 className="text-4xl font-extrabold tracking-tight text-[var(--text)] sm:text-5xl lg:text-6xl font-display leading-[1.15]">
                 {service.name}
