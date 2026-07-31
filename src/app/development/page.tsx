@@ -70,7 +70,7 @@ export default function DevelopmentPage() {
             </ScrollAnimate>
             <ScrollAnimate direction="left" delay={200}>
               <p className="text-sm text-[var(--muted2)] font-semibold">
-                Choose your path below — managed product engineering or talent
+                Choose your path below - managed product engineering or talent
                 from our bench.
               </p>
             </ScrollAnimate>
@@ -146,7 +146,7 @@ export default function DevelopmentPage() {
               What are you looking for?
             </h2>
             <p className="text-sm text-[var(--muted2)] font-semibold mt-2 max-w-2xl">
-              Two clear engagement models — pick the one that matches how you
+              Two clear engagement models - pick the one that matches how you
               buy.
             </p>
           </ScrollAnimate>
@@ -209,7 +209,7 @@ export default function DevelopmentPage() {
           </div>
         </div>
 
-        {/* GROUP DIFFERENTIATOR — early */}
+        {/* GROUP DIFFERENTIATOR - early */}
         <div className="rounded-3xl border border-[var(--indigo)]/20 bg-gradient-to-br from-[var(--indigo)]/5 to-[var(--bg2)] p-8 sm:p-10 space-y-8">
           <ScrollAnimate direction="up">
             <div className="text-xs font-extrabold uppercase tracking-wider text-[var(--indigo)]">
@@ -238,7 +238,7 @@ export default function DevelopmentPage() {
           </div>
         </div>
 
-        {/* PROOF — client programmes */}
+        {/* PROOF - client programmes */}
         <div
           className="space-y-10 border-t border-[var(--border)] pt-24"
           id="proof"
@@ -330,7 +330,7 @@ export default function DevelopmentPage() {
           </div>
         </div>
 
-        {/* DELIVERY MODELS — build path */}
+        {/* DELIVERY MODELS - build path */}
         <div
           id="delivery-models"
           className="space-y-10 border-t border-[var(--border)] pt-24 scroll-mt-24"
@@ -343,7 +343,7 @@ export default function DevelopmentPage() {
               How we deliver managed projects
             </h2>
             <p className="text-sm text-[var(--muted2)] font-semibold mt-3 max-w-2xl">
-              Four commercial models — from a dedicated squad on your backlog to
+              Four commercial models - from a dedicated squad on your backlog to
               a fixed-scope MVP or AI platform build.
             </p>
           </ScrollAnimate>
@@ -401,7 +401,7 @@ export default function DevelopmentPage() {
                 <p className="text-xs sm:text-sm text-[var(--muted2)] font-semibold leading-relaxed">
                   From strategy and consulting through app development, cloud
                   infrastructure, event-driven data systems, and managed
-                  operations — we imagine, engineer, modernize, and manage.
+                  operations - we imagine, engineer, modernize, and manage.
                 </p>
               </ScrollAnimate>
             </div>
@@ -443,7 +443,7 @@ export default function DevelopmentPage() {
           </div>
         </div>
 
-        {/* AI HUB — when your build needs AI */}
+        {/* AI HUB - when your build needs AI */}
         <div
           id="ai-hub"
           className="space-y-12 border-t border-[var(--border)] pt-24 scroll-mt-24"
@@ -528,7 +528,7 @@ export default function DevelopmentPage() {
           </ScrollAnimate>
         </div>
 
-        {/* TALENT PLATFORM — Staff your team */}
+        {/* TALENT PLATFORM - Staff your team */}
         <div
           id={Innovexce.talentPlatform.id}
           className="space-y-12 border-t border-[var(--border)] pt-24 scroll-mt-24"
@@ -568,7 +568,7 @@ export default function DevelopmentPage() {
                 Choose how you engage
               </h3>
               <p className="text-xs text-[var(--muted2)] font-semibold mb-6 max-w-2xl">
-                Six flexible models — from a single specialist to a full squad
+                Six flexible models - from a single specialist to a full squad
                 built from our bench and academy pipeline.
               </p>
             </ScrollAnimate>
@@ -626,7 +626,7 @@ export default function DevelopmentPage() {
                 Technology bench
               </h3>
               <p className="text-xs text-[var(--muted2)] font-semibold mb-6 max-w-2xl">
-                Form teams across the stacks you run — from legacy enterprise to
+                Form teams across the stacks you run - from legacy enterprise to
                 modern cloud and AI.
               </p>
             </ScrollAnimate>
@@ -732,7 +732,7 @@ export default function DevelopmentPage() {
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--indigo)]/10 text-[var(--indigo)]">
                       ✓
                     </span>
-                    AI Hub — LLM, RAG, agents, ML, and computer vision
+                    AI Hub - LLM, RAG, agents, ML, and computer vision
                   </li>
                   <li className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-[var(--muted2)]">
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--indigo)]/10 text-[var(--indigo)]">
@@ -818,7 +818,7 @@ export default function DevelopmentPage() {
               </em>
             </h2>
             <p className="mt-4 text-sm text-white/80 font-semibold relative z-10 max-w-xl mx-auto">
-              Managed product engineering or talent from our bench — one group,
+              Managed product engineering or talent from our bench - one group,
               one conversation.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4 relative z-10">

@@ -1,7 +1,7 @@
 const INTEREST_OPTIONS = [
   "Quality Engineering & Testing",
-  "Innovexce — Product Engineering & Staffing",
-  "Innovexce — Talent Platform (Build Your Team)",
+  "Innovexce - Product Engineering & Staffing",
+  "Innovexce - Talent Platform (Build Your Team)",
   "AI Quality Engineering",
   "Training & Academy",
   "General Inquiry",
@@ -10,8 +10,8 @@ const INTEREST_OPTIONS = [
 export type ContactInterest = (typeof INTEREST_OPTIONS)[number];
 
 const SLUG_TO_INTEREST: Record<string, ContactInterest> = {
-  development: "Innovexce — Product Engineering & Staffing",
-  talent: "Innovexce — Talent Platform (Build Your Team)",
+  development: "Innovexce - Product Engineering & Staffing",
+  talent: "Innovexce - Talent Platform (Build Your Team)",
   training: "Training & Academy",
   "ai-quality": "AI Quality Engineering",
   "testing-ai": "AI Quality Engineering",

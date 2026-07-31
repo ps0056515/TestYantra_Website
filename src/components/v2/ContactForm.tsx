@@ -14,7 +14,9 @@ export function ContactForm({
   defaultIndustry,
   industrySelectOptions,
 }: ContactFormProps) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">(
+    "idle",
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -27,7 +29,7 @@ export function ContactForm({
       alert("Please fill in your name and email.");
       return;
     }
-    
+
     setStatus("submitting");
 
     try {
@@ -53,7 +55,10 @@ export function ContactForm({
       setStatus("success");
     } catch (error: any) {
       console.error("Submission Error:", error);
-      alert(error.message || "Failed to submit enquiry. Please try again or email us directly at contactus@testyantra.com.");
+      alert(
+        error.message ||
+          "Failed to submit enquiry. Please try again or email us directly at contactus@testyantra.com.",
+      );
       setStatus("idle");
     }
   };
@@ -64,9 +69,15 @@ export function ContactForm({
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-3xl">
           ✓
         </div>
-        <h3 className="mt-6 text-xl font-bold text-[var(--text)]">Enquiry Submitted!</h3>
+        <h3 className="mt-6 text-xl font-bold text-[var(--text)]">
+          Enquiry Submitted!
+        </h3>
         <p className="mt-2 text-sm text-[var(--muted2)] leading-relaxed max-w-sm mx-auto">
-          Thank you for reaching out, <strong className="text-[var(--text)] font-semibold">{name}</strong>. Our engineering team has received your request and will follow up at <strong className="text-[var(--text)] font-semibold">{email}</strong> shortly.
+          Thank you for reaching out,{" "}
+          <strong className="text-[var(--text)] font-semibold">{name}</strong>.
+          Our engineering team has received your request and will follow up at{" "}
+          <strong className="text-[var(--text)] font-semibold">{email}</strong>{" "}
+          shortly.
         </p>
         <button
           onClick={() => {
@@ -90,8 +101,10 @@ export function ContactForm({
       <h2 className="text-xl font-bold tracking-tight text-[var(--text)]">
         Send us a message
       </h2>
-      <p className="text-xs text-[var(--muted2)] font-medium mt-1">Our engineering team typically responds within 24 hours.</p>
-      
+      <p className="text-xs text-[var(--muted2)] font-medium mt-1">
+        Our engineering team typically responds within 24 hours.
+      </p>
+
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
@@ -125,7 +138,7 @@ export function ContactForm({
             />
           </div>
         </div>
-        
+
         <div>
           <label className="text-xs font-extrabold uppercase tracking-wider text-[var(--muted2)]">
             I&apos;m interested in
@@ -146,8 +159,18 @@ export function ContactForm({
               ))}
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-[var(--muted)]">
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
           </div>
@@ -173,8 +196,18 @@ export function ContactForm({
               ))}
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-[var(--muted)]">
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
           </div>
@@ -186,7 +219,7 @@ export function ContactForm({
           </label>
           <textarea
             name="message"
-            placeholder="Tell us about your challenge — QE, development, AI, or training..."
+            placeholder="Tell us about your challenge - QE, development, AI, or training..."
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -202,9 +235,24 @@ export function ContactForm({
         >
           {status === "submitting" ? (
             <>
-              <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
               </svg>
               Sending...
             </>

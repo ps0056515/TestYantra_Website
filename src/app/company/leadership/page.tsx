@@ -8,7 +8,7 @@ const leadershipPoints = [
   "Built multiple business verticals to support enterprise QA needs across domains and technologies.",
   "Established a crowd testing service platform for flexible and fast QA coverage across B2B and B2C apps.",
   "Created a training organization supporting large-scale hiring and capability development for IT companies.",
-  "Launched Innovexce as the group's product engineering unit — 900+ engineers delivering quality-first builds.",
+  "Launched Innovexce as the group's product engineering unit - 900+ engineers delivering quality-first builds.",
   "Grew a high-performing leadership team spanning QE, development, training, and delivery functions.",
   "Scaled delivery with a large, globally distributed testing and engineering organization.",
 ];
@@ -37,8 +37,8 @@ export default function LeadershipPage() {
           <ScrollAnimate direction="up" delay={200}>
             <p className="text-base md:text-lg text-[var(--muted2)] leading-relaxed max-w-2xl mx-auto">
               The story behind Test Yantra is a delivery-first mindset:
-              translate vision into repeatable systems — TestYantra, Innovexce,
-              and Academy — that consistently improve outcomes.
+              translate vision into repeatable systems - TestYantra, Innovexce,
+              and Academy - that consistently improve outcomes.
             </p>
           </ScrollAnimate>
         </div>

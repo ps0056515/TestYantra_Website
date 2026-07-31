@@ -21,9 +21,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "TestYantra — End-to-End Engineering",
+  title: "TestYantra - End-to-End Engineering",
   description:
-    "The Test Yantra group — quality engineering, product engineering, and talent platform. Build, validate, and launch software from concept to production.",
+    "The Test Yantra group - quality engineering, product engineering, and talent platform. Build, validate, and launch software from concept to production.",
 };
 
 export default function RootLayout({
@@ -32,7 +32,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-theme="light" className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-theme="light"
+      className={`${jakarta.variable} ${fraunces.variable} h-full antialiased`}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -54,7 +59,9 @@ export default function RootLayout({
             Do not use flex-1 on main: it stretches main to fill the viewport and leaves a huge
             empty band (same as page bg) between content and the footer.
           */}
-          <main className="relative z-0 w-full min-w-0 shrink-0 overflow-visible">{children}</main>
+          <main className="relative z-0 w-full min-w-0 shrink-0 overflow-visible">
+            {children}
+          </main>
           <V2Footer />
         </div>
       </body>

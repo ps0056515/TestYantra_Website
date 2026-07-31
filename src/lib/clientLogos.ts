@@ -1,4 +1,4 @@
-/** Logo URL sources for trusted client cells — tried in order until one loads */
+/** Logo URL sources for trusted client cells - tried in order until one loads */
 export function getClientLogoSources(domain: string): string[] {
   let targetDomain = domain;
   if (domain === "whalecloud.com") {

@@ -21,7 +21,12 @@ export function OutcomesGraph({ metrics }: { metrics: OutcomeMetric[] }) {
 
   const curated = useMemo(() => {
     const byPersona: Record<Persona, OutcomeMetric["key"][]> = {
-      ld: ["timeToCompetency", "completionRate", "proficiencyLift", "internalMobility"],
+      ld: [
+        "timeToCompetency",
+        "completionRate",
+        "proficiencyLift",
+        "internalMobility",
+      ],
       business: ["timeToCompetency", "internalMobility", "managerConfidence"],
       learner: ["timeToCompetency", "proficiencyLift", "managerConfidence"],
     };
@@ -37,15 +42,19 @@ export function OutcomesGraph({ metrics }: { metrics: OutcomeMetric[] }) {
             Outcomes graph
           </div>
           <div className="mt-2 text-lg font-semibold tracking-tight">
-            Make impact legible—for every stakeholder.
+            Make impact legible-for every stakeholder.
           </div>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
-            Toggle the lens. The same learning system can tell different stories: L&D efficiency,
-            business readiness, and learner momentum.
+            Toggle the lens. The same learning system can tell different
+            stories: L&D efficiency, business readiness, and learner momentum.
           </p>
         </div>
         <div className="inline-flex rounded-2xl border border-card-border/60 bg-black/10 p-1">
-          <Tab label="L&D" active={persona === "ld"} onClick={() => setPersona("ld")} />
+          <Tab
+            label="L&D"
+            active={persona === "ld"}
+            onClick={() => setPersona("ld")}
+          />
           <Tab
             label="Business"
             active={persona === "business"}
@@ -68,11 +77,18 @@ export function OutcomesGraph({ metrics }: { metrics: OutcomeMetric[] }) {
           const targetPct = ((m.target - min) / range) * 100;
 
           return (
-            <div key={m.key} className="rounded-2xl border border-card-border/60 bg-black/10 p-5">
+            <div
+              key={m.key}
+              className="rounded-2xl border border-card-border/60 bg-black/10 p-5"
+            >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <div className="text-sm font-semibold tracking-tight">{m.label}</div>
-                  <div className="mt-1 text-xs leading-5 text-muted">{m.description}</div>
+                  <div className="text-sm font-semibold tracking-tight">
+                    {m.label}
+                  </div>
+                  <div className="mt-1 text-xs leading-5 text-muted">
+                    {m.description}
+                  </div>
                 </div>
                 <div className="text-right">
                   <div className="text-xs font-semibold uppercase tracking-wider text-muted">
@@ -159,4 +175,3 @@ function Dot({
     </div>
   );
 }
-

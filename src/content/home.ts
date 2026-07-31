@@ -6,7 +6,7 @@ export const hero = {
   titleLine2: "Ship with",
   titleHighlight: "Confidence.",
   subtitle:
-    "AI-augmented engineering services that help enterprises build, validate, and launch software faster — from concept to production.",
+    "AI-augmented engineering services that help enterprises build, validate, and launch software faster - from concept to production.",
   ctaPrimary: { label: "Explore Our Capabilities", href: "#pillars" },
   ctaSecondary: { label: "Talk to an Expert", href: "/contact" },
 } as const;
@@ -40,14 +40,14 @@ export const heroValueAdds = [
     metric: "900+",
     title: "Engineers on bench",
     detail:
-      "Academy-trained talent you can staff, squad, or scale — across every major stack",
+      "Academy-trained talent you can staff, squad, or scale - across every major stack",
   },
   {
     icon: "🔗",
     metric: "1",
     title: "Partner end-to-end",
     detail:
-      "Build, validate, and launch under one group — no vendor handoffs between teams",
+      "Build, validate, and launch under one group - no vendor handoffs between teams",
   },
 ] as const;
 
@@ -101,7 +101,7 @@ export const practiceAreas: PracticeArea[] = [
     icon: "💻",
     title: "Product Engineering",
     description:
-      "Architecture-first product engineering via Innovexce — build, scale, and validate under one group.",
+      "Architecture-first product engineering via Innovexce - build, scale, and validate under one group.",
     href: "/development",
     color: "gold",
   },
@@ -139,7 +139,7 @@ const qaCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Ship without surprises",
     outcome:
-      "Full user-journey validation before production — fewer escapes, happier customers.",
+      "Full user-journey validation before production - fewer escapes, happier customers.",
     services: [
       "End-to-End Testing",
       "CX Testing",
@@ -151,7 +151,7 @@ const qaCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Automate what repeats",
     outcome:
-      "CI/CD-integrated automation that gates releases — up to 85% coverage in mature programmes.",
+      "CI/CD-integrated automation that gates releases - up to 85% coverage in mature programmes.",
     services: [
       "Test Automation Engineering",
       "API / Microservices Testing",
@@ -162,7 +162,7 @@ const qaCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Perform at peak load",
     outcome:
-      "Know your limits before your users do — scalability benchmarks and bottleneck analysis.",
+      "Know your limits before your users do - scalability benchmarks and bottleneck analysis.",
     services: ["Load Testing & App Performance", "Cloud Assurance"],
     href: "/services/production-monitoring",
   },
@@ -211,7 +211,7 @@ const developmentCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Unlock data & AI",
     outcome:
-      "Production-grade data platforms, LLM/RAG, and agentic workflows — validated by TestYantra AI.",
+      "Production-grade data platforms, LLM/RAG, and agentic workflows - validated by TestYantra AI.",
     services: [
       "Data & Analytics",
       "AI & LLM Integration",
@@ -229,7 +229,7 @@ const developmentCatalogueValues: CatalogueValueCard[] = [
   {
     title: "Staff your squad",
     outcome:
-      "900+ academy-trained engineers — pick specialists or compose full teams from the bench.",
+      "900+ academy-trained engineers - pick specialists or compose full teams from the bench.",
     services: ["Talent Platform & Team Building"],
     href: "/development#talent-platform",
   },
@@ -238,12 +238,12 @@ const developmentCatalogueValues: CatalogueValueCard[] = [
 export const serviceCatalogue = {
   qa: {
     label: "Quality Engineering",
-    subtitle: "TestYantra — validation, automation, and AI-powered quality",
+    subtitle: "TestYantra - validation, automation, and AI-powered quality",
     valueCards: qaCatalogueValues,
   },
   development: {
     label: "Product Engineering",
-    subtitle: "Innovexce — engineering, cloud, AI, and dedicated teams",
+    subtitle: "Innovexce - engineering, cloud, AI, and dedicated teams",
     valueCards: developmentCatalogueValues,
   },
 } as const;
@@ -262,7 +262,7 @@ export const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Capabilities",
     title: "Quality Assurance",
     intro:
-      "Validate every dimension of your software — from functional correctness to user experience, accessibility, and data integrity.",
+      "Validate every dimension of your software - from functional correctness to user experience, accessibility, and data integrity.",
     items: [
       {
         title: "Functional, System & E2E Testing",
@@ -300,7 +300,7 @@ export const capabilityGroups: CapabilityGroup[] = [
           "Scalability benchmarks, stress tests, and bottleneck analysis under real-world load.",
       },
       {
-        title: "IV&V — Independent Validation",
+        title: "IV&V - Independent Validation",
         description:
           "Objective, third-party verification of critical systems and regulated environments.",
       },
@@ -316,7 +316,7 @@ export const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Capabilities",
     title: "Quality Engineering",
     intro:
-      "Embed quality into the engineering lifecycle — not as a gate, but as a built-in capability that accelerates delivery.",
+      "Embed quality into the engineering lifecycle - not as a gate, but as a built-in capability that accelerates delivery.",
     items: [
       {
         title: "API / Microservices Testing",
@@ -331,7 +331,7 @@ export const capabilityGroups: CapabilityGroup[] = [
       {
         title: "Test Automation Engineering",
         description:
-          "Playwright, Selenium, and custom framework builds — with IP-led accelerators for faster stand-up.",
+          "Playwright, Selenium, and custom framework builds - with IP-led accelerators for faster stand-up.",
       },
       {
         title: "Performance Engineering & SRE",
@@ -363,7 +363,7 @@ export const capabilityGroups: CapabilityGroup[] = [
           "Proactive 24/7 scripted checks that simulate user journeys before customers encounter issues.",
       },
       {
-        title: "Production Support — L1, L2, L3",
+        title: "Production Support - L1, L2, L3",
         description:
           "Tiered incident response from first-line triage through to root-cause analysis and resolution.",
       },
@@ -390,17 +390,17 @@ export const teamModels = [
   {
     title: "Managed POD",
     description:
-      "A self-contained, cross-functional quality team with defined scope, governance, and delivery SLAs — fully managed by TestYantra.",
+      "A self-contained, cross-functional quality team with defined scope, governance, and delivery SLAs - fully managed by TestYantra.",
   },
   {
     title: "Centre of Excellence (CoE)",
     description:
-      "Build an internal QE CoE with our expertise, tooling blueprints, and leadership — anchored to your enterprise standards.",
+      "Build an internal QE CoE with our expertise, tooling blueprints, and leadership - anchored to your enterprise standards.",
   },
   {
     title: "Role-Based Staffing",
     description:
-      "Precision placement of QA and QE professionals — manual testers, automation engineers, architects, or performance specialists.",
+      "Precision placement of QA and QE professionals - manual testers, automation engineers, architects, or performance specialists.",
   },
   {
     title: "Global Delivery",
@@ -420,7 +420,7 @@ export const deliveryModels = [
     num: "02",
     title: "Project as a Service",
     description:
-      "Fixed-scope, outcome-based engagements — TestYantra owns the delivery, you own the outcome.",
+      "Fixed-scope, outcome-based engagements - TestYantra owns the delivery, you own the outcome.",
   },
   {
     num: "03",
@@ -452,14 +452,14 @@ export const aiOverview = {
   eyebrow: "TestYantra AI",
   title: "AI at the Centre of Quality.",
   subtitle:
-    "Two distinct, high-value capabilities — testing AI systems with rigour, and deploying AI to transform how you test.",
+    "Two distinct, high-value capabilities - testing AI systems with rigour, and deploying AI to transform how you test.",
   lanes: [
     {
       id: "lane-01",
       label: "Lane 01",
       title: "Testing the AI",
       description:
-        "Validate your AI systems for model accuracy, data drift, bias, and responsible output — before your customers find out.",
+        "Validate your AI systems for model accuracy, data drift, bias, and responsible output - before your customers find out.",
       href: "#ai-lane-01",
     },
     {
@@ -518,25 +518,25 @@ export const aiLane02 = {
       title: "AI-Powered Framework",
       subtitle: "Playwright + MCP + Custom Agent",
       description:
-        "Self-healing, context-aware test automation built on Playwright, Model Context Protocol, and TestYantra's proprietary agent layer — reducing maintenance overhead by up to 60%.",
+        "Self-healing, context-aware test automation built on Playwright, Model Context Protocol, and TestYantra's proprietary agent layer - reducing maintenance overhead by up to 60%.",
     },
     {
       title: "Framework Migration",
       subtitle: "Legacy to Modern Stack",
       description:
-        "AI-assisted migration from legacy automation frameworks (Selenium, UFT, Tosca) to modern, maintainable stacks — with zero loss of test coverage.",
+        "AI-assisted migration from legacy automation frameworks (Selenium, UFT, Tosca) to modern, maintainable stacks - with zero loss of test coverage.",
     },
     {
       title: "Agentic Suite Integration",
       subtitle: "Full Lifecycle Automation",
       description:
-        "Orchestrated AI agents that span requirements analysis, test design, execution, defect triage, and reporting — reducing human-in-loop effort across the test lifecycle.",
+        "Orchestrated AI agents that span requirements analysis, test design, execution, defect triage, and reporting - reducing human-in-loop effort across the test lifecycle.",
     },
     {
       title: "AI Training for Talent",
       subtitle: "Workforce Enablement",
       description:
-        "Structured upskilling programmes that equip your QA teams to adopt AI-native tools, prompting techniques, and agentic workflows — closing the AI skills gap from within.",
+        "Structured upskilling programmes that equip your QA teams to adopt AI-native tools, prompting techniques, and agentic workflows - closing the AI skills gap from within.",
     },
   ],
 } as const;
@@ -545,7 +545,7 @@ export const ecosystemIntro = {
   eyebrow: "The TestYantra Group",
   title: "One ecosystem.\nFour engines of delivery.",
   subtitle:
-    "From academy-trained talent to product engineering and quality validation — build, staff, test, and scale under a single trusted group. No handoffs between brands.",
+    "From academy-trained talent to product engineering and quality validation - build, staff, test, and scale under a single trusted group. No handoffs between brands.",
 } as const;
 
 export const ctaBand = {

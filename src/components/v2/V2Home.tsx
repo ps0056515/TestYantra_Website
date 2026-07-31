@@ -231,7 +231,7 @@ export function V2Home() {
             </h2>
             <p className="section-sub" style={{ marginBottom: 0 }}>
               From quality assurance to AI-powered testing and product
-              engineering — five disciplines, one seamless engineering partner.
+              engineering - five disciplines, one seamless engineering partner.
             </p>
           </div>
         </ScrollAnimate>
@@ -381,7 +381,7 @@ export function V2Home() {
           <span className="section-eyebrow">Deep Capabilities</span>
           <h2 className="section-h2">Expertise that runs deep</h2>
           <p className="section-sub">
-            Three capability domains — explore what we deliver across QA, QE,
+            Three capability domains - explore what we deliver across QA, QE,
             and production monitoring. Product engineering lives under
             Innovexce.
           </p>
@@ -400,7 +400,7 @@ export function V2Home() {
               <h2 className="section-h2">Team models</h2>
               <p className="section-sub">
                 Whether you need to scale fast, build a CoE, or extend your
-                bench — we flex to your operating model.
+                bench - we flex to your operating model.
               </p>
             </ScrollAnimate>
             <div className="engage-cards">
@@ -423,7 +423,7 @@ export function V2Home() {
             <ScrollAnimate direction="right">
               <h2 className="section-h2">Delivery models</h2>
               <p className="section-sub">
-                Six commercial models designed for enterprise agility — from
+                Six commercial models designed for enterprise agility - from
                 outcome-based engagements to full managed operations.
               </p>
             </ScrollAnimate>

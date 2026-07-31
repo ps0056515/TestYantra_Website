@@ -16,22 +16,34 @@ type Answers = {
 
 const tracks: Record<string, Track> = {
   qspiders: {
-    title: "QSpiders — Software Testing Track",
+    title: "QSpiders - Software Testing Track",
     description:
       "A testing-first path for job aspirants and teams looking to strengthen quality fundamentals and practical execution.",
-    nextSteps: ["Start with core testing + test design", "Add automation basics", "Build a project portfolio"],
+    nextSteps: [
+      "Start with core testing + test design",
+      "Add automation basics",
+      "Build a project portfolio",
+    ],
   },
   jspiders: {
-    title: "JSpiders — Java/J2EE Track",
+    title: "JSpiders - Java/J2EE Track",
     description:
       "A development-first path focused on Java/J2EE capability, structured learning, and practical outcomes.",
-    nextSteps: ["Refresh Java foundations", "Build a web app project", "Practice interviews + problem solving"],
+    nextSteps: [
+      "Refresh Java foundations",
+      "Build a web app project",
+      "Practice interviews + problem solving",
+    ],
   },
   blended: {
-    title: "Blended Track — Dev + QA Collaboration",
+    title: "Blended Track - Dev + QA Collaboration",
     description:
       "A dual-track for teams: shift-left quality with shared workflows across development, testing, and release.",
-    nextSteps: ["Define quality gates", "Automate in CI", "Instrument production feedback loops"],
+    nextSteps: [
+      "Define quality gates",
+      "Automate in CI",
+      "Instrument production feedback loops",
+    ],
   },
 };
 
@@ -60,7 +72,8 @@ export function SkillReadinessWidget() {
             Get a recommended learning track in 30 seconds.
           </div>
           <p className="mt-2 text-sm leading-6 text-muted">
-            Inspired by modern L&D platforms: clarity first, then a path you can act on.
+            Inspired by modern L&D platforms: clarity first, then a path you can
+            act on.
           </p>
         </div>
         <div className="hidden rounded-full border border-card-border/60 bg-black/10 px-3 py-1 text-xs text-muted sm:block">
@@ -76,7 +89,9 @@ export function SkillReadinessWidget() {
             { id: "job", label: "Get job-ready" },
             { id: "team", label: "Upskill a team" },
           ]}
-          onChange={(v) => setAnswers((a) => ({ ...a, goal: v as Answers["goal"] }))}
+          onChange={(v) =>
+            setAnswers((a) => ({ ...a, goal: v as Answers["goal"] }))
+          }
         />
         <Segment
           label="Focus"
@@ -86,7 +101,9 @@ export function SkillReadinessWidget() {
             { id: "java", label: "Java/J2EE" },
             { id: "mixed", label: "Mixed" },
           ]}
-          onChange={(v) => setAnswers((a) => ({ ...a, domain: v as Answers["domain"] }))}
+          onChange={(v) =>
+            setAnswers((a) => ({ ...a, domain: v as Answers["domain"] }))
+          }
         />
         <Segment
           label="Timeline"
@@ -96,14 +113,22 @@ export function SkillReadinessWidget() {
             { id: "90", label: "90 days" },
             { id: "180", label: "180 days" },
           ]}
-          onChange={(v) => setAnswers((a) => ({ ...a, timeline: v as Answers["timeline"] }))}
+          onChange={(v) =>
+            setAnswers((a) => ({ ...a, timeline: v as Answers["timeline"] }))
+          }
         />
       </div>
 
       <div className="mt-6 rounded-2xl border border-card-border/60 bg-black/10 p-5">
-        <div className="text-sm font-semibold tracking-tight">Recommendation</div>
-        <div className="mt-2 text-base font-semibold tracking-tight">{recommendation.title}</div>
-        <div className="mt-2 text-sm leading-6 text-muted">{recommendation.description}</div>
+        <div className="text-sm font-semibold tracking-tight">
+          Recommendation
+        </div>
+        <div className="mt-2 text-base font-semibold tracking-tight">
+          {recommendation.title}
+        </div>
+        <div className="mt-2 text-sm leading-6 text-muted">
+          {recommendation.description}
+        </div>
         <div className="mt-4 grid gap-2 sm:grid-cols-3">
           {recommendation.nextSteps.map((s) => (
             <div
@@ -132,7 +157,9 @@ function Segment({
 }) {
   return (
     <div>
-      <div className="text-xs font-semibold uppercase tracking-wider text-muted">{label}</div>
+      <div className="text-xs font-semibold uppercase tracking-wider text-muted">
+        {label}
+      </div>
       <div className="mt-2 grid gap-2">
         {options.map((o) => {
           const active = o.id === value;
@@ -156,4 +183,3 @@ function Segment({
     </div>
   );
 }
-

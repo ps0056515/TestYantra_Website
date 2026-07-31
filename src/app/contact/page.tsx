@@ -31,11 +31,13 @@ export default async function ContactPage({ searchParams }: Props) {
             <h1 className="text-balance text-3xl font-bold leading-tight tracking-tight text-[var(--text)] sm:text-4xl">
               Accelerate quality.
               <br />
-              <span className="text-[var(--accent)]">Ship with confidence.</span>
+              <span className="text-[var(--accent)]">
+                Ship with confidence.
+              </span>
             </h1>
             <p className="mt-4 text-base leading-7 text-[var(--muted2)]">
-              Whether you need QE, AI testing, product engineering via Innovexce,
-              or training — one group, one conversation.
+              Whether you need QE, AI testing, product engineering via
+              Innovexce, or training - one group, one conversation.
             </p>
             <ul className="mt-10 space-y-8">
               <li className="flex gap-4 group">
@@ -43,9 +45,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   ✉
                 </span>
                 <div>
-                  <div className="font-bold text-[var(--text)]">
-                    TestYantra
-                  </div>
+                  <div className="font-bold text-[var(--text)]">TestYantra</div>
                   <a
                     href={`mailto:${brand.emailPrimary}`}
                     className="mt-1 block text-sm text-[var(--muted2)] transition hover:text-[var(--accent)] font-medium"
@@ -59,9 +59,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   💻
                 </span>
                 <div>
-                  <div className="font-bold text-[var(--text)]">
-                    Innovexce
-                  </div>
+                  <div className="font-bold text-[var(--text)]">Innovexce</div>
                   <a
                     href={`mailto:${Innovexce.email}`}
                     className="mt-1 block text-sm text-[var(--muted2)] transition hover:text-[var(--indigo)] font-medium"
@@ -75,9 +73,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   📍
                 </span>
                 <div>
-                  <div className="font-bold text-[var(--text)]">
-                    Global HQ
-                  </div>
+                  <div className="font-bold text-[var(--text)]">Global HQ</div>
                   <p className="mt-1 text-sm text-[var(--muted2)] font-medium">
                     Bangalore, India · Plano, Texas · 6 locations
                   </p>

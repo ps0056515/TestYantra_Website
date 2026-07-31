@@ -45,7 +45,7 @@ export const achieveTabs: AchieveTab[] = [
     icon: "bolt",
     panelTitle: "Automation that compounds",
     panelIntro:
-      "Build durable automation assets—frameworks, data, and pipelines—that shorten every future release.",
+      "Build durable automation assets-frameworks, data, and pipelines-that shorten every future release.",
     bullets: [
       "Frameworks tuned to your stack and team skills",
       "Smart test selection and flaky-test containment",
@@ -99,14 +99,21 @@ export const serviceCards: ServiceCard[] = [
     emoji: "🚀",
     featured: true,
     sublinks: [
-      { label: "Quality Strategy and Roadmap", href: "/services/professional-services" },
-      { label: "Test Process Assessment", href: "/services/professional-services" },
+      {
+        label: "Quality Strategy and Roadmap",
+        href: "/services/professional-services",
+      },
+      {
+        label: "Test Process Assessment",
+        href: "/services/professional-services",
+      },
     ],
   },
   {
     id: "qa",
     title: "Quality Assurance",
-    description: "Rigorous manual and exploratory testing to ensure flawless UX.",
+    description:
+      "Rigorous manual and exploratory testing to ensure flawless UX.",
     emoji: "🛡️",
   },
   {
@@ -118,13 +125,15 @@ export const serviceCards: ServiceCard[] = [
   {
     id: "analytics",
     title: "Data Analytics",
-    description: "Actionable insights derived from your testing data ecosystem.",
+    description:
+      "Actionable insights derived from your testing data ecosystem.",
     emoji: "📈",
   },
   {
     id: "migration",
     title: "Platform Migration",
-    description: "De-risk moves across platforms with structured validation waves.",
+    description:
+      "De-risk moves across platforms with structured validation waves.",
     emoji: "🔄",
   },
   {
@@ -148,7 +157,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "banking",
     title: "Banking & Financial Services",
-    description: "Secure, scalable solutions designed for speed, trust, and seamless digital experiences.",
+    description:
+      "Secure, scalable solutions designed for speed, trust, and seamless digital experiences.",
     image:
       "https://images.unsplash.com/photo-1611974789855-9c698a806e40?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#f38118",
@@ -157,7 +167,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "industrial",
     title: "Industrial & Enterprise",
-    description: "Reliable quality for complex systems, integrations, and operational software.",
+    description:
+      "Reliable quality for complex systems, integrations, and operational software.",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#7c3aed",
@@ -166,7 +177,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "healthcare",
     title: "Healthcare",
-    description: "Patient-safe releases with compliance-aware testing and traceable quality evidence.",
+    description:
+      "Patient-safe releases with compliance-aware testing and traceable quality evidence.",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#06b6d4",
@@ -175,7 +187,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "insurance",
     title: "Insurance",
-    description: "Confident policy, claims, and digital channel releases under regulatory pressure.",
+    description:
+      "Confident policy, claims, and digital channel releases under regulatory pressure.",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#22c55e",
@@ -184,7 +197,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "life-sciences",
     title: "Life Sciences",
-    description: "Validation-minded quality for regulated products and lab-to-market software.",
+    description:
+      "Validation-minded quality for regulated products and lab-to-market software.",
     image:
       "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#2563eb",
@@ -193,7 +207,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "software",
     title: "Software & Hi-Tech",
-    description: "Velocity without chaos—CI/CD aligned testing for fast-moving product teams.",
+    description:
+      "Velocity without chaos-CI/CD aligned testing for fast-moving product teams.",
     image:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#0d9488",
@@ -202,7 +217,8 @@ export const showcaseIndustries: ShowcaseIndustry[] = [
   {
     slug: "consumer",
     title: "Consumer Tech",
-    description: "Delight users at scale with device, commerce, and experience coverage.",
+    description:
+      "Delight users at scale with device, commerce, and experience coverage.",
     image:
       "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&q=80&auto=format&fit=crop",
     iconBg: "#e11d48",

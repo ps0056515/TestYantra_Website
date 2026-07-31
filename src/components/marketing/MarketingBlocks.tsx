@@ -8,7 +8,11 @@ import {
   showcaseIndustries,
   whyChooseItems,
 } from "@/content/marketing";
-import { IndustryGlyph, StatIcon, WhyIcon } from "@/components/marketing/MarketingIcons";
+import {
+  IndustryGlyph,
+  StatIcon,
+  WhyIcon,
+} from "@/components/marketing/MarketingIcons";
 
 export function HeroSection() {
   return (
@@ -29,8 +33,8 @@ export function HeroSection() {
             <span className="mt-3 block text-foreground">Software Quality</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-7 text-muted sm:text-lg">
-            We reimagine QA to do more with less, accelerating defect detection, reducing test cycles,
-            and improving overall delivery efficiency.
+            We reimagine QA to do more with less, accelerating defect detection,
+            reducing test cycles, and improving overall delivery efficiency.
           </p>
           <div className="mt-10">
             <Link
@@ -48,7 +52,10 @@ export function HeroSection() {
 
 export function VideoWordmarkSection() {
   return (
-    <section className="border-b border-neutral-100 bg-white py-16 sm:py-24" aria-label="Brand">
+    <section
+      className="border-b border-neutral-100 bg-white py-16 sm:py-24"
+      aria-label="Brand"
+    >
       <Container>
         <div className="flex min-h-[280px] flex-col items-center justify-center sm:min-h-[360px]">
           <div className="relative inline-block">
@@ -62,7 +69,12 @@ export function VideoWordmarkSection() {
               className="absolute left-[52%] top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
               aria-label="Play introduction video"
             >
-              <svg className="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+              <svg
+                className="ml-0.5 h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             </button>
@@ -130,20 +142,29 @@ export function CompanyOverviewSection() {
         </h2>
         <div className="mx-auto mt-10 max-w-5xl rounded-3xl border border-neutral-200 bg-white px-6 py-10 text-center sm:px-12 sm:py-12">
           <p className="text-base leading-8 text-foreground sm:text-lg sm:leading-8">
-            At <span className="font-semibold text-brand-orange">Test Yantra</span>, we help teams
-            build software that performs—consistently, reliably, and at scale. With deep expertise in
-            quality engineering, automation, and AI-driven testing, we bring precision to every
-            stage of the development lifecycle. For over two decades, we’ve partnered with
-            organizations to accelerate delivery, reduce risk, and create seamless digital
-            experiences.
+            At{" "}
+            <span className="font-semibold text-brand-orange">Test Yantra</span>
+            , we help teams build software that performs-consistently, reliably,
+            and at scale. With deep expertise in quality engineering,
+            automation, and AI-driven testing, we bring precision to every stage
+            of the development lifecycle. For over two decades, we’ve partnered
+            with organizations to accelerate delivery, reduce risk, and create
+            seamless digital experiences.
           </p>
         </div>
         <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {companyStats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center text-center">
+            <div
+              key={s.label}
+              className="flex flex-col items-center text-center"
+            >
               <StatIcon name={s.icon} />
-              <div className="mt-4 text-2xl font-bold text-foreground">{s.stat}</div>
-              <div className="mt-1 text-sm font-medium text-foreground">{s.label}</div>
+              <div className="mt-4 text-2xl font-bold text-foreground">
+                {s.stat}
+              </div>
+              <div className="mt-1 text-sm font-medium text-foreground">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -160,8 +181,8 @@ export function OurClientsSection() {
           Our <span className="text-brand-orange">Clients</span>
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-7 text-foreground">
-          We partner with forward-thinking teams—from startups to global enterprises—who prioritize
-          quality, speed, and innovation.
+          We partner with forward-thinking teams-from startups to global
+          enterprises-who prioritize quality, speed, and innovation.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {clientLogos.map((c, i) => (
@@ -175,7 +196,9 @@ export function OurClientsSection() {
               >
                 {c.initial}
               </div>
-              <div className="mt-4 text-sm font-medium text-muted">{c.name}</div>
+              <div className="mt-4 text-sm font-medium text-muted">
+                {c.name}
+              </div>
             </div>
           ))}
         </div>
@@ -198,7 +221,10 @@ export function WhyChooseSection() {
           />
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
             {whyChooseItems.map((item, i) => (
-              <div key={item.label} className="relative flex flex-col items-center text-center">
+              <div
+                key={item.label}
+                className="relative flex flex-col items-center text-center"
+              >
                 <WhyIcon index={i} />
                 <p className="mt-4 max-w-[8rem] text-xs font-semibold leading-snug text-foreground sm:text-sm">
                   {item.label}
@@ -225,10 +251,12 @@ export function IndustriesStackSection() {
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Built for Every Industry.
         </h2>
-        <p className="mt-2 text-xl font-bold text-brand-orange">Driven by Innovation.</p>
+        <p className="mt-2 text-xl font-bold text-brand-orange">
+          Driven by Innovation.
+        </p>
         <p className="mt-4 max-w-3xl text-base leading-7 text-foreground">
-          We partner with forward-thinking teams—from startups to global enterprises—who prioritize
-          quality, speed, and innovation.
+          We partner with forward-thinking teams-from startups to global
+          enterprises-who prioritize quality, speed, and innovation.
         </p>
         <div className="mt-12 flex flex-col gap-4">
           {showcaseIndustries.map((ind) => (
@@ -248,8 +276,14 @@ export function IndustriesStackSection() {
                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/40"
                 aria-hidden
               />
-              <div className="absolute inset-x-0 top-0 h-3 bg-gradient-to-b from-black/35 to-transparent" aria-hidden />
-              <div className="absolute inset-x-0 bottom-0 h-3 bg-gradient-to-t from-black/35 to-transparent" aria-hidden />
+              <div
+                className="absolute inset-x-0 top-0 h-3 bg-gradient-to-b from-black/35 to-transparent"
+                aria-hidden
+              />
+              <div
+                className="absolute inset-x-0 bottom-0 h-3 bg-gradient-to-t from-black/35 to-transparent"
+                aria-hidden
+              />
               <div className="relative z-10 flex h-full flex-col justify-start p-8 sm:p-10">
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-xl shadow-md"
@@ -260,7 +294,9 @@ export function IndustriesStackSection() {
                 <h3 className="mt-5 text-lg font-bold uppercase tracking-wide text-white sm:text-xl">
                   {ind.title}
                 </h3>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-white/90">{ind.description}</p>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-white/90">
+                  {ind.description}
+                </p>
                 <Link
                   href="/industries"
                   className="mt-4 inline-flex w-fit text-sm font-semibold text-white/95 underline-offset-4 hover:underline"
@@ -283,15 +319,23 @@ export function HomeContactTeaserSection() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
           <div className="lg:col-span-5">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Ready to <span className="text-brand-orange">engineer</span> the future?
+              Ready to <span className="text-brand-orange">engineer</span> the
+              future?
             </h2>
             <p className="mt-4 text-base leading-7 text-muted">
-              Partner with us to redefine what&apos;s possible in software quality and delivery speed.
+              Partner with us to redefine what&apos;s possible in software
+              quality and delivery speed.
             </p>
             <ul className="mt-10 space-y-8">
               <li className="flex gap-4">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange text-brand-orange">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
                     <path d="M4 6h16v12H4z" />
                     <path d="M4 8l8 5 8-5" />
                   </svg>
@@ -308,24 +352,34 @@ export function HomeContactTeaserSection() {
               </li>
               <li className="flex gap-4">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange text-brand-orange">
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
                     <path d="M12 21s-6-4.2-6-10a6 6 0 1112 0c0 5.8-6 10-6 10z" />
                     <circle cx="12" cy="11" r="2.5" />
                   </svg>
                 </span>
                 <div>
                   <div className="font-semibold text-foreground">Global HQ</div>
-                  <p className="mt-1 text-sm text-muted">Bangalore, India | San Jose, USA</p>
+                  <p className="mt-1 text-sm text-muted">
+                    Bangalore, India | San Jose, USA
+                  </p>
                 </div>
               </li>
             </ul>
           </div>
           <div className="lg:col-span-7">
             <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.18)] sm:p-8">
-              <h3 className="text-xl font-light text-muted">Send us a message</h3>
+              <h3 className="text-xl font-light text-muted">
+                Send us a message
+              </h3>
               <p className="mt-4 text-sm text-muted">
-                Continue to our contact form to share your goals, industry, and timelines—we&apos;ll
-                respond with a practical quality plan.
+                Continue to our contact form to share your goals, industry, and
+                timelines-we&apos;ll respond with a practical quality plan.
               </p>
               <Link
                 href="/contact"

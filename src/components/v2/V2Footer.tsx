@@ -26,7 +26,7 @@ export function V2Footer() {
             </Link>
             <p>
               {brand.groupStatement} Quality engineering, product engineering,
-              automation, and talent — through TestYantra,{" "}
+              automation, and talent - through TestYantra,{" "}
               <a
                 href={groupExternalUrls.Innovexce}
                 target="_blank"

@@ -61,8 +61,8 @@ const ANCHORS = new Set([
 ]);
 
 const INTEREST_MAP = {
-  development: "Innovexce — Development & Staffing",
-  talent: "Innovexce — Talent Platform (Build Your Team)",
+  development: "Innovexce - Development & Staffing",
+  talent: "Innovexce - Talent Platform (Build Your Team)",
   training: "Training & Academy",
   "ai-quality": "AI Quality Engineering",
   "testing-ai": "AI Quality Engineering",
@@ -178,7 +178,7 @@ if (anchors.length) {
 
 if (interest.length) {
   console.log("\nCONTACT INTEREST MISMATCHES:");
-  for (const i of interest) console.log(`  ${i.href} — ${i.note}`);
+  for (const i of interest) console.log(`  ${i.href} - ${i.note}`);
 } else console.log("\nContact interest params: OK");
 
 console.log(`\nTotal issues: ${issues.length}`);

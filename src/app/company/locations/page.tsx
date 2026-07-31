@@ -40,7 +40,7 @@ export default function LocationsPage() {
 
           <ScrollAnimate direction="up" delay={200}>
             <p className="text-base md:text-lg text-[var(--muted2)] leading-relaxed max-w-2xl mx-auto">
-              Delivery and support across six regions — TestYantra HQ, Innovexce
+              Delivery and support across six regions - TestYantra HQ, Innovexce
               development center, and follow-the-sun coverage worldwide.
             </p>
           </ScrollAnimate>

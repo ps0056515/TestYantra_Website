@@ -105,7 +105,7 @@ export const brand = {
   legalName: "Test Yantra Software Solutions Pvt Ltd.",
   tagline: "End-to-End Engineering",
   groupStatement:
-    "The Test Yantra group — one partner from bench to production.",
+    "The Test Yantra group - one partner from bench to production.",
   emailPrimary: "contactus@testyantra.com",
   emailSolutions: "solutions@testyantraglobal.com",
   emailAlt: "info@testyantra.com",
@@ -113,14 +113,14 @@ export const brand = {
   linkedIn: "https://www.linkedin.com/company/test-yantra-software-solutions",
 } as const;
 
-/** Named enterprises — homepage & trust sections */
+/** Named enterprises - homepage & trust sections */
 export type TrustedClient = {
   name: string;
   /** Company domain for logo lookup (unavatar.io / favicon fallback) */
   domain: string;
   /** Alternate domain when display name differs from fetch domain (e.g. e& → etisalat.com) */
   logoDomain?: string;
-  /** Skip API favicons — show company name only (avoids tiny/generic icons) */
+  /** Skip API favicons - show company name only (avoids tiny/generic icons) */
   wordmarkOnly?: boolean;
 };
 
@@ -132,10 +132,10 @@ export type TrustedClientGroup = {
 export const clientTrustStrip = {
   headline: "Trusted by industry leaders",
   subline:
-    "Global enterprises and leading Indian brands — 217+ clients worldwide, 20,000,000+ automated tests executed and counting.",
+    "Global enterprises and leading Indian brands - 217+ clients worldwide, 20,000,000+ automated tests executed and counting.",
 } as const;
 
-/** From Our Clients deck — Global (Sony excluded) + Indian */
+/** From Our Clients deck - Global (Sony excluded) + Indian */
 export const trustedClientGroups: TrustedClientGroup[] = [
   {
     label: "Global Clients",
@@ -196,12 +196,12 @@ export const trustedClientGroups: TrustedClientGroup[] = [
   },
 ];
 
-/** Flat list — all trusted clients */
+/** Flat list - all trusted clients */
 export const trustedClients: TrustedClient[] = trustedClientGroups.flatMap(
   (g) => g.clients,
 );
 
-/** Canonical stats from content deck — used site-wide */
+/** Canonical stats from content deck - used site-wide */
 export const stats: Stat[] = [
   { value: "217+", label: "Clients worldwide" },
   { value: "18", label: "Years of excellence" },
@@ -217,7 +217,7 @@ export const businessUnits: BusinessUnit[] = [
     name: "TestYantra",
     tagline: "Quality Engineering & AI Testing",
     description:
-      "India's leading quality engineering partner — managed QA, automation, crowd testing, and AI-augmented validation for global enterprises.",
+      "India's leading quality engineering partner - managed QA, automation, crowd testing, and AI-augmented validation for global enterprises.",
     href: "/",
     external: false,
     icon: "🧪",
@@ -228,7 +228,7 @@ export const businessUnits: BusinessUnit[] = [
     ],
     highlights: [
       "Managed QA & QE CoE",
-      "TestYantra AI — two-lane capability",
+      "TestYantra AI - two-lane capability",
       "14 industries, 6 global locations",
     ],
   },
@@ -237,7 +237,7 @@ export const businessUnits: BusinessUnit[] = [
     name: "Innovexce",
     tagline: "Product Engineering & Staffing",
     description:
-      "Test Yantra's fast-growing product engineering unit — custom engineering, managed delivery, and role-based staffing with 900+ skilled professionals.",
+      "Test Yantra's fast-growing product engineering unit - custom engineering, managed delivery, and role-based staffing with 900+ skilled professionals.",
     href: groupExternalUrls.Innovexce,
     external: true,
     email: "contactus@innovexce.com",
@@ -249,7 +249,7 @@ export const businessUnits: BusinessUnit[] = [
     ],
     highlights: [
       "Full-stack & cloud-native development",
-      "Talent platform — 900+ engineer pool",
+      "Talent platform - 900+ engineer pool",
       "Build squads from academy-trained bench",
     ],
   },
@@ -278,7 +278,7 @@ export const businessUnits: BusinessUnit[] = [
     name: "Academy",
     tagline: "QSpiders & JSpiders Training",
     description:
-      "Training-as-a-service for job-ready capability — software testing via QSpiders (ISTQB® partner) and Java/J2EE via JSpiders.",
+      "Training-as-a-service for job-ready capability - software testing via QSpiders (ISTQB® partner) and Java/J2EE via JSpiders.",
     href: groupExternalUrls.academy,
     external: true,
     icon: "🎓",
@@ -288,8 +288,8 @@ export const businessUnits: BusinessUnit[] = [
       { value: "2", label: "Learning brands" },
     ],
     highlights: [
-      "QSpiders — software testing paths",
-      "JSpiders — Java/J2EE development",
+      "QSpiders - software testing paths",
+      "JSpiders - Java/J2EE development",
       "Placement & enterprise cohorts",
     ],
   },
@@ -302,7 +302,7 @@ export const Innovexce = {
   phone: "+91 9742490958",
   tagline: "Software Engineering at Scale",
   heroSubline:
-    "Product engineering and talent — under TestYantra, with quality guardrails built in from day one.",
+    "Product engineering and talent - under TestYantra, with quality guardrails built in from day one.",
   heroImage:
     "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&q=80&auto=format&fit=crop",
   aiHubImage:
@@ -320,7 +320,7 @@ export const Innovexce = {
       title: "Build with us",
       eyebrow: "Managed product engineering",
       description:
-        "We own delivery — architecture, build, release, and optional TestYantra validation. Best for greenfield products, platform modernisation, and accountable squads.",
+        "We own delivery - architecture, build, release, and optional TestYantra validation. Best for greenfield products, platform modernisation, and accountable squads.",
       bestFor: "Product owners with a defined roadmap or outcome",
       cta: "Start a project",
       href: "/contact?interest=development",
@@ -337,7 +337,7 @@ export const Innovexce = {
       title: "Staff your team",
       eyebrow: "Talent platform",
       description:
-        "Add engineers from our 900+ bench — one specialist or a full squad. You run the product; we source, onboard, and scale capacity.",
+        "Add engineers from our 900+ bench - one specialist or a full squad. You run the product; we source, onboard, and scale capacity.",
       bestFor: "Leaders who need people fast, not a managed vendor",
       cta: "Build your team",
       href: "/contact?interest=talent",
@@ -353,17 +353,17 @@ export const Innovexce = {
     eyebrow: "Why one group",
     title: "Build and validate under one roof",
     subtitle:
-      "Most partners build software or test it. Innovexce engineers while TestYantra validates — same group, one conversation, no vendor handoffs between build and QA.",
+      "Most partners build software or test it. Innovexce engineers while TestYantra validates - same group, one conversation, no vendor handoffs between build and QA.",
     points: [
       {
         title: "No build-to-QA handoff",
         description:
-          "Squads can include embedded TestYantra QE from sprint one — regression, automation, and production monitoring without a second vendor.",
+          "Squads can include embedded TestYantra QE from sprint one - regression, automation, and production monitoring without a second vendor.",
       },
       {
         title: "Bench + academy pipeline",
         description:
-          "900+ engineers plus QSpiders and JSpiders graduates — scale delivery or staff aug without six-month hiring cycles.",
+          "900+ engineers plus QSpiders and JSpiders graduates - scale delivery or staff aug without six-month hiring cycles.",
       },
       {
         title: "Enterprise delivery discipline",
@@ -377,14 +377,14 @@ export const Innovexce = {
       num: "01",
       title: "Managed product squad",
       description:
-        "A dedicated pod — developers, tech lead, and optional QA — working your backlog with weekly governance and release accountability.",
+        "A dedicated pod - developers, tech lead, and optional QA - working your backlog with weekly governance and release accountability.",
       bestFor: "Ongoing product builds · 3–6 month+ programmes",
     },
     {
       num: "02",
       title: "Project as a service",
       description:
-        "Fixed-scope engineering — MVP, migration, or module delivery with milestones, acceptance criteria, and TestYantra sign-off gates.",
+        "Fixed-scope engineering - MVP, migration, or module delivery with milestones, acceptance criteria, and TestYantra sign-off gates.",
       bestFor: "Defined outcomes · outcome-based SOW",
     },
     {
@@ -398,7 +398,7 @@ export const Innovexce = {
       num: "04",
       title: "AI product engineering",
       description:
-        "RAG, agents, ML, or data platforms from discovery through production — with TestYantra AI validation for regulated deployments.",
+        "RAG, agents, ML, or data platforms from discovery through production - with TestYantra AI validation for regulated deployments.",
       bestFor: "Enterprise AI · see AI Hub below",
     },
   ],
@@ -406,7 +406,7 @@ export const Innovexce = {
     {
       label: "Enterprise & regulated",
       detail:
-        "BFSI, healthcare, and insurance — products that cannot ship without audit-ready quality.",
+        "BFSI, healthcare, and insurance - products that cannot ship without audit-ready quality.",
     },
     {
       label: "Scale-ups & ISVs",
@@ -421,7 +421,7 @@ export const Innovexce = {
   ],
   teCaseStudies: [
     {
-      title: "Digital banking platform — managed product squad",
+      title: "Digital banking platform - managed product squad",
       client: "Kotak",
       industry: "Banking & Finance",
       problem:
@@ -435,7 +435,7 @@ export const Innovexce = {
       ],
     },
     {
-      title: "Automotive marketplace — platform engineering",
+      title: "Automotive marketplace - platform engineering",
       client: "CARS24",
       industry: "Automotive / FinTech",
       problem:
@@ -449,13 +449,13 @@ export const Innovexce = {
       ],
     },
     {
-      title: "Legal AI — LLM product to production",
+      title: "Legal AI - LLM product to production",
       client: "LegalDST",
       industry: "Legal / AI",
       problem:
         "Enterprise legal research product needed production-grade RAG with cited sources and validation before regulated client rollout.",
       approach:
-        "Innovexce AI Hub delivery — RAG pipeline and agent workflows — validated by TestYantra AI (bias, drift, LLM safety).",
+        "Innovexce AI Hub delivery - RAG pipeline and agent workflows - validated by TestYantra AI (bias, drift, LLM safety).",
       results: [
         { label: "Capability", value: "RAG + agents" },
         { label: "Validation", value: "TestYantra AI" },
@@ -468,7 +468,7 @@ export const Innovexce = {
       icon: "🌐",
       title: "Application Development & Management",
       description:
-        "Enterprise web platforms and design systems — built with React, Next.js, and Angular, delivering modern frontend architectures.",
+        "Enterprise web platforms and design systems - built with React, Next.js, and Angular, delivering modern frontend architectures.",
       pills: ["React", "Next.js", "Angular", "PWAs"],
     },
     {
@@ -516,9 +516,9 @@ export const Innovexce = {
   ],
   aiHub: {
     eyebrow: "AI Hub",
-    title: "Enterprise AI — from strategy to production",
+    title: "Enterprise AI - from strategy to production",
     subtitle:
-      "Production-grade RAG, ML scoring, agentic workflows, and computer vision — built with the same rigour as our core engineering work, validated by TestYantra AI.",
+      "Production-grade RAG, ML scoring, agentic workflows, and computer vision - built with the same rigour as our core engineering work, validated by TestYantra AI.",
     capabilities: [
       {
         icon: "🧠",
@@ -531,35 +531,35 @@ export const Innovexce = {
         icon: "🤖",
         title: "Agentic AI & Automation",
         description:
-          "Multi-agent systems that orchestrate complex workflows — human-in-the-loop validation, decision engines, and self-healing pipelines.",
+          "Multi-agent systems that orchestrate complex workflows - human-in-the-loop validation, decision engines, and self-healing pipelines.",
         pills: ["Agents", "MCP", "Workflows", "Auto-heal"],
       },
       {
         icon: "📊",
         title: "ML & Data Platforms",
         description:
-          "Scoring engines, recommendation systems, and ML ops pipelines — from credit risk models to predictive maintenance at scale.",
+          "Scoring engines, recommendation systems, and ML ops pipelines - from credit risk models to predictive maintenance at scale.",
         pills: ["MLOps", "Scoring", "Feature Store", "Drift Monitor"],
       },
       {
         icon: "👁️",
         title: "Computer Vision",
         description:
-          "Visual inspection, document OCR, and retail analytics — production CV systems with accuracy benchmarks and edge deployment.",
+          "Visual inspection, document OCR, and retail analytics - production CV systems with accuracy benchmarks and edge deployment.",
         pills: ["OCR", "Detection", "Classification", "Edge AI"],
       },
       {
         icon: "💬",
         title: "NLP & Conversational AI",
         description:
-          "Chatbots, document intelligence, and semantic search — NLP solutions tuned to your domain vocabulary and compliance needs.",
+          "Chatbots, document intelligence, and semantic search - NLP solutions tuned to your domain vocabulary and compliance needs.",
         pills: ["Chatbots", "NER", "Summarization", "Search"],
       },
       {
         icon: "✅",
         title: "AI Validation (TestYantra)",
         description:
-          "Model validation, bias auditing, drift monitoring, and LLM safety testing — ship AI with confidence via our QE practice.",
+          "Model validation, bias auditing, drift monitoring, and LLM safety testing - ship AI with confidence via our QE practice.",
         pills: ["Model QA", "Bias Audit", "LLM Testing", "Compliance"],
         link: "/#ai-lane-01",
       },
@@ -587,7 +587,7 @@ export const Innovexce = {
     {
       title: "Value-based outcomes",
       description:
-        "We investigate each case thoroughly and deliver as true partners — not just vendors.",
+        "We investigate each case thoroughly and deliver as true partners - not just vendors.",
     },
     {
       title: "Domain + technology",
@@ -597,20 +597,20 @@ export const Innovexce = {
     {
       title: "Agile & flat",
       description:
-        "Small, credible teams — developers, strategists, and designers who stay close to your product.",
+        "Small, credible teams - developers, strategists, and designers who stay close to your product.",
     },
     {
       title: "AI, not hype",
       description:
-        "Production AI with guardrails — beyond proof-of-concept, into regulated enterprise deployment.",
+        "Production AI with guardrails - beyond proof-of-concept, into regulated enterprise deployment.",
     },
   ],
   talentPlatform: {
     id: "talent-platform",
     eyebrow: "Staffing & Team Building",
-    title: "Your talent platform — build teams from a trained bench",
+    title: "Your talent platform - build teams from a trained bench",
     subtitle:
-      "Innovexce is more than project delivery. Companies adopt engineers from our 900+ professional pool — or compose dedicated squads from bench-ready, academy-trained talent across every major technology stack.",
+      "Innovexce is more than project delivery. Companies adopt engineers from our 900+ professional pool - or compose dedicated squads from bench-ready, academy-trained talent across every major technology stack.",
     poolStats: [
       { value: "900+", label: "Engineers in pool" },
       { value: "600k+", label: "Academy-trained pipeline" },
@@ -622,7 +622,7 @@ export const Innovexce = {
         icon: "👤",
         title: "Individual specialists",
         description:
-          "Add one or more engineers — developers, QA, DevOps, data, or AI — to your existing team with flexible duration and ramp time.",
+          "Add one or more engineers - developers, QA, DevOps, data, or AI - to your existing team with flexible duration and ramp time.",
         bestFor: "Gap-fill, niche skills, surge capacity",
       },
       {
@@ -636,21 +636,21 @@ export const Innovexce = {
         icon: "🏗️",
         title: "Build your own team",
         description:
-          "Pick roles from our bench — mix senior architects, mid-level developers, and fresh academy graduates — and we assemble your custom roster.",
+          "Pick roles from our bench - mix senior architects, mid-level developers, and fresh academy graduates - and we assemble your custom roster.",
         bestFor: "Startups and enterprises scaling fast",
       },
       {
         icon: "🎓",
         title: "Academy-to-bench pipeline",
         description:
-          "Access QSpiders & JSpiders trained candidates — job-ready in software testing and Java/J2EE — vetted and onboarded through Innovexce.",
+          "Access QSpiders & JSpiders trained candidates - job-ready in software testing and Java/J2EE - vetted and onboarded through Innovexce.",
         bestFor: "High-volume hiring, graduate programs",
       },
       {
         icon: "🌍",
         title: "Global delivery mix",
         description:
-          "Blend onshore, nearshore, and offshore resources from Test Yantra’s six locations — optimized for timezone coverage and cost.",
+          "Blend onshore, nearshore, and offshore resources from Test Yantra’s six locations - optimized for timezone coverage and cost.",
         bestFor: "Follow-the-sun, hybrid models",
       },
       {
@@ -671,7 +671,7 @@ export const Innovexce = {
         step: "02",
         title: "Receive curated shortlists",
         detail:
-          "Profiles from our pool and academy bench — matched to your requirements.",
+          "Profiles from our pool and academy bench - matched to your requirements.",
       },
       {
         step: "03",
@@ -683,7 +683,7 @@ export const Innovexce = {
         step: "04",
         title: "Embed & deliver",
         detail:
-          "Resources join your tools, stand-ups, and culture — with TestYantra QE optional.",
+          "Resources join your tools, stand-ups, and culture - with TestYantra QE optional.",
       },
       {
         step: "05",
@@ -741,7 +741,7 @@ export const Innovexce = {
       },
     ],
     academyNote:
-      "Our 600k+ academy alumni feed a continuous bench of trained candidates — QSpiders for testing, JSpiders for Java development — assessed and deployment-ready through Innovexce.",
+      "Our 600k+ academy alumni feed a continuous bench of trained candidates - QSpiders for testing, JSpiders for Java development - assessed and deployment-ready through Innovexce.",
   },
   social: {
     facebook: "https://www.facebook.com/Innovexce/",
@@ -783,12 +783,12 @@ export const services: Service[] = [
       {
         title: "End-to-end quality ownership",
         description:
-          "We run the full testing lifecycle — strategy, resourcing, execution, and release sign-off — so your teams stay focused on building product.",
+          "We run the full testing lifecycle - strategy, resourcing, execution, and release sign-off - so your teams stay focused on building product.",
       },
       {
         title: "SLA-driven POD delivery",
         description:
-          "Managed squads with defined KPIs, governance, and reporting — predictable outcomes without the overhead of building in-house QA ops.",
+          "Managed squads with defined KPIs, governance, and reporting - predictable outcomes without the overhead of building in-house QA ops.",
       },
       {
         title: "Lower total cost of quality",
@@ -798,12 +798,12 @@ export const services: Service[] = [
       {
         title: "Faster, safer releases",
         description:
-          "Shift-left and continuous testing embedded in CI/CD catch defects early — cutting late-cycle rework and production escapes.",
+          "Shift-left and continuous testing embedded in CI/CD catch defects early - cutting late-cycle rework and production escapes.",
       },
       {
         title: "Scale on demand",
         description:
-          "Ramp QA capacity up or down across manual, automation, and specialist skills — without long recruitment or onboarding cycles.",
+          "Ramp QA capacity up or down across manual, automation, and specialist skills - without long recruitment or onboarding cycles.",
       },
       {
         title: "Enterprise governance & IV&V",
@@ -816,7 +816,7 @@ export const services: Service[] = [
     slug: "crowd-testing",
     name: "Crowd Testing",
     summary:
-      "Test in the real world—devices, networks, locales, and user behaviors—before your users do.",
+      "Test in the real world-devices, networks, locales, and user behaviors-before your users do.",
     bullets: [
       "Fast on-demand coverage across devices and geographies",
       "Exploratory testing with structured findings",
@@ -842,7 +842,7 @@ export const services: Service[] = [
       {
         title: "Real-world device & network coverage",
         description:
-          "Hundreds of device-OS combinations and live cellular networks — edge cases your lab cannot replicate.",
+          "Hundreds of device-OS combinations and live cellular networks - edge cases your lab cannot replicate.",
       },
       {
         title: "Global locale & language validation",
@@ -852,7 +852,7 @@ export const services: Service[] = [
       {
         title: "Faster pre-release feedback",
         description:
-          "On-demand crowd capacity scales coverage for launches and sprints — without permanent headcount or lab expansion.",
+          "On-demand crowd capacity scales coverage for launches and sprints - without permanent headcount or lab expansion.",
       },
       {
         title: "Exploratory depth beyond scripts",
@@ -875,11 +875,11 @@ export const services: Service[] = [
     slug: "ai-quality",
     name: "AI Quality Engineering",
     summary:
-      "Test AI systems with rigour and deploy AI to transform how you test — two lanes, one integrated practice.",
+      "Test AI systems with rigour and deploy AI to transform how you test - two lanes, one integrated practice.",
     bullets: [
       "Model validation, drift monitoring, and bias auditing",
-      "LLM & Gen AI validation — RAG, hallucination, prompt injection",
-      "AI-powered automation — Playwright, MCP, self-healing agents",
+      "LLM & Gen AI validation - RAG, hallucination, prompt injection",
+      "AI-powered automation - Playwright, MCP, self-healing agents",
       "Framework migration and agentic test lifecycle management",
     ],
     outcomes: [
@@ -903,7 +903,7 @@ export const services: Service[] = [
       {
         title: "Two-lane AI practice, one partner",
         description:
-          "Validate AI systems with rigour (Lane 01) and deploy AI to transform how you test (Lane 02) — integrated under TestYantra AI.",
+          "Validate AI systems with rigour (Lane 01) and deploy AI to transform how you test (Lane 02) - integrated under TestYantra AI.",
       },
       {
         title: "Responsible AI in production",
@@ -918,7 +918,7 @@ export const services: Service[] = [
       {
         title: "AI-powered test automation",
         description:
-          "Self-healing Playwright, MCP agents, and intelligent execution — up to 60% less maintenance on automation suites.",
+          "Self-healing Playwright, MCP agents, and intelligent execution - up to 60% less maintenance on automation suites.",
       },
       {
         title: "Framework migration at scale",
@@ -936,7 +936,7 @@ export const services: Service[] = [
     slug: "development",
     name: "Product Engineering",
     summary:
-      "Innovexce is the product engineering studio within TestYantra — designing, building, and scaling software solutions at scale.",
+      "Innovexce is the product engineering studio within TestYantra - designing, building, and scaling software solutions at scale.",
     bullets: [
       "Application Development & Management (React, Next.js, PWAs)",
       "Mobile Engineering (Native iOS/Android, React Native, Flutter)",
@@ -971,17 +971,17 @@ export const services: Service[] = [
       {
         title: "Architecture-first engineering",
         description:
-          "CMMI Level 3 practices and clean architecture from day one — web, mobile, and cloud-native products built to scale.",
+          "CMMI Level 3 practices and clean architecture from day one - web, mobile, and cloud-native products built to scale.",
       },
       {
         title: "Quality built in, not bolted on",
         description:
-          "TestYantra validation embedded in every Innovexce delivery — build and test under one group, no handoffs.",
+          "TestYantra validation embedded in every Innovexce delivery - build and test under one group, no handoffs.",
       },
       {
         title: "Enterprise AI & data platforms",
         description:
-          "Production-grade LLM/RAG, agentic workflows, data lakes, and analytics — validated before go-live.",
+          "Production-grade LLM/RAG, agentic workflows, data lakes, and analytics - validated before go-live.",
       },
       {
         title: "Cloud-native at scale",
@@ -991,12 +991,12 @@ export const services: Service[] = [
       {
         title: "Flexible engagement models",
         description:
-          "Scrum pods, managed projects, or talent from the 900+ bench — scale delivery without long hiring cycles.",
+          "Scrum pods, managed projects, or talent from the 900+ bench - scale delivery without long hiring cycles.",
       },
       {
         title: "Legacy to modern transformation",
         description:
-          "Modernize monoliths and packaged systems while keeping releases stable — BFSI, fintech, and enterprise proven.",
+          "Modernize monoliths and packaged systems while keeping releases stable - BFSI, fintech, and enterprise proven.",
       },
     ],
   },
@@ -1008,7 +1008,7 @@ export const services: Service[] = [
     bullets: [
       "Quality engineering leadership and test strategy",
       "Automation frameworks and toolchain integration",
-      "Audit & advisory — QA maturity assessments",
+      "Audit & advisory - QA maturity assessments",
       "Build, Operate & Transfer (BOT) models",
     ],
     outcomes: [
@@ -1031,12 +1031,12 @@ export const services: Service[] = [
       {
         title: "Expert QE leadership on demand",
         description:
-          "Senior practitioners embed in your teams for test strategy, transformation, and delivery acceleration — without long hiring cycles.",
+          "Senior practitioners embed in your teams for test strategy, transformation, and delivery acceleration - without long hiring cycles.",
       },
       {
         title: "QA maturity you can measure",
         description:
-          "Independent audits and maturity assessments with actionable roadmaps — know where you stand and what to fix first.",
+          "Independent audits and maturity assessments with actionable roadmaps - know where you stand and what to fix first.",
       },
       {
         title: "Automation architecture that lasts",
@@ -1069,7 +1069,7 @@ export const services: Service[] = [
       "Training-as-a-service for fresh job aspirants",
       "Software testing learning paths (QSpiders; ISTQB® partner)",
       "Java/J2EE development learning paths (JSpiders)",
-      "AI training for talent — workforce enablement",
+      "AI training for talent - workforce enablement",
     ],
     outcomes: [
       "Stronger teams with modern QA and engineering practices",
@@ -1091,17 +1091,17 @@ export const services: Service[] = [
       {
         title: "Job-ready talent at scale",
         description:
-          "QSpiders and JSpiders pipelines produce deployment-ready testers and developers — 600k+ certified alumni across the group.",
+          "QSpiders and JSpiders pipelines produce deployment-ready testers and developers - 600k+ certified alumni across the group.",
       },
       {
         title: "Enterprise cohort programmes",
         description:
-          "Tailored bootcamps and upskilling aligned to your stack, standards, and hiring needs — not generic classroom training.",
+          "Tailored bootcamps and upskilling aligned to your stack, standards, and hiring needs - not generic classroom training.",
       },
       {
         title: "ISTQB®-aligned quality foundations",
         description:
-          "Structured software testing paths through an official ISTQB® partner — consistent skill standards across teams.",
+          "Structured software testing paths through an official ISTQB® partner - consistent skill standards across teams.",
       },
       {
         title: "Modern automation & AI skills",
@@ -1116,7 +1116,7 @@ export const services: Service[] = [
       {
         title: "Bench-to-project pipeline",
         description:
-          "Academy output feeds Innovexce's talent platform — train, assess, and staff from one ecosystem.",
+          "Academy output feeds Innovexce's talent platform - train, assess, and staff from one ecosystem.",
       },
     ],
   },
@@ -1152,7 +1152,7 @@ export const services: Service[] = [
       {
         title: "Complete user journey assurance",
         description:
-          "End-to-end validation of critical workflows — from login to checkout, transfer, or claim — so every step behaves as your business expects.",
+          "End-to-end validation of critical workflows - from login to checkout, transfer, or claim - so every step behaves as your business expects.",
       },
       {
         title: "Fewer production escapes",
@@ -1162,7 +1162,7 @@ export const services: Service[] = [
       {
         title: "Regression confidence at speed",
         description:
-          "Impact-based regression suites that run when systems change — legacy updates, new features, or integrations — without slowing delivery.",
+          "Impact-based regression suites that run when systems change - legacy updates, new features, or integrations - without slowing delivery.",
       },
       {
         title: "Cross-browser & cross-device coverage",
@@ -1172,7 +1172,7 @@ export const services: Service[] = [
       {
         title: "Integration integrity (SIT)",
         description:
-          "System integration testing across APIs, services, and third-party dependencies — defects isolated at the boundary, not in production.",
+          "System integration testing across APIs, services, and third-party dependencies - defects isolated at the boundary, not in production.",
       },
       {
         title: "Deployment-ready sign-off",
@@ -1212,7 +1212,7 @@ export const services: Service[] = [
       {
         title: "Inclusive experiences by design",
         description:
-          "WCAG 2.1 / ADA audits — screen readers, keyboard navigation, contrast, and focus order — so products work for every user.",
+          "WCAG 2.1 / ADA audits - screen readers, keyboard navigation, contrast, and focus order - so products work for every user.",
       },
       {
         title: "Compliance you can demonstrate",
@@ -1227,12 +1227,12 @@ export const services: Service[] = [
       {
         title: "Business process validation",
         description:
-          "Confirm applications behave as stakeholders expect — not just as specs read — before go-live decisions.",
+          "Confirm applications behave as stakeholders expect - not just as specs read - before go-live decisions.",
       },
       {
         title: "Reduced legal & reputational risk",
         description:
-          "Catch accessibility gaps before launch — avoiding complaints, rework, and exclusion of users with disabilities.",
+          "Catch accessibility gaps before launch - avoiding complaints, rework, and exclusion of users with disabilities.",
       },
       {
         title: "Operational readiness",
@@ -1273,12 +1273,12 @@ export const services: Service[] = [
       {
         title: "Up to 80% faster regression",
         description:
-          "Automated suites replace repetitive manual loops — regression cycles shrink from days to hours inside your pipeline.",
+          "Automated suites replace repetitive manual loops - regression cycles shrink from days to hours inside your pipeline.",
       },
       {
         title: "CI/CD release gates",
         description:
-          "Tests run on every build with clear pass/fail gating — ship only when automated validation gives the green light.",
+          "Tests run on every build with clear pass/fail gating - ship only when automated validation gives the green light.",
       },
       {
         title: "Maintainable framework design",
@@ -1288,7 +1288,7 @@ export const services: Service[] = [
       {
         title: "API + UI in one suite",
         description:
-          "Integrated automation across UI and service layers — defects found at the right level, earlier in the cycle.",
+          "Integrated automation across UI and service layers - defects found at the right level, earlier in the cycle.",
       },
       {
         title: "AI-augmented self-healing",
@@ -1298,7 +1298,7 @@ export const services: Service[] = [
       {
         title: "Consolidated automation estate",
         description:
-          "Unify fragmented frameworks into a modern stack — one governance model, one pipeline, less duplication.",
+          "Unify fragmented frameworks into a modern stack - one governance model, one pipeline, less duplication.",
       },
     ],
   },
@@ -1334,12 +1334,12 @@ export const services: Service[] = [
       {
         title: "Contract reliability at scale",
         description:
-          "Schema and contract validation across REST, GraphQL, and event-driven services — breaking changes caught before they reach dependent teams.",
+          "Schema and contract validation across REST, GraphQL, and event-driven services - breaking changes caught before they reach dependent teams.",
       },
       {
         title: "Integration confidence before UI",
         description:
-          "Microservices, message queues, and API mesh testing isolates defects at the service layer — faster root cause, fewer production integration failures.",
+          "Microservices, message queues, and API mesh testing isolates defects at the service layer - faster root cause, fewer production integration failures.",
       },
       {
         title: "Performance under real load",
@@ -1349,7 +1349,7 @@ export const services: Service[] = [
       {
         title: "Parallel testing with virtualization",
         description:
-          "Mock and virtualize third-party dependencies so teams test independently — no waiting on external systems or shared environments.",
+          "Mock and virtualize third-party dependencies so teams test independently - no waiting on external systems or shared environments.",
       },
       {
         title: "Security & data integrity checks",
@@ -1359,7 +1359,7 @@ export const services: Service[] = [
       {
         title: "Deploy-safe service updates",
         description:
-          "Consumer-driven contract tests and regression suites that gate releases — ship microservice changes without breaking downstream consumers.",
+          "Consumer-driven contract tests and regression suites that gate releases - ship microservice changes without breaking downstream consumers.",
       },
     ],
   },
@@ -1395,7 +1395,7 @@ export const services: Service[] = [
       {
         title: "Issues found before users feel them",
         description:
-          "24/7 synthetic journeys and real-user monitoring catch errors and slowdowns minutes after they start — not after tickets flood in.",
+          "24/7 synthetic journeys and real-user monitoring catch errors and slowdowns minutes after they start - not after tickets flood in.",
       },
       {
         title: "MTTD reduced to minutes",
@@ -1405,22 +1405,22 @@ export const services: Service[] = [
       {
         title: "Always-on journey validation",
         description:
-          "Checkout, login, payment, and critical API paths exercised continuously in production — not just at release time.",
+          "Checkout, login, payment, and critical API paths exercised continuously in production - not just at release time.",
       },
       {
         title: "APM & observability integrated",
         description:
-          "Datadog, Dynatrace, New Relic, and Grafana wired into your incident workflows — metrics, logs, and traces in one view.",
+          "Datadog, Dynatrace, New Relic, and Grafana wired into your incident workflows - metrics, logs, and traces in one view.",
       },
       {
         title: "Tiered production support",
         description:
-          "L1/L2/L3 quality support with playbooks and escalation — production incidents handled with QE discipline, not guesswork.",
+          "L1/L2/L3 quality support with playbooks and escalation - production incidents handled with QE discipline, not guesswork.",
       },
       {
         title: "Quality that doesn't stop at deploy",
         description:
-          "Close the loop from pre-release testing to live monitoring — one partner accountable across the full lifecycle.",
+          "Close the loop from pre-release testing to live monitoring - one partner accountable across the full lifecycle.",
       },
     ],
   },
@@ -1433,7 +1433,7 @@ export const services: Service[] = [
       "Model accuracy, precision, and recall validation",
       "Data drift and concept drift detection in production",
       "Bias auditing and compliance checking for regulated sectors",
-      "LLM validation — RAG pipelines, hallucinations, safety gates",
+      "LLM validation - RAG pipelines, hallucinations, safety gates",
     ],
     outcomes: [
       "Deploy AI models with verified accuracy and compliance",
@@ -1456,7 +1456,7 @@ export const services: Service[] = [
       {
         title: "Model validation you can trust",
         description:
-          "Evaluate accuracy, precision, recall, and confidence thresholds against ground truth — before models reach production users.",
+          "Evaluate accuracy, precision, recall, and confidence thresholds against ground truth - before models reach production users.",
       },
       {
         title: "Catch drift before users do",
@@ -1481,7 +1481,7 @@ export const services: Service[] = [
       {
         title: "Independent validation lane",
         description:
-          "Objective third-party assurance separate from model builders — the rigour your AI programme needs before scale.",
+          "Objective third-party assurance separate from model builders - the rigour your AI programme needs before scale.",
       },
     ],
   },
@@ -1516,27 +1516,27 @@ export const services: Service[] = [
       {
         title: "Self-healing automation",
         description:
-          "AI-powered locators and scripts that adapt when UIs change — up to 60% less maintenance on brittle regression suites.",
+          "AI-powered locators and scripts that adapt when UIs change - up to 60% less maintenance on brittle regression suites.",
       },
       {
         title: "Faster test creation with AI",
         description:
-          "Prompt-to-test-case and data generation accelerates suite stand-up — more coverage in less time from requirements and user stories.",
+          "Prompt-to-test-case and data generation accelerates suite stand-up - more coverage in less time from requirements and user stories.",
       },
       {
         title: "Agentic test lifecycle automation",
         description:
-          "Playwright + MCP and orchestrated agents span design, execution, triage, and reporting — less manual effort across the QE workflow.",
+          "Playwright + MCP and orchestrated agents span design, execution, triage, and reporting - less manual effort across the QE workflow.",
       },
       {
         title: "Legacy-to-modern migration",
         description:
-          "AI-assisted migration from Selenium, UFT, and Tosca to modern stacks — preserve coverage while reducing long-term maintenance cost.",
+          "AI-assisted migration from Selenium, UFT, and Tosca to modern stacks - preserve coverage while reducing long-term maintenance cost.",
       },
       {
         title: "Smarter defect triage",
         description:
-          "Automated log analysis and failure clustering speeds root-cause analysis — engineers focus on fixes, not log archaeology.",
+          "Automated log analysis and failure clustering speeds root-cause analysis - engineers focus on fixes, not log archaeology.",
       },
       {
         title: "AI-ready QA teams",
@@ -1550,7 +1550,7 @@ export const services: Service[] = [
 export const locations: Location[] = [
   {
     country: "India",
-    city: "Bangalore — Global HQ",
+    city: "Bangalore - Global HQ",
     unit: "TestYantra",
     addressLines: [
       "#88, 3rd Floor, Brigade Chambers,",
@@ -1560,7 +1560,7 @@ export const locations: Location[] = [
   },
   {
     country: "India",
-    city: "Bangalore — Innovexce",
+    city: "Bangalore - Innovexce",
     unit: "Innovexce",
     addressLines: [
       "#88, 3rd Floor, Brigade Chambers,",
@@ -1616,7 +1616,7 @@ export const ldOutcomesPillars = [
   {
     title: "See readiness clearly",
     description:
-      "Make skills visible across roles—identify gaps, validate proficiency, and focus investment where it changes outcomes.",
+      "Make skills visible across roles-identify gaps, validate proficiency, and focus investment where it changes outcomes.",
   },
   {
     title: "Build skills faster",
@@ -1626,7 +1626,7 @@ export const ldOutcomesPillars = [
   {
     title: "Put skills to work",
     description:
-      "Translate learning into deployment—align skill signals to projects, teams, and hiring pipelines.",
+      "Translate learning into deployment-align skill signals to projects, teams, and hiring pipelines.",
   },
   {
     title: "Prove impact",
@@ -1688,7 +1688,7 @@ export const ldRoiDefaults: RoiDefaults = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    title: "Global retail bank — digital channel QA transformation",
+    title: "Global retail bank - digital channel QA transformation",
     industry: "Banking & Finance",
     problem:
       "A Tier-1 bank needed to accelerate digital releases across 14 markets while maintaining regulatory compliance.",
@@ -1701,7 +1701,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    title: "OTT streaming platform — continuous testing pipeline",
+    title: "OTT streaming platform - continuous testing pipeline",
     industry: "Media & Telecom",
     problem:
       "Quality bottlenecks were slowing streaming platform releases and blocking daily deployment goals.",
@@ -1714,7 +1714,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    title: "HealthTech platform — HIPAA-compliant quality engineering",
+    title: "HealthTech platform - HIPAA-compliant quality engineering",
     industry: "Healthcare",
     problem:
       "Patient-facing apps needed robust quality and security testing without slowing an aggressive product roadmap.",
@@ -1814,7 +1814,7 @@ export const industries: Industry[] = [
     name: "SaaS & Hi-Tech",
     icon: "⚙️",
     summary:
-      "Velocity without chaos — CI/CD aligned testing for product teams.",
+      "Velocity without chaos - CI/CD aligned testing for product teams.",
     useCases: [
       "Regression automation",
       "API contract testing",

@@ -3336,7 +3336,7 @@ footer {
     min-width: 0;
     max-width: calc(50% + 1px);
   }
-  /* Odd total — last logo spans full width instead of leaving a blank half-cell */
+  /* Odd total - last logo spans full width instead of leaving a blank half-cell */
   .logo-wall > .logo-cell:last-child:nth-child(odd),
   .logo-wall-dense > .logo-cell:last-child:nth-child(odd) {
     flex: 1 1 100%;
@@ -3369,7 +3369,7 @@ footer {
   }
 }
 
-/* Innovexce — client path cards */
+/* Innovexce - client path cards */
 .te-path-card {
   padding: 28px 32px;
   border-radius: 20px;
@@ -3388,7 +3388,7 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Innovexce — Theme-aware Logo switching */
+/* Innovexce - Theme-aware Logo switching */
 .innovexce-logo-light {
   display: none !important;
 }

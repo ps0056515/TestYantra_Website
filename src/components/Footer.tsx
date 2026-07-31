@@ -8,10 +8,12 @@ export function Footer() {
       <Container>
         <div className="grid gap-10 py-12 sm:grid-cols-2">
           <div className="space-y-3">
-            <div className="text-lg font-bold tracking-tight text-brand-navy">TESTYANTRA</div>
+            <div className="text-lg font-bold tracking-tight text-brand-navy">
+              TESTYANTRA
+            </div>
             <p className="max-w-md text-sm leading-6 text-muted">
-              Future-proof quality assurance—managed QA, automation, and training built for modern
-              delivery.
+              Future-proof quality assurance-managed QA, automation, and
+              training built for modern delivery.
             </p>
             <div className="text-sm text-muted">
               <a
@@ -31,7 +33,9 @@ export function Footer() {
           </div>
           <div className="grid grid-cols-2 gap-6 sm:justify-self-end">
             <div className="space-y-2">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted">Explore</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted">
+                Explore
+              </div>
               <div className="flex flex-col gap-1">
                 {nav.map((item) => (
                   <Link
@@ -45,7 +49,9 @@ export function Footer() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="text-xs font-semibold uppercase tracking-wider text-muted">Company</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted">
+                Company
+              </div>
               <div className="flex flex-col gap-1">
                 <Link
                   href="/company/leadership"
