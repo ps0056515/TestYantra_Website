@@ -46,3 +46,23 @@ body {
   font-family: var(--font-jakarta), system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
+
+/* Client logo marquee */
+@keyframes ty-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ty-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ty-marquee 70s linear infinite;
+}
+.ty-marquee:hover .ty-marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .ty-marquee-track { animation: none; }
+}
+
+/* Mega-menu feature card is desktop only */
+@media (max-width: 1100px) {
+  .mega-feature-wrap { display: none; }
+}

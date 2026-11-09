@@ -1,12 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { trustedClients } from "@/content/site";
+import { insightPosts } from "@/content/insights";
+import { sectionTheme } from "@/content/sectionTheme";
+import { ClientMarquee } from "@/components/section/ClientMarquee";
+import { QuoteCarousel } from "@/components/section/QuoteCarousel";
 import type {
   EngagementModel,
   NumberedItem,
   PlatformItem,
   SectionCaseStudy,
   SectionContent,
+  SectionKey,
   SolutionCard,
   Stat,
   Step,
@@ -31,19 +37,27 @@ export function SectionHeading({
   title,
   sub,
   center = false,
+  dark = false,
 }: {
   eyebrow?: string;
   title: string;
   sub?: string;
   center?: boolean;
+  dark?: boolean;
 }) {
   return (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+      <h2
+        className={`mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1] ${
+          dark ? "text-white" : ""
+        }`}
+      >
         {title}
       </h2>
-      {sub ? <p className="mt-4 text-base leading-7 text-[var(--muted2)] sm:text-lg">{sub}</p> : null}
+      {sub ? (
+        <p className={`mt-4 text-base leading-7 sm:text-lg ${dark ? "text-white/70" : "text-[var(--muted2)]"}`}>{sub}</p>
+      ) : null}
     </div>
   );
 }
@@ -59,56 +73,89 @@ export function PrimaryButton({ href, children }: { href: string; children: Reac
   );
 }
 
-export function GhostButton({ href, children }: { href: string; children: ReactNode }) {
+export function GhostButton({ href, children, dark = false }: { href: string; children: ReactNode; dark?: boolean }) {
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center rounded-full border border-[var(--border2)] bg-[var(--bg2)] px-7 py-3.5 text-sm font-semibold text-[var(--text)] transition hover:-translate-y-0.5 hover:border-[var(--text)]"
+      className={`inline-flex items-center justify-center rounded-full border px-7 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5 ${
+        dark
+          ? "border-white/25 bg-white/5 text-white backdrop-blur hover:border-white hover:bg-white/10"
+          : "border-[var(--border2)] bg-[var(--bg2)] text-[var(--text)] hover:border-[var(--text)]"
+      }`}
     >
       {children}
     </Link>
   );
 }
 
-/** Soft background glow used on heroes */
-function Glow() {
+const toneClass = {
+  ok: "bg-emerald-400/15 text-emerald-300",
+  info: "bg-white/10 text-white",
+  warn: "bg-amber-400/15 text-amber-300",
+} as const;
+
+/** Radial accent glow used on dark bands */
+function DarkGlow() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-[var(--sec)]/10 blur-3xl" />
-      <div className="bg-dot-grid absolute inset-0 opacity-60" />
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-0 overflow-hidden">
+      <div className="absolute -top-40 left-1/2 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-[var(--sec)]/20 blur-3xl" />
     </div>
   );
 }
 
-const toneClass = {
-  ok: "bg-emerald-500/10 text-emerald-600",
-  info: "bg-[var(--sec)]/10 text-[var(--sec)]",
-  warn: "bg-amber-500/10 text-amber-600",
-} as const;
+export function DarkBand({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`relative isolate overflow-hidden bg-[#060913] text-white ${className}`}>
+      <DarkGlow />
+      <div className="relative">{children}</div>
+    </div>
+  );
+}
 
 export function Hero({ section }: { section: SectionContent }) {
   const { hero, basePath } = section;
+  const t = sectionTheme[section.key];
+  const mask = "linear-gradient(to right, transparent 0%, black 45%)";
   return (
-    <div className="relative">
-      <Glow />
-      <Wrap className="grid items-center gap-12 pb-20 pt-16 sm:pt-24 lg:grid-cols-12 lg:gap-8">
+    <div className="relative isolate overflow-hidden bg-[#060913] text-white">
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 -z-10 w-full opacity-50 lg:w-[70%] lg:opacity-100"
+        style={{ maskImage: mask, WebkitMaskImage: mask }}
+      >
+        <Image
+          src={t.image}
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 1024px) 70vw, 100vw"
+          className="object-cover object-[60%_40%]"
+          style={{ filter: t.imageFilter }}
+        />
+      </div>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-[#060913] via-[#060913]/60 to-transparent" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#060913] to-transparent" />
+
+      <Wrap className="grid items-center gap-12 pb-14 pt-16 sm:pt-24 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7">
           <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="mt-5 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.headline}
             <br />
-            <span className="text-[var(--sec)]">{hero.headlineAccent}</span>
+            <span className={`bg-gradient-to-r ${t.gradient} bg-clip-text text-transparent`}>{hero.headlineAccent}</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted2)]">{hero.sub}</p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">{hero.sub}</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <PrimaryButton href={`${basePath}/contact`}>Book a Discovery Call</PrimaryButton>
-            <GhostButton href={`${basePath}/how-we-work`}>See how we work</GhostButton>
+            <GhostButton dark href={`${basePath}/how-we-work`}>
+              See how we work
+            </GhostButton>
           </div>
           <ul className="mt-10 flex flex-wrap gap-2">
             {hero.chips.map((c) => (
               <li
                 key={c}
-                className="rounded-full border border-[var(--border)] bg-[var(--bg2)] px-4 py-1.5 text-xs font-semibold text-[var(--muted2)]"
+                className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/80 backdrop-blur"
               >
                 {c}
               </li>
@@ -117,12 +164,12 @@ export function Hero({ section }: { section: SectionContent }) {
         </div>
 
         <div className="lg:col-span-5">
-          <div className="relative rounded-3xl border border-[var(--border)] bg-[var(--bg2)] p-6 shadow-2xl shadow-[var(--sec)]/10">
+          <div className="relative rounded-3xl border border-white/15 bg-white/[0.07] p-6 shadow-2xl shadow-black/40 backdrop-blur-xl">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-bold">{hero.visualTitle}</div>
+              <div className="text-sm font-bold text-white">{hero.visualTitle}</div>
               <div className="flex gap-1.5" aria-hidden>
-                <span className="h-2.5 w-2.5 rounded-full bg-[var(--border2)]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[var(--border2)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[var(--sec)]" />
               </div>
             </div>
@@ -130,58 +177,158 @@ export function Hero({ section }: { section: SectionContent }) {
               {hero.visualRows.map((r) => (
                 <li
                   key={r.label}
-                  className="flex items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3"
+                  className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-black/25 px-4 py-3"
                 >
-                  <span className="text-sm font-medium text-[var(--muted2)]">{r.label}</span>
+                  <span className="text-sm font-medium text-white/75">{r.label}</span>
                   <span className={`rounded-full px-3 py-1 text-xs font-bold ${toneClass[r.tone]}`}>{r.value}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-[var(--bg3)]">
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
               <div className="h-full w-[88%] rounded-full bg-[var(--sec)]" />
             </div>
-            <p className="mt-2 text-right text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">
+            <p className="mt-2 text-right text-[11px] font-semibold uppercase tracking-wider text-white/45">
               Illustrative
             </p>
           </div>
         </div>
+      </Wrap>
+
+      <Wrap className="pb-12">
+        <dl className="grid grid-cols-2 gap-y-6 border-t border-white/10 pt-8 sm:grid-cols-4">
+          {t.badges.map((b, i) => (
+            <div key={b.label} className={`flex flex-col ${i > 0 ? "sm:border-l sm:border-white/10 sm:pl-8" : ""}`}>
+              <dd className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">{b.value}</dd>
+              <dt className="order-2 mt-1 text-xs font-medium text-white/60">{b.label}</dt>
+            </div>
+          ))}
+        </dl>
       </Wrap>
     </div>
   );
 }
 
 export function TrustStrip() {
-  const names = trustedClients.slice(0, 14).map((c) => c.name);
+  const clients = trustedClients.slice(0, 24);
   return (
-    <div className="border-y border-[var(--border)] bg-[var(--bg2)]">
-      <Wrap className="py-10">
+    <div className="border-b border-[var(--border)] bg-[var(--bg2)]">
+      <Wrap className="py-12">
         <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
           Trusted by global enterprises and leading Indian brands
         </p>
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {names.map((n) => (
-            <li key={n} className="text-base font-bold tracking-tight text-[var(--muted)]/80 sm:text-lg">
-              {n}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-7">
+          <ClientMarquee clients={clients} />
+        </div>
       </Wrap>
     </div>
   );
 }
 
-export function StatBand({ stats }: { stats: Stat[] }) {
+export function StatBand({ section }: { section: SectionContent }) {
+  const t = sectionTheme[section.key];
   return (
-    <div>
-      <Wrap className="py-16">
-        <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg2)] p-6">
-              <dt className="order-2 mt-1 text-sm font-medium text-[var(--muted2)]">{s.label}</dt>
-              <dd className="text-4xl font-extrabold tracking-tight text-[var(--sec)] sm:text-5xl">{s.value}</dd>
+    <DarkBand>
+      <Wrap className="py-20 sm:py-24">
+        <div className="max-w-3xl">
+          <Eyebrow>{t.statsHeading.eyebrow}</Eyebrow>
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-white sm:text-5xl sm:leading-[1.1]">
+            {t.statsHeading.title}
+          </h2>
+        </div>
+        <dl className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 lg:grid-cols-4">
+          {section.stats.map((s) => (
+            <div key={s.label} className="flex flex-col bg-[#0a0f1f] p-7 sm:p-10">
+              <dd
+                className={`bg-gradient-to-r ${t.gradient} bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-6xl`}
+              >
+                {s.value}
+              </dd>
+              <dt className="order-2 mt-3 text-sm font-medium text-white/65">{s.label}</dt>
             </div>
           ))}
         </dl>
+      </Wrap>
+    </DarkBand>
+  );
+}
+
+export function OutcomesBand({ section, limit = 2 }: { section: SectionContent; limit?: number }) {
+  const t = sectionTheme[section.key];
+  const cases = section.caseStudies.items.slice(0, limit);
+  return (
+    <DarkBand>
+      <Wrap className="py-20 sm:py-24">
+        <SectionHeading dark eyebrow={t.outcomesHeading.eyebrow} title={t.outcomesHeading.title} sub={t.outcomesHeading.sub} />
+        <QuoteCarousel quotes={t.quotes} />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {cases.map((c) => (
+            <article key={c.title} className="flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-8 sm:p-10">
+              <span className="w-fit rounded-full bg-[var(--sec)]/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                {c.industry}
+              </span>
+              <h3 className="mt-5 text-xl font-bold leading-snug tracking-tight text-white sm:text-2xl">{c.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-white/65">{c.problem}</p>
+              <ul className="mt-auto grid grid-cols-3 gap-4 border-t border-white/10 pt-7">
+                {c.results.map((r) => (
+                  <li key={r.label}>
+                    <div
+                      className={`bg-gradient-to-r ${t.gradient} bg-clip-text text-2xl font-extrabold text-transparent sm:text-3xl`}
+                    >
+                      {r.value}
+                    </div>
+                    <div className="mt-1 text-xs font-medium text-white/60">{r.label}</div>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10">
+          <GhostButton dark href={`${section.basePath}/case-studies`}>
+            All case studies
+          </GhostButton>
+        </div>
+      </Wrap>
+    </DarkBand>
+  );
+}
+
+export function ResourcesRow({ sectionKey }: { sectionKey: SectionKey }) {
+  const accentTags =
+    sectionKey === "qe"
+      ? ["QA", "Quality", "Automation", "Testing"]
+      : ["AI", "Engineering", "Cloud", "LLM", "Product"];
+  const ranked = [...insightPosts].sort(
+    (a, b) =>
+      Number(b.tags.some((t) => accentTags.some((k) => t.includes(k)))) -
+      Number(a.tags.some((t) => accentTags.some((k) => t.includes(k)))),
+  );
+  const posts = ranked.slice(0, 3);
+  return (
+    <div>
+      <Wrap className="py-20 sm:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading eyebrow="Insights" title="Popular reads" />
+          <Link href="/insights" className="text-sm font-semibold text-[var(--sec)] hover:underline">
+            View all insights →
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {posts.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/insights/${p.slug}`}
+              className="group flex flex-col rounded-3xl border border-[var(--border)] bg-[var(--bg2)] p-7 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--sec)]/5"
+            >
+              <span className="text-xs font-bold uppercase tracking-wider text-[var(--sec)]">{p.tags[0]}</span>
+              <h3 className="mt-3 text-lg font-bold leading-snug tracking-tight">{p.title}</h3>
+              <p className="mt-3 line-clamp-3 text-sm leading-7 text-[var(--muted2)]">{p.excerpt}</p>
+              <span className="mt-auto pt-5 text-sm font-semibold text-[var(--sec)] transition group-hover:translate-x-1">
+                {p.readMinutes} min read →
+              </span>
+            </Link>
+          ))}
+        </div>
       </Wrap>
     </div>
   );
@@ -430,16 +577,35 @@ export function CtaBand({ section }: { section: SectionContent }) {
   );
 }
 
-export function PageHeader({ eyebrow, title, sub }: { eyebrow: string; title: string; sub: string }) {
+export function PageHeader({
+  eyebrow,
+  title,
+  sub,
+  sectionKey,
+}: {
+  eyebrow: string;
+  title: string;
+  sub: string;
+  sectionKey: SectionKey;
+}) {
+  const t = sectionTheme[sectionKey];
+  const mask = "linear-gradient(to right, transparent 0%, black 60%)";
   return (
-    <div className="relative">
-      <Glow />
-      <Wrap className="pb-14 pt-16 sm:pt-24">
+    <div className="relative isolate overflow-hidden bg-[#060913] text-white">
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 -z-10 hidden w-[55%] opacity-70 lg:block"
+        style={{ maskImage: mask, WebkitMaskImage: mask }}
+      >
+        <Image src={t.image} alt="" fill sizes="55vw" className="object-cover" style={{ filter: t.imageFilter }} />
+      </div>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-[#060913] via-[#060913]/80 to-transparent" />
+      <Wrap className="pb-16 pt-16 sm:pb-20 sm:pt-24">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="mt-5 max-w-4xl text-balance text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
+        <h1 className="mt-5 max-w-4xl text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-6xl">
           {title}
         </h1>
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--muted2)]">{sub}</p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-white/75">{sub}</p>
       </Wrap>
     </div>
   );

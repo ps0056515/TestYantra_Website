@@ -5,14 +5,24 @@ import Link from "next/link";
 import { brand, groupExternalUrls } from "@/content/site";
 
 type MenuLink = { href: string; label: string; external?: boolean };
-type Menu = { id: string; label: string; href: string; minWidth?: number; columns: { title: string; links: MenuLink[] }[] };
+type Feature = { eyebrow: string; title: string; body: string; cta: string; href: string; image: string; filter: string };
+type Menu = { id: string; label: string; href: string; minWidth?: number; featured?: Feature; columns: { title: string; links: MenuLink[] }[] };
 
 const menus: Menu[] = [
   {
     id: "qe",
     label: "Quality Engineering",
     href: "/qe",
-    minWidth: 560,
+    minWidth: 800,
+    featured: {
+      eyebrow: "Featured",
+      title: "Testing the AI",
+      body: "Validate LLMs and agentic systems for bias, drift, hallucination and prompt injection.",
+      cta: "Learn more",
+      href: "/qe/solutions/testing-ai",
+      image: "/images/qe_hero.png",
+      filter: "",
+    },
     columns: [
       {
         title: "Quality Engineering",
@@ -40,7 +50,16 @@ const menus: Menu[] = [
     id: "ai",
     label: "Application Engineering & AI",
     href: "/ai",
-    minWidth: 560,
+    minWidth: 800,
+    featured: {
+      eyebrow: "Featured",
+      title: "Generative AI & RAG",
+      body: "Enterprise LLMs and retrieval pipelines with cited, grounded answers.",
+      cta: "Explore",
+      href: "/ai/solutions#generative-ai-rag",
+      image: "/images/ai_hero.png",
+      filter: "",
+    },
     columns: [
       {
         title: "Application Engineering & AI",
@@ -149,6 +168,38 @@ export function V2Nav() {
                   </ul>
                 </div>
               ))}
+              {m.featured ? (
+                <div className="mega-col mega-feature-wrap" style={{ width: 230, flexShrink: 0 }}>
+                  <Link
+                    href={m.featured.href}
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      alignItems: "flex-start",
+                      gap: 6,
+                      height: "auto",
+                      minHeight: 210,
+                      padding: 18,
+                      borderRadius: 12,
+                      overflow: "hidden",
+                      color: "#fff",
+                      backgroundColor: "#060913",
+                      backgroundImage: `linear-gradient(to top, #060913 15%, rgba(6,9,19,0.55) 60%, rgba(6,9,19,0.15)), url(${m.featured.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.65 }}>
+                      {m.featured.eyebrow}
+                    </span>
+                    <strong style={{ fontSize: 16, lineHeight: 1.25 }}>{m.featured.title}</strong>
+                    <span style={{ fontSize: 12, lineHeight: 1.5, opacity: 0.75 }}>{m.featured.body}</span>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: "#ffb08a" }}>{m.featured.cta} →</span>
+                  </Link>
+                </div>
+              ) : null}
             </div>
           </li>
         ))}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { sections, type SectionKey } from "@/content/sections";
 import { brand, industries } from "@/content/site";
+import { sectionTheme } from "@/content/sectionTheme";
 import { createMetadata } from "@/lib/seo";
 import { INTEREST_OPTIONS, interestFromSlug, type ContactInterest } from "@/lib/contactInterest";
 import { industrySlugToContactLabel } from "@/lib/contactIndustry";
@@ -11,13 +12,16 @@ import { ApproachTabs } from "@/components/section/ApproachTabs";
 import {
   CaseStudyCards,
   CtaBand,
+  DarkBand,
   Eyebrow,
   FaqList,
   GhostButton,
   Hero,
   ModelGrid,
+  OutcomesBand,
   PageHeader,
   PlatformCards,
+  ResourcesRow,
   SectionHeading,
   SolutionGrid,
   StackGrid,
@@ -57,23 +61,24 @@ export function sectionMetadata(key: SectionKey, page: PageKey): Metadata {
 export function SectionHomePage({ sectionKey }: { sectionKey: SectionKey }) {
   const s = sections[sectionKey];
   const other = sections[sectionKey === "qe" ? "ai" : "qe"];
+  const theme = sectionTheme[sectionKey];
 
   return (
     <>
       <FaqJsonLd faqs={s.faqs} />
       <Hero section={s} />
       <TrustStrip />
-      <StatBand stats={s.stats} />
+      <StatBand section={s} />
       <WhyFails data={s.whyFails} />
 
-      <div>
+      <DarkBand>
         <Wrap className="py-20 sm:py-24">
-          <SectionHeading eyebrow={s.approach.eyebrow} title={s.approach.title} sub={s.approach.sub} />
-          <ApproachTabs pillars={s.approach.pillars} />
+          <SectionHeading dark eyebrow={s.approach.eyebrow} title={s.approach.title} sub={s.approach.sub} />
+          <ApproachTabs pillars={s.approach.pillars} image={theme.image} imageFilter={theme.imageFilter} />
         </Wrap>
-      </div>
+      </DarkBand>
 
-      <div className="bg-[var(--bg2)]">
+      <div>
         <Wrap className="py-20 sm:py-24">
           <SectionHeading
             eyebrow="How we work"
@@ -87,7 +92,7 @@ export function SectionHomePage({ sectionKey }: { sectionKey: SectionKey }) {
         </Wrap>
       </div>
 
-      <div>
+      <div className="bg-[var(--bg2)]">
         <Wrap className="py-20 sm:py-24">
           <SectionHeading eyebrow="Solutions" title={s.solutions.title} sub={s.solutions.intro} />
           <SolutionGrid items={s.solutions.items.slice(0, 6)} contactHref={`${s.basePath}/contact`} />
@@ -97,17 +102,10 @@ export function SectionHomePage({ sectionKey }: { sectionKey: SectionKey }) {
         </Wrap>
       </div>
 
-      <div className="bg-[var(--bg2)]">
-        <Wrap className="py-20 sm:py-24">
-          <SectionHeading eyebrow="Case studies" title="Proven in production" sub={s.caseStudies.intro} />
-          <CaseStudyCards items={s.caseStudies.items.slice(0, 2)} />
-          <div className="mt-10">
-            <GhostButton href={`${s.basePath}/case-studies`}>All case studies</GhostButton>
-          </div>
-        </Wrap>
-      </div>
+      <OutcomesBand section={s} />
+      <ResourcesRow sectionKey={sectionKey} />
 
-      <div>
+      <div className="bg-[var(--bg2)]">
         <Wrap className="py-20 sm:py-24">
           <SectionHeading eyebrow="FAQ" title="Questions buyers ask us" />
           <FaqList faqs={s.faqs} />
@@ -139,7 +137,7 @@ export function HowWeWorkPage({ sectionKey }: { sectionKey: SectionKey }) {
   const s = sections[sectionKey];
   return (
     <>
-      <PageHeader
+      <PageHeader sectionKey={sectionKey}
         eyebrow={`${s.shortName} · How we work`}
         title="A delivery model built on outcomes, not hours"
         sub={s.howWeWork.intro}
@@ -160,7 +158,7 @@ export function PlatformsPage({ sectionKey }: { sectionKey: SectionKey }) {
   const s = sections[sectionKey];
   return (
     <>
-      <PageHeader eyebrow={`${s.shortName} · Platforms`} title={s.platforms.title} sub={s.platforms.intro} />
+      <PageHeader sectionKey={sectionKey} eyebrow={`${s.shortName} · Platforms`} title={s.platforms.title} sub={s.platforms.intro} />
       <Wrap className="pb-20">
         <PlatformCards items={s.platforms.items} />
         <StackGrid title={s.platforms.stackTitle} stack={s.platforms.stack} />
@@ -174,7 +172,7 @@ export function SolutionsPage({ sectionKey }: { sectionKey: SectionKey }) {
   const s = sections[sectionKey];
   return (
     <>
-      <PageHeader eyebrow={`${s.shortName} · Solutions`} title={s.solutions.title} sub={s.solutions.intro} />
+      <PageHeader sectionKey={sectionKey} eyebrow={`${s.shortName} · Solutions`} title={s.solutions.title} sub={s.solutions.intro} />
       <Wrap className="pb-20">
         <SolutionGrid items={s.solutions.items} contactHref={`${s.basePath}/contact`} />
       </Wrap>
@@ -187,7 +185,7 @@ export function CaseStudiesPage({ sectionKey }: { sectionKey: SectionKey }) {
   const s = sections[sectionKey];
   return (
     <>
-      <PageHeader eyebrow={`${s.shortName} · Case studies`} title={s.caseStudies.title} sub={s.caseStudies.intro} />
+      <PageHeader sectionKey={sectionKey} eyebrow={`${s.shortName} · Case studies`} title={s.caseStudies.title} sub={s.caseStudies.intro} />
       <Wrap className="pb-20">
         <CaseStudyCards items={s.caseStudies.items} />
       </Wrap>
@@ -214,7 +212,7 @@ export async function SectionContactPage({
 
   return (
     <>
-      <PageHeader
+      <PageHeader sectionKey={sectionKey}
         eyebrow={`${s.shortName} · Contact`}
         title="Book a discovery call"
         sub="Tell us what you are building or fixing. A specialist from this practice will reply within one business day."

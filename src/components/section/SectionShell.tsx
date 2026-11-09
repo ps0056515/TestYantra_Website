@@ -2,11 +2,44 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { brand } from "@/content/site";
 import { sections, type SectionKey } from "@/content/sections";
+import { sectionTheme } from "@/content/sectionTheme";
 import { SectionNav } from "@/components/section/SectionNav";
 
 export function SectionShell({ sectionKey, children }: { sectionKey: SectionKey; children: ReactNode }) {
   const section = sections[sectionKey];
   const other = sections[sectionKey === "qe" ? "ai" : "qe"];
+  const theme = sectionTheme[sectionKey];
+
+  const solutionGroups = Array.from(new Set(section.solutions.items.map((i) => i.group))).map((group) => ({
+    title: group,
+    links: section.solutions.items
+      .filter((i) => i.group === group)
+      .map((i) => ({ label: i.name, href: i.href ?? `${section.basePath}/solutions#${i.slug}` })),
+  }));
+
+  const menus = {
+    solutions: { groups: solutionGroups, featured: theme.navFeatured.solutions },
+    platforms: {
+      groups: [
+        {
+          title: "Platforms & accelerators",
+          links: section.platforms.items.map((p) => ({
+            label: p.name,
+            href: p.href ?? `${section.basePath}/platforms`,
+          })),
+        },
+        {
+          title: "Explore",
+          links: [
+            { label: "Platforms overview", href: `${section.basePath}/platforms` },
+            { label: "How we work", href: `${section.basePath}/how-we-work` },
+            { label: "Case studies", href: `${section.basePath}/case-studies` },
+          ],
+        },
+      ],
+      featured: theme.navFeatured.platforms,
+    },
+  };
 
   return (
     <div
@@ -18,8 +51,12 @@ export function SectionShell({ sectionKey, children }: { sectionKey: SectionKey;
         name={section.name}
         otherPath={other.basePath}
         otherName={other.name}
+        announcement={theme.announcement}
+        image={theme.image}
+        imageFilter={theme.imageFilter}
+        menus={menus}
       />
-      <main className="w-full min-w-0 pt-[68px]">{children}</main>
+      <main className="w-full min-w-0 pt-[108px]">{children}</main>
       <SectionFooter sectionKey={sectionKey} />
     </div>
   );
