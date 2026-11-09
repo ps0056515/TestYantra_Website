@@ -18,9 +18,9 @@ export function V2Footer() {
             <p>
               {brand.groupStatement} Quality engineering, product engineering, automation, and
               talent — through TestYantra,{" "}
-              <a href={groupExternalUrls.technoElevate} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
-                TechnoElevate
-              </a>
+              <Link href="/ai" style={{ color: "var(--accent)", fontWeight: 600 }}>
+                Application Engineering &amp; AI
+              </Link>
               ,{" "}
               <a href="https://www.fireflink.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", fontWeight: 600 }}>
                 FireFlink
@@ -41,31 +41,31 @@ export function V2Footer() {
               <a href={technoElevate.social.facebook} className="fsoc" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
               </a>
-              <a href={technoElevate.url} className="fsoc" aria-label="TechnoElevate website" target="_blank" rel="noopener noreferrer">
+              <Link href="/ai" className="fsoc" aria-label="Product engineering on TestYantra">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="foot-col">
-            <h5>Quality Services</h5>
+            <h5>Quality Engineering</h5>
             <ul>
               <li>
-                <Link href="/services/managed-qa">Managed QA</Link>
+                <Link href="/qe/solutions/managed-qa">Managed QA</Link>
               </li>
               <li>
-                <Link href="/services/test-automation">Test Automation</Link>
+                <Link href="/qe/solutions/test-automation">Test Automation</Link>
               </li>
               <li>
-                <Link href="/services/crowd-testing">Crowd Testing</Link>
+                <Link href="/qe/solutions/crowd-testing">Crowd Testing</Link>
               </li>
               <li>
-                <Link href="/services/ai-quality">AI Quality Engineering</Link>
+                <Link href="/qe/solutions/ai-quality">AI Quality Engineering</Link>
               </li>
               <li>
-                <Link href="/services/production-monitoring">Production Monitoring</Link>
+                <Link href="/qe/solutions/production-monitoring">Production Monitoring</Link>
               </li>
               <li>
-                <Link href="/services/professional-services">Professional Services</Link>
+                <Link href="/qe/solutions/professional-services">Professional Services</Link>
               </li>
             </ul>
           </div>
@@ -109,7 +109,10 @@ export function V2Footer() {
             <h5>Connect</h5>
             <ul>
               <li>
-                <Link href="/client-success">Case Studies</Link>
+                <Link href="/insights">Insights</Link>
+              </li>
+              <li>
+                <Link href="/qe/case-studies">Case Studies</Link>
               </li>
               <li>
                 <Link href="/company/locations">Locations</Link>
@@ -123,14 +126,29 @@ export function V2Footer() {
               <li>
                 <Link href="/contact">Contact Us</Link>
               </li>
+              <li>
+                <Link href="/privacy">Privacy</Link>
+              </li>
+              <li>
+                <Link href="/terms">Terms</Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="foot-bottom">
-          <p>© {new Date().getFullYear()} {brand.legalName} All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {brand.legalName} All rights reserved.{" "}
+            <Link href="/privacy" className="text-[var(--accent)] hover:underline">
+              Privacy
+            </Link>
+            {" · "}
+            <Link href="/terms" className="text-[var(--accent)] hover:underline">
+              Terms
+            </Link>
+          </p>
           <div className="foot-locs">
             <Link href="/company/locations">Bengaluru HQ</Link>
-            <a href={groupExternalUrls.technoElevate} target="_blank" rel="noopener noreferrer">TechnoElevate</a>
+            <Link href="/ai">Application Engineering &amp; AI</Link>
             <Link href="/company/locations">United States</Link>
             <Link href="/company/locations">United Kingdom</Link>
             <Link href="/company/locations">APAC</Link>

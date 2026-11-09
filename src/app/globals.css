@@ -40,3 +40,9 @@ body {
 ::selection {
   background: rgba(243, 129, 24, 0.2);
 }
+
+/* Gateway + section sites use a sans display face (RapidCanvas-style); legacy pages keep the serif. */
+.sans-headings :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}

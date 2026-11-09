@@ -7,7 +7,8 @@ interface AnimatedCounterProps {
 }
 
 export function AnimatedCounter({ value }: AnimatedCounterProps) {
-  const [displayValue, setDisplayValue] = useState("0");
+  /** Start at final value so crawlers and no-JS users see real stats, not "0". */
+  const [displayValue, setDisplayValue] = useState(value);
   const elementRef = useRef<HTMLSpanElement>(null);
   const animatedRef = useRef(false);
 

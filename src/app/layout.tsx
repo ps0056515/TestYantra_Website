@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import "./testyantra-v2.css";
-import { V2ClientEffects } from "@/components/v2/V2ClientEffects";
-import { V2Footer } from "@/components/v2/V2Footer";
-import { V2Nav } from "@/components/v2/V2Nav";
-import { V2ThemeSwitcher } from "@/components/v2/V2ThemeSwitcher";
+import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { siteConfig } from "@/lib/seo";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -21,9 +20,34 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "TestYantra — End-to-End Engineering",
-  description:
-    "The Test Yantra group — quality engineering, product engineering, and talent platform. Build, validate, and launch software from concept to production.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.defaultTitle,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.defaultDescription,
+  keywords: [...siteConfig.defaultKeywords],
+  authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.legalName,
+  formatDetection: { email: false, address: false, telephone: false },
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -46,17 +70,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full">
-        <div className="flex min-h-dvh flex-col">
-          <V2ClientEffects />
-          <V2ThemeSwitcher />
-          <V2Nav />
-          {/*
-            Do not use flex-1 on main: it stretches main to fill the viewport and leaves a huge
-            empty band (same as page bg) between content and the footer.
-          */}
-          <main className="relative z-0 w-full min-w-0 shrink-0 overflow-visible">{children}</main>
-          <V2Footer />
-        </div>
+        <GoogleAnalytics />
+        <OrganizationJsonLd />
+        {children}
       </body>
     </html>
   );

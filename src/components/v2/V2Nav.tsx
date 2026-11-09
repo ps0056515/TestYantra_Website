@@ -2,7 +2,92 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { businessUnits, brand, groupExternalUrls, technoElevate } from "@/content/site";
+import { brand, groupExternalUrls } from "@/content/site";
+
+type MenuLink = { href: string; label: string; external?: boolean };
+type Menu = { id: string; label: string; href: string; minWidth?: number; columns: { title: string; links: MenuLink[] }[] };
+
+const menus: Menu[] = [
+  {
+    id: "qe",
+    label: "Quality Engineering",
+    href: "/qe",
+    minWidth: 560,
+    columns: [
+      {
+        title: "Quality Engineering",
+        links: [
+          { href: "/qe", label: "Home" },
+          { href: "/qe/how-we-work", label: "How We Work" },
+          { href: "/qe/platforms", label: "Platforms" },
+          { href: "/qe/solutions", label: "Solutions" },
+          { href: "/qe/case-studies", label: "Case Studies" },
+        ],
+      },
+      {
+        title: "Popular solutions",
+        links: [
+          { href: "/qe/solutions/managed-qa", label: "Managed QA Services" },
+          { href: "/qe/solutions/test-automation", label: "Test Automation" },
+          { href: "/qe/solutions/crowd-testing", label: "Crowd Testing" },
+          { href: "/qe/solutions/testing-ai", label: "Testing the AI" },
+          { href: "/qe/solutions/ai-in-testing", label: "AI in Testing" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "ai",
+    label: "Application Engineering & AI",
+    href: "/ai",
+    minWidth: 560,
+    columns: [
+      {
+        title: "Application Engineering & AI",
+        links: [
+          { href: "/ai", label: "Home" },
+          { href: "/ai/how-we-work", label: "How We Work" },
+          { href: "/ai/platforms", label: "Platforms" },
+          { href: "/ai/solutions", label: "Solutions" },
+          { href: "/ai/case-studies", label: "Case Studies" },
+        ],
+      },
+      {
+        title: "Capabilities",
+        links: [
+          { href: "/ai/solutions#generative-ai-rag", label: "Generative AI & RAG" },
+          { href: "/ai/solutions#agentic-ai-automation", label: "Agentic AI & Automation" },
+          { href: "/ai/solutions#ml-data-platforms", label: "ML & Data Platforms" },
+          { href: "/ai/contact?interest=talent", label: "Build Your Team" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "company",
+    label: "Company",
+    href: "/company/leadership",
+    minWidth: 380,
+    columns: [
+      {
+        title: "Group",
+        links: [
+          { href: "https://www.fireflink.com/", label: "FireFlink", external: true },
+          { href: groupExternalUrls.academy, label: "Academy", external: true },
+        ],
+      },
+      {
+        title: "About",
+        links: [
+          { href: "/company/locations", label: "Global Presence" },
+          { href: "/company/leadership", label: "Leadership" },
+          { href: "/insights", label: "Insights" },
+          { href: "/industries", label: "Industries" },
+        ],
+      },
+    ],
+  },
+];
 
 export function V2Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,182 +116,44 @@ export function V2Nav() {
         </span>
       </Link>
 
-      <ul 
+      <ul
         className={`nav-center ${isOpen ? "open" : ""}`}
         onClick={(e) => {
-          // Close menu if a link (but not parent) is clicked
-          if ((e.target as HTMLElement).tagName === "A") {
-            closeMenu();
-          }
+          if ((e.target as HTMLElement).tagName === "A") closeMenu();
         }}
       >
+        {menus.map((m) => (
+          <li key={m.id}>
+            <Link href={m.href} onClick={(e) => handleParentClick(e, m.id)}>
+              {m.label} <span className={`nav-chevron ${activeSubmenu === m.id ? "expanded" : ""}`}>▾</span>
+            </Link>
+            <div
+              className={`mega-drop ${activeSubmenu === m.id ? "mobile-show" : ""}`}
+              style={m.minWidth ? { minWidth: m.minWidth } : undefined}
+            >
+              {m.columns.map((col) => (
+                <div className="mega-col" key={col.title}>
+                  <h6>{col.title}</h6>
+                  <ul>
+                    {col.links.map((l) => (
+                      <li key={l.href}>
+                        {l.external ? (
+                          <a href={l.href} target="_blank" rel="noopener noreferrer">
+                            {l.label} ↗
+                          </a>
+                        ) : (
+                          <Link href={l.href}>{l.label}</Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </li>
+        ))}
         <li>
-          <Link href="/services" onClick={(e) => handleParentClick(e, "services")}>
-            QA Services <span className={`nav-chevron ${activeSubmenu === "services" ? "expanded" : ""}`}>▾</span>
-          </Link>
-          <div className={`mega-drop ${activeSubmenu === "services" ? "mobile-show" : ""}`}>
-            <div className="mega-col">
-              <h6>Quality Assurance</h6>
-              <ul>
-                <li>
-                  <Link href="/services/managed-qa">Managed QA Services</Link>
-                </li>
-                <li>
-                  <Link href="/services/functional-testing">Functional & E2E Testing</Link>
-                </li>
-                <li>
-                  <Link href="/services/crowd-testing">Crowd Testing</Link>
-                </li>
-                <li>
-                  <Link href="/services/accessibility-uat">Accessibility & UAT</Link>
-                </li>
-              </ul>
-            </div>
-            <div className="mega-col">
-              <h6>Quality Engineering</h6>
-              <ul>
-                <li>
-                  <Link href="/services/test-automation">Test Automation</Link>
-                </li>
-                <li>
-                  <Link href="/services/api-microservices">API & Microservices</Link>
-                </li>
-                <li>
-                  <Link href="/services/production-monitoring">Production Monitoring</Link>
-                </li>
-                <li>
-                  <Link href="/services/professional-services">Professional Services</Link>
-                </li>
-              </ul>
-            </div>
-            <div className="mega-col">
-              <h6>TestYantra AI</h6>
-              <ul>
-                <li>
-                  <Link href="/services/testing-ai">Testing the AI</Link>
-                </li>
-                <li>
-                  <Link href="/services/ai-in-testing">AI in Testing</Link>
-                </li>
-                <li>
-                  <Link href="/services/ai-quality">AI Quality Engineering</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <Link href="/development" onClick={(e) => handleParentClick(e, "development")}>
-            TechnoElevate <span className={`nav-chevron ${activeSubmenu === "development" ? "expanded" : ""}`}>▾</span>
-          </Link>
-          <div className={`mega-drop ${activeSubmenu === "development" ? "mobile-show" : ""}`} style={{ minWidth: 340 }}>
-            <div className="mega-col">
-              <h6>Product Engineering</h6>
-              <ul>
-                <li>
-                  <Link href="/development">Overview</Link>
-                </li>
-                <li>
-                  <Link href="/services/development">Product Engineering Services</Link>
-                </li>
-                <li>
-                  <Link href="/development#talent-platform">Talent Platform</Link>
-                </li>
-                <li>
-                  <Link href="/contact?interest=talent">Build Your Team</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <Link href="/industries" onClick={(e) => handleParentClick(e, "industries")}>
-            Industries <span className={`nav-chevron ${activeSubmenu === "industries" ? "expanded" : ""}`}>▾</span>
-          </Link>
-          <div className={`mega-drop ${activeSubmenu === "industries" ? "mobile-show" : ""}`} style={{ minWidth: 400 }}>
-            <div className="mega-col">
-              <h6>Financial Services</h6>
-              <ul>
-                <li>
-                  <Link href="/contact?industry=banking-finance">Banking & Finance</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=insurance">Insurance</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=fintech">FinTech</Link>
-                </li>
-              </ul>
-            </div>
-            <div className="mega-col">
-              <h6>Other Sectors</h6>
-              <ul>
-                <li>
-                  <Link href="/contact?industry=healthcare">Healthcare & Life Sciences</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=media-entertainment">Media & Entertainment</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=retail-ecommerce">Retail</Link>
-                </li>
-                <li>
-                  <Link href="/contact?industry=saas-hitech">SaaS & Hi-Tech</Link>
-                </li>
-                <li>
-                  <Link href="/industries">All 14 Industries →</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <Link href="/#engage">Engagement</Link>
-        </li>
-        <li>
-          <Link href="/client-success">Client Success</Link>
-        </li>
-        <li>
-          <Link href="/company/leadership" onClick={(e) => handleParentClick(e, "company")}>
-            Company <span className={`nav-chevron ${activeSubmenu === "company" ? "expanded" : ""}`}>▾</span>
-          </Link>
-          <div className={`mega-drop ${activeSubmenu === "company" ? "mobile-show" : ""}`} style={{ minWidth: 380 }}>
-            <div className="mega-col">
-              <h6>Group</h6>
-              <ul>
-                {businessUnits.map((u) => (
-                  <li key={u.id}>
-                    {u.external ? (
-                      <a href={u.href} target="_blank" rel="noopener noreferrer">
-                        {u.name} ↗
-                      </a>
-                    ) : (
-                      <Link href={u.href}>{u.name}</Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mega-col">
-              <h6>About</h6>
-              <ul>
-                <li>
-                  <Link href="/company/locations">Global Presence</Link>
-                </li>
-                <li>
-                  <Link href="/company/leadership">Leadership</Link>
-                </li>
-                <li>
-                  <a href={groupExternalUrls.academy} target="_blank" rel="noopener noreferrer">
-                    Academy ↗
-                  </a>
-                </li>
-                <li>
-                  <Link href="/contact">Careers</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <a href={`mailto:${brand.emailPrimary}`}>Email us</a>
         </li>
       </ul>
 
@@ -214,9 +161,9 @@ export function V2Nav() {
         <Link href="/contact" className="nav-cta" onClick={closeMenu}>
           Talk to Us
         </Link>
-        
-        <button 
-          className={`nav-mobile-toggle ${isOpen ? "active" : ""}`} 
+
+        <button
+          className={`nav-mobile-toggle ${isOpen ? "active" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -228,4 +175,3 @@ export function V2Nav() {
     </nav>
   );
 }
-

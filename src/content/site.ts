@@ -107,6 +107,8 @@ export const brand = {
   groupStatement:
     "The Test Yantra group — one partner from bench to production.",
   emailPrimary: "contactus@testyantra.com",
+  /** Privacy / data-rights requests — create this Zoho alias if not live yet */
+  privacyEmail: "privacy@testyantra.com",
   emailSolutions: "solutions@testyantraglobal.com",
   emailAlt: "info@testyantra.com",
   phoneIndia: "+91 9742490958",
@@ -236,8 +238,8 @@ export const businessUnits: BusinessUnit[] = [
     tagline: "Product Engineering & Staffing",
     description:
       "Test Yantra's fast-growing product engineering unit — custom engineering, managed delivery, and role-based staffing with 900+ skilled professionals.",
-    href: groupExternalUrls.technoElevate,
-    external: true,
+    href: "/development",
+    external: false,
     email: "contactus@technoelevate.com",
     icon: "💻",
     accent: "var(--indigo)",
@@ -1511,6 +1513,32 @@ export const caseStudies: CaseStudy[] = [
       { label: "Production defects", value: "Zero critical" },
     ],
   },
+  {
+    title: "FinTech payments platform — API-first test automation",
+    industry: "FinTech",
+    problem:
+      "A high-growth payments company was scaling microservices faster than manual and ad-hoc automation could cover, risking regression gaps on money-movement flows.",
+    approach:
+      "API contract testing, service virtualisation, and CI/CD quality gates integrated with managed QA PODs covering sprint and release regression.",
+    results: [
+      { label: "API test coverage", value: "92%" },
+      { label: "Release confidence", value: "Weekly" },
+      { label: "Prod incidents (P1)", value: "70% fewer" },
+    ],
+  },
+  {
+    title: "Auto marketplace — mobile & web quality at scale",
+    industry: "Retail & E-Commerce",
+    problem:
+      "Peak-season traffic and rapid feature launches strained QA capacity across Android, iOS, and web — with device fragmentation driving high escape rates.",
+    approach:
+      "Crowd testing for device matrix coverage, automation for checkout and listing flows, and production synthetic monitoring on critical journeys.",
+    results: [
+      { label: "Device coverage", value: "400+ devices" },
+      { label: "Checkout defects", value: "80% reduction" },
+      { label: "Peak uptime", value: "99.95%" },
+    ],
+  },
 ];
 
 export const industries: Industry[] = [
@@ -1615,11 +1643,11 @@ export const industries: Industry[] = [
 ];
 
 export const nav = [
-  { href: "/services", label: "Services" },
-  { href: "/development", label: "TechnoElevate" },
+  { href: "/qe/solutions", label: "Quality Engineering" },
+  { href: "/ai", label: "Application Engineering & AI" },
   { href: groupExternalUrls.academy, label: "Academy" },
   { href: "/industries", label: "Industries" },
-  { href: "/client-success", label: "Client Success" },
+  { href: "/qe/case-studies", label: "Case Studies" },
   { href: "/company/locations", label: "Locations" },
   { href: "/contact", label: "Contact" },
 ] as const;
