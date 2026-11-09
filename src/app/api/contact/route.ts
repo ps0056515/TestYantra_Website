@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { brand } from "@/content/site";
+import { getDb } from "@/lib/db";
+import { hostOf, sectionOf } from "@/lib/tracking";
 
 export const runtime = "nodejs";
 
@@ -12,7 +14,61 @@ type ContactPayload = {
   marketingOptIn?: boolean;
   /** Honeypot — must be empty */
   companyWebsite?: string;
+  /** Attribution context captured in the browser */
+  sourcePath?: string;
+  sessionId?: string;
+  referrer?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
 };
+
+const clip = (v: unknown, n: number): string | null => {
+  const s = typeof v === "string" ? v.trim().slice(0, n) : "";
+  return s || null;
+};
+
+/** Persist the enquiry first, so a lead is never lost if email delivery fails. */
+function saveLead(p: ContactPayload): number | null {
+  try {
+    const db = getDb();
+    const sourcePath = clip(p.sourcePath, 300) ?? "/contact";
+    const sessionId = clip(p.sessionId, 64);
+    const seen = sessionId
+      ? db.get(
+          "SELECT company, company_domain FROM visits WHERE session_id = ? AND company IS NOT NULL ORDER BY id DESC LIMIT 1",
+          sessionId,
+        )
+      : undefined;
+
+    const res = db.run(
+      `INSERT INTO leads (created_at, name, email, email_domain, interest, industry, message, marketing_opt_in, section, source_path,
+         referrer, utm_source, utm_medium, utm_campaign, session_id, visitor_company, visitor_company_domain)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      new Date().toISOString(),
+      p.name,
+      p.email,
+      p.email.split("@")[1]?.toLowerCase() ?? null,
+      p.interest,
+      p.industry,
+      p.message,
+      p.marketingOptIn ? 1 : 0,
+      sectionOf(sourcePath),
+      sourcePath,
+      hostOf(p.referrer),
+      clip(p.utm_source, 80),
+      clip(p.utm_medium, 80),
+      clip(p.utm_campaign, 120),
+      sessionId,
+      (seen?.company as string) ?? null,
+      (seen?.company_domain as string) ?? null,
+    );
+    return Number(res.lastInsertRowid);
+  } catch (err) {
+    console.error("[contact] could not store lead", err);
+    return null;
+  }
+}
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -26,6 +82,8 @@ function buildEmailHtml(data: ContactPayload): string {
     ["Industry", data.industry],
     ["Message", data.message],
     ["Marketing opt-in", data.marketingOptIn ? "Yes" : "No"],
+    ["Submitted from", data.sourcePath ?? "/contact"],
+    ["Came from", data.utm_source || hostOf(data.referrer) || "Direct"],
   ];
   const body = rows
     .map(
@@ -140,8 +198,24 @@ export async function POST(request: Request) {
   }
 
   const marketingOptIn = Boolean(data.marketingOptIn);
-  const payload: ContactPayload = { name, email, interest, industry, message, marketingOptIn };
+  const payload: ContactPayload = {
+    name,
+    email,
+    interest,
+    industry,
+    message,
+    marketingOptIn,
+    sourcePath: data.sourcePath,
+    sessionId: data.sessionId,
+    referrer: data.referrer,
+    utm_source: data.utm_source,
+    utm_medium: data.utm_medium,
+    utm_campaign: data.utm_campaign,
+  };
   const to = process.env.CONTACT_TO_EMAIL ?? brand.emailPrimary;
+
+  const leadId = saveLead(payload);
+  const stored = leadId !== null;
 
   const configured =
     Boolean(process.env.RESEND_API_KEY) ||
@@ -149,7 +223,9 @@ export async function POST(request: Request) {
     Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
 
   if (!configured) {
-    console.error("[contact] No delivery configured — set RESEND_API_KEY, SMTP_*, or CONTACT_WEBHOOK_URL");
+    console.error("[contact] No email delivery configured — set RESEND_API_KEY, SMTP_*, or CONTACT_WEBHOOK_URL");
+    // The enquiry is safely stored and visible in /admin, so the visitor still gets a success message.
+    if (stored) return NextResponse.json({ ok: true });
     return NextResponse.json(
       {
         error:
@@ -166,12 +242,16 @@ export async function POST(request: Request) {
       (await sendViaSmtp(payload, to));
 
     if (!sent) {
+      console.error("[contact] email delivery failed; lead stored:", leadId);
+      if (leadId) return NextResponse.json({ ok: true });
       return NextResponse.json({ error: "Could not send your enquiry. Please try email or phone." }, { status: 502 });
     }
 
+    if (leadId) getDb().run("UPDATE leads SET email_delivered = 1 WHERE id = ?", leadId);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[contact] send failed", err);
+    if (leadId) return NextResponse.json({ ok: true });
     return NextResponse.json({ error: "Something went wrong. Please email contactus@testyantra.com." }, { status: 500 });
   }
 }

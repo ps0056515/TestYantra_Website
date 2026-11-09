@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { getSessionContext } from "@/lib/clientTracking";
 
 type Props = {
   defaultInterest: string;
@@ -37,6 +38,9 @@ export function ContactForm({
       message: String(fd.get("message") ?? ""),
       companyWebsite: String(fd.get("companyWebsite") ?? ""),
       marketingOptIn: fd.get("marketingOptIn") === "on",
+      // Attribution: which page they came from and how they found us
+      sourcePath: window.location.pathname,
+      ...getSessionContext(),
     };
 
     try {

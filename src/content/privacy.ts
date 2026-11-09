@@ -32,6 +32,7 @@ export const privacySections: PrivacySection[] = [
     paragraphs: [
       "Enquiry form: your name, work email, area of interest, industry, message, and whether you optionally consent to marketing updates.",
       "Browsing: if Google Analytics (GA4) is enabled on our production site, we may receive aggregated usage data (e.g. pages viewed, device/browser type, approximate location). We store light/dark theme preference in your browser’s local storage only — not on our servers.",
+      "Site analytics: we record which pages are viewed, the referring site or campaign, a random per-tab session identifier (kept in your browser’s session storage, not a cookie), and a one-way hash of your IP address so we can count unique visitors. We do not store your raw IP address. Where the visiting network belongs to a business, a service provider may identify the organisation (not you personally) so we understand which companies are interested in our services. We do not record visits when your browser sends a Do Not Track or Global Privacy Control signal. Enquiry details are stored on our own server so we can follow up, and are also emailed to our team.",
       "Please do not submit sensitive personal data (health, financial accounts, etc.) in free-text fields unless necessary for your enquiry and you agree we may process it for that purpose.",
     ],
   },

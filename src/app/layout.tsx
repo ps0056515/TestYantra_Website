@@ -4,6 +4,7 @@ import "./globals.css";
 import "./testyantra-v2.css";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { siteConfig } from "@/lib/seo";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -71,6 +72,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full">
         <GoogleAnalytics />
+        <PageViewTracker />
         <OrganizationJsonLd />
         {children}
       </body>
