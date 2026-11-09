@@ -1,5 +1,5 @@
 import { isAdminRequest } from "@/lib/adminAuth";
-import { getDb } from "@/lib/db";
+import { query } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   const id = Number(form.get("id"));
   const status = String(form.get("status") ?? "");
   if (Number.isInteger(id) && STATUSES.includes(status)) {
-    getDb().run("UPDATE leads SET status = ? WHERE id = ?", status, id);
+    await query("UPDATE leads SET status = $1 WHERE id = $2", [status, id]);
   }
   return new Response(null, { status: 303, headers: { Location: "/admin#leads" } });
 }

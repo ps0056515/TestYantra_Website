@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/adminAuth";
+import { dbConfigured } from "@/lib/db";
 import { changeText, fmtIst, getDashboard, type Count } from "@/lib/adminData";
 import { AiSummaryPanel } from "./AiSummaryPanel";
 
@@ -56,12 +57,30 @@ function Bars({ rows, labelMap }: { rows: Count[]; labelMap?: Record<string, str
   );
 }
 
+function DbProblem({ message }: { message: string }) {
+  return (
+    <div className="mx-auto max-w-xl px-6 py-24">
+      <h1 className="text-xl font-bold">Database not connected</h1>
+      <p className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">{message}</p>
+      <p className="mt-3 text-sm text-slate-500">Until then, enquiries are still emailed but not saved here, and visits are not recorded.</p>
+    </div>
+  );
+}
+
 export default async function AdminDashboard({ searchParams }: { searchParams: Promise<{ days?: string }> }) {
   if (!(await isAdmin())) redirect("/admin/login");
 
   const { days: d } = await searchParams;
   const days = [7, 30, 90].includes(Number(d)) ? Number(d) : 7;
-  const data = getDashboard(days);
+
+  if (!dbConfigured()) return <DbProblem message="DATABASE_URL is not set. Add your Neon connection string to the server environment and restart." />;
+  let data: Awaited<ReturnType<typeof getDashboard>>;
+  try {
+    data = await getDashboard(days);
+  } catch (err) {
+    console.error("[admin] dashboard query failed", err);
+    return <DbProblem message="Could not reach the database. Check that DATABASE_URL is correct and the Neon project is active." />;
+  }
   const { totals } = data;
   const maxDay = Math.max(1, ...data.daily.map((x) => x.views));
   const conv = totals.sessions ? ((totals.leads / totals.sessions) * 100).toFixed(1) : "0";

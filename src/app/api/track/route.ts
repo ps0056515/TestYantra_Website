@@ -1,4 +1,4 @@
-import { getDb } from "@/lib/db";
+import { dbConfigured, query } from "@/lib/db";
 import { clientIp, hashIp, hostOf, isBot, lookupCompany, rateLimit, sectionOf } from "@/lib/tracking";
 
 export const runtime = "nodejs";
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
   const done = () => new Response(null, { status: 204 });
 
   try {
+    if (!dbConfigured()) return done();
     const ua = request.headers.get("user-agent");
     if (isBot(ua)) return done();
     if (request.headers.get("sec-gpc") === "1") return done();
@@ -42,21 +43,23 @@ export async function POST(request: Request) {
     const company = await lookupCompany(ip, ipHash);
     const country = request.headers.get("cf-ipcountry") ?? request.headers.get("x-vercel-ip-country");
 
-    getDb().run(
+    await query(
       `INSERT INTO visits (created_at, path, section, referrer_host, utm_source, utm_medium, utm_campaign, session_id, visitor_hash, country, company, company_domain)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,
-      new Date().toISOString(),
-      path,
-      sectionOf(path),
-      hostOf(body.referrer),
-      clip(body.utm_source, 80),
-      clip(body.utm_medium, 80),
-      clip(body.utm_campaign, 120),
-      clip(body.sessionId, 64),
-      ipHash,
-      clip(country, 4),
-      company.name,
-      company.domain,
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+      [
+        new Date().toISOString(),
+        path,
+        sectionOf(path),
+        hostOf(body.referrer),
+        clip(body.utm_source, 80),
+        clip(body.utm_medium, 80),
+        clip(body.utm_campaign, 120),
+        clip(body.sessionId, 64),
+        ipHash,
+        clip(country, 4),
+        company.name,
+        company.domain,
+      ],
     );
   } catch (err) {
     console.error("[track] failed", err);

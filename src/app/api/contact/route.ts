@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { brand } from "@/content/site";
-import { getDb } from "@/lib/db";
+import { dbConfigured, one, query } from "@/lib/db";
 import { hostOf, sectionOf } from "@/lib/tracking";
 
 export const runtime = "nodejs";
@@ -29,41 +29,44 @@ const clip = (v: unknown, n: number): string | null => {
 };
 
 /** Persist the enquiry first, so a lead is never lost if email delivery fails. */
-function saveLead(p: ContactPayload): number | null {
+async function saveLead(p: ContactPayload): Promise<number | null> {
+  if (!dbConfigured()) return null;
   try {
-    const db = getDb();
     const sourcePath = clip(p.sourcePath, 300) ?? "/contact";
     const sessionId = clip(p.sessionId, 64);
     const seen = sessionId
-      ? db.get(
-          "SELECT company, company_domain FROM visits WHERE session_id = ? AND company IS NOT NULL ORDER BY id DESC LIMIT 1",
-          sessionId,
+      ? await one(
+          "SELECT company, company_domain FROM visits WHERE session_id = $1 AND company IS NOT NULL ORDER BY id DESC LIMIT 1",
+          [sessionId],
         )
       : undefined;
 
-    const res = db.run(
+    const rows = await query(
       `INSERT INTO leads (created_at, name, email, email_domain, interest, industry, message, marketing_opt_in, section, source_path,
          referrer, utm_source, utm_medium, utm_campaign, session_id, visitor_company, visitor_company_domain)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
-      new Date().toISOString(),
-      p.name,
-      p.email,
-      p.email.split("@")[1]?.toLowerCase() ?? null,
-      p.interest,
-      p.industry,
-      p.message,
-      p.marketingOptIn ? 1 : 0,
-      sectionOf(sourcePath),
-      sourcePath,
-      hostOf(p.referrer),
-      clip(p.utm_source, 80),
-      clip(p.utm_medium, 80),
-      clip(p.utm_campaign, 120),
-      sessionId,
-      (seen?.company as string) ?? null,
-      (seen?.company_domain as string) ?? null,
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)
+       RETURNING id`,
+      [
+        new Date().toISOString(),
+        p.name,
+        p.email,
+        p.email.split("@")[1]?.toLowerCase() ?? null,
+        p.interest,
+        p.industry,
+        p.message,
+        p.marketingOptIn ? 1 : 0,
+        sectionOf(sourcePath),
+        sourcePath,
+        hostOf(p.referrer),
+        clip(p.utm_source, 80),
+        clip(p.utm_medium, 80),
+        clip(p.utm_campaign, 120),
+        sessionId,
+        (seen?.company as string) ?? null,
+        (seen?.company_domain as string) ?? null,
+      ],
     );
-    return Number(res.lastInsertRowid);
+    return Number(rows[0]?.id);
   } catch (err) {
     console.error("[contact] could not store lead", err);
     return null;
@@ -214,7 +217,7 @@ export async function POST(request: Request) {
   };
   const to = process.env.CONTACT_TO_EMAIL ?? brand.emailPrimary;
 
-  const leadId = saveLead(payload);
+  const leadId = await saveLead(payload);
   const stored = leadId !== null;
 
   const configured =
@@ -247,7 +250,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Could not send your enquiry. Please try email or phone." }, { status: 502 });
     }
 
-    if (leadId) getDb().run("UPDATE leads SET email_delivered = 1 WHERE id = ?", leadId);
+    if (leadId) await query("UPDATE leads SET email_delivered = 1 WHERE id = $1", [leadId]).catch(() => undefined);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[contact] send failed", err);

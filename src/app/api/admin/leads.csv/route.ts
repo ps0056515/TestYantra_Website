@@ -1,5 +1,5 @@
 import { isAdminRequest } from "@/lib/adminAuth";
-import { getDb } from "@/lib/db";
+import { query } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -12,7 +12,7 @@ const cell = (v: unknown) => {
 export async function GET(request: Request) {
   if (!isAdminRequest(request)) return new Response("Unauthorized", { status: 401 });
 
-  const rows = getDb().all("SELECT * FROM leads ORDER BY id DESC");
+  const rows = await query("SELECT * FROM leads ORDER BY id DESC");
   const cols = [
     "id", "created_at", "name", "email", "email_domain", "interest", "industry", "message", "marketing_opt_in",
     "section", "source_path", "referrer", "utm_source", "utm_medium", "utm_campaign", "visitor_company", "status", "email_delivered",

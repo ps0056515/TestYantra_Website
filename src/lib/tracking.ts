@@ -1,5 +1,5 @@
 import { createHmac } from "node:crypto";
-import { getDb } from "@/lib/db";
+import { dbConfigured, one, query } from "@/lib/db";
 
 export type SiteSection = "gateway" | "qe" | "ai" | "company" | "other";
 
@@ -57,10 +57,9 @@ const CACHE_DAYS = 30;
 export async function lookupCompany(ip: string | null, ipHash: string | null): Promise<CompanyInfo> {
   const none: CompanyInfo = { name: null, domain: null };
   const token = process.env.IPINFO_TOKEN;
-  if (!token || !ip || !ipHash || isPrivateIp(ip)) return none;
+  if (!token || !ip || !ipHash || isPrivateIp(ip) || !dbConfigured()) return none;
 
-  const db = getDb();
-  const cached = db.get("SELECT name, domain, checked_at FROM ip_companies WHERE ip_hash = ?", ipHash);
+  const cached = await one("SELECT name, domain, checked_at FROM ip_companies WHERE ip_hash = $1", [ipHash]);
   if (cached) {
     const ageDays = (Date.now() - Date.parse(String(cached.checked_at))) / 86_400_000;
     if (ageDays < CACHE_DAYS) {
@@ -83,13 +82,10 @@ export async function lookupCompany(ip: string | null, ipHash: string | null): P
     return none; // do not cache failures
   }
 
-  db.run(
-    "INSERT OR REPLACE INTO ip_companies (ip_hash, name, domain, type, checked_at) VALUES (?,?,?,?,?)",
-    ipHash,
-    result.name,
-    result.domain,
-    type,
-    new Date().toISOString(),
+  await query(
+    `INSERT INTO ip_companies (ip_hash, name, domain, type, checked_at) VALUES ($1,$2,$3,$4,$5)
+     ON CONFLICT (ip_hash) DO UPDATE SET name = EXCLUDED.name, domain = EXCLUDED.domain, type = EXCLUDED.type, checked_at = EXCLUDED.checked_at`,
+    [ipHash, result.name, result.domain, type, new Date().toISOString()],
   );
   return result;
 }

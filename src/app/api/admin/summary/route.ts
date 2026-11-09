@@ -9,6 +9,11 @@ export async function POST(request: Request) {
 
   const body = (await request.json().catch(() => ({}))) as { days?: number };
   const days = [7, 30, 90].includes(Number(body.days)) ? Number(body.days) : 7;
-  const result = await generateSummary(getDashboard(days));
-  return Response.json(result, { headers: { "Cache-Control": "no-store" } });
+  try {
+    const result = await generateSummary(await getDashboard(days));
+    return Response.json(result, { headers: { "Cache-Control": "no-store" } });
+  } catch (err) {
+    console.error("[summary] dashboard query failed", err);
+    return Response.json({ error: "Database unavailable" }, { status: 503 });
+  }
 }

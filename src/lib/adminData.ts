@@ -1,7 +1,7 @@
-import { getDb } from "@/lib/db";
+import { query, type Row } from "@/lib/db";
 
-/** Dashboard day-buckets use India Standard Time (UTC+5:30). */
-const TZ = "+330 minutes";
+/** Dashboard day-buckets use India Standard Time. */
+const TZ = "Asia/Kolkata";
 
 export type Count = { label: string; views: number; visitors: number };
 export type CompanyRow = {
@@ -49,123 +49,117 @@ export type Dashboard = {
 
 const n = (v: unknown) => Number(v ?? 0);
 const s = (v: unknown) => (v == null ? "" : String(v));
+const opt = (v: unknown) => (v ? String(v) : null);
 
-export function getDashboard(days: number): Dashboard {
-  const db = getDb();
+export async function getDashboard(days: number): Promise<Dashboard> {
   const since = new Date(Date.now() - days * 86_400_000).toISOString();
-
-  const t = db.get(
-    `SELECT COUNT(*) AS pageviews, COUNT(DISTINCT visitor_hash) AS visitors, COUNT(DISTINCT session_id) AS sessions,
-            COUNT(DISTINCT company) AS companies FROM visits WHERE created_at >= ?`,
-    since,
-  );
-  const leadCount = db.get("SELECT COUNT(*) AS c FROM leads WHERE created_at >= ?", since);
-
   const prevSince = new Date(Date.now() - 2 * days * 86_400_000).toISOString();
-  const pt = db.get(
-    `SELECT COUNT(*) AS pageviews, COUNT(DISTINCT visitor_hash) AS visitors, COUNT(DISTINCT session_id) AS sessions
-     FROM visits WHERE created_at >= ? AND created_at < ?`,
-    prevSince,
-    since,
-  );
-  const prevLeads = db.get("SELECT COUNT(*) AS c FROM leads WHERE created_at >= ? AND created_at < ?", prevSince, since);
+  const dayExpr = `to_char(created_at::timestamptz AT TIME ZONE '${TZ}', 'YYYY-MM-DD')`;
 
-  const viewsByDay = new Map(
-    db
-      .all(
-        `SELECT date(created_at, '${TZ}') AS d, COUNT(*) AS c FROM visits WHERE created_at >= ? GROUP BY d`,
-        since,
+  const grouped = async (expr: string, limit: number, where = "TRUE"): Promise<Count[]> =>
+    (
+      await query(
+        `SELECT ${expr} AS label, COUNT(*) AS views, COUNT(DISTINCT visitor_hash) AS visitors
+         FROM visits WHERE created_at >= $1 AND ${where} GROUP BY 1 ORDER BY views DESC LIMIT ${limit}`,
+        [since],
       )
-      .map((r) => [s(r.d), n(r.c)]),
-  );
-  const leadsByDay = new Map(
-    db
-      .all(
-        `SELECT date(created_at, '${TZ}') AS d, COUNT(*) AS c FROM leads WHERE created_at >= ? GROUP BY d`,
-        since,
-      )
-      .map((r) => [s(r.d), n(r.c)]),
-  );
+    ).map((r) => ({ label: s(r.label), views: n(r.views), visitors: n(r.visitors) }));
+
+  const [totals, leadCount, prev, prevLeads, viewDays, leadDays, sections, pages, sources, countries, companyRows, leadRows] =
+    await Promise.all([
+      query(
+        `SELECT COUNT(*) AS pageviews, COUNT(DISTINCT visitor_hash) AS visitors, COUNT(DISTINCT session_id) AS sessions,
+                COUNT(DISTINCT company) AS companies FROM visits WHERE created_at >= $1`,
+        [since],
+      ),
+      query("SELECT COUNT(*) AS c FROM leads WHERE created_at >= $1", [since]),
+      query(
+        `SELECT COUNT(*) AS pageviews, COUNT(DISTINCT visitor_hash) AS visitors, COUNT(DISTINCT session_id) AS sessions
+         FROM visits WHERE created_at >= $1 AND created_at < $2`,
+        [prevSince, since],
+      ),
+      query("SELECT COUNT(*) AS c FROM leads WHERE created_at >= $1 AND created_at < $2", [prevSince, since]),
+      query(`SELECT ${dayExpr} AS d, COUNT(*) AS c FROM visits WHERE created_at >= $1 GROUP BY 1`, [since]),
+      query(`SELECT ${dayExpr} AS d, COUNT(*) AS c FROM leads WHERE created_at >= $1 GROUP BY 1`, [since]),
+      grouped("section", 6),
+      grouped("path", 12),
+      grouped("COALESCE(utm_source, referrer_host, 'Direct / none')", 10),
+      grouped("country", 8, "country IS NOT NULL"),
+      query(
+        `SELECT company, MAX(company_domain) AS domain, COUNT(*) AS views, COUNT(DISTINCT session_id) AS sessions,
+                MAX(created_at) AS last_seen, string_agg(DISTINCT section, ',') AS sections
+         FROM visits WHERE created_at >= $1 AND company IS NOT NULL
+         GROUP BY company ORDER BY views DESC, last_seen DESC LIMIT 25`,
+        [since],
+      ),
+      query("SELECT * FROM leads WHERE created_at >= $1 ORDER BY id DESC LIMIT 200", [since]),
+    ]);
+
+  const viewsByDay = new Map(viewDays.map((r) => [s(r.d), n(r.c)]));
+  const leadsByDay = new Map(leadDays.map((r) => [s(r.d), n(r.c)]));
   const daily: Dashboard["daily"] = [];
   for (let i = days - 1; i >= 0; i--) {
     const day = new Date(Date.now() + 330 * 60_000 - i * 86_400_000).toISOString().slice(0, 10);
     daily.push({ day, views: viewsByDay.get(day) ?? 0, leads: leadsByDay.get(day) ?? 0 });
   }
 
-  const grouped = (expr: string, limit: number, where = "1=1"): Count[] =>
-    db
-      .all(
-        `SELECT ${expr} AS label, COUNT(*) AS views, COUNT(DISTINCT visitor_hash) AS visitors
-         FROM visits WHERE created_at >= ? AND ${where} GROUP BY label ORDER BY views DESC LIMIT ${limit}`,
-        since,
-      )
-      .map((r) => ({ label: s(r.label), views: n(r.views), visitors: n(r.visitors) }));
+  const companies: CompanyRow[] = await Promise.all(
+    companyRows.map(async (r: Row) => {
+      const pageRows = await query(
+        `SELECT path, COUNT(*) AS c FROM visits WHERE created_at >= $1 AND company = $2 GROUP BY path ORDER BY c DESC LIMIT 6`,
+        [since, s(r.company)],
+      );
+      return {
+        company: s(r.company),
+        domain: opt(r.domain),
+        views: n(r.views),
+        sessions: n(r.sessions),
+        lastSeen: s(r.last_seen),
+        sections: s(r.sections),
+        pages: pageRows.map((p) => s(p.path)),
+      };
+    }),
+  );
 
-  const companies: CompanyRow[] = db
-    .all(
-      `SELECT company, MAX(company_domain) AS domain, COUNT(*) AS views, COUNT(DISTINCT session_id) AS sessions,
-              MAX(created_at) AS last_seen, group_concat(DISTINCT section) AS sections
-       FROM visits WHERE created_at >= ? AND company IS NOT NULL
-       GROUP BY company ORDER BY views DESC, last_seen DESC LIMIT 25`,
-      since,
-    )
-    .map((r) => ({
-      company: s(r.company),
-      domain: r.domain ? s(r.domain) : null,
-      views: n(r.views),
-      sessions: n(r.sessions),
-      lastSeen: s(r.last_seen),
-      sections: s(r.sections),
-      pages: db
-        .all(
-          `SELECT path, COUNT(*) AS c FROM visits WHERE created_at >= ? AND company = ? GROUP BY path ORDER BY c DESC LIMIT 6`,
-          since,
-          s(r.company),
-        )
-        .map((p) => s(p.path)),
-    }));
-
-  const leads: LeadRow[] = db
-    .all("SELECT * FROM leads WHERE created_at >= ? ORDER BY id DESC LIMIT 200", since)
-    .map((r) => ({
-      id: n(r.id),
-      createdAt: s(r.created_at),
-      name: s(r.name),
-      email: s(r.email),
-      emailDomain: r.email_domain ? s(r.email_domain) : null,
-      interest: r.interest ? s(r.interest) : null,
-      industry: r.industry ? s(r.industry) : null,
-      message: r.message ? s(r.message) : null,
-      section: r.section ? s(r.section) : null,
-      sourcePath: r.source_path ? s(r.source_path) : null,
-      referrer: r.referrer ? s(r.referrer) : null,
-      utmSource: r.utm_source ? s(r.utm_source) : null,
-      visitorCompany: r.visitor_company ? s(r.visitor_company) : null,
-      status: s(r.status),
-      emailDelivered: n(r.email_delivered) === 1,
-    }));
+  const leads: LeadRow[] = leadRows.map((r) => ({
+    id: n(r.id),
+    createdAt: s(r.created_at),
+    name: s(r.name),
+    email: s(r.email),
+    emailDomain: opt(r.email_domain),
+    interest: opt(r.interest),
+    industry: opt(r.industry),
+    message: opt(r.message),
+    section: opt(r.section),
+    sourcePath: opt(r.source_path),
+    referrer: opt(r.referrer),
+    utmSource: opt(r.utm_source),
+    visitorCompany: opt(r.visitor_company),
+    status: s(r.status),
+    emailDelivered: n(r.email_delivered) === 1,
+  }));
 
   return {
     days,
     since,
     totals: {
-      pageviews: n(t?.pageviews),
-      visitors: n(t?.visitors),
-      sessions: n(t?.sessions),
-      leads: n(leadCount?.c),
-      identifiedCompanies: n(t?.companies),
+      pageviews: n(totals[0]?.pageviews),
+      visitors: n(totals[0]?.visitors),
+      sessions: n(totals[0]?.sessions),
+      leads: n(leadCount[0]?.c),
+      identifiedCompanies: n(totals[0]?.companies),
     },
     previous: {
-      pageviews: n(pt?.pageviews),
-      visitors: n(pt?.visitors),
-      sessions: n(pt?.sessions),
-      leads: n(prevLeads?.c),
+      pageviews: n(prev[0]?.pageviews),
+      visitors: n(prev[0]?.visitors),
+      sessions: n(prev[0]?.sessions),
+      leads: n(prevLeads[0]?.c),
     },
     daily,
-    sections: grouped("section", 6),
-    pages: grouped("path", 12),
-    sources: grouped("COALESCE(utm_source, referrer_host, 'Direct / none')", 10),
-    countries: grouped("country", 8, "country IS NOT NULL"),
+    sections,
+    pages,
+    sources,
+    countries,
     companies,
     leads,
     companyLookupEnabled: Boolean(process.env.IPINFO_TOKEN),
