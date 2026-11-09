@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./testyantra-v2.css";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
@@ -7,15 +7,18 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { siteConfig } from "@/lib/seo";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+// Self-hosted variable fonts (npm packages) — no Google Fonts download at build time,
+// which made Vercel builds fail intermittently.
+const jakarta = localFont({
+  src: "../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2",
+  weight: "200 800",
   variable: "--font-jakarta",
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
+const fraunces = localFont({
+  src: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2",
+  weight: "100 900",
   variable: "--font-fraunces",
   display: "swap",
 });
