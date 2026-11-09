@@ -35,6 +35,8 @@ export type Dashboard = {
   days: number;
   since: string;
   totals: { pageviews: number; visitors: number; sessions: number; leads: number; identifiedCompanies: number };
+  /** Same measures for the equally long period immediately before, for comparison. */
+  previous: { pageviews: number; visitors: number; sessions: number; leads: number };
   daily: { day: string; views: number; leads: number }[];
   sections: Count[];
   pages: Count[];
@@ -58,6 +60,15 @@ export function getDashboard(days: number): Dashboard {
     since,
   );
   const leadCount = db.get("SELECT COUNT(*) AS c FROM leads WHERE created_at >= ?", since);
+
+  const prevSince = new Date(Date.now() - 2 * days * 86_400_000).toISOString();
+  const pt = db.get(
+    `SELECT COUNT(*) AS pageviews, COUNT(DISTINCT visitor_hash) AS visitors, COUNT(DISTINCT session_id) AS sessions
+     FROM visits WHERE created_at >= ? AND created_at < ?`,
+    prevSince,
+    since,
+  );
+  const prevLeads = db.get("SELECT COUNT(*) AS c FROM leads WHERE created_at >= ? AND created_at < ?", prevSince, since);
 
   const viewsByDay = new Map(
     db
@@ -144,6 +155,12 @@ export function getDashboard(days: number): Dashboard {
       leads: n(leadCount?.c),
       identifiedCompanies: n(t?.companies),
     },
+    previous: {
+      pageviews: n(pt?.pageviews),
+      visitors: n(pt?.visitors),
+      sessions: n(pt?.sessions),
+      leads: n(prevLeads?.c),
+    },
     daily,
     sections: grouped("section", 6),
     pages: grouped("path", 12),
@@ -153,6 +170,14 @@ export function getDashboard(days: number): Dashboard {
     leads,
     companyLookupEnabled: Boolean(process.env.IPINFO_TOKEN),
   };
+}
+
+/** "up 25% vs previous 7 days" — plain-language change, safe when the earlier period was empty. */
+export function changeText(now: number, before: number, days: number): string {
+  if (before === 0) return now === 0 ? `no activity in either ${days}-day period` : `new — none in the previous ${days} days`;
+  const pct = Math.round(((now - before) / before) * 100);
+  if (pct === 0) return `unchanged vs previous ${days} days`;
+  return `${pct > 0 ? "up" : "down"} ${Math.abs(pct)}% vs previous ${days} days (${before})`;
 }
 
 export function fmtIst(iso: string): string {

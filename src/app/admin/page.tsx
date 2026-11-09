@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/adminAuth";
-import { fmtIst, getDashboard, type Count } from "@/lib/adminData";
+import { changeText, fmtIst, getDashboard, type Count } from "@/lib/adminData";
 import { AiSummaryPanel } from "./AiSummaryPanel";
 
 export const dynamic = "force-dynamic";
@@ -95,11 +95,11 @@ export default async function AdminDashboard({ searchParams }: { searchParams: P
       </header>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-        <Card label="Page views" value={totals.pageviews} />
-        <Card label="Unique visitors" value={totals.visitors} />
-        <Card label="Sessions" value={totals.sessions} />
-        <Card label="Enquiries" value={totals.leads} hint={`${conv}% of sessions`} />
-        <Card label="Companies identified" value={totals.identifiedCompanies} />
+        <Card label="Page views" value={totals.pageviews} hint={changeText(totals.pageviews, data.previous.pageviews, days)} />
+        <Card label="Unique visitors" value={totals.visitors} hint={changeText(totals.visitors, data.previous.visitors, days)} />
+        <Card label="Visits" value={totals.sessions} hint="one browsing session = one visit" />
+        <Card label="Enquiries" value={totals.leads} hint={`${conv} per 100 visits · ${changeText(totals.leads, data.previous.leads, days)}`} />
+        <Card label="Companies identified" value={totals.identifiedCompanies} hint="businesses whose network visited" />
       </div>
 
       <AiSummaryPanel days={days} />
