@@ -62,14 +62,19 @@ const SCHEMA = [
 let pool: Pool | null = null;
 let ready: Promise<void> | null = null;
 
+/** Vercel's Neon integration sets DATABASE_URL (and sometimes POSTGRES_URL); accept either. */
+function connectionString(): string | undefined {
+  return process.env.DATABASE_URL || process.env.POSTGRES_URL || undefined;
+}
+
 export function dbConfigured(): boolean {
-  return Boolean(process.env.DATABASE_URL);
+  return Boolean(connectionString());
 }
 
 function getPool(): Pool {
   if (!pool) {
     pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: connectionString(),
       max: Number(process.env.DB_POOL_MAX ?? 3),
       idleTimeoutMillis: 10_000,
       connectionTimeoutMillis: 8_000,
